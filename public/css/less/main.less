@@ -1,0 +1,37 @@
+@import "../../bower_components/bootstrap/less/variables.less";
+@import "../../bower_components/bootstrap/less/mixins.less";
+@import "theme.less";
+
+body#sharp {
+  //.btn { font-weight: 100; }
+  .btn:active, .btn:focus { box-shadow: none; }
+}
+
+body.sharp-cms {
+  background: -moz-linear-gradient(left, @sharp-navcol-bg 16.6666667%, #eee 16.6666667%);
+  background: -webkit-gradient(linear, left top, right top, from(@sharp-navcol-bg), color-stop(.166666666667, @sharp-navcol-bg), color-stop(.166666666667, #eee));
+
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+
+  #maincontent {
+    padding-bottom: 50px;
+  }
+}
+
+body.sharp-auth {
+  background: @sharp-navbar-bg;
+}
+
+
+@import "header.less";
+@import "navcol.less";
+@import "contextbar.less";
+
+@import "loginview.less";
+@import "listview.less";
+@import "formview.less";
+
+@import "formfields/field-markdown.less";
+@import "formfields/field-file.less";
+@import "formfields/field-list.less";
+@import "formfields/field-date.less";

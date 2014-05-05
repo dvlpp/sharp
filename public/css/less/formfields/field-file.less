@@ -1,0 +1,32 @@
+.sharp-field-file {
+  .sharp-file {
+    position: relative; min-height: 34px; border:1px solid #ddd; padding: 6px; .clearfix(); background: #fff;
+    .sharp-file-progress { position: absolute; height: 100%; background: @brand-primary; left:0; top:0; }
+    .sharp-file-browse { display: block; }
+    .sharp-file-delete { display: none; }
+    .sharp-file-thumbnail { display: none; }
+    .sharp-file-label { display: none; }
+
+    &.valuated {
+      .sharp-file-browse { display: none; }
+      .sharp-file-delete { display: inline-block; position: absolute; top: 0; right: 0; padding: 2px 5px; line-height: normal; }
+      .sharp-file-thumbnail { display: block; }
+      .sharp-file-label {
+        display: block; line-height: normal;
+        .name { font-weight: bold; display: block; }
+        .mime { margin-right: 4px; color:#888; font-size: 11px; }
+        .size { color:#888; font-size: 11px; }
+        .type {
+          position: relative; float:left; margin-right:6px;
+          .fa { font-size: 40px; }
+          span { position: absolute; left:5px; top:20px; text-transform: uppercase; font-weight: bold; font-size:8px; }
+        }
+      }
+    }
+
+    &.with-thumbnail {
+      .sharp-file-label .type { display: none; }
+    }
+  }
+}
+

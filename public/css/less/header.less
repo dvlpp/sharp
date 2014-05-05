@@ -1,0 +1,23 @@
+#sharp header {
+  background-color: @sharp-navbar-bg; padding:@grid-gutter-width/2 0; font-weight: 100;
+  .navbar {
+    margin: 0;
+    li {
+      &.site a { font-weight: bold; color:#fff; }
+      a { font-size: 36px; color:lighten(@sharp-navbar-bg, 15%); }
+      a:hover, &.active a { color:#fff; background: none; }
+    }
+
+    .user {
+      color:#fff; font-weight: normal; line-height:50px;
+      .btn {
+        border:none; padding: 0 5px;
+        .fa-circle { color:#666; }
+        .fa-power-off {
+          color:#fff;
+          &:hover { color:@sharp-contexbar-bg; }
+        }
+      }
+    }
+  }
+}

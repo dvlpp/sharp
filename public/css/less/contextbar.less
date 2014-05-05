@@ -1,0 +1,21 @@
+#maincontent #contextbar {
+  background: @sharp-contexbar-bg;
+  .navbar {
+    margin-bottom: 0;
+    .navbar-nav {
+      float: none;
+      p.navbar-text { margin-left:0; font-size: 18px; color:#fff; line-height: normal; font-weight: 100; }
+      .navbar-btn {
+        font-size: 18px; line-height:normal; color:#fff; margin: 0; padding-top:14px; padding-bottom: 14px; border-left:1px solid #fff; background: transparent;
+        &:active { background: darken(@sharp-contexbar-bg, 10%); }
+      }
+      .dropdown {
+        &.open {
+          .btn-sublist { background: none; border-top-color:transparent; border-bottom-color:transparent; border-right-color:transparent; color:#fff; }
+        }
+      }
+      .btn-cancel, .btn-ok {  }
+      .btn-ok { font-weight: bold; }
+    }
+  }
+}
