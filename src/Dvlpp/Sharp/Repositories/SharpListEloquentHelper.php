@@ -83,7 +83,7 @@ class SharpListEloquentHelper {
                 elseif(in_array($attr, $filesAttr))
                 {
                     // This is a file attribute
-                    $repository->updateFileAttribute($item, $attr, $value, $listKey);
+                    $repository->updateListItemFileAttribute($item, $attr, $value, $listKey);
                 }
                 else
                 {

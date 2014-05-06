@@ -63,7 +63,7 @@ class ListField extends AbstractSharpField {
         {
             $itemField = $this->field->item->$key;
 
-            $strField = '<div class="col-md-' . ($itemField->item_width ?: "12") . '">'
+            $strField = '<div class="col-md-' . ($itemField->field_width ?: "12") . '">'
                 . '<div class="form-group sharp-field-' . $itemField->type .'">'
                 . SharpCmsField::make($key, $itemField, $item, $this->key)
                 . '</div></div>';

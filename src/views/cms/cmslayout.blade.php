@@ -37,6 +37,7 @@
                     @endif
                 @endforeach
             </ul>
+            @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService())
             <div class="navbar-right user">
                 {{ Session::get("sharp_user") }}
                 <a class="btn" href="{{ URL::route('logout') }}">
@@ -46,6 +47,7 @@
                     </span>
                 </a>
             </div>
+            @endif
         </div>
     </nav>
 
