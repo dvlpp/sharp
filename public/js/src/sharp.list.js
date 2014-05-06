@@ -37,7 +37,7 @@
 
                 // Create button "Add"
                 var $addBtn = $('<a/>').addClass(params.addButton.className).addClass("sharp-list-add").html(params.addButton.text);
-                var $addBtnListItem = $('<li/>').addClass("list-group-item").append($addBtn);
+                var $addBtnListItem = $('<li/>').addClass("list-group-item sharp-list-item-add").append($addBtn);
                 template.before($addBtnListItem);
 
                 // Add an item
