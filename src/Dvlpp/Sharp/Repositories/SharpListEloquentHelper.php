@@ -43,6 +43,20 @@ class SharpListEloquentHelper {
             }
         }
 
+
+        // Get the date attributes, ie names of attributes that are dates with the same technique as above.
+        $datesAttr = [];
+        if(isset($data["__date__".$listKey]))
+        {
+            foreach($data["__date__".$listKey] as $nothing => $tabAttr)
+            {
+                foreach($tabAttr as $dateAttr => $nothing)
+                {
+                    $datesAttr[] = $dateAttr;
+                }
+            }
+        }
+
         $order = 0;
         $saved = [];
         foreach($itemsForm as $itemForm)
@@ -84,6 +98,11 @@ class SharpListEloquentHelper {
                 {
                     // This is a file attribute
                     $repository->updateListItemFileAttribute($item, $attr, $value, $listKey);
+                }
+                elseif(in_array($attr, $datesAttr))
+                {
+                    // This is a date attribute
+                    $item->$attr =  date("Y-m-d H:i:s", strtotime($value));
                 }
                 else
                 {
