@@ -66,6 +66,11 @@ class SharpListEloquentHelper {
             {
                 // Have to create this item
                 $item = $repository->createNewListItem($instance, $listKey);
+                if(!$item)
+                {
+                    throw new InvalidArgumentException("Method [createNewListItem] of repo ["
+                        .get_class($repository)."] must return a valid item object.");
+                }
             }
             else
             {
@@ -83,7 +88,7 @@ class SharpListEloquentHelper {
             if(!$item)
             {
                 // Item can't be found and isn't new. Error.
-                throw new InvalidArgumentException("introuvable");
+                throw new InvalidArgumentException("Item [".$itemForm["id"]."] can't be found.");
             }
 
             // Update item

@@ -11,7 +11,7 @@ class RefField extends AbstractSharpField {
     function make()
     {
 
-        $this->_checkMandatoryAttributes(["repository","foreign_key"]);
+        $this->_checkMandatoryAttributes(["repository"]);
 
         $reflistRepoName = $this->field->repository;
         if(class_exists($reflistRepoName) || interface_exists($reflistRepoName))
@@ -21,9 +21,8 @@ class RefField extends AbstractSharpField {
             {
                 $values = $reflistRepo->formList();
 
-                $fieldName = $this->field->foreign_key;
                 // No need to populate the field, since we use a regular Form::select and a Form::model
-                return Form::select($fieldName, $values, null, $this->attributes);
+                return Form::select($this->fieldName, $values, $this->fieldValue, $this->attributes);
             }
             else
             {
