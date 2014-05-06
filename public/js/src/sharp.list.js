@@ -134,6 +134,12 @@ $(window).load(function() {
                         createSharpMarkdown($(this));
                     });
 
+                    // Manage sharp-date in the file item
+                    item.find('.sharp-date-template').each(function() {
+                        $(this).removeClass('sharp-date-template').addClass('sharp-date');
+                        createSharpDate($(this));
+                    });
+
                 },
                 itemDeleted: function(item) {
                     item.remove();
