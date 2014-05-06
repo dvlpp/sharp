@@ -53,7 +53,7 @@ class DateField extends AbstractSharpField {
         }
 
         // Auto-populate the real sent field
-        $str = Form::hidden($this->fieldName, null, ["class"=>"sharp-date-timestamp", "autocomplete"=>"off"]);
+        $str = Form::hidden($this->fieldName, $this->fieldValue, ["class"=>"sharp-date-timestamp", "autocomplete"=>"off"]);
 
         // And populate with formatted date the visible input field
         $str .= Form::text("__date__".$this->fieldName, $fieldValue, $this->attributes);
