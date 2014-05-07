@@ -3,6 +3,7 @@
 
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
+use Input;
 
 abstract class AbstractSharpField {
 
@@ -12,6 +13,7 @@ abstract class AbstractSharpField {
     protected $attributes;
     protected $instance;
     protected $fieldValue;
+    protected $listKey;
     protected $isListItem = false;
 
     function __construct($key, $listKey, SharpEntityFormField $field, $attributes, $instance)
@@ -26,6 +28,7 @@ abstract class AbstractSharpField {
 
         if($listKey)
         {
+            $this->listKey = $listKey;
             $this->isListItem = true;
         }
     }
@@ -48,6 +51,28 @@ abstract class AbstractSharpField {
             {
                 throw new MandatoryEntityAttributeNotFoundException("Attribute [$attr] can't be found (Field: ".$this->key.")");
             }
+        }
+    }
+
+    /**
+     * Retrieve the old value (Input::old) if it exists.
+     * @return null
+     */
+    protected function getOldValue()
+    {
+        // If no instance (template for example), no need to go further
+        if(!$this->instance) return null;
+
+        if($this->isListItem)
+        {
+            // If is list item, have to look inside list array
+            $list = Input::old($this->listKey);
+            $item = $list[$this->instance->id];
+            return $item[$this->key];
+        }
+        else
+        {
+            return Input::old($this->key);
         }
     }
 }

@@ -6,6 +6,7 @@ use Dvlpp\Sharp\Form\Fields\DateField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\ListField;
 use Dvlpp\Sharp\Form\Fields\MarkdownField;
+use Dvlpp\Sharp\Form\Fields\PivotTagsField;
 use Dvlpp\Sharp\Form\Fields\RefField;
 use Form;
 
@@ -73,6 +74,10 @@ class SharpCmsField {
 
             case 'ref':
                 $field = new RefField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
+            case 'pivot':
+                $field = new PivotTagsField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
 
             case 'date':

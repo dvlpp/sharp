@@ -5,7 +5,7 @@ use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use Form;
 use App;
-use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
+use Input;
 
 class RefField extends AbstractSharpField {
 
@@ -53,7 +53,18 @@ class RefField extends AbstractSharpField {
             if(method_exists($reflistRepo, "formList"))
             {
                 $values = $reflistRepo->formList();
-                return Form::select($this->fieldName, $values, $this->fieldValue, $this->attributes);
+
+                // Initial value *could be* tricky...
+                $value = $this->fieldValue;
+                if($this->getOldValue() && !is_numeric($this->getOldValue()))
+                {
+                    // Repopulate after validation error for a ref which was created by user before.
+                    // Have to tell selectize.js to add this non existent option
+                    $value = $this->getOldValue();
+                    $this->addData("to_add", $value);
+                }
+
+                return Form::select($this->fieldName, $values, $value, $this->attributes);
             }
 
             throw new MandatoryMethodNotFoundException("Method formList() not found in the $reflistRepoName class");

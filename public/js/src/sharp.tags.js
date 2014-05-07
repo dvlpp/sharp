@@ -1,11 +1,13 @@
 (function($)
 {
-    $.fn.sharp_ref=function(options)
+    $.fn.sharp_tags=function(options)
     {
         var defauts=
         {
             create: false,
-            selectOnTab: true,
+            selectOnTab: false,
+            persist: false,
+            maxItems: null,
             render: {
                 option_create: function(data, escape) {
                     return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
@@ -25,25 +27,27 @@
 
 $(window).load(function() {
 
-    $('.sharp-ref').each(function()
+    $('.sharp-tags').each(function()
     {
-        createSharpRef($(this));
+        createSharpTags($(this));
     });
 
 });
 
-function createSharpRef($el)
+function createSharpTags($el)
 {
     var options = {};
     if($el.data("create")) options.create = $el.data("create");
 
-    $el.sharp_ref(options);
+    $el.sharp_tags(options);
 
-    // Deal with to_add data: add an option and select it.
+    // Deal with to_add data: some options to add and select
     if($el.data("to_add"))
     {
-        var data = $el.data("to_add");
-        $el[0].selectize.addOption({value:data,text:data});
-        $el[0].selectize.addItem(data);
+        var tab = $el.data("to_add").split(',');
+        for (k=0; k<tab.length; k++) {
+            $el[0].selectize.addOption({value:tab[k],text:tab[k]});
+            $el[0].selectize.addItem(tab[k]);
+        }
     }
 }
