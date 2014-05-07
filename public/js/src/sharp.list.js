@@ -140,6 +140,12 @@ $(window).load(function() {
                         createSharpDate($(this));
                     });
 
+                    // Manage sharp-ref in the file item
+                    item.find('.sharp-ref-template').each(function() {
+                        $(this).removeClass('sharp-ref-template').addClass('sharp-ref');
+                        createSharpRef($(this));
+                    });
+
                 },
                 itemDeleted: function(item) {
                     item.remove();

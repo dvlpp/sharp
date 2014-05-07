@@ -5,6 +5,7 @@ use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use Form;
 use App;
+use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
 class RefField extends AbstractSharpField {
 
@@ -17,17 +18,45 @@ class RefField extends AbstractSharpField {
         if(class_exists($reflistRepoName) || interface_exists($reflistRepoName))
         {
             $reflistRepo = App::make($reflistRepoName);
-            if(method_exists($reflistRepo, "formList"))
-            {
-                $values = $reflistRepo->formList();
 
-                // No need to populate the field, since we use a regular Form::select and a Form::model
-                return Form::select($this->fieldName, $values, $this->fieldValue, $this->attributes);
+            /*$ui = $this->field->ui;
+            if(!$ui)
+            {
+                $ui = "list";
+            }
+            elseif(!in_array($ui, ["list", "autocomplete"]))
+            {
+                throw new InvalidArgumentException("Attribute ui of ref field has to in 'list' or 'autocomplete'");
+            }
+
+            $this->addData("ui", $ui);*/
+
+            $create = $this->field->create;
+            if($create !== null)
+            {
+                $this->addData("create", $create);
+            }
+
+            if(!$this->instance && $this->isListItem)
+            {
+                // No instance and part of a list item : this field is meant to be in the template item.
+                // In this case, we don't set the "sharp-ref" class which will trigger the JS code for
+                // the selectize component creation
+                $this->addClass("sharp-ref-template");
             }
             else
             {
-                throw new MandatoryMethodNotFoundException("Method formList() not found in the $reflistRepoName class");
+                // Regular case
+                $this->addClass("sharp-ref");
             }
+
+            if(method_exists($reflistRepo, "formList"))
+            {
+                $values = $reflistRepo->formList();
+                return Form::select($this->fieldName, $values, $this->fieldValue, $this->attributes);
+            }
+
+            throw new MandatoryMethodNotFoundException("Method formList() not found in the $reflistRepoName class");
         }
         else
         {

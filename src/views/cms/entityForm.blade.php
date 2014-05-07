@@ -58,4 +58,5 @@
 <script src="/packages/dvlpp/sharp/js/sharp.markdown.min.js"></script>
 <script src="/packages/dvlpp/sharp/js/sharp.list.min.js"></script>
 <script src="/packages/dvlpp/sharp/js/sharp.date.min.js"></script>
+<script src="/packages/dvlpp/sharp/js/sharp.ref.min.js"></script>
 @stop

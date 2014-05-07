@@ -94,6 +94,25 @@ class SharpListEloquentHelper {
             // Update item
             foreach($itemForm as $attr => $value)
             {
+                // First test if there is a special hook method on the controller
+                // that takes the precedence. Method name shoud be "update[$listKey]ListItem[$attr]Attribute.
+                // For example : updateBooksListItemTitleAttribute
+                $methodName = "update"
+                    . ucFirst(Str::camel($listKey))
+                    . "ListItem"
+                    . ucFirst(Str::camel($attr))
+                    . "Attribute";
+                if(method_exists($repository, $methodName))
+                {
+                    // Method exists, we call it
+                    if(!$repository->$methodName($instance, $item, $value))
+                    {
+                        // Returns false: we are done with this attribute, continue foreach
+                        continue;
+                    }
+                    // Returns true: have to manage this attribute ourselves...
+                }
+
                 if($attr == "id")
                 {
                     // Id is not updatable
