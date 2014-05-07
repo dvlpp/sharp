@@ -8,6 +8,7 @@
             selectOnTab: false,
             persist: false,
             maxItems: null,
+            sortField: null,
             render: {
                 option_create: function(data, escape) {
                     return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
