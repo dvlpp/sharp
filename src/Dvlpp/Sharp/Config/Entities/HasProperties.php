@@ -38,8 +38,15 @@ abstract class HasProperties {
     protected $data = [];
 
 
-    public function __construct(Array $data)
+    public function __construct($data)
     {
+        if(!is_array($data))
+        {
+            // Case $data is a simple string: it refers to an external Config file
+            // We load it and gets its data
+            $data = \Config::get($data);
+        }
+
         $this->data = $data;
     }
 
