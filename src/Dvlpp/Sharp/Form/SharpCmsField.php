@@ -2,6 +2,7 @@
 
 
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
+use Dvlpp\Sharp\Form\Fields\ChooseField;
 use Dvlpp\Sharp\Form\Fields\DateField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\ListField;
@@ -60,6 +61,10 @@ class SharpCmsField {
             case 'textarea': return Form::textarea($fieldName, $fieldValue, $attributes);
 
             // Then special Sharp fields :
+            case 'choose':
+                $field = new ChooseField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
             case 'markdown':
                 $field = new MarkdownField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();

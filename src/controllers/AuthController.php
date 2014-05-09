@@ -35,7 +35,7 @@ class AuthController extends BaseController {
             {
                 // Login succeed
                 Session::put("sharp_user", $user);
-                return Redirect::route("cms");
+                return Redirect::intended("cms");
             }
             else
             {
