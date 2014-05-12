@@ -25,9 +25,9 @@ $(window).load(function() {
                 $stateField.change(function() {
                     showHide($(this), $field, fieldShowOnClicked);
                 });
-            }
 
-            showHide($(this), $field, fieldShowOnClicked);
+                showHide($stateField, $field, fieldShowOnClicked);
+            }
         }
     });
 
