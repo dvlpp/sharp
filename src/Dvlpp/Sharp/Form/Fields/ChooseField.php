@@ -6,10 +6,7 @@ class ChooseField extends AbstractSharpField {
 
     function make()
     {
-        $values = $this->field->values;
-
-        // And populate with formatted date the visible input field
-        return Form::select($this->fieldName, $values, $this->fieldValue, $this->attributes);
+        return Form::select($this->fieldName, $this->field->values, $this->fieldValue, $this->attributes);
     }
 
 } 
