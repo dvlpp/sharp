@@ -82,9 +82,9 @@ class FileField extends AbstractSharpField {
 
             // Manage label
             $strField .= '<div class="sharp-file-label">'
-                .'<div class="type"><i class="fa fa-file-o"></i><span>'.pathinfo($instanceFile, PATHINFO_EXTENSION).'</span></div>'
-                .'<span class="mime">('.mime_content_type($instanceFile).')</span>'
-                .'<span class="size">'.$this->humanFileSize(filesize($instanceFile)).'</span></div>';
+                .'<div class="type"><i class="fa fa-file-o"></i><span>'.(file_exists($instanceFile) ? pathinfo($instanceFile, PATHINFO_EXTENSION) : "").'</span></div>'
+                .'<span class="mime">('.(file_exists($instanceFile) ? mime_content_type($instanceFile) : "").')</span>'
+                .'<span class="size">'.(file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "").'</span></div>';
         }
 
         // Valuation of the Form::hidden: first one is the value...
