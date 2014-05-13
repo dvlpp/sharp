@@ -122,28 +122,35 @@ $(window).load(function() {
             $.extend(params, {
                 itemCreated: function(item) {
 
+                    item.removeClass("template");
+
                     // Manage sharp-file in the item
                     item.find('.sharp-file-template').each(function() {
                         $(this).removeClass('sharp-file-template').addClass('sharp-file');
                         createSharpFile($(this));
                     });
 
-                    // Manage sharp-markdown in the file item
+                    // Manage sharp-markdown in the item
                     item.find('.sharp-markdown-template').each(function() {
                         $(this).removeClass('sharp-markdown-template').addClass('sharp-markdown');
                         createSharpMarkdown($(this));
                     });
 
-                    // Manage sharp-date in the file item
+                    // Manage sharp-date in the item
                     item.find('.sharp-date-template').each(function() {
                         $(this).removeClass('sharp-date-template').addClass('sharp-date');
                         createSharpDate($(this));
                     });
 
-                    // Manage sharp-ref in the file item
+                    // Manage sharp-ref in the item
                     item.find('.sharp-ref-template').each(function() {
                         $(this).removeClass('sharp-ref-template').addClass('sharp-ref');
                         createSharpRef($(this));
+                    });
+
+                    // Manage conditional display in the item
+                    item.find('.sharp-field[data-conditional_display]').each(function() {
+                        manageConditionalDisplay($(this));
                     });
 
                 },
