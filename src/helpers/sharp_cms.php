@@ -35,7 +35,9 @@ function sharp_thumbnail($source, $w, $h, $params=[])
             }
 
             // Create thumbnail
-            $sourceImg->resize($w, $h, true)->save($thumbFile);
+            $sourceImg->resize($w, $h, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($thumbFile);
         }
 
         return url($thumbName);
