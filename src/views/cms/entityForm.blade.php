@@ -20,24 +20,60 @@
 
 @section('content')
 
-<div class="row">
+
 {{ Form::model($instance, ["route"=>$instance->id?["cms.update", $category->key, $entityKey, $instance->id]:["cms.store", $category->key, $entityKey],
     "method"=>$instance->id?"put":"post", "id"=>"sharpform"]) }}
 
-    <div class="col-sm-6">
+    @if(count($entity->form_layout) > 1)
+        {{-- There are tabs --}}
 
-        @include("sharp::cms.entityFormColumn_partial", ["col" => $entity->form_fields->col1])
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                    <? $k=0 ?>
+                    @foreach($entity->form_layout as $keytab)
+                        <li class="{{ $k==0?'active':'' }}"><a href="#tab{{ $k++ }}" role="tab" data-toggle="tab">{{ $entity->form_layout->$keytab->tab }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
 
-    </div>
+    @endif
 
-    <div class="col-sm-6">
+    <div class="tab-content">
+        <? $k=0 ?>
+        @foreach($entity->form_layout as $keytab)
 
-        @include("sharp::cms.entityFormColumn_partial", ["col" => $entity->form_fields->col2])
+        <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k++ }}">
+            <div class="col-sm-6">
+                <div class="row">
 
+                @foreach($entity->form_layout->$keytab->col1->data as $key)
+
+                    @include("sharp::cms.entityFormField_partial", ["field" => $entity->form_fields->$key])
+
+                @endforeach
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+
+                @foreach($entity->form_layout->$keytab->col2->data as $key)
+
+                    @include("sharp::cms.entityFormField_partial", ["field" => $entity->form_fields->$key])
+
+                @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        @endforeach
     </div>
 
 {{ Form::close() }}
-</div>
 
 @if($instance->id && \Dvlpp\Sharp\Auth\SharpAccessManager::granted("entity", "delete", $entityKey))
 
