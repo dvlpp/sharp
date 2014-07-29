@@ -24,7 +24,20 @@ abstract class AbstractSharpField {
         $this->instance = $instance;
 
         $this->fieldName = $listKey ? $listKey."[".($instance?$instance->id:"--N--")."][".$key."]" : $key;
-        $this->fieldValue = $instance ? $instance->$key : null;
+
+        if($instance && strpos($key, "~"))
+        {
+            // If there's a "~" in the field $key, this means we are in a single relation case
+            // (One-To-One or Belongs To). The ~ separate the relation name and the value.
+            // For instance : boss~name indicate that the instance as a single "boss" relation,
+            // which has a "name" attribute.
+            list($relation, $relationKey) = explode("~", $key);
+            $this->fieldValue = $instance->$relation ? $instance->$relation->$relationKey : null;
+        }
+        else
+        {
+            $this->fieldValue = $instance ? $instance->$key : null;
+        }
 
         if($listKey)
         {
