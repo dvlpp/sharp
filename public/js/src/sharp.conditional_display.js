@@ -23,12 +23,12 @@ function manageConditionalDisplay($field)
         }
         // We use $= selector to look for input which end of name is [stateFieldName]
         // (with brackets because it's a list)
-        $stateField = $item.find(".sharp-field input[name$=\\["+stateFieldName+"\\]]");
+        $stateField = $item.find(".sharp-field input[name$=\\["+escapeFieldName(stateFieldName)+"\\]]");
     }
     else
     {
         // Normal case, conditional field in form-wide
-        $stateField = $("#sharpform").find(".sharp-field input[name="+stateFieldName+"]");
+        $stateField = $("#sharpform").find(".sharp-field input[name="+escapeFieldName(stateFieldName)+"]");
     }
 
     if($stateField.length)
@@ -55,4 +55,9 @@ function showHide($checkbox, $field, fieldShowOnChecked)
     {
         $field.hide();
     }
+}
+
+function escapeFieldName( fieldName )
+{
+    return fieldName.replace( /(:|\.|\[|\]|~)/g, "\\$1" );
 }
