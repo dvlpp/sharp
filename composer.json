@@ -10,7 +10,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "4.1.*",
-        "intervention/image": "dev-master",
+        "intervention/image": "2.*",
         "michelf/php-markdown": "1.4.*@dev"
     },
     "autoload": {
