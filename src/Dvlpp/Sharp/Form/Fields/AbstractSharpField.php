@@ -15,6 +15,8 @@ abstract class AbstractSharpField {
     protected $fieldValue;
     protected $listKey;
     protected $isListItem = false;
+    protected $relation;
+    protected $relationKey;
 
     function __construct($key, $listKey, SharpEntityFormField $field, $attributes, $instance)
     {
@@ -25,14 +27,17 @@ abstract class AbstractSharpField {
 
         $this->fieldName = $listKey ? $listKey."[".($instance?$instance->id:"--N--")."][".$key."]" : $key;
 
-        if($instance && strpos($key, "~"))
+        $this->relation = null;
+        $this->relationKey = null;
+
+        if(strpos($key, "~"))
         {
             // If there's a "~" in the field $key, this means we are in a single relation case
             // (One-To-One or Belongs To). The ~ separate the relation name and the value.
             // For instance : boss~name indicate that the instance as a single "boss" relation,
             // which has a "name" attribute.
-            list($relation, $relationKey) = explode("~", $key);
-            $this->fieldValue = $instance->$relation ? $instance->$relation->$relationKey : null;
+            list($this->relation, $this->relationKey) = explode("~", $key);
+            $this->fieldValue = $instance && $instance->{$this->relation} ? $instance->{$this->relation}->{$this->relationKey} : null;
         }
         else
         {

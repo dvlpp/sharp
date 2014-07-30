@@ -38,7 +38,7 @@ $(window).load(function() {
 function createSharpTags($el)
 {
     var options = {};
-    if($el.data("create")) options.create = $el.data("create");
+    if($el.data("addable")) options.create = $el.data("addable");
 
     $el.sharp_tags(options);
 

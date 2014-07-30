@@ -18,10 +18,10 @@ class PivotTagsField extends AbstractSharpField {
         {
             $reflistRepo = App::make($reflistRepoName);
 
-            $create = $this->field->create;
+            $create = $this->field->addable;
             if($create !== null)
             {
-                $this->addData("create", $create);
+                $this->addData("addable", $create);
             }
 
             if(!$this->instance && $this->isListItem)

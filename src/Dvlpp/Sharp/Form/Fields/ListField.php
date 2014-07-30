@@ -29,7 +29,11 @@ class ListField extends AbstractSharpField {
         }
         else
         {
-            foreach($this->instance->$listkey as $item)
+            $collection = $this->relation
+                ? ($this->instance && $this->instance->{$this->relation} ? $this->instance->{$this->relation}->{$this->relationKey} : [])
+                : $this->instance->$listkey;
+
+            foreach($collection as $item)
             {
                 $str .= $this->createItem($item);
             }

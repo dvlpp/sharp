@@ -8,8 +8,11 @@ use Dvlpp\Sharp\Form\Fields\DateField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\ListField;
 use Dvlpp\Sharp\Form\Fields\MarkdownField;
+use Dvlpp\Sharp\Form\Fields\PasswordField;
 use Dvlpp\Sharp\Form\Fields\PivotTagsField;
 use Dvlpp\Sharp\Form\Fields\RefField;
+use Dvlpp\Sharp\Form\Fields\TextareaField;
+use Dvlpp\Sharp\Form\Fields\TextField;
 use Form;
 
 class SharpCmsField {
@@ -46,22 +49,20 @@ class SharpCmsField {
         $attributes["autocomplete"] = "off";
         $this->addClass("form-control", $attributes);
 
-        $fieldName = $listKey ? $listKey."[".($instance?$instance->id:"--N--")."][".$key."]" : $key;
-        $fieldValue = null;
-        if($listKey)
-        {
-            $fieldValue = $instance ? $instance->$key : null;
-        }
-
         switch($field->type)
         {
-            // First handle "regular" fields. No need to worry about $instance :
-            // fields are auto-populated by Laravel, because we use a Form::model()
-            case 'password': return Form::password($fieldName, $attributes);
-            case 'text': return Form::text($fieldName, $fieldValue, $attributes);
-            case 'textarea': return Form::textarea($fieldName, $fieldValue, $attributes);
+            case 'text':
+                $field = new TextField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
 
-            // Then special Sharp fields :
+            case 'password':
+                $field = new PasswordField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
+            case 'textarea':
+                $field = new TextareaField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
             case 'choose':
                 $field = new ChooseField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
