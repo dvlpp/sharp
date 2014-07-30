@@ -2,28 +2,18 @@
 
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
-use Illuminate\Database\DatabaseManager;
 use InvalidArgumentException;
 use Str;
+use DB;
 
 trait SharpEloquentRepositoryUpdaterTrait {
 
-    /**
-     * @var \Illuminate\Database\DatabaseManager
-     */
-    private $db;
-
     private $entityConfig;
-
-    function __construct(DatabaseManager $db)
-    {
-        $this->db = $db;
-    }
 
     function updateEntity($categoryName, $entityName, $entity, Array $data)
     {
         // Start a transaction
-        $this->db->connection()->getPdo()->beginTransaction();
+        DB::connection()->getPdo()->beginTransaction();
 
         $this->entityConfig = SharpCmsConfig::findEntity($categoryName, $entityName);
 
@@ -43,7 +33,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
         $entity->save();
 
-        $this->db->connection()->getPdo()->commit();
+        DB::connection()->getPdo()->commit();
 
         return $entity;
     }
@@ -234,7 +224,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
     private function updateField($entity, $data, $configFieldAttr, $dataAttribute, $listKey=null)
     {
         // First test if there is a special hook method on the controller
-        // that takes the precedence. Method name shoud be :
+        // that takes the precedence. Method name should be :
         // "update[$dataAttribute]Attribute" for a normal field
         // "update[$listKey]List[$dataAttribute]Attribute" for an list item field.
         // For example : updateBooksListTitleAttribute
