@@ -139,8 +139,10 @@ trait SharpEloquentRepositoryUpdaterTrait {
             $item = null;
             if(Str::startsWith($itemForm["id"], "N"))
             {
-                // Have to create this item
-                $item = $entity->$listKey()->create([]);
+                // Have to create this item : we can't use $entity->$listKey()->create([]), because
+                // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
+                $item = $entity->$listKey()->getRelated()->newInstance([]);
+                $item->setAttribute($entity->$listKey()->getPlainForeignKey(), $entity->$listKey()->getParentKey());
             }
             else
             {
@@ -220,6 +222,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
      * @param $configFieldAttr
      * @param $dataAttribute
      * @param null $listKey
+     * @throws \InvalidArgumentException
      */
     private function updateField($entity, $data, $configFieldAttr, $dataAttribute, $listKey=null)
     {
@@ -267,7 +270,8 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 if(!$entity->id) $entity->save();
 
                 // Then create the related object
-                $relationObject = $entity->$relationKey()->create([]);
+                $relationObject = $entity->$relationKey()->getRelated()->newInstance([]);
+                $relationObject->setAttribute($entity->$relationKey()->getPlainForeignKey(), $entity->$relationKey()->getParentKey());
 
                 // Unset the relation to be sure that other attribute of the same relation will
                 // use the created related object (otherwise, relation is cached to null by Laravel)
