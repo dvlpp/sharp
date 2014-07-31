@@ -46,7 +46,7 @@
 
         <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k++ }}">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <div class="row">
 
                     @foreach($entity->form_layout->$keytab->col1->data as $key)
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <div class="row">
 
                     @foreach($entity->form_layout->$keytab->col2->data as $key)
