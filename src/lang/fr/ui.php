@@ -20,5 +20,6 @@ return [
     'form_deleteConfirmMsg' => 'Supprimer cet élément définitivement ?',
     'form_updateBtn' => 'Valider',
     'form_cancelBtn' => 'Annuler',
+    'form_errors' => 'Le formulaire contient des erreurs'
 
 ];

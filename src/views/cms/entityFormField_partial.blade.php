@@ -4,6 +4,6 @@
     {{ \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($key, $field, $instance) }}
 
     <p class="help-block">
-        {{ $errors->first($key) ?: $field->help }}
+        {{ $field->help }}
     </p>
 </div>

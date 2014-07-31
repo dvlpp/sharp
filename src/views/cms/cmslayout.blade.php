@@ -70,7 +70,9 @@
                     </div>
 
                     <div class="col-sm-12" id="page">
+
                         @yield('content')
+
                     </div>
                 </div>
             </div>
