@@ -93,4 +93,6 @@ abstract class AbstractSharpField {
             return Input::old($this->key);
         }
     }
+
+    abstract function make();
 }
