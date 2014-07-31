@@ -4,8 +4,9 @@ body.sharp-form {
 
     .nav-pills {
       margin-bottom: @grid-gutter-width;
-      li a { background: #ddd; color:#999; }
-      li.active a { border-bottom-color: @sharp-contexbar-bg; color:#fff; background:@sharp-contexbar-bg; }
+      li a { background: #ddd; color:#999; border-right: 1px solid #b7b7b7; }
+      li:last-child a { border:none; }
+      li.active a { border-bottom-color: @sharp-contexbar-bg; color:#fff; background:@sharp-contexbar-bg; border:none; }
     }
 
     form {
