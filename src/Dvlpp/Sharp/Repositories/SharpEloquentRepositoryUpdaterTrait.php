@@ -38,23 +38,12 @@ trait SharpEloquentRepositoryUpdaterTrait {
         return $entity;
     }
 
-    private function valuatePivotAttribute($entity, $pivotKey, $dataPivot)
+    private function valuatePivotAttribute($entity, $pivotKey, $dataPivot, $pivotConfig)
     {
-        // Find pivot config
-        $configPivotField = null;
-        foreach ($this->entityConfig->form_fields as $fieldId)
-        {
-            if ($fieldId == $pivotKey)
-            {
-                $configPivotField = $this->entityConfig->form_fields->$fieldId;
-                break;
-            }
-        }
-
-        $isCreatable = $configPivotField->addable ?: false;
-        $createAttribute = $isCreatable ? $configPivotField->create_attribute : "name";
-        $hasOrder = $configPivotField->sortable ?: false;
-        $orderAttribute = $hasOrder ? $configPivotField->order_attribute : "order";
+        $isCreatable = $pivotConfig->addable ?: false;
+        $createAttribute = $isCreatable ? $pivotConfig->create_attribute : "name";
+        $hasOrder = $pivotConfig->sortable ?: false;
+        $orderAttribute = $hasOrder ? $pivotConfig->order_attribute : "order";
 
         $existingPivots = [];
         $newPivots = [];
@@ -117,19 +106,8 @@ trait SharpEloquentRepositoryUpdaterTrait {
         }
     }
 
-    private function valuateListAttribute($entity, $listKey, $itemsForm)
+    private function valuateListAttribute($entity, $listKey, $itemsForm, $listFieldConfig)
     {
-        // Find list config
-        $configListFieldAttr = null;
-        foreach ($this->entityConfig->form_fields as $fieldId)
-        {
-            if ($fieldId == $listKey)
-            {
-                $configListFieldAttr = $this->entityConfig->form_fields->$fieldId;
-                break;
-            }
-        }
-
         $order = 0;
         $saved = [];
 
@@ -172,12 +150,14 @@ trait SharpEloquentRepositoryUpdaterTrait {
                     continue;
                 }
 
+                //if($listKey == "tarifsSpecifiques") dd($entity);
+
                 // For other attributes :
-                foreach ($configListFieldAttr->item as $configListItemKey)
+                foreach ($listFieldConfig->item as $configListItemKey)
                 {
                     if ($configListItemKey == $attr)
                     {
-                        $configListItemConfigAttr = $this->entityConfig->form_fields->$listKey->item->$configListItemKey;
+                        $configListItemConfigAttr = $listFieldConfig->item->$configListItemKey;
 
                         $this->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $listKey);
                     }
@@ -185,9 +165,9 @@ trait SharpEloquentRepositoryUpdaterTrait {
             }
 
             // Manage order
-            if($configListFieldAttr->order_attribute)
+            if($listFieldConfig->order_attribute)
             {
-                $item->{$configListFieldAttr->order_attribute} = $order;
+                $item->{$listFieldConfig->order_attribute} = $order;
             }
 
             // Eloquent save
@@ -222,7 +202,6 @@ trait SharpEloquentRepositoryUpdaterTrait {
      * @param $configFieldAttr
      * @param $dataAttribute
      * @param null $listKey
-     * @throws \InvalidArgumentException
      */
     private function updateField($entity, $data, $configFieldAttr, $dataAttribute, $listKey=null)
     {
@@ -249,6 +228,11 @@ trait SharpEloquentRepositoryUpdaterTrait {
         // Otherwise, we have to manage this attribute ourselves...
 
         $value = $data[$dataAttribute];
+
+        // These vars are used to store old values of $dataAttribute and $entity
+        // in case of modification by singleRelationCase (below)
+        $baseEntity = null;
+        $baseAttribute = null;
 
         $isSingleRelationCase = strpos($dataAttribute, "~");
 
@@ -280,6 +264,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
             // Finally, we translate entity and attribute to the related object
             $baseEntity = $entity;
+            $baseAttribute = $dataAttribute;
             $dataAttribute = $relationAttribute;
             $entity = $relationObject;
         }
@@ -295,21 +280,49 @@ trait SharpEloquentRepositoryUpdaterTrait {
             case "markdown":
                 $this->valuateSimpleAttribute($entity, $dataAttribute, $value);
                 break;
+
             case "date":
                 $this->valuateSimpleAttribute($entity, $dataAttribute, $value, true);
                 break;
+
             case "file":
                 $this->valuateFileAttribute($entity, $dataAttribute, $value);
                 break;
+
             case "list":
                 // First save the entity if transient (item creation would be impossible if entity is not persisted)
                 if(!$entity->id) $entity->save();
-                $this->valuateListAttribute($entity, $dataAttribute, $value);
+
+                // Find list config
+                $listFieldConfig = null;
+                foreach ($this->entityConfig->form_fields as $fieldId)
+                {
+                    if ($fieldId == ($baseAttribute ?: $dataAttribute))
+                    {
+                        $listFieldConfig = $this->entityConfig->form_fields->$fieldId;
+                        break;
+                    }
+                }
+
+                $this->valuateListAttribute($entity, $dataAttribute, $value, $listFieldConfig);
                 break;
+
             case "pivot":
                 // First save the entity if transient (pivot creation would be impossible if entity is not persisted)
                 if(!$entity->id) $entity->save();
-                $this->valuatePivotAttribute($entity, $dataAttribute, $value);
+
+                // Find pivot config
+                $pivotConfig = null;
+                foreach ($this->entityConfig->form_fields as $fieldId)
+                {
+                    if ($fieldId == ($baseAttribute ?: $dataAttribute))
+                    {
+                        $pivotConfig = $this->entityConfig->form_fields->$fieldId;
+                        break;
+                    }
+                }
+
+                $this->valuatePivotAttribute($entity, $dataAttribute, $value, $pivotConfig);
                 break;
 
             default:
