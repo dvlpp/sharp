@@ -111,72 +111,75 @@ trait SharpEloquentRepositoryUpdaterTrait {
         $order = 0;
         $saved = [];
 
-        // Iterate items posted
-        foreach($itemsForm as $itemForm)
+        if(is_array($itemsForm))
         {
-            $item = null;
-            if(Str::startsWith($itemForm["id"], "N"))
+            // Iterate items posted
+            foreach($itemsForm as $itemForm)
             {
-                // Have to create this item : we can't use $entity->$listKey()->create([]), because
-                // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
-                $item = $entity->$listKey()->getRelated()->newInstance([]);
-                $item->setAttribute($entity->$listKey()->getPlainForeignKey(), $entity->$listKey()->getParentKey());
-            }
-            else
-            {
-                foreach($entity->$listKey as $itemDb)
+                $item = null;
+                if(Str::startsWith($itemForm["id"], "N"))
                 {
-                    if($itemDb->id == $itemForm["id"])
+                    // Have to create this item : we can't use $entity->$listKey()->create([]), because
+                    // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
+                    $item = $entity->$listKey()->getRelated()->newInstance([]);
+                    $item->setAttribute($entity->$listKey()->getPlainForeignKey(), $entity->$listKey()->getParentKey());
+                }
+                else
+                {
+                    foreach($entity->$listKey as $itemDb)
                     {
-                        // DB item found
-                        $item = $itemDb;
-                        break;
+                        if($itemDb->id == $itemForm["id"])
+                        {
+                            // DB item found
+                            $item = $itemDb;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if(!$item)
-            {
-                // Item can't be found and isn't new. It's an error.
-                throw new InvalidArgumentException("Item [".$itemForm["id"]."] can't be found.");
-            }
-
-            // Update item
-            foreach($itemForm as $attr => $value)
-            {
-                if($attr == "id")
+                if(!$item)
                 {
-                    // Id is not updatable
-                    continue;
+                    // Item can't be found and isn't new. It's an error.
+                    throw new InvalidArgumentException("Item [".$itemForm["id"]."] can't be found.");
                 }
 
-                //if($listKey == "tarifsSpecifiques") dd($entity);
-
-                // For other attributes :
-                foreach ($listFieldConfig->item as $configListItemKey)
+                // Update item
+                foreach($itemForm as $attr => $value)
                 {
-                    if ($configListItemKey == $attr)
+                    if($attr == "id")
                     {
-                        $configListItemConfigAttr = $listFieldConfig->item->$configListItemKey;
+                        // Id is not updatable
+                        continue;
+                    }
 
-                        $this->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $listKey);
+                    //if($listKey == "tarifsSpecifiques") dd($entity);
+
+                    // For other attributes :
+                    foreach ($listFieldConfig->item as $configListItemKey)
+                    {
+                        if ($configListItemKey == $attr)
+                        {
+                            $configListItemConfigAttr = $listFieldConfig->item->$configListItemKey;
+
+                            $this->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $listKey);
+                        }
                     }
                 }
+
+                // Manage order
+                if($listFieldConfig->order_attribute)
+                {
+                    $item->{$listFieldConfig->order_attribute} = $order;
+                }
+
+                // Eloquent save
+                $item->save();
+
+                // Keep reference of the item for deletions
+                $saved[] = $item->id;
+
+                $order++;
             }
-
-            // Manage order
-            if($listFieldConfig->order_attribute)
-            {
-                $item->{$listFieldConfig->order_attribute} = $order;
-            }
-
-            // Eloquent save
-            $item->save();
-
-            // Keep reference of the item for deletions
-            $saved[] = $item->id;
-
-            $order++;
         }
 
         // Manage deletions of the non-present items
@@ -202,6 +205,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
      * @param $configFieldAttr
      * @param $dataAttribute
      * @param null $listKey
+     * @throws \InvalidArgumentException
      */
     private function updateField($entity, $data, $configFieldAttr, $dataAttribute, $listKey=null)
     {

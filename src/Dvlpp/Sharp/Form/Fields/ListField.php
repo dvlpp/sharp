@@ -16,7 +16,12 @@ class ListField extends AbstractSharpField {
         if($this->field->sortable) $strAttr .= ' data-sortable="'.$this->field->sortable.'"';
         if($this->field->add_button_text) $strAttr .= ' data-add_button_text="'.e($this->field->add_button_text).'"';
 
-        $str = '<ul class="sharp-list list-group" '.$strAttr.'>';
+        // Add this hidden to send the list with nothing in case of 0 item.
+        // It's useful to post the empty list and be able to delete all
+        // potentially existing items.
+        $str = Form::hidden($this->key, "empty");
+
+        $str .= '<ul class="sharp-list list-group" '.$strAttr.'>';
 
         $listkey = $this->key;
         if(Input::old($listkey))
