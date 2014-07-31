@@ -1,4 +1,5 @@
 .sharp-field-file {
+
   .sharp-file {
     position: relative; min-height: 34px; border:1px solid #ddd; padding: 6px; .clearfix(); background: #fff;
     .sharp-file-progress { position: absolute; height: 100%; background: @brand-primary; left:0; top:0; }
@@ -28,5 +29,7 @@
       .sharp-file-label .type { display: none; }
     }
   }
-}
 
+  &.has-error .sharp-file { border-color:@state-danger-bg !important; }
+
+}
