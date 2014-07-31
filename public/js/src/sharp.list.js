@@ -84,6 +84,7 @@
             {
                 $(this).sortable({
                     items: params.sortableItems,
+                    axis: "y",
                     helper: function(e, tr)
                     {
                         var $originals = tr.children();
