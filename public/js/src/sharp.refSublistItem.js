@@ -50,7 +50,10 @@
             refreshSubList($baseRefField, $refSublistField, $datastore);
 
             // Restore initial value
-            $refSublistField.setValue(params.initial_value);
+            if(params.initial_value)
+            {
+                $refSublistField.setValue(params.initial_value);
+            }
 
         });
     }
