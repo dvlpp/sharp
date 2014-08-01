@@ -277,6 +277,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
         {
             case "text":
             case "ref":
+            case "refSublistItem":
             case "check":
             case "choose":
             case "textarea":

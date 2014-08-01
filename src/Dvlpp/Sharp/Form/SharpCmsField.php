@@ -11,6 +11,7 @@ use Dvlpp\Sharp\Form\Fields\MarkdownField;
 use Dvlpp\Sharp\Form\Fields\PasswordField;
 use Dvlpp\Sharp\Form\Fields\PivotTagsField;
 use Dvlpp\Sharp\Form\Fields\RefField;
+use Dvlpp\Sharp\Form\Fields\RefSublistItemField;
 use Dvlpp\Sharp\Form\Fields\TextareaField;
 use Dvlpp\Sharp\Form\Fields\TextField;
 use Form;
@@ -85,6 +86,10 @@ class SharpCmsField {
 
             case 'ref':
                 $field = new RefField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
+            case 'refSublistItem':
+                $field = new RefSublistItemField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
 
             case 'pivot':
