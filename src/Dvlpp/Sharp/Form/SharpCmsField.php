@@ -100,6 +100,10 @@ class SharpCmsField {
                 $field = new DateField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
 
+            case 'hidden':
+                $field = new HiddenField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
         }
         return null;
     }
