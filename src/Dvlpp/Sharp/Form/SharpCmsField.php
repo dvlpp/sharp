@@ -6,6 +6,8 @@ use Dvlpp\Sharp\Form\Fields\CheckField;
 use Dvlpp\Sharp\Form\Fields\ChooseField;
 use Dvlpp\Sharp\Form\Fields\DateField;
 use Dvlpp\Sharp\Form\Fields\FileField;
+use Dvlpp\Sharp\Form\Fields\HiddenField;
+use Dvlpp\Sharp\Form\Fields\LabelField;
 use Dvlpp\Sharp\Form\Fields\ListField;
 use Dvlpp\Sharp\Form\Fields\MarkdownField;
 use Dvlpp\Sharp\Form\Fields\PasswordField;
@@ -103,6 +105,11 @@ class SharpCmsField {
             case 'hidden':
                 $field = new HiddenField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
+
+            case 'label':
+                $field = new LabelField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
 
         }
         return null;
