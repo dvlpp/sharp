@@ -332,8 +332,10 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 throw new InvalidArgumentException("Config type [".$configFieldAttr->type."] is invalid.");
         }
 
-        if($isSingleRelationCase)
+        if($isSingleRelationCase && $configFieldAttr->type != "list")
         {
+            // In a single relation case, we have to save the eloquent relation,
+            // except if it's a list (saving occurs on items)
             $baseEntity->$relationKey()->save($relationObject);
         }
     }
