@@ -216,7 +216,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
         // For example : updateBooksListTitleAttribute
         $methodName = "update"
             . ($listKey ? ucFirst(Str::camel($listKey)) . "List" : "")
-            . ucFirst(Str::camel($dataAttribute))
+            . ucFirst(Str::camel( str_replace("~", "_", $dataAttribute)))
             . "Attribute";
 
         if(method_exists($this, $methodName))
