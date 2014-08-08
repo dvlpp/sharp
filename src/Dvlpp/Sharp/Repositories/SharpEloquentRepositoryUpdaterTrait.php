@@ -152,8 +152,6 @@ trait SharpEloquentRepositoryUpdaterTrait {
                         continue;
                     }
 
-                    //if($listKey == "tarifsSpecifiques") dd($entity);
-
                     // For other attributes :
                     foreach ($listFieldConfig->item as $configListItemKey)
                     {
