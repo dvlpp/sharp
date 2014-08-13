@@ -4,13 +4,20 @@
     margin-bottom: 0;
     .sharp-list-item {
       padding: 5px;
+      .control-label { font-size: 14px; }
       .form-group { margin-bottom: 8px; }
-      .sharp-list-remove { padding:0; float: right; }
+      .sharp-list-remove {
+        padding:0; float: right; color:desaturate(@brand-danger, 50%);
+        &:hover { color:@brand-danger; }
+      }
     }
     .sharp-list-item-add:not(:first-child) {
       background: none; border:none;
     }
-    .sharp-list-item-add .sharp-list-add { display: block; }
+    .sharp-list-item-add .sharp-list-add {
+      display: block; color:desaturate(@sharp-contexbar-bg, 50%);
+      &:hover { color:@sharp-contexbar-bg; }
+    }
   }
 
   &.has-error .sharp-list { border:1px solid @state-danger-bg !important; }
