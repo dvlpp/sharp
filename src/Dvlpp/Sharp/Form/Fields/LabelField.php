@@ -3,6 +3,7 @@
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use Form;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Mustache_Engine;
 
 /**
@@ -93,13 +94,24 @@ class MustacheModelHelper
 
     public function __get($key)
     {
-        if ($this->model->$key)
+        if (method_exists($this->model, $key))
+        {
+            // It's either a Relation method or a standard one
+            $ret = $this->model->$key();
+            if($ret instanceof Relation)
+            {
+                // It's a Relation: return the attribute in order
+                // to make Eloquent relation work
+                return $this->model->$key;
+            }
+
+            // Standard method
+            return $this->model->$key();
+        }
+
+        elseif(isset($this->model->$key))
         {
             return $this->model->$key;
-        }
-        else if (method_exists($this->model, $key))
-        {
-            return $this->model->$key();
         }
     }
 
@@ -109,7 +121,7 @@ class MustacheModelHelper
         {
             return true;
         }
-        else if (method_exists($this->model, $key))
+        elseif (method_exists($this->model, $key))
         {
             return true;
         }
