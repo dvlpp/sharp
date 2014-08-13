@@ -11,7 +11,8 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
         "intervention/image": "2.*",
-        "michelf/php-markdown": "1.4.*@dev"
+        "michelf/php-markdown": "1.4.*@dev",
+        "mustache/mustache": "~2.6.0"
     },
     "autoload": {
         "classmap": [

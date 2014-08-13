@@ -107,7 +107,7 @@ class SharpCmsField {
                 return $field->make();
 
             case 'label':
-                $field = new LabelField($key, $listKey, $field, $attributes, $instance);
+                $field = new LabelField($field, $instance);
                 return $field->make();
 
 
