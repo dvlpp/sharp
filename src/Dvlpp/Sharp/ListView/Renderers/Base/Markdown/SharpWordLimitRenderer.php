@@ -18,14 +18,16 @@ class SharpWordLimitRenderer implements SharpRenderer {
 
             $str = sharp_markdown($instance->$key);
 
-            $str = Str::words($str, $limit, '');
+            $strW = Str::words($str, $limit, '');
 
-            return $this->replaceParagraphsByBr($this->closeTags($str)) . '...';
+            $append = strlen($str) != strlen($strW) ? '...' : '';
+
+            return $this->replaceParagraphsByBr($this->closeTags($strW)) . $append;
         }
         return null;
     }
 
-    function closeTags($html)
+    private function closeTags($html)
     {
         $single_tags = ['meta', 'img', 'br', 'link', 'area', 'input', 'hr', 'col', 'param', 'base'];
 
