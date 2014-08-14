@@ -15,6 +15,7 @@ class SharpColumnRendererManager {
         "charlimit" => '\Dvlpp\Sharp\ListView\Renderers\Base\SharpCharLimitRenderer',
         "markdownWordlimit" => '\Dvlpp\Sharp\ListView\Renderers\Base\Markdown\SharpWordLimitRenderer',
         "date" => '\Dvlpp\Sharp\ListView\Renderers\Base\DateRenderer',
+        "nl2br" => '\Dvlpp\Sharp\ListView\Renderers\Base\Nl2BrRenderer',
     ];
 
     public static function render(SharpEntityListTemplateColumn $col, $colKey, $instance)
