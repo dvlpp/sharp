@@ -246,7 +246,7 @@ class CmsController extends BaseController {
             if($entity->validator)
             {
                 $validator = App::make($entity->validator);
-                $validator->validate($data);
+                $validator->validate($data, !$creation?$id:null);
             }
 
             // Then : update (calling repo)
