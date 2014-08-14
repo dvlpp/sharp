@@ -53,7 +53,9 @@ abstract class SharpValidator {
         $this->instanceId = $instanceId;
 
         // Grab rules
-        $rules = array_merge($this->rules, $instanceId ? $this->updateRules : $this->creationRules);
+        $rules = array_merge($this->getRules(),
+            $this->getInstanceId() ? $this->getUpdateRules() : $this->getCreationRules()
+        );
 
         // and validate
         $validation = Validator::make($input, $rules, array_merge($this->base_messages, $this->messages));
@@ -74,5 +76,20 @@ abstract class SharpValidator {
     public function getInstanceId()
     {
         return $this->instanceId;
+    }
+
+    public function getUpdateRules()
+    {
+        return $this->updateRules;
+    }
+
+    public function getCreationRules()
+    {
+        return $this->creationRules;
+    }
+
+    public function getRules()
+    {
+        return $this->rules;
     }
 } 
