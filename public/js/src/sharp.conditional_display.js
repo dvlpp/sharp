@@ -63,21 +63,21 @@ function manageConditionalDisplay($field)
 
 function checkboxShowHide($checkbox, $field, fieldShowOnChecked)
 {
-    if(($checkbox.is(":checked") && fieldShowOnChecked)
-        || (!$checkbox.is(":checked") && !fieldShowOnChecked))
-    {
-        $field.show();
-    }
-    else
-    {
-        $field.hide();
-    }
+    showHideField($field,
+        ($checkbox.is(":checked") && fieldShowOnChecked)
+            || (!$checkbox.is(":checked") && !fieldShowOnChecked));
 }
 
 function selectShowHide($select, value, $field, fieldShowIfSelected)
 {
-    if(($select.find('option:selected').val() == value && fieldShowIfSelected)
-        || ($select.find('option:selected').val() != value && !fieldShowIfSelected))
+    showHideField($field,
+        ($select.find('option:selected').val() == value && fieldShowIfSelected)
+            || ($select.find('option:selected').val() != value && !fieldShowIfSelected));
+}
+
+function showHideField($field, show)
+{
+    if(show)
     {
         $field.show();
     }
