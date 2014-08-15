@@ -40,12 +40,27 @@ class CmsController extends BaseController {
      */
     public function listEntities($categoryName, $entityName)
     {
+        if(!sizeof(Input::all()) && Session::get('listViewInput'))
+        {
+            // We have saved an old "input", which means we need to display the list
+            // with some pagination, or sorting, or search config. We simply redirect
+            // with the correct querystring based on old input
+            $input = Session::get('listViewInput');
+            return Redirect::route('cms.list', array_merge(["category"=>$categoryName, "entity"=>$entityName], $input));
+        }
+        else
+        {
+            // Save input (we can use it later, see up)
+            Session::flash('listViewInput', Input::only('page','sort','dir','search'));
+        }
+
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = App::make($entity->repository);
 
+        // Grab entities (input is managed there, for search, pagination, ...)
         $entitiesList = new SharpEntitiesList($entity, $repo);
 
         // And return the View
@@ -71,6 +86,7 @@ class CmsController extends BaseController {
      */
     public function editEntity($categoryName, $entityName, $id)
     {
+        Session::keep('listViewInput');
         return $this->form($categoryName, $entityName, $id);
     }
 
@@ -92,6 +108,7 @@ class CmsController extends BaseController {
      */
     public function updateEntity($categoryName, $entityName, $id)
     {
+        Session::keep('listViewInput');
         return $this->save($categoryName, $entityName, $id);
     }
 

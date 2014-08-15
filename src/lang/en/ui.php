@@ -13,6 +13,7 @@ return [
     'list_reorderBtn' => 'Reorder',
     'list_reorderOkBtn' => 'Update order',
     'list_reorderCancelBtn' => 'Cancel',
+    'list_searchPlaceholder' => 'Search',
 
     'form_updateTitle' => ':entity update',
     'form_createTitle' => ':entity creation',

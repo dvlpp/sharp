@@ -9,12 +9,19 @@
         font-size: 18px; line-height:normal; color:#fff; margin: 0; padding-top:14px; padding-bottom: 14px; border-left:1px solid #fff; background: transparent;
         &:active { background: darken(@sharp-contexbar-bg, 10%); }
       }
+      .navbar-form { margin-right: 0; }
+      #search {
+        input {
+          border:none; box-shadow: none; background: #fff;
+          &[type=text] { width: 150px; }
+        }
+        .btn { color:#ccc; background: #fff; }
+      }
       .dropdown {
         &.open {
           .btn-sublist { background: none; border-top-color:transparent; border-bottom-color:transparent; border-right-color:transparent; color:#fff; }
         }
       }
-      .btn-cancel, .btn-ok {  }
       .btn-ok { font-weight: bold; }
     }
   }

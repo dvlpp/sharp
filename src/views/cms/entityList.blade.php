@@ -35,6 +35,20 @@
         </div>
     @endif
 
+    @if($entity->list_template->searchable)
+        <form role="search" class="navbar-form navbar-right" id="search" method="get">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="{{ trans('sharp::ui.list_searchPlaceholder') }}" value="{{ Input::get('search') }}">
+                <span class="input-group-btn">
+                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            @foreach(Input::except(['search','page']) as $qs => $qsVal)
+                {{ Form::hidden($qs, $qsVal) }}
+            @endforeach
+        </form>
+    @endif
+
 @stop
 
 @section('content')
@@ -45,7 +59,7 @@
         @foreach($entity->list_template->columns as $colkey => $col)
             <th class="col-xs-{{ $col->width }}">
 
-                @if(!$entity->list_template->sortable && $col->sortable)
+                @if($entity->list_template->sortable && $col->sortable)
                     @if($sortedColumn == $colkey)
                         <a class="sort current"
                            href="{{ URL::route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page']), ['sort'=>$colkey, 'dir'=>$sortedDirection=='asc'?'desc':'asc'])) }}">

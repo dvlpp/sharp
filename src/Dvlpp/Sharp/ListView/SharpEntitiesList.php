@@ -2,15 +2,16 @@
 
 
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
+use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Pagination\Paginator;
 use Input;
 
 /**
+ * This class manages all the entities listing stuff, from pagination to sublist via sorting
+ *
  * Class SharpEntitiesList
  * @package Dvlpp\Sharp\ListView
- *
- * This class manages all the entities listing stuff, from pagination to sublist via sorting
  */
 class SharpEntitiesList {
 
@@ -45,7 +46,12 @@ class SharpEntitiesList {
     protected $sortedDirection;
 
     /**
-     * @var \Dvlpp\Sharp\Entities\SharpEntity
+     * @var string
+     */
+    protected $search;
+
+    /**
+     * @var \Dvlpp\Sharp\Config\Entities\SharpEntity
      */
     private $entity;
     /**
@@ -84,7 +90,7 @@ class SharpEntitiesList {
     public function getInstances()
     {
         // Manage column sort
-        if(!$this->entity->sortable)
+        if($this->entity->list_template->sortable)
         {
             // First determine which column is sorted
             $this->sortedColumn = null;
@@ -101,12 +107,21 @@ class SharpEntitiesList {
             }
         }
 
+        // Manage search
+        if($this->entity->list_template->searchable && Input::get("search"))
+        {
+            $this->search = urldecode(Input::get("search"));
+        }
 
         // And finally grab the entities
         if($this->entity->list_template->paginate)
         {
             // Pagination config is set : grab the current page
-            $pagination = $this->repo->paginate($this->entity->list_template->paginate, $this->sortedColumn, $this->sortedDirection);
+            $pagination = $this->repo->paginate(
+                $this->entity->list_template->paginate,
+                $this->sortedColumn,
+                $this->sortedDirection,
+                $this->search);
             $this->count = $pagination->getTotal();
             $this->pagination = $pagination;
             return $pagination->getItems();
@@ -114,7 +129,7 @@ class SharpEntitiesList {
         else
         {
             // Grab all entities of this kind from DB
-            $instances = $this->repo->listAll($this->sortedColumn, $this->sortedDirection);
+            $instances = $this->repo->listAll($this->sortedColumn, $this->sortedDirection, $this->search);
             $this->count = sizeof($instances);
             return $instances;
         }

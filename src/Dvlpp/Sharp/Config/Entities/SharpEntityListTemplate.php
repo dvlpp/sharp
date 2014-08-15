@@ -8,7 +8,9 @@ class SharpEntityListTemplate extends HasProperties {
     protected $defaultPropertiesValues = [
         "paginate" => false,
         "sortable" => false,
-        "creatable" => true
+        "creatable" => true,
+        "searchable" => false,
+        "sublist" => false
     ];
 
     protected $structProperties = [

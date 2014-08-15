@@ -13,6 +13,7 @@ return [
     'list_reorderBtn' => 'Réorganiser',
     'list_reorderOkBtn' => 'Mise à jour',
     'list_reorderCancelBtn' => 'Annuler',
+    'list_searchPlaceholder' => 'Rechercher',
 
     'form_updateTitle' => 'Mise à jour :entity',
     'form_createTitle' => 'Création :entity',
