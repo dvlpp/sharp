@@ -51,7 +51,7 @@ class CmsController extends BaseController {
         else
         {
             // Save input (we can use it later, see up)
-            Session::flash('listViewInput', Input::only('page','sort','dir','search'));
+            Session::flash('listViewInput', Input::only('page','sort','dir','search','sub'));
         }
 
         // Find Entity config (from sharp CMS config file)
