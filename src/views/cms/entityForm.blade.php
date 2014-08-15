@@ -47,7 +47,7 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <ul class="nav nav-pills nav-justified" role="tablist">
+                    <ul class="nav nav-pills" role="tablist">
                         <?php $k=0 ?>
                         @foreach($entity->form_layout as $keytab)
                             <li class="{{ $k==0?'active':'' }}"><a href="#tab{{ $k++ }}" role="tab" data-toggle="tab">{{ $entity->form_layout->$keytab->tab }}</a></li>
