@@ -1,6 +1,6 @@
 {
     "name": "dvlpp/sharp",
-    "description": "",
+    "description": "A kind of CMS for developers who hate CMS",
     "authors": [
         {
             "name": "Philippe Lonchampt",
@@ -12,7 +12,8 @@
         "illuminate/support": "4.2.*",
         "intervention/image": "2.*",
         "michelf/php-markdown": "1.4.*@dev",
-        "mustache/mustache": "~2.6.0"
+        "mustache/mustache": "~2.6.0",
+        "codeception/codeception": "*"
     },
     "autoload": {
         "classmap": [
@@ -22,7 +23,7 @@
         "files": [
             "src/helpers/sharp_cms.php"
         ],
-        "psr-0": {
+        "psr-4": {
             "Dvlpp\\Sharp\\": "src/"
         }
     },
