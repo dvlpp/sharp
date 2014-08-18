@@ -64,7 +64,11 @@ class SharpEntitiesListParams {
         $terms = [];
         foreach(explode(" ", $this->search) as $term)
         {
-            $terms[] = $termPrefix.$term.$termSuffix;
+            $term = trim($term);
+            if($term)
+            {
+                $terms[] = $termPrefix . $term . $termSuffix;
+            }
         }
         return $terms;
     }
