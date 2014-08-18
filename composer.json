@@ -12,8 +12,8 @@
         "illuminate/support": "4.2.*",
         "intervention/image": "2.*",
         "michelf/php-markdown": "1.4.*@dev",
-        "mustache/mustache": "~2.6.0",
-        "codeception/codeception": "*"
+        "mustache/mustache": "~2.6.0"
+//        "codeception/codeception": "*"
     },
     "autoload": {
         "classmap": [
