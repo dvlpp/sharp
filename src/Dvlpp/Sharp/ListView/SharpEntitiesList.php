@@ -23,7 +23,7 @@ class SharpEntitiesList {
     /**
      * @var integer
      */
-    protected $subList;
+    protected $currentSubListId;
 
     /**
      * @var integer
@@ -36,28 +36,19 @@ class SharpEntitiesList {
     protected $pagination;
 
     /**
-     * @var string
-     */
-    protected $sortedColumn;
-
-    /**
-     * @var string
-     */
-    protected $sortedDirection;
-
-    /**
-     * @var string
-     */
-    protected $search;
-
-    /**
      * @var \Dvlpp\Sharp\Config\Entities\SharpEntity
      */
     private $entity;
+
     /**
      * @var \Dvlpp\Sharp\Repositories\SharpCmsRepository
      */
     private $repo;
+
+    /**
+     * @var \Dvlpp\Sharp\ListView\SharpEntitiesListParams
+     */
+    private $params;
 
     /**
      * @param SharpEntity $entity
@@ -72,6 +63,9 @@ class SharpEntitiesList {
     }
 
     /**
+     * Sublists are entities subsets. This method intents to grab all available sets
+     * from the functional repo, as well as the current one.
+     *
      * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
      */
     private function manageSublist()
@@ -88,59 +82,68 @@ class SharpEntitiesList {
                     .get_class($this->repo)
                     ."] has to implements \\Dvlpp\\Sharp\\Repositories\\SharpHasSublist in order to manage sublists");
             }
+
+            // Init current subset in repo
             $this->repo->initCurrentSublistId(Input::get("sub"));
+
+            $this->currentSubListId = $this->repo->getCurrentSublistId();
             $this->subLists = $this->repo->getSublists();
-            $this->subList = $this->repo->getCurrentSublistId();
         }
     }
 
     /**
+     * Grab the actual instances.
+     *
      * @return mixed
      */
     public function getInstances()
     {
         // Manage column sort
+        $sortedColumn = null;
+        $sortedDirection = null;
+
         if($this->entity->list_template->sortable)
         {
             // First determine which column is sorted
-            $this->sortedColumn = null;
             foreach($this->entity->list_template->columns as $colKey=>$col)
             {
-                if($col->sortable
-                    && ($colKey==Input::get("sort")
-                        || (!Input::has("sort") && !$this->sortedColumn)))
+                if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
                 {
-                    $this->sortedColumn = $colKey;
-                    $this->sortedDirection = Input::get("dir") ?: "asc";
+                    $sortedColumn = $colKey;
+                    $sortedDirection = Input::get("dir") ?: "asc";
                     break;
                 }
             }
         }
 
         // Manage search
+        $search = null;
+
         if($this->entity->list_template->searchable && Input::get("search"))
         {
-            $this->search = urldecode(Input::get("search"));
+            $search = urldecode(Input::get("search"));
         }
+
+        // Create the params object
+        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search);
 
         // And finally grab the entities
         if($this->entity->list_template->paginate)
         {
-            // Pagination config is set : grab the current page
-            $pagination = $this->repo->paginate(
-                $this->entity->list_template->paginate,
-                $this->sortedColumn,
-                $this->sortedDirection,
-                $this->search);
+            // Pagination config is set: grab the current page
+            $pagination = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
+
             $this->count = $pagination->getTotal();
             $this->pagination = $pagination;
+
             return $pagination->getItems();
         }
         else
         {
             // Grab all entities of this kind from DB
-            $instances = $this->repo->listAll($this->sortedColumn, $this->sortedDirection, $this->search);
+            $instances = $this->repo->listAll($this->params);
             $this->count = sizeof($instances);
+
             return $instances;
         }
     }
@@ -161,36 +164,24 @@ class SharpEntitiesList {
         return $this->pagination;
     }
 
-    /**
-     * @return string
-     */
-    public function getSortedColumn()
-    {
-        return $this->sortedColumn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSortedDirection()
-    {
-        return $this->sortedDirection;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSublistId()
-    {
-        return $this->subList;
-    }
-
-    /**
-     * @return array
-     */
     public function getSublists()
     {
         return $this->subLists;
+    }
+
+    public function getCurrentSublistId()
+    {
+        return $this->currentSubListId;
+    }
+
+    public function getSortedColumn()
+    {
+        return $this->params->getSortedColumn();
+    }
+
+    public function getSortedDirection()
+    {
+        return $this->params->getSortedDirection();
     }
 
 

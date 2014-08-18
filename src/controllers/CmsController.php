@@ -72,7 +72,7 @@ class CmsController extends BaseController {
             'totalCount'=>$entitiesList->getCount(),
             'pagination'=>$entitiesList->getPagination(),
             'subLists'=>$entitiesList->getSublists(),
-            'subList'=>$entitiesList->getSublistId(),
+            'subList'=>$entitiesList->getCurrentSublistId(),
             'sortedColumn'=>$entitiesList->getSortedColumn(),
             'sortedDirection'=>$entitiesList->getSortedDirection()
         ]);

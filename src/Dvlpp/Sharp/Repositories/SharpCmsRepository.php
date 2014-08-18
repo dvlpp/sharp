@@ -1,4 +1,5 @@
 <?php namespace Dvlpp\Sharp\Repositories;
+use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 
 
 /**
@@ -18,23 +19,19 @@ interface SharpCmsRepository {
     /**
      * List all instances, with optional sorting and search.
      *
-     * @param null $sortedColumn
-     * @param null $sortedDirection
-     * @param null $search
+     * @param \Dvlpp\Sharp\ListView\SharpEntitiesListParams $params
      * @return mixed
      */
-    function listAll($sortedColumn=null, $sortedDirection=null, $search=null);
+    function listAll(SharpEntitiesListParams $params);
 
     /**
      * Paginate instances.
      *
      * @param $count
-     * @param null $sortedColumn
-     * @param null $sortedDirection
-     * @param null $search
+     * @param \Dvlpp\Sharp\ListView\SharpEntitiesListParams $params
      * @return mixed
      */
-    function paginate($count, $sortedColumn=null, $sortedDirection=null, $search=null);
+    function paginate($count, SharpEntitiesListParams $params);
 
     /**
      * Create a new instance for initial population of create form.

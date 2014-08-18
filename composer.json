@@ -23,7 +23,7 @@
             "src/helpers/sharp_cms.php"
         ],
         "psr-4": {
-            "Dvlpp\\Sharp\\": "src/"
+            "Dvlpp\\": "src/"
         }
     },
     "minimum-stability": "stable"
