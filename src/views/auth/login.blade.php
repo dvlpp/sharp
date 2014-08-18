@@ -24,7 +24,7 @@
             {{ $errors->first('password', '<p class="help-block">:message</p>') }}
         </div>
         {{ Form::submit(trans('sharp::ui.login_submitBtn'), ["class"=>"btn btn-info"]) }}
-        <a class="btn btn-link" href="">{{ trans('sharp::ui.login_passwordForgotten') }}</a>
+        <!--a class="btn btn-link" href="">{{ trans('sharp::ui.login_passwordForgotten') }}</a-->
 
         {{ Form::close() }}
 
