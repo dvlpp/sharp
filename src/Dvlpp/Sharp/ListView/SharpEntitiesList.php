@@ -59,6 +59,10 @@ class SharpEntitiesList {
      */
     private $repo;
 
+    /**
+     * @param SharpEntity $entity
+     * @param SharpCmsRepository $repo
+     */
     public function __construct(SharpEntity $entity, SharpCmsRepository $repo)
     {
         $this->entity = $entity;
@@ -67,6 +71,9 @@ class SharpEntitiesList {
         $this->manageSublist();
     }
 
+    /**
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     */
     private function manageSublist()
     {
         // Manage sublist if set in the config file.
@@ -87,6 +94,9 @@ class SharpEntitiesList {
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getInstances()
     {
         // Manage column sort
@@ -135,31 +145,49 @@ class SharpEntitiesList {
         }
     }
 
+    /**
+     * @return int
+     */
     public function getCount()
     {
         return $this->count;
     }
 
+    /**
+     * @return Paginator
+     */
     public function getPagination()
     {
         return $this->pagination;
     }
 
+    /**
+     * @return string
+     */
     public function getSortedColumn()
     {
         return $this->sortedColumn;
     }
 
+    /**
+     * @return string
+     */
     public function getSortedDirection()
     {
         return $this->sortedDirection;
     }
 
+    /**
+     * @return int
+     */
     public function getSublistId()
     {
         return $this->subList;
     }
 
+    /**
+     * @return array
+     */
     public function getSublists()
     {
         return $this->subLists;

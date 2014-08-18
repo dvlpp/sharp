@@ -6,10 +6,26 @@ use InvalidArgumentException;
 use Str;
 use DB;
 
+/**
+ * Class SharpEloquentRepositoryUpdaterTrait
+ * @package Dvlpp\Sharp\Repositories
+ */
 trait SharpEloquentRepositoryUpdaterTrait {
 
+    /**
+     * @var
+     */
     private $entityConfig;
 
+    /**
+     * Updates an entity with the posted data.
+     *
+     * @param $categoryName
+     * @param $entityName
+     * @param $entity
+     * @param array $data
+     * @return mixed
+     */
     function updateEntity($categoryName, $entityName, $entity, Array $data)
     {
         // Start a transaction
@@ -38,6 +54,12 @@ trait SharpEloquentRepositoryUpdaterTrait {
         return $entity;
     }
 
+    /**
+     * @param $entity
+     * @param $pivotKey
+     * @param $dataPivot
+     * @param $pivotConfig
+     */
     private function valuatePivotAttribute($entity, $pivotKey, $dataPivot, $pivotConfig)
     {
         $isCreatable = $pivotConfig->addable ?: false;
@@ -80,11 +102,22 @@ trait SharpEloquentRepositoryUpdaterTrait {
         }
     }
 
+    /**
+     * @param $entity
+     * @param $attr
+     * @param $value
+     * @param bool $isDate
+     */
     private function valuateSimpleAttribute($entity, $attr, $value, $isDate=false)
     {
         $entity->$attr = $this->getFieldValue($value, $isDate);
     }
 
+    /**
+     * @param $entity
+     * @param $attr
+     * @param $file
+     */
     private function valuateFileAttribute($entity, $attr, $file)
     {
         if($file && $file != $entity->$attr)
@@ -106,6 +139,13 @@ trait SharpEloquentRepositoryUpdaterTrait {
         }
     }
 
+    /**
+     * @param $entity
+     * @param $listKey
+     * @param $itemsForm
+     * @param $listFieldConfig
+     * @throws \InvalidArgumentException
+     */
     private function valuateListAttribute($entity, $listKey, $itemsForm, $listFieldConfig)
     {
         $order = 0;
@@ -190,6 +230,11 @@ trait SharpEloquentRepositoryUpdaterTrait {
         }
     }
 
+    /**
+     * @param $value
+     * @param $isDate
+     * @return bool|string
+     */
     private function getFieldValue($value, $isDate)
     {
         return $isDate ? date("Y-m-d H:i:s", strtotime($value)) : $value;
