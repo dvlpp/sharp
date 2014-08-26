@@ -102,17 +102,14 @@ class SharpEntitiesList {
         $sortedColumn = null;
         $sortedDirection = null;
 
-        if($this->entity->list_template->sortable)
+        // First determine which column is sorted
+        foreach($this->entity->list_template->columns as $colKey=>$col)
         {
-            // First determine which column is sorted
-            foreach($this->entity->list_template->columns as $colKey=>$col)
+            if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
             {
-                if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
-                {
-                    $sortedColumn = $colKey;
-                    $sortedDirection = Input::get("dir") ?: "asc";
-                    break;
-                }
+                $sortedColumn = $colKey;
+                $sortedDirection = Input::get("dir") ?: "asc";
+                break;
             }
         }
 

@@ -18,7 +18,7 @@
         <a href="{{ route('cms.create', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right normal-mode"><i class="fa fa-plus"></i> {{ trans('sharp::ui.list_newBtn') }}</a>
     @endif
 
-    @if($entity->list_template->sortable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey)
+    @if($entity->list_template->reorderable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey)
             && (!$entity->list_template->searchable || !Input::get('search')))
         <a id="sharp-reorder" class="btn navbar-btn navbar-right normal-mode"><i class="fa fa-sort"></i> {{ trans('sharp::ui.list_reorderBtn') }}</a>
         <a id="sharp-reorder-ok" href="{{ route('cms.reorder', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right reorder-mode"><i class="fa fa-check"></i> {{ trans('sharp::ui.list_reorderOkBtn') }}</a>
@@ -60,7 +60,7 @@
         @foreach($entity->list_template->columns as $colkey => $col)
             <th class="col-xs-{{ $col->width }}">
 
-                @if($entity->list_template->sortable && $col->sortable)
+                @if($col->sortable)
                     @if($sortedColumn == $colkey)
                         <a class="sort current"
                            href="{{ URL::route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page']), ['sort'=>$colkey, 'dir'=>$sortedDirection=='asc'?'desc':'asc'])) }}">
