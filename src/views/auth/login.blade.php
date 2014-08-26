@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="col-lg-4 col-sm-offset-4 col-sm-6 col-sm-offset-3" id="login-form">
+    <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3" id="login-form">
 
         @if(Session::get("flashMessage"))
             <div class="alert alert-danger alert-dismissable">
