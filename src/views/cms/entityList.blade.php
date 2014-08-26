@@ -15,10 +15,13 @@
     </p>
 
     @if($entity->list_template->creatable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'create', $entityKey))
-        <a href="{{ route('cms.create', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right normal-mode"><i class="fa fa-plus"></i> {{ trans('sharp::ui.list_newBtn') }}</a>
+        <a href="{{ route('cms.create', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right normal-mode">
+            <i class="fa fa-plus"></i> {{ trans('sharp::ui.list_newBtn') }}
+        </a>
     @endif
 
-    @if($entity->list_template->reorderable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey)
+    @if($entity->list_template->reorderable
+            && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey)
             && (!$entity->list_template->searchable || !Input::get('search')))
         <a id="sharp-reorder" class="btn navbar-btn navbar-right normal-mode"><i class="fa fa-sort"></i> {{ trans('sharp::ui.list_reorderBtn') }}</a>
         <a id="sharp-reorder-ok" href="{{ route('cms.reorder', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right reorder-mode"><i class="fa fa-check"></i> {{ trans('sharp::ui.list_reorderOkBtn') }}</a>
@@ -37,7 +40,7 @@
     @endif
 
     @if($entity->list_template->searchable)
-        <form role="search" class="navbar-form navbar-right" id="search" method="get">
+        <form role="search" class="navbar-form navbar-right normal-mode" id="search" method="get">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="{{ trans('sharp::ui.list_searchPlaceholder') }}" value="{{ Input::get('search') }}">
                 <span class="input-group-btn">
@@ -107,7 +110,7 @@
                     @endif
                     <a href="#" class="btn"><i class="fa fa-eye"></i></a>
                 </div>
-                @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey) && $entity->list_template->sortable)
+                @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey) && $entity->list_template->reorderable)
                     <div class="reorder-mode">
                         <a href="#" class="btn reorder-handle"><i class="fa fa-sort"></i></a>
                     </div>
