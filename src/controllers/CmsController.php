@@ -20,6 +20,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * Redirects to list of first entity of the selected category.
+     *
      * @param $categoryName
      * @return mixed
      */
@@ -34,6 +36,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * List all entities of a given category/entity with pagination, search, and sorting.
+     *
      * @param $categoryName
      * @param $entityName
      * @return mixed
@@ -79,6 +83,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * Show edit form of an entity.
+     *
      * @param $categoryName
      * @param $entityName
      * @param $id
@@ -91,6 +97,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * Show create form of an entity.
+     *
      * @param $categoryName
      * @param $entityName
      * @return mixed
@@ -101,6 +109,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * Updates an entity.
+     *
      * @param $categoryName
      * @param $entityName
      * @param $id
@@ -113,6 +123,8 @@ class CmsController extends BaseController {
     }
 
     /**
+     * Create an entity.
+     *
      * @param $categoryName
      * @param $entityName
      * @return mixed

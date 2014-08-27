@@ -61,9 +61,10 @@ abstract class HasProperties {
                 $className = $this->structProperties[
                     array_key_exists("__ALL__", $this->structProperties)?"__ALL__":$attribute
                 ];
-                $struct = new $className($this->data[$attribute]);
+                $struct = new $className(isset($this->data[$attribute]) ? $this->data[$attribute] : []);
                 $this->$attribute = $struct;
             }
+
             else
             {
                 $this->$attribute = $this->getEntitySimpleProperty(
@@ -84,7 +85,7 @@ abstract class HasProperties {
         $val = array_key_exists($name, $this->data) ? $this->data[$name] : null;
         if(!$val && $mandatory)
         {
-            throw new MandatoryEntityAttributeNotFoundException($name);
+            throw new MandatoryEntityAttributeNotFoundException("Mandatory attribute [$name] not found.");
         }
         return $val!==null ? $val : $defaultValue;
     }

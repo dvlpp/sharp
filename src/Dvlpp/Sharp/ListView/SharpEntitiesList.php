@@ -98,31 +98,8 @@ class SharpEntitiesList {
      */
     public function getInstances()
     {
-        // Manage column sort
-        $sortedColumn = null;
-        $sortedDirection = null;
-
-        // First determine which column is sorted
-        foreach($this->entity->list_template->columns as $colKey=>$col)
-        {
-            if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
-            {
-                $sortedColumn = $colKey;
-                $sortedDirection = Input::get("dir") ?: "asc";
-                break;
-            }
-        }
-
-        // Manage search
-        $search = null;
-
-        if($this->entity->list_template->searchable && Input::get("search"))
-        {
-            $search = urldecode(Input::get("search"));
-        }
-
-        // Create the params object
-        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search);
+        // First create the params object with stuff like search, sorting
+        $this->createParams();
 
         // And finally grab the entities
         if($this->entity->list_template->paginate)
@@ -179,6 +156,37 @@ class SharpEntitiesList {
     public function getSortedDirection()
     {
         return $this->params->getSortedDirection();
+    }
+
+    public function createParams()
+    {
+        // Manage column sort
+        $sortedColumn = null;
+        $sortedDirection = null;
+
+        // First determine which column is sorted
+        foreach($this->entity->list_template->columns as $colKey=>$col)
+        {
+            if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
+            {
+                $sortedColumn = $colKey;
+                $sortedDirection = Input::get("dir") ?: "asc";
+                break;
+            }
+        }
+
+        // Manage search
+        $search = null;
+
+        if($this->entity->list_template->searchable && Input::get("search"))
+        {
+            $search = urldecode(Input::get("search"));
+        }
+
+        // Create the params object
+        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search);
+
+        return $this->params;
     }
 
 

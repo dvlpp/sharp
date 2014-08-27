@@ -14,12 +14,30 @@
         @endif
     </p>
 
+    {{-- Create button --}}
     @if($entity->list_template->creatable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'create', $entityKey))
         <a href="{{ route('cms.create', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right normal-mode">
             <i class="fa fa-plus"></i> {{ trans('sharp::ui.list_newBtn') }}
         </a>
     @endif
 
+    {{-- Commands --}}
+    @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+        <div class="dropdown navbar-right normal-mode">
+            <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">Actions <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                @foreach($entity->commands->list as $command)
+                    <li>
+                        <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
+                            {{ $entity->commands->list->$command->text }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    {{-- Reorder --}}
     @if($entity->list_template->reorderable
             && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey)
             && (!$entity->list_template->searchable || !Input::get('search')))
@@ -28,6 +46,7 @@
         <a href="{{ URL::full() }}" class="btn navbar-btn navbar-right reorder-mode"><i class="fa fa-times"></i> {{ trans('sharp::ui.list_reorderCancelBtn') }}</a>
     @endif
 
+    {{-- Sublist --}}
     @if($subList)
         <div class="dropdown navbar-right normal-mode">
             <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">{{ $subLists[$subList] }} <span class="caret"></span></a>
@@ -39,6 +58,7 @@
         </div>
     @endif
 
+    {{-- Quick search --}}
     @if($entity->list_template->searchable)
         <form role="search" class="navbar-form navbar-right normal-mode" id="search" method="get">
             <div class="input-group">
@@ -96,7 +116,9 @@
                     @endif
                 </td>
             @endforeach
+
             <td class="actions">
+
                 <div class="normal-mode">
                     @if($entity->active_state_field && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
                         <span class="state {{ $instance->{$entity->active_state_field}?'state-active':'state-inactive' }}">
@@ -108,8 +130,27 @@
                                data-success="activate"><i class="fa fa-star-o"></i></a>
                         </span>
                     @endif
-                    <a href="#" class="btn"><i class="fa fa-eye"></i></a>
+
+                    {{-- Entity commands --}}
+                    @if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+                        <div class="btn-group normal-mode">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                @foreach($entity->commands->entity as $command)
+                                    <li>
+                                        <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entityKey, $command, $instance->id], Input::all())) }}" {{ $entity->commands->entity->$command->type=="view" ? 'target="_blank"' : ''}}>
+                                            {{ $entity->commands->entity->$command->text }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                 </div>
+
                 @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey) && $entity->list_template->reorderable)
                     <div class="reorder-mode">
                         <a href="#" class="btn reorder-handle"><i class="fa fa-sort"></i></a>
