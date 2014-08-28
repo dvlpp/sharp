@@ -157,5 +157,12 @@ return [
 
 ```
 
-OK. This is a lot, but the idea is to describe all the more or less static business logic. So, let's first see what's Sharp doing with this config file. We can do it by opening the browser to the address `domain.com/admin`. And:
+OK. This is a lot, but the idea is to describe all the more or less static business logic. So, let's first see what's Sharp doing with this config file. We can do it by opening the browser to the address `domain.com/admin/cms/africa/giraffe`. And:
 
+![](img/listview-giraffe-empty.png)
+
+Clicking "Create new":
+
+![](img/formview-giraffe-empty.png)
+
+So what's happened? Well, with some config and a little amount of code (described in the sections )
