@@ -21,6 +21,8 @@ return [
     'form_deleteConfirmMsg' => 'Supprimer cet élément définitivement ?',
     'form_updateBtn' => 'Valider',
     'form_cancelBtn' => 'Annuler',
-    'form_errors' => 'Le formulaire contient des erreurs'
+    'form_errors' => 'Le formulaire contient des erreurs',
+
+    'form_listField_deleteItem' => 'Supprimer cet item',
 
 ];

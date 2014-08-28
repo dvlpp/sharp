@@ -3,6 +3,7 @@
 use Dvlpp\Sharp\Form\Facades\SharpCmsField;
 use Form;
 use Input;
+use Lang;
 
 
 class ListField extends AbstractSharpField {
@@ -86,7 +87,7 @@ class ListField extends AbstractSharpField {
 
         if($this->field->removable)
         {
-            $strRemove = $this->field->remove_btn_text ?: 'Supprimer cet item';
+            $strRemove = $this->field->remove_button_text ?: Lang::get('sharp::ui.form_listField_deleteItem');
             $strItem .= '<div class="col-md-12"><a class="sharp-list-remove btn btn-sm"><i class="fa fa-times"></i> '.$strRemove.'</a></div>';
         }
 

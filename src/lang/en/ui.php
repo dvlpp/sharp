@@ -21,6 +21,8 @@ return [
     'form_deleteConfirmMsg' => 'Delete this entity permanently?',
     'form_updateBtn' => 'Update',
     'form_cancelBtn' => 'Cancel',
-    'form_errors' => 'Your input contains some errors'
+    'form_errors' => 'Your input contains some errors',
+
+    'form_listField_deleteItem' => 'Delete this item',
 
 ];
