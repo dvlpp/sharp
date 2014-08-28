@@ -54,29 +54,25 @@
 </header>
 
 <div id="contenu">
-    <div class="container-fluid">
-        <div class="row" id="mainrow">
-            <div class="col-sm-2" id="navcol">
+    <div class="container-fluid" id="mainrow">
+            <div id="navcol">
                 @yield('navcol')
             </div>
-            <div class="col-sm-10" id="maincontent">
-                <div class="row">
-                    <div class="col-sm-12" id="contextbar">
-                        <nav class="navbar" role="navigation">
-                            <ul class="nav navbar-nav">
-                                @yield('contextbar')
-                            </ul>
-                        </nav>
-                    </div>
+            <div class="row" id="maincontent">
+                <div class="col-sm-12" id="contextbar">
+                    <nav class="navbar" role="navigation">
+                        <ul class="nav navbar-nav">
+                            @yield('contextbar')
+                        </ul>
+                    </nav>
+                </div>
 
-                    <div class="col-sm-12" id="page">
+                <div class="col-sm-12" id="page">
 
-                        @yield('content')
+                    @yield('content')
 
-                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 

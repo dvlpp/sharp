@@ -14,27 +14,27 @@
         @endif
     </p>
 
+    {{-- Commands --}}
+    @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+    <div class="dropdown navbar-right normal-mode">
+        <a class="btn navbar-btn" data-toggle="dropdown" data-target="#"><i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+            @foreach($entity->commands->list as $command)
+            <li>
+                <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
+                {{ $entity->commands->list->$command->text }}
+                </a>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     {{-- Create button --}}
     @if($entity->list_template->creatable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'create', $entityKey))
         <a href="{{ route('cms.create', [$category->key, $entityKey]) }}" class="btn navbar-btn navbar-right normal-mode">
             <i class="fa fa-plus"></i> {{ trans('sharp::ui.list_newBtn') }}
         </a>
-    @endif
-
-    {{-- Commands --}}
-    @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
-        <div class="dropdown navbar-right normal-mode">
-            <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">Actions <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                @foreach($entity->commands->list as $command)
-                    <li>
-                        <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
-                            {{ $entity->commands->list->$command->text }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
     @endif
 
     {{-- Reorder --}}

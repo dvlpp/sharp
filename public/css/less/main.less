@@ -7,10 +7,15 @@ body#sharp {
 }
 
 body.sharp-cms {
-  background: -moz-linear-gradient(left, @sharp-navcol-bg 16.6666667%, #eee 16.6666667%);
-  background: -webkit-gradient(linear, left top, right top, from(@sharp-navcol-bg), color-stop(.166666666667, @sharp-navcol-bg), color-stop(.166666666667, #eee));
+  background: -moz-linear-gradient(left, @sharp-navcol-bg 160px, #eee 160px);
+  background: -webkit-gradient(linear, left top, right top, from(@sharp-navcol-bg), color-stop(160, @sharp-navcol-bg), color-stop(160, #eee));
 
   font-family: 'Lato', Helvetica, Arial, sans-serif;
+
+  #mainrow {
+    #navcol { width:140px; float: left; }
+    #maincontent { width: ~"calc(100% - 160px + 10px*2)"; float: right; }
+  }
 
   #maincontent {
     padding-bottom: 50px;
