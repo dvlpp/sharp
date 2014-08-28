@@ -1,6 +1,6 @@
 #Sharp
 
-*A Laravel CMS for developer who hate CMS*
+*A Laravel CMS for developers who hate CMS*
 
 Sharp is a Laravel CMS package which intent to greatly simplify data management of a website *without* implicating a special data storage or organization, being as much as possible data-agnostic. 
 

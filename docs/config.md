@@ -165,4 +165,4 @@ Clicking "Create new":
 
 ![](img/formview-giraffe-empty.png)
 
-So what's happened? Well, with some config and a little amount of code (described in the sections )
+So what's happened? Well, with some config and a little amount of code (we'll get to that), we got a simple tool to enter our data. Mmm, not really enter data right now, we got some work to do first. But let's start by explaining this config file, part by part.
