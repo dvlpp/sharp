@@ -384,3 +384,7 @@ function paginate($count, SharpEntitiesListParams $params)
 And this is it. For the purpose of the demo, I generate 150 giraffes, and 3 zookeepers. Here's the 47 giraffes kept by "Nona Nader" (sublist can be changed next to the search field):
 
 ![](img/listview-giraffe-sublist.png)
+
+Of course, search, pagination and sublist can be combined (like in our example). Here's the second page of the 24 giraffes with "el" in the name or description kept by Nona Nader:
+
+![](img/listview-giraffe-search-pagination-sublist.png)
