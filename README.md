@@ -8,16 +8,23 @@ Well, I think I can try to be clearer: in many of my web projects there's a lot 
 
 OK, here's how this is working:
 
+1. Installation
+
+	- Through composer, add `"dvlpp/sharp": "~1.0"` in your require section, and run `composer update`.
+	- Next add `'Dvlpp\Sharp\SharpServiceProvider'` in your app.php providers section.
+	- And finally, run those two commands:
+		- `php artisan config:publish dvlpp/sharp` to publish the two necessary config file (see below)
+		- `php artisan asset:publish dvlpp/sharp` to publish JS and CSS used by Sharp
+
+OK, you're good to go. One final note: after an composer update, always re-run the asset publish command to be sure to have the current assets version.
+
 1. [Concepts](docs/concepts.md)
 
 2. [The config file(s)](docs/config.md)
 
-3. Entities lists
-	1. Renderers
-	2. Sorting
-	3. Reordering
-	4. Pagination
-	5. Search
+1. [Repository and data management](docs/repository.md)
+
+3. [Entities lists](docs/entities_list.md) (renderers, sorting, activation, reordering, pagination, search)
 
 4. Entity forms
 	1. Fields
