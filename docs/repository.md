@@ -74,16 +74,6 @@ class Repository implements SharpCmsRepository {
     }
 
     /**
-     * Reorder instances to match the given id array.
-     *
-     * @param array $entitiesIds
-     * @return mixed
-     */
-    function reorder(Array $entitiesIds)
-    {
-    }
-
-    /**
      * Delete an instance.
      *
      * @param $id
@@ -98,7 +88,7 @@ class Repository implements SharpCmsRepository {
 
 - grab lists (`listAll()`, `paginate()`), 
 - get instances (`find()` and `newInstance()`), 
-- and some to perform updates (`update()`, `create()`, `reorder()`, `delete()`).
+- and some to perform updates (`update()`, `create()`, `delete()`).
 
 ## The model
 

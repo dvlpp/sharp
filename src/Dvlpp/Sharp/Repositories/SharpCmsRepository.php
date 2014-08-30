@@ -58,14 +58,6 @@ interface SharpCmsRepository {
     function update($id, Array $data);
 
     /**
-     * Reorder instances to match the given id array.
-     *
-     * @param array $entitiesIds
-     * @return mixed
-     */
-    function reorder(Array $entitiesIds);
-
-    /**
      * Delete an instance.
      *
      * @param $id

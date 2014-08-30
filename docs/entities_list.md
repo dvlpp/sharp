@@ -293,7 +293,7 @@ Notice there's a "Reorder" button next to the "Create new", it's because of the 
 (...)
 ```
 
-Right now this won't work. We have to implements the `reorder()` method of our zone repository:
+Right now this won't work. We have to make our zone repository implement the `Dvlpp\Sharp\Repositories\SharpIsReorderable` interface, and add a `reorder()` method:
 
 ```
 function reorder(Array $entitiesIds)
