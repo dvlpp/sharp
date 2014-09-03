@@ -65,10 +65,10 @@
                 $(this).append($fileLabel);
             }
 
-            // Gets hidden field containing file name
+            // Get hidden field containing file name
             var $hiddenFileId = $(this).find(".sharp-file-id");
 
-            // Gets hidden field containing file full path (needed for repopulation)
+            // Get hidden field containing file full path (needed for repopulation)
             var $hiddenFilePath = $(this).find(".sharp-file-path");
 
             // Create delete file link
@@ -140,8 +140,8 @@
 
             // Click upload button
             $btn.on("click", function() {
-                // On utilise un moyen "dynamique" de récupérer $input, parce que sinon le lien est perdu
-                // (pour une raison inconnue) dans le cas d'un 2e upload
+                // We use a "dynamic" way to retrieve $input, otherwise the link is lost in case of 2nd upload
+                // (for an unknown reason, maybe a plugin bug)
                 $("#"+idInput).click();
             });
 

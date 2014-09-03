@@ -35,6 +35,8 @@ class LabelField {
     }
 
     /**
+     * The actual HTML creation of the field.
+     *
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException
      */
@@ -48,7 +50,7 @@ class LabelField {
         $baseEntity = $this->instance;
         if($baseEntity instanceof Model)
         {
-            // Eloquent Model case: in order to have properties to work wirth Mustache, we
+            // Eloquent Model case: in order to have properties to work with Mustache, we
             // have to cheat a little, adding a MustacheModelHelper Decorator to force
             // Mustache to take properties even if method exists (relation case)
             $baseEntity = new MustacheModelHelper($baseEntity);

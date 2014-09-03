@@ -14,28 +14,28 @@ interface SharpEloquentRepositoryUpdaterWithUploads {
      * Must return the folder where to put the designated upload.
      * Folder will be created if needed.
      *
-     * @param $entity
+     * @param $instance
      * @param $attr
      * @return mixed
      */
-    function getFileUploadPath($entity, $attr);
+    function getFileUploadPath($instance, $attr);
 
     /**
      * Must update the upload in the database, depending on implementation.
      *
-     * @param $entity
+     * @param $instance
      * @param $attr
      * @param $file
      * @return mixed
      */
-    function updateFileUpload($entity, $attr, $file);
+    function updateFileUpload($instance, $attr, $file);
 
     /**
      * Delete the upload on the database, depending on implementation.
      *
-     * @param $entity
+     * @param $instance
      * @param $attr
      * @return mixed
      */
-    function deleteFileUpload($entity, $attr);
+    function deleteFileUpload($instance, $attr);
 } 

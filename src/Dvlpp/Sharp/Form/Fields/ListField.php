@@ -5,9 +5,19 @@ use Form;
 use Input;
 use Lang;
 
-
+/**
+ * An ordered list of items containing fields.
+ *
+ * Class ListField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class ListField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return string
+     */
     function make()
     {
         // Manage data attributes
@@ -58,19 +68,28 @@ class ListField extends AbstractSharpField {
         return $str;
     }
 
+    /**
+     * @return string
+     */
     private function createTemplate()
     {
         return $this->createItem(null);
     }
 
+    /**
+     * @param $item
+     * @return string
+     */
     private function createItem($item)
     {
+        $itemIdAttribute = $this->field->item_id_attribute ?: "id";
+
         $isTemplate = ($item === null);
 
-        $hiddenKey = $this->key."[".($isTemplate?"--N--":$item->id)."][id]";
+        $hiddenKey = $this->key."[".($isTemplate?"--N--":$item->id)."][$itemIdAttribute]";
 
         $strItem = '<li class="list-group-item sharp-list-item '.($isTemplate?"template":"").'"><div class="row">'
-            . Form::hidden($hiddenKey, $isTemplate?"N":$item->id, ["class"=>"sharp-list-item-id"]);
+            . Form::hidden($hiddenKey, $isTemplate?"N":$item->$itemIdAttribute, ["class"=>"sharp-list-item-id"]);
 
         foreach($this->field->item as $key)
         {

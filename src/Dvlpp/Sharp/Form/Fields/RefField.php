@@ -1,14 +1,26 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use Form;
 use App;
 use Input;
 
+/**
+ * A reference picker field.
+ *
+ * Class RefField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class RefField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException
+     */
     function make()
     {
 

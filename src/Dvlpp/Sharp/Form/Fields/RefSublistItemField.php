@@ -15,9 +15,15 @@ use Form;
  */
 class RefSublistItemField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException
+     * @return string
+     */
     function make()
     {
-
         $this->_checkMandatoryAttributes(["repository","linked_ref_field","ref_list_id"]);
 
         $repoName = $this->field->repository;

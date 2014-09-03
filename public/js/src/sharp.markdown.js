@@ -44,7 +44,7 @@ var config_to_toolbar = {
     F:['fullscreen', toggleFullScreen]
 };
 
-var defaultToolbar = "BI QUO LG PF" // Bold, Italic, Quote, UnorderedList, OrderedList, Link, Image, Preview, Fullscreen
+var defaultToolbar = "";
 
 function createSharpMarkdown($el)
 {

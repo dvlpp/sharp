@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\Repositories;
 
-
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use InvalidArgumentException;
 use Str;
@@ -22,11 +21,11 @@ trait SharpEloquentRepositoryUpdaterTrait {
      *
      * @param $categoryName
      * @param $entityName
-     * @param $entity
+     * @param $instance
      * @param array $data
      * @return mixed
      */
-    function updateEntity($categoryName, $entityName, $entity, Array $data)
+    function updateEntity($categoryName, $entityName, $instance, Array $data)
     {
         // Start a transaction
         DB::connection()->getPdo()->beginTransaction();
@@ -42,25 +41,25 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 {
                     $fieldAttr = $this->entityConfig->form_fields->$fieldId;
 
-                    $this->updateField($entity, $data, $fieldAttr, $dataAttribute);
+                    $this->updateField($instance, $data, $fieldAttr, $dataAttribute);
                 }
             }
         }
 
-        $entity->save();
+        $instance->save();
 
         DB::connection()->getPdo()->commit();
 
-        return $entity;
+        return $instance;
     }
 
     /**
-     * @param $entity
+     * @param $instance
      * @param $pivotKey
      * @param $dataPivot
      * @param $pivotConfig
      */
-    private function valuatePivotAttribute($entity, $pivotKey, $dataPivot, $pivotConfig)
+    private function valuatePivotAttribute($instance, $pivotKey, $dataPivot, $pivotConfig)
     {
         $isCreatable = $pivotConfig->addable ?: false;
         $createAttribute = $isCreatable ? $pivotConfig->create_attribute : "name";
@@ -72,8 +71,9 @@ trait SharpEloquentRepositoryUpdaterTrait {
         $order = 1;
         foreach($dataPivot as $d)
         {
-            if(is_numeric($d))
+            if(!starts_with($d, '#'))
             {
+                // Existing tag
                 if($hasOrder)
                 {
                     $existingPivots[$d] = [$orderAttribute=>$order++];
@@ -86,89 +86,105 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
             elseif($isCreatable)
             {
-                $newPivots[$order++] = $d;
+                // Create a new tag
+                $newPivots[$order++] = substr($d, 1);
             }
         }
 
         // Sync existing ones
-        $entity->$pivotKey()->sync($existingPivots);
+        $instance->$pivotKey()->sync($existingPivots);
 
         // Create new
         foreach($newPivots as $order => $newPivot)
         {
             $joiningArray = $orderAttribute ? [$orderAttribute=>$order] : [];
 
-            $entity->$pivotKey()->create([$createAttribute => $newPivot], $joiningArray);
+            $instance->$pivotKey()->create([$createAttribute => $newPivot], $joiningArray);
         }
     }
 
     /**
-     * @param $entity
+     * @param $instance
      * @param $attr
      * @param $value
      * @param bool $isDate
      */
-    private function valuateSimpleAttribute($entity, $attr, $value, $isDate=false)
+    private function valuateSimpleAttribute($instance, $attr, $value, $isDate=false)
     {
-        $entity->$attr = $this->getFieldValue($value, $isDate);
+        $instance->$attr = $this->getFieldValue($value, $isDate);
     }
 
     /**
-     * @param $entity
+     * @param $instance
      * @param $attr
      * @param $file
      */
-    private function valuateFileAttribute($entity, $attr, $file)
+    private function valuateFileAttribute($instance, $attr, $file)
     {
-        if($file && $file != $entity->$attr)
+        if($file && $file != $instance->$attr)
         {
             // Update (or create)
 
             // First, we move the file in the correct folder
-            $folderPath = $this->getFileUploadPath($entity, $attr);
+            $folderPath = $this->getFileUploadPath($instance, $attr);
             sharp_move_tmp_file($file, $folderPath);
 
             // Then, update database
-            $this->updateFileUpload($entity, $attr, $file);
+            $this->updateFileUpload($instance, $attr, $file);
         }
 
-        elseif(!$file && $entity->$attr)
+        elseif(!$file && $instance->$attr)
         {
             // Delete
-            $this->deleteFileUpload($entity, $attr);
+            $this->deleteFileUpload($instance, $attr);
         }
     }
 
     /**
-     * @param $entity
+     * @param $instance
      * @param $listKey
      * @param $itemsForm
      * @param $listFieldConfig
      * @throws \InvalidArgumentException
      */
-    private function valuateListAttribute($entity, $listKey, $itemsForm, $listFieldConfig)
+    private function valuateListAttribute($instance, $listKey, $itemsForm, $listFieldConfig)
     {
         $order = 0;
         $saved = [];
 
         if(is_array($itemsForm))
         {
+            $itemIdAttribute = $listFieldConfig->item_id_attribute ?: "id";
+
             // Iterate items posted
             foreach($itemsForm as $itemForm)
             {
                 $item = null;
-                if(Str::startsWith($itemForm["id"], "N"))
+                $itemId = $itemForm[$itemIdAttribute];
+
+                if(Str::startsWith($itemId, "N_"))
                 {
-                    // Have to create this item : we can't use $entity->$listKey()->create([]), because
-                    // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
-                    $item = $entity->$listKey()->getRelated()->newInstance([]);
-                    $item->setAttribute($entity->$listKey()->getPlainForeignKey(), $entity->$listKey()->getParentKey());
+                    // First test if there is a special hook method on the controller
+                    // that takes the precedence. Method name should be "create[$listKey]ListItem"
+                    $methodName = "create" . ucFirst(Str::camel($listKey)) . "ListItem";
+
+                    if(method_exists($this, $methodName))
+                    {
+                        $item = $this->$methodName($instance);
+                    }
+                    else
+                    {
+                        // Have to create this item : we can't use $entity->$listKey()->create([]), because
+                        // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
+                        $item = $instance->$listKey()->getRelated()->newInstance([]);
+                        $item->setAttribute($instance->$listKey()->getPlainForeignKey(), $instance->$listKey()->getParentKey());
+                    }
                 }
                 else
                 {
-                    foreach($entity->$listKey as $itemDb)
+                    foreach($instance->$listKey as $itemDb)
                     {
-                        if($itemDb->id == $itemForm["id"])
+                        if($itemDb->$itemIdAttribute == $itemId)
                         {
                             // DB item found
                             $item = $itemDb;
@@ -180,13 +196,13 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 if(!$item)
                 {
                     // Item can't be found and isn't new. It's an error.
-                    throw new InvalidArgumentException("Item [".$itemForm["id"]."] can't be found.");
+                    throw new InvalidArgumentException("Item [$itemId] can't be found.");
                 }
 
                 // Update item
                 foreach($itemForm as $attr => $value)
                 {
-                    if($attr == "id")
+                    if($attr == $itemIdAttribute)
                     {
                         // Id is not updatable
                         continue;
@@ -214,16 +230,16 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 $item->save();
 
                 // Keep reference of the item for deletions
-                $saved[] = $item->id;
+                $saved[] = $item->$itemIdAttribute;
 
                 $order++;
             }
         }
 
         // Manage deletions of the non-present items
-        foreach($entity->$listKey as $itemDb)
+        foreach($instance->$listKey as $itemDb)
         {
-            if(!in_array($itemDb->id, $saved))
+            if(!in_array($itemDb->$itemIdAttribute, $saved))
             {
                 $itemDb->delete();
             }
@@ -243,14 +259,14 @@ trait SharpEloquentRepositoryUpdaterTrait {
     /**
      * Updates the field value (in db).
      *
-     * @param $entity
+     * @param $instance
      * @param $data
      * @param $configFieldAttr
      * @param $dataAttribute
      * @param null $listKey
      * @throws \InvalidArgumentException
      */
-    private function updateField($entity, $data, $configFieldAttr, $dataAttribute, $listKey=null)
+    private function updateField($instance, $data, $configFieldAttr, $dataAttribute, $listKey=null)
     {
         // First test if there is a special hook method on the controller
         // that takes the precedence. Method name should be :
@@ -265,7 +281,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
         if(method_exists($this, $methodName))
         {
             // Method exists, we call it
-            if(!$this->$methodName($entity, $data[$dataAttribute]))
+            if(!$this->$methodName($instance, $data[$dataAttribute]))
             {
                 // Returns false: we are done with this attribute.
                 return;
@@ -291,29 +307,29 @@ trait SharpEloquentRepositoryUpdaterTrait {
             // which has a "name" attribute.
             list($relationKey, $relationAttribute) = explode("~", $dataAttribute);
 
-            $relationObject = $entity->$relationKey;
+            $relationObject = $instance->$relationKey;
 
             if(!$relationObject)
             {
                 // Related object has to be created.
 
                 // First persist entity if transient
-                if(!$entity->id) $entity->save();
+                if(!$instance->id) $instance->save();
 
                 // Then create the related object
-                $relationObject = $entity->$relationKey()->getRelated()->newInstance([]);
-                $relationObject->setAttribute($entity->$relationKey()->getPlainForeignKey(), $entity->$relationKey()->getParentKey());
+                $relationObject = $instance->$relationKey()->getRelated()->newInstance([]);
+                $relationObject->setAttribute($instance->$relationKey()->getPlainForeignKey(), $instance->$relationKey()->getParentKey());
 
                 // Unset the relation to be sure that other attribute of the same relation will
                 // use the created related object (otherwise, relation is cached to null by Laravel)
-                unset($entity->$relationKey);
+                unset($instance->$relationKey);
             }
 
             // Finally, we translate entity and attribute to the related object
-            $baseEntity = $entity;
+            $baseEntity = $instance;
             $baseAttribute = $dataAttribute;
             $dataAttribute = $relationAttribute;
-            $entity = $relationObject;
+            $instance = $relationObject;
         }
 
         switch ($configFieldAttr->type)
@@ -326,20 +342,20 @@ trait SharpEloquentRepositoryUpdaterTrait {
             case "textarea":
             case "password":
             case "markdown":
-                $this->valuateSimpleAttribute($entity, $dataAttribute, $value);
+                $this->valuateSimpleAttribute($instance, $dataAttribute, $value);
                 break;
 
             case "date":
-                $this->valuateSimpleAttribute($entity, $dataAttribute, $value, true);
+                $this->valuateSimpleAttribute($instance, $dataAttribute, $value, true);
                 break;
 
             case "file":
-                $this->valuateFileAttribute($entity, $dataAttribute, $value);
+                $this->valuateFileAttribute($instance, $dataAttribute, $value);
                 break;
 
             case "list":
                 // First save the entity if transient (item creation would be impossible if entity is not persisted)
-                if(!$entity->id) $entity->save();
+                if(!$instance->id) $instance->save();
 
                 // Find list config
                 $listFieldConfig = null;
@@ -352,12 +368,12 @@ trait SharpEloquentRepositoryUpdaterTrait {
                     }
                 }
 
-                $this->valuateListAttribute($entity, $dataAttribute, $value, $listFieldConfig);
+                $this->valuateListAttribute($instance, $dataAttribute, $value, $listFieldConfig);
                 break;
 
             case "pivot":
                 // First save the entity if transient (pivot creation would be impossible if entity is not persisted)
-                if(!$entity->id) $entity->save();
+                if(!$instance->id) $instance->save();
 
                 // Find pivot config
                 $pivotConfig = null;
@@ -370,7 +386,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
                     }
                 }
 
-                $this->valuatePivotAttribute($entity, $dataAttribute, $value, $pivotConfig);
+                $this->valuatePivotAttribute($instance, $dataAttribute, $value, $pivotConfig);
                 break;
 
             default:

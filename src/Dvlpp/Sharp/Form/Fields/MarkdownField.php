@@ -1,10 +1,20 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-
 use Form;
 
+/**
+ * A markdown textarea input element, JS-built with lepture/editor.
+ *
+ * Class MarkdownField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class MarkdownField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return mixed
+     */
     function make()
     {
         if($this->field->toolbar) $this->addData("toolbar", $this->field->toolbar);

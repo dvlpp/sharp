@@ -1,19 +1,32 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use App;
 use Form;
 use Input;
 
+/**
+ * A multiple tags input.
+ *
+ * Class PivotTagsField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class PivotTagsField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException
+     */
     function make()
     {
         $this->_checkMandatoryAttributes(["repository"]);
 
         $reflistRepoName = $this->field->repository;
+
         if(class_exists($reflistRepoName) || interface_exists($reflistRepoName))
         {
             $reflistRepo = App::make($reflistRepoName);

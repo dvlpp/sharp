@@ -1,23 +1,67 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use Input;
 
+/**
+ * This this all Sharp's fields superclass.
+ *
+ * Class AbstractSharpField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 abstract class AbstractSharpField {
 
+    /**
+     * @var string
+     */
     protected $key;
+    /**
+     * @var \Dvlpp\Sharp\Config\Entities\SharpEntityFormField
+     */
     protected $field;
+    /**
+     * @var string
+     */
     protected $fieldName;
+    /**
+     * @var array
+     */
     protected $attributes;
+    /**
+     * @var
+     */
     protected $instance;
+    /**
+     * @var string
+     */
     protected $fieldValue;
+    /**
+     * @var string
+     */
     protected $listKey;
+    /**
+     * @var bool
+     */
     protected $isListItem = false;
+    /**
+     * @var string
+     */
     protected $relation;
+    /**
+     * @var string
+     */
     protected $relationKey;
 
+    /**
+     * Construct the field.
+     *
+     * @param $key
+     * @param $listKey
+     * @param SharpEntityFormField $field
+     * @param $attributes
+     * @param $instance
+     */
     function __construct($key, $listKey, SharpEntityFormField $field, $attributes, $instance)
     {
         $this->key = $key;
@@ -51,16 +95,33 @@ abstract class AbstractSharpField {
         }
     }
 
+    /**
+     * Add a class name to the class attribute.
+     *
+     * @param $className
+     */
     protected function addClass($className)
     {
         $this->attributes["class"] = $className . (array_key_exists("class", $this->attributes) ? " ".$this->attributes["class"] : "");
     }
 
+    /**
+     * Add a data-XXX attribute
+     *
+     * @param $name
+     * @param $data
+     */
     protected function addData($name, $data)
     {
         $this->attributes["data-$name"] = $data;
     }
 
+    /**
+     * Check for missing mandatory attributes.
+     *
+     * @param array $attributes
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException
+     */
     protected function _checkMandatoryAttributes(Array $attributes)
     {
         foreach($attributes as $attr)
@@ -74,6 +135,7 @@ abstract class AbstractSharpField {
 
     /**
      * Retrieve the old value (Input::old) if it exists.
+     *
      * @return null
      */
     protected function getOldValue()
@@ -94,5 +156,10 @@ abstract class AbstractSharpField {
         }
     }
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return mixed
+     */
     abstract function make();
 }

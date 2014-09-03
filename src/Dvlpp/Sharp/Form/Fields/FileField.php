@@ -4,8 +4,19 @@ use Form;
 use File;
 use Input;
 
+/**
+ * A field upload input element, using https://github.com/blueimp.
+ *
+ * Class FileField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class FileField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return string
+     */
     function make()
     {
         // Manage the thumbnail data attribute
@@ -100,6 +111,10 @@ class FileField extends AbstractSharpField {
         return $strField . '</div>';
     }
 
+    /**
+     * @param $size
+     * @return string
+     */
     private function humanFileSize($size)
     {
         if($size >= 1<<30) return number_format($size/(1<<30),2)." Go";

@@ -2,13 +2,27 @@
 
 use Form;
 
+/**
+ * A date/time input element, JS-built with http://xdsoft.net/jqplugins/datetimepicker/.
+ *
+ * Class DateField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class DateField extends AbstractSharpField {
 
+    /**
+     * @var array
+     */
     private static $availableOptions = [
         "has_date", "has_time", "step_time", "min_date", "max_date", "min_time", "max_time",
         "start_date", "format", "start_on_sunday"
     ];
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return string
+     */
     function make()
     {
         // Set options (parameters)

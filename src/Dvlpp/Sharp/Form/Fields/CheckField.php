@@ -2,8 +2,19 @@
 
 use Form;
 
+/**
+ * A checkbox input element.
+ *
+ * Class CheckField
+ * @package Dvlpp\Sharp\Form\Fields
+ */
 class CheckField extends AbstractSharpField {
 
+    /**
+     * The actual HTML creation of the field.
+     *
+     * @return string
+     */
     function make()
     {
         // Put an hidden field with same name and 0 value in order to send it
