@@ -42,7 +42,7 @@ Here is the basic config shared by all fields:
 ]
 ```
 
-***Important**: In this document, mandatory fields are marked with a star a the beginning of the line.*
+*__Important__: In this document, mandatory fields are marked with a star a the beginning of the line.*
 
 - **label**: obviously, that's the field label...
 - **type**: field type, one of those listed in this doc
@@ -457,7 +457,7 @@ Sharp offers a simple way to hide or show fields depending on a Check or a Choos
 	"type" => "ref",
 	"conditional_display" => "is_married",
 	"repository" => '\Quincy\Sharp\Giraffe\Repository'
-]
+],
 "is_sterile" => [
 	"type" => "check",
 	"text" => "Is sterile?",
@@ -485,7 +485,7 @@ This could be done with a Choose field too:
 	"conditional_display" => 'origin:zoo'
 ],
 "origin_country" => [
-	"label" => "Form which country?",
+	"label" => "From which country?",
 	"type" => "text",
 	"conditional_display" => 'origin:wild'
 ]
