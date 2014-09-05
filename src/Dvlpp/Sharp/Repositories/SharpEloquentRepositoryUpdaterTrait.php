@@ -1,6 +1,7 @@
 <?php namespace Dvlpp\Sharp\Repositories;
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use InvalidArgumentException;
 use Str;
 use DB;
@@ -15,6 +16,9 @@ trait SharpEloquentRepositoryUpdaterTrait {
      * @var
      */
     private $entityConfig;
+
+    private $singleRelationOneToOneObjects = [];
+    private $singleRelationBelongsToObjects = [];
 
     /**
      * Updates an entity with the posted data.
@@ -46,7 +50,26 @@ trait SharpEloquentRepositoryUpdaterTrait {
             }
         }
 
+        // First manage (potential) single relation objects with a "BelongsTo" relation
+        foreach($this->singleRelationBelongsToObjects as $relationKey => $srbo)
+        {
+            // Persist the related object...
+            $srbo->save();
+            // And then attach the foreign key
+            $lk = $instance->$relationKey()->getForeignKey();
+            $fk = $instance->$relationKey()->getOtherKey();
+            $instance->$lk = $srbo->$fk;
+        }
+
+        // Then save the actual instance
         $instance->save();
+
+        // And finally manage (potential) single relation objects with a "OneToOne" relation
+        foreach($this->singleRelationOneToOneObjects as $relationKey => $srbo)
+        {
+            //$relationObject->setAttribute($instance->$relationKey()->getPlainForeignKey(), $instance->$relationKey()->getParentKey());
+            $instance->$relationKey()->save($srbo);
+        }
 
         DB::connection()->getPdo()->commit();
 
@@ -294,7 +317,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
         // These vars are used to store old values of $dataAttribute and $entity
         // in case of modification by singleRelationCase (below)
-        $baseEntity = null;
+        $baseInstance = null;
         $baseAttribute = null;
 
         $isSingleRelationCase = strpos($dataAttribute, "~");
@@ -302,7 +325,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
         if($isSingleRelationCase)
         {
             // If there's a "~" in the field $key, this means we are in a single relation case
-            // (One-To-One or Belongs To). The ~ separate the relation name and the value.
+            // (One-To-One or Belongs To). The ~ separates the relation name and the value.
             // For instance : boss~name indicate that the instance as a single "boss" relation,
             // which has a "name" attribute.
             list($relationKey, $relationAttribute) = explode("~", $dataAttribute);
@@ -311,22 +334,50 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
             if(!$relationObject)
             {
+                if(array_key_exists($relationKey, $this->singleRelationOneToOneObjects))
+                {
+                    $relationObject = $this->singleRelationOneToOneObjects[$relationKey];
+                }
+                elseif(array_key_exists($relationKey, $this->singleRelationBelongsToObjects))
+                {
+                    $relationObject = $this->singleRelationBelongsToObjects[$relationKey];
+                }
+            }
+
+            if(!$relationObject)
+            {
                 // Related object has to be created.
 
-                // First persist entity if transient
-                if(!$instance->id) $instance->save();
+                // If value is null, we won't create the related instance
+                if(!$value) return;
 
-                // Then create the related object
+                // We create the related object
                 $relationObject = $instance->$relationKey()->getRelated()->newInstance([]);
-                $relationObject->setAttribute($instance->$relationKey()->getPlainForeignKey(), $instance->$relationKey()->getParentKey());
 
                 // Unset the relation to be sure that other attribute of the same relation will
                 // use the created related object (otherwise, relation is cached to null by Laravel)
                 unset($instance->$relationKey);
             }
 
-            // Finally, we translate entity and attribute to the related object
-            $baseEntity = $instance;
+            // Then, we have to save the related object in order to persist it at the end of the update process
+            // We can't save it right now because of potential mandatory attributes which will be treated later
+            // in the process, and for the OneToOne case because we can't be sure that the current instance
+            // has an ID to provide
+            if($configFieldAttr->type != "list")
+            {
+                if($instance->$relationKey() instanceof BelongsTo)
+                {
+                    // BelongsTo: foreign key is on the instance object side
+                    $this->singleRelationBelongsToObjects[$relationKey] = $relationObject;
+                }
+                else
+                {
+                    // One-to-one: foreign key is on the related object side
+                    $this->singleRelationOneToOneObjects[$relationKey] = $relationObject;
+                }
+            }
+
+            // Finally, we translate attributes to the related object
             $baseAttribute = $dataAttribute;
             $dataAttribute = $relationAttribute;
             $instance = $relationObject;
@@ -393,12 +444,7 @@ trait SharpEloquentRepositoryUpdaterTrait {
                 throw new InvalidArgumentException("Config type [".$configFieldAttr->type."] is invalid.");
         }
 
-        if($isSingleRelationCase && $configFieldAttr->type != "list")
-        {
-            // In a single relation case, we have to save the eloquent relation,
-            // except if it's a list (saving occurs on items)
-            $baseEntity->$relationKey()->save($relationObject);
-        }
+
     }
 
 } 

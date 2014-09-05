@@ -16,10 +16,11 @@
 	14. [List](#f-list)
 	15. [List item reference field](#f-listitemref)
 	16. [Tags field](#f-tags)
+18. [The form layout](#form-layout)
 17. [Conditional display (hide and show fields)](#conditional)
 18. [Update and create](#f-update)
 19. [Form validation](#f-validation)
-20. [Single relation case (the tilda)](#singlerelation)
+20. [Single relation case (the tilde)](#singlerelation)
 
 OK, here we are: we created some [entities config file(s)](config.md), and wrote [the base classes](entities_list.md) to handle lists display, reordering, searching and stuff. Now, let's tackle the big part, the actual data entry. This is in fact the final purpose of Sharp: provide a simple way to enter complex data without having to develop big javascript objects each time.
 
@@ -442,7 +443,10 @@ function formList()
 The tag field is now complete. The rendering is done with the [selectize.js plugin](http://brianreavis.github.io/selectize.js/).
 
 
-##<a name="conditional"></a> 2. Conditional display (hide and show fields)
+##<a name="form-layout"></a> 2. The form layout
+
+
+##<a name="conditional"></a> 3. Conditional display (hide and show fields)
 
 Sharp offers a simple way to hide or show fields depending on a Check or a Choose value. This is all done in the config file:
 
@@ -492,7 +496,7 @@ This could be done with a Choose field too:
 ```
 
 
-##<a name="update"></a> 3. Update and create
+##<a name="update"></a> 4. Update and create
 
 This is the part where you have to do something in your repository with the posted data. Like, you know, save it in a database. And here, you have two big choices:
 
@@ -538,7 +542,7 @@ The way to retrieve posted data is very simple for most of the fields:
 
 For more complex fields, here's some details:
 
-### 3.1 Date
+### 4.1 Date
 
 ```
 'birth_date' => '2014-08-15 14:05:00',
@@ -550,7 +554,7 @@ Two posted data:
 - first one is the actual value, in classic DB format Y-m-d H:i:s
 - the second one, prefixed by "\_\_date__", has the displayed format and is meant to be only used internally for repopulation.
 
-### 3.2 List
+### 4.2 List
 
 ```
 'somelist' => [
@@ -573,7 +577,7 @@ A List is posted as an array of items. Order of items matters: it respect the us
 
 New items have a generated string id, starting with "N_".
 
-### 3.3 File upload
+### 4.3 File upload
 
 ```
 'picture' => '5406d727d8dc8.jpg',
@@ -588,12 +592,12 @@ There's two posted data:
 *Note that you can have any implementation for the storage of your uploads, but you have to be able to determine if the file was newly uploaded, based on its posted name.*
 
 
-### 3.4 Check
+### 4.4 Check
 
 Nothing special here, just a quick note to say that unchecked checkfields are posted (valued with a 0), unlike a standard POST form would do.
 
 
-### 3.5 Pivot tags
+### 4.5 Pivot tags
 
 Sharp's tags are managed with a pivot table (see field description above). So, posted data contains tag ids:
 
@@ -606,7 +610,7 @@ Very simple. But the "addable" option in the tag config file authorize to create
 The update code can differentiate new tags from existing one by checking numeric vs string values. Now why is there a # at the beginning of the name? To indicate that it's a new tag (we can't just rely on a "is_numeric" test, because a tag name could be numeric)... The # must be removed on the update stage.
 
 
-##<a name="validation"></a> 4. Form validation
+##<a name="validation"></a> 5. Form validation
 
 Naturally, Sharp can help when it comes to form validation. We can reference a *Validator* in the config:
 
@@ -632,14 +636,81 @@ class Validator extends SharpValidator {
 	public function getRules()
 	{
 		return [
-			"name" => "required"
+			"name" => "required",
+	            "picture" => "required",
+	            "age" => "required|integer",
+	            "height" => "integer"
 		];
 	}
 } 
 ```
 
-From now, when the create / update form is posted, 
+The rest is [Laravel-powered validation](http://laravel.com/docs/validation). Notice that Sharp is doing a hard job to ensure that all fields are repopulated after a validation error, including file upload or newly created list items.
+
+You can easily set specific creation or update rules: override the `getUpdateRules()` and `getCreationRules()` of SharpValidator, respectively. For example, suppose we want to force the user to upload at least one photo in the list, but only in case of update:
+
+```
+public function getUpdateRules()
+{
+	return [
+		"photos" => "array"
+	];
+}
+```
+
+Note that the Laravel standard "array" rule is a good way to test if a list is empty.
+
+Finally, you can define your own error messages by overriding the `getMessage()` method. In our example, it may be nice to put:
+
+```
+public function getMessages()
+{
+	return [
+		'photos.array' => 'Please provide at least one photo.',
+	];
+}
+```
+
+A final note: you can choose to override the class attributes instead of methods, if you prefer. Simply take a look to the `Dvlpp\Sharp\Validation\Validator` class.
 
 
-##<a name="singlerelation"></a> 5. Single relation case
+##<a name="singlerelation"></a> 6. Single relation case
+
+A final chapter on this long page, to talk about a quite specific case. Suppose that zoo animal could have an "ID card", with some info on it: a number and an origin. We decide to add a animal_card table, and a one-to-one relationship with the giraffe table (which contains now a animal_card_id).
+
+In fact, this concern both One-to-one relations: foreign key could be either in the first entity table, or in the second. A more common example could be an address, which has its own table because it can be related to multiple entities. But let's keep our ID card example, because giraffes don't have addresses.
+
+Question is: how can we provide a way to enter this card id info in the giraffe form? And answer is we can do it this way, in the `form_fields` config:
+
+```
+"card~number" => [
+	"label" => "Card number",
+	"type" => "text"
+],
+"card~origin" => [
+	"label" => "Origin",
+	"type" => "choose",
+	"values" => [
+		"0" => "Unknown",
+		"zoo" => "Other Zoo",
+		"wild" => "Wild life"
+	] 
+]
+```
+
+As you can see, the trick is to prefix the attributes by the relation name, with a [~](https://twitter.com/fideloper/status/478542189555748864) separator. This means in the Girafe model we must have:
+
+```
+public function card()
+{
+	return $this->belongsTo('\Quincy\Sharp\Animal\AnimalCard', 'animal_card_id');
+}
+```
+
+With this config, fields should be populated just right. With a little more config and a tab displaying (described in the [form layout](#form-layout) chapter), here's what we can have right in the giraffe form:
+
+![](img/formview-giraffe-singlerelation.png)
+
+And correctly managed by the [Sharp Eloquent Auto-updater](auto-updater.md), which is the topic of the next part.
+ 
 
