@@ -45,7 +45,7 @@ OK, you're good to go. One final note: after an composer update, always re-run t
 
 4. [Entity forms](docs/entity_form.md) (fields, validation, update, ...)
 
-5. Sharp Eloquent Auto-updater
+5. [Sharp Eloquent Auto-updater](docs/auto-updater.md)
 
 6. Authentification (global auth and rights management)
 
