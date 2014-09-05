@@ -51,24 +51,24 @@ trait SharpEloquentRepositoryUpdaterTrait {
         }
 
         // First manage (potential) single relation objects with a "BelongsTo" relation
-        foreach($this->singleRelationBelongsToObjects as $relationKey => $srbo)
+        foreach($this->singleRelationBelongsToObjects as $relationKey => $singleRelationBelongsTo)
         {
             // Persist the related object...
-            $srbo->save();
+            $singleRelationBelongsTo->save();
             // And then attach the foreign key
             $lk = $instance->$relationKey()->getForeignKey();
             $fk = $instance->$relationKey()->getOtherKey();
-            $instance->$lk = $srbo->$fk;
+            $instance->$lk = $singleRelationBelongsTo->$fk;
         }
 
         // Then save the actual instance
         $instance->save();
 
         // And finally manage (potential) single relation objects with a "OneToOne" relation
-        foreach($this->singleRelationOneToOneObjects as $relationKey => $srbo)
+        foreach($this->singleRelationOneToOneObjects as $relationKey => $singleRelationOneToOne)
         {
             //$relationObject->setAttribute($instance->$relationKey()->getPlainForeignKey(), $instance->$relationKey()->getParentKey());
-            $instance->$relationKey()->save($srbo);
+            $instance->$relationKey()->save($singleRelationOneToOne);
         }
 
         DB::connection()->getPdo()->commit();
@@ -257,12 +257,21 @@ trait SharpEloquentRepositoryUpdaterTrait {
 
                 $order++;
             }
+
+            // Manage deletions of the non-present items
+            foreach($instance->$listKey as $itemDb)
+            {
+                if(!in_array($itemDb->$itemIdAttribute, $saved))
+                {
+                    $itemDb->delete();
+                }
+            }
         }
 
-        // Manage deletions of the non-present items
-        foreach($instance->$listKey as $itemDb)
+        else
         {
-            if(!in_array($itemDb->$itemIdAttribute, $saved))
+            // No item sent.
+            foreach($instance->$listKey as $itemDb)
             {
                 $itemDb->delete();
             }
