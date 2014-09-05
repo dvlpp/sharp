@@ -608,6 +608,37 @@ The update code can differentiate new tags from existing one by checking numeric
 
 ##<a name="validation"></a> 4. Form validation
 
+Naturally, Sharp can help when it comes to form validation. We can reference a *Validator* in the config:
+
+```
+(...)
+"giraffe" => [
+	(...)
+	"validator" => '\Quincy\Sharp\Giraffe\Validator',
+	(...)
+]
+(...)
+```
+
+And create the Validator class:
+
+```
+<?php namespace Quincy\Sharp\Giraffe;
+
+use Dvlpp\Sharp\Validation\SharpValidator;
+
+class Validator extends SharpValidator {
+
+	public function getRules()
+	{
+		return [
+			"name" => "required"
+		];
+	}
+} 
+```
+
+From now, when the create / update form is posted, 
 
 
 ##<a name="singlerelation"></a> 5. Single relation case

@@ -33,11 +33,6 @@ abstract class SharpValidator {
     protected $messages = [];
 
     /**
-     * @var array
-     */
-    private $base_messages = [];
-
-    /**
      * @var
      */
     private $instanceId;
@@ -58,7 +53,7 @@ abstract class SharpValidator {
         );
 
         // and validate
-        $validation = Validator::make($input, $rules, array_merge($this->base_messages, $this->messages));
+        $validation = Validator::make($input, $rules, $this->getMessages());
 
         if($validation->fails())
         {
@@ -91,5 +86,10 @@ abstract class SharpValidator {
     public function getRules()
     {
         return $this->rules;
+    }
+
+    public function getMessages()
+    {
+        return $this->messages;
     }
 } 
