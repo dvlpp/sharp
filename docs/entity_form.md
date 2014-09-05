@@ -445,6 +445,49 @@ The tag field is now complete. The rendering is done with the [selectize.js plug
 
 ##<a name="form-layout"></a> 2. The form layout
 
+Maybe you noticed that the config file contains a second form-related attribute. That's `form_layout`:
+
+```
+"form_layout" => [
+	"tab1" => [
+		"tab" => "",
+		"col1" => [
+			"name",
+			"picture",
+			"zookeeper_id",
+			"age",
+			"height",
+			"particularities"
+		],
+		"col2" => [
+			"desc",
+			"photos"
+		]
+	],
+	"tab2" => [
+		"tab" => "Card",
+		"col1" => [
+			"card~number",
+			"card~origin",
+			"card~origin_zoo",
+			"card~origin_country"
+		],
+		"col2" => []
+	]
+]
+```
+
+This config part indicate how to organize the form, by embedding the fields in tabs and cols. Let's dig in:
+
+- first there's tabs. Keys are irrelevant ("tab1" here), they just need to be unique. You can define several tabs, and the result will be a form split in pages (see screenshot below). The "tab" attribute is meant to set the tab label: in a single tab case, you don't need it.
+- then come columns: unlike tabs, you must always define 2 of them.
+
+With the config above, here's the result:
+
+![](img/formview-giraffe-tabs.png)
+
+![](img/formview-giraffe-singlerelation.png)
+
 
 ##<a name="conditional"></a> 3. Conditional display (hide and show fields)
 
