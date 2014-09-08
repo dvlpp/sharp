@@ -6,6 +6,10 @@
 
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3" id="login-form">
 
+        <h1>
+            {{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}
+        </h1>
+
         @if(Session::get("flashMessage"))
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -19,7 +23,7 @@
             {{ Form::text('login', '', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_loginPlaceholder')]) }}
             {{ $errors->first('login', '<p class="help-block">:message</p>') }}
         </div>
-        <div class="form-group {{ $errors->first('login') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->first('password') ? 'has-error' : '' }}">
             {{ Form::password('password', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_passwordPlaceholder')]) }}
             {{ $errors->first('password', '<p class="help-block">:message</p>') }}
         </div>

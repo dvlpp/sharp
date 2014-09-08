@@ -129,3 +129,4 @@ With the implementation written above, here's how a user named "bob" would see S
 
 ![](img/listview-giraffe-auth-bob.png)
 
+One final note: you can of course manage users and rights in Sharp itself, creating the corresponding entities.
