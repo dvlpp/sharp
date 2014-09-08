@@ -1,16 +1,16 @@
 <?php namespace Dvlpp\Sharp\Commands;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
-use App;
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
+use App;
 
 /**
  * Handle command calls.
  *
- * Class CommandsManager
+ * Class SharpCommandsManager
  * @package Dvlpp\Sharp\Commands
  */
-class CommandsManager {
+class SharpCommandsManager {
 
     /**
      * Execute the entity command code identified by $entity and $commandKey for instance $instanceId
@@ -69,7 +69,8 @@ class CommandsManager {
 
         $commandHandler = App::make($commandHandlerClassName);
 
-        if(($isEntity && !$commandHandler instanceof EntityCommand) || (!$isEntity && !$commandHandler instanceof EntitiesListCommand))
+        if(($isEntity && !$commandHandler instanceof SharpEntityCommand)
+            || (!$isEntity && !$commandHandler instanceof SharpEntitiesListCommand))
         {
             // Handler isn't implementing correct interface
             throw new MandatoryClassNotFoundException("Command handler [$commandHandlerClassName] for ["

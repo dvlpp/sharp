@@ -19,7 +19,6 @@ Route::group(['before' => 'sharp_auth'], function() {
     Route::get('/admin/cms', ["as"=>"cms", "uses"=>"CmsController@index"]);
     Route::get('/admin/cms/{category}', ["as"=>"cms.category", "uses"=>"CmsController@category", "before"=>"sharp_access_granted:category view *category"]);
     Route::get('/admin/cms/{category}/{entity}', ["as"=>"cms.list", "uses"=>"CmsController@listEntities", "before"=>"sharp_access_granted:entity list *entity"]);
-    //Route::get('/admin/cms/{entity}/{id}', ["as"=>"cms.show", "uses"=>"CmsController@showEntity", "before"=>"sharp_access_granted:entity view *entity"])->where('id', '[0-9]+');
     Route::get('/admin/cms/{category}/{entity}/{id}/edit', ["as"=>"cms.edit", "uses"=>"CmsController@editEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');
     Route::get('/admin/cms/{category}/{entity}/create', ["as"=>"cms.create", "uses"=>"CmsController@createEntity", "before"=>"sharp_access_granted:entity create *entity"]);
     Route::put('/admin/cms/{category}/{entity}/{id}', ["as"=>"cms.update", "uses"=>"CmsController@updateEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');

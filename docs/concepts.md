@@ -19,3 +19,6 @@ This one is probably more obvious. Sharp needs *repositories* to work with, whic
 
 ##Field
 A *field* is obviously a web composant used to let a user enter data. There are many field types in Sharp, but we'll get to this later.
+
+##Command
+A *command* is a project specific action executed on an entity or on an entities list.

@@ -20,17 +20,23 @@ class SharpEntitiesListParams {
      * @var string
      */
     protected $search;
+    /**
+     * @var null
+     */
+    private $currentSublistId;
 
     /**
      * @param $sortedColumn
      * @param $sortedDirection
      * @param $search
+     * @param null $currentSublistId
      */
-    function __construct($sortedColumn, $sortedDirection, $search)
+    function __construct($sortedColumn, $sortedDirection, $search, $currentSublistId=null)
     {
         $this->sortedColumn = $sortedColumn;
         $this->sortedDirection = $sortedDirection;
         $this->search = $search;
+        $this->currentSublistId = $currentSublistId;
     }
 
     /**
@@ -49,9 +55,20 @@ class SharpEntitiesListParams {
         return $this->sortedDirection;
     }
 
+    /**
+     * @return string
+     */
     public function getSearch()
     {
         return $this->search;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentSublistId()
+    {
+        return $this->currentSublistId;
     }
 
     /**

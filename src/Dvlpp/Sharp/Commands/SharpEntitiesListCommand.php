@@ -2,7 +2,11 @@
 
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 
-interface EntitiesListCommand {
+/**
+ * Interface SharpEntitiesListCommand
+ * @package Dvlpp\Sharp\Commands
+ */
+interface SharpEntitiesListCommand {
 
     /**
      * Execute the entities list command, and return

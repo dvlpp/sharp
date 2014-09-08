@@ -24,7 +24,7 @@ All that we need here is store under the `list_template` attribute in the config
 		"name" => [
 			"header"   => "Name",
 			"sortable" => true,
-			"width" => 7
+			"width" => 6
 		],
 		"age" => [
 			"header"   => "Age",
@@ -33,7 +33,7 @@ All that we need here is store under the `list_template` attribute in the config
 		],
 		"height" => [
 			"header"   => "Height",
-			"width" => 2
+			"width" => 1
 		]
 	],
 
@@ -50,7 +50,7 @@ All that stuff will be covered in this chapter. Let's just be global here:
 - first we define columns of the list. Notice that the key of each column (`picture`, `name`, `age` and `height`) is an attribute of our giraffe object: that's the default, and it's necessary unless you provide a column renderer (see below), to allow Sharp to grab the value. For each, we indicate :
 	- a column `header` value: pretty obvious.
 	- optional `sortable` and `renderer` attribute: we'll get to that below.
-	- a `width`: this is expressed in the Twitter Bootstrap way... Lets just say you have 12 units to allocate.
+	- a `width`: this is expressed in the Twitter Bootstrap way... Lets just say you have **10 units** to allocate.
 - then we have 4 optional parameters: in fact, they are all set to false, so we can get rid of them, but as you can imagine we're going to change those values.
 
 OK, let's see:

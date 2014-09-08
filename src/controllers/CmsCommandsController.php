@@ -1,6 +1,6 @@
 <?php
 
-use Dvlpp\Sharp\Commands\CommandsManager;
+use Dvlpp\Sharp\Commands\SharpCommandsManager;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
 
@@ -12,11 +12,11 @@ use Dvlpp\Sharp\ListView\SharpEntitiesList;
 class CmsCommandsController extends BaseController {
 
     /**
-     * @var Dvlpp\Sharp\Commands\CommandsManager
+     * @var Dvlpp\Sharp\Commands\SharpCommandsManager
      */
     private $commandsManager;
 
-    function __construct(CommandsManager $commandsManager)
+    function __construct(SharpCommandsManager $commandsManager)
     {
         $this->commandsManager = $commandsManager;
     }

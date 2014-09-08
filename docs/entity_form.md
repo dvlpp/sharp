@@ -65,7 +65,7 @@ Just a simple regular text field. Base config:
 ```
 
 
-###<a name="f-texarea"></a> 1.3 Textarea
+###<a name="f-textarea"></a> 1.3 Textarea
 
 Just a textarea field.
 

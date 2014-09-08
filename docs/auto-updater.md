@@ -6,7 +6,7 @@ The good news is that if you are using Eloquent for your models, you can probabl
 
 1. [The auto-updater Trait magic](#magic)
 2. [The file upload case](#file)
-3. [Wait, this particular attribute is specific](specific)
+3. [Wait, this particular attribute is specific](#specific)
 
 
 

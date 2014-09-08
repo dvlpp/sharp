@@ -184,7 +184,7 @@ class SharpEntitiesList {
         }
 
         // Create the params object
-        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search);
+        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search, $this->getCurrentSublistId());
 
         return $this->params;
     }

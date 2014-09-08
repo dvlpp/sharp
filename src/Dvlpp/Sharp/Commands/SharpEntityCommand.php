@@ -1,10 +1,10 @@
 <?php namespace Dvlpp\Sharp\Commands;
 
 /**
- * Interface EntityCommand
+ * Interface SharpEntityCommand
  * @package Dvlpp\Sharp\Commands
  */
-interface EntityCommand {
+interface SharpEntityCommand {
 
     /**
      * Execute the entity command, and return
