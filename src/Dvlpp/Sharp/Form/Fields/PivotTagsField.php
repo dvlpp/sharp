@@ -5,6 +5,7 @@ use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use App;
 use Form;
 use Input;
+use Lang;
 
 /**
  * A multiple tags input.
@@ -36,6 +37,8 @@ class PivotTagsField extends AbstractSharpField {
             {
                 $this->addData("addable", $create);
             }
+
+            $this->addData("add_text", Lang::get('sharp::ui.form_pivotTagsField_addText'));
 
             if(!$this->instance && $this->isListItem)
             {

@@ -33,7 +33,7 @@
                 template.find("input, select, textarea").attr("disabled", "disabled");
 
                 // Hide template
-                template.hide();
+                //template.hide();
 
                 // Create button "Add"
                 var $addBtn = $('<a/>').addClass(params.addButton.className).addClass("sharp-list-add").html(params.addButton.text);
@@ -57,7 +57,7 @@
                     $newItem.find(".sharp-list-item-id").val(key);
 
                     $addBtnListItem.before($newItem);
-                    $newItem.slideDown();
+                    $newItem.fadeIn("fast");
 
                     // Call user callback
                     params.itemCreated($newItem);
@@ -71,7 +71,7 @@
                     e.preventDefault();
                     $item = $(this).parents(".sharp-list-item");
                     if(params.onDeleteItem($item)) {
-                        $item.fadeOut("normal", function() {
+                        $item.fadeOut("fast", function() {
                             // Call user callback
                             params.itemDeleted($item);
                         });
@@ -85,6 +85,7 @@
                 $(this).sortable({
                     items: params.sortableItems,
                     axis: "y",
+                    handle: '.sort-handle',
                     helper: function(e, tr)
                     {
                         var $originals = tr.children();

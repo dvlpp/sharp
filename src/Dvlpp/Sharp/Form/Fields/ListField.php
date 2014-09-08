@@ -104,13 +104,27 @@ class ListField extends AbstractSharpField {
             $strItem .= $strField;
         }
 
-        if($this->field->removable)
+        $strItem .= '</div>';
+
+        if($this->field->sortable || $this->field->removable)
         {
-            $strRemove = $this->field->remove_button_text ?: Lang::get('sharp::ui.form_listField_deleteItem');
-            $strItem .= '<div class="col-md-12"><a class="sharp-list-remove btn btn-sm"><i class="fa fa-times"></i> '.$strRemove.'</a></div>';
+            $strItem .= '<div class="row"><div class="col-md-12">';
+
+            if($this->field->sortable)
+            {
+                $strItem .= '<a class="sort-handle btn btn-sm"><i class="fa fa-sort"></i></a>';
+            }
+
+            if($this->field->removable)
+            {
+                $strRemove = $this->field->remove_button_text ?: Lang::get('sharp::ui.form_listField_deleteItem');
+                $strItem .= '<a class="sharp-list-remove btn btn-sm"><i class="fa fa-times"></i> '.$strRemove.'</a>';
+            }
+
+            $strItem .= '</div></div>';
         }
 
-        $strItem .= '</div></li>';
+        $strItem .= '</li>';
 
         return $strItem;
     }

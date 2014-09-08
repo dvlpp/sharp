@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class SharpServiceProvider extends ServiceProvider {
@@ -33,7 +32,7 @@ class SharpServiceProvider extends ServiceProvider {
 	public function register()
 	{
         // Register the SharpCmsField Facade used in cms views
-		$this->app->bind("sharpCmsField", '\Dvlpp\Sharp\Form\SharpCmsField');
+		$this->app->bind("sharpCmsField", 'Dvlpp\Sharp\Form\SharpCmsField');
 
         // Register the intervention/image dependency
         $this->app->register('Intervention\Image\ImageServiceProvider');

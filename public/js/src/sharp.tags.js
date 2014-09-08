@@ -8,12 +8,7 @@
             selectOnTab: false,
             persist: false,
             maxItems: null,
-            sortField: null,
-            render: {
-                option_create: function(data, escape) {
-                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
-                }
-            }
+            sortField: null
         };
 
         var params = $.extend(defauts, options);
@@ -37,7 +32,13 @@ $(window).load(function() {
 
 function createSharpTags($el)
 {
-    var options = {};
+    var options = {
+        render: {
+            option_create: function(data, escape) {
+                return '<div class="create">' + $el.data("add_text") + ' <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+            }
+        }
+    };
     if($el.data("addable"))
     {
         options.create = function(input, callback)

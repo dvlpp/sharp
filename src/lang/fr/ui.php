@@ -24,5 +24,7 @@ return [
     'form_errors' => 'Le formulaire contient des erreurs',
 
     'form_listField_deleteItem' => 'Supprimer cet item',
+    'form_fileField_browseText' => 'Parcourir...',
+    'form_pivotTagsField_addText' => 'Ajouter',
 
 ];

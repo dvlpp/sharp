@@ -3,6 +3,7 @@
 use Form;
 use File;
 use Input;
+use Lang;
 
 /**
  * A field upload input element, using https://github.com/blueimp.
@@ -24,6 +25,8 @@ class FileField extends AbstractSharpField {
         if($this->field->thumbnail) $strAttr = 'data-thumbnail="'.e($this->field->thumbnail).'"';
         if($this->field->file_filter) $strAttr .= ' data-file_filter="'.e($this->field->file_filter).'"';
         if($this->field->file_filter_alert) $strAttr .= ' data-file_filter_alert="'.e($this->field->file_filter_alert).'"';
+
+        $strAttr .= ' data-browse_text="'. Lang::get('sharp::ui.form_fileField_browseText') .'"';
 
         // Gets the file possibly valuated
         $instanceFile = null;

@@ -85,7 +85,7 @@
                     {
                         var acceptFileTypes = new RegExp("(\\.|\\/)(" + params.file_filter.replace(/,/g, '|') + ")$", "i");
                         if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
-                            alert(params.file_filter_alert ? params.file_filter_alert : 'Fichiers autorisés : ' + params.file_filter);
+                            alert(params.file_filter_alert ? params.file_filter_alert : params.file_filter);
                             return false;
                         }
                     }
@@ -93,6 +93,7 @@
                 },
 
                 submit: function(e, data) {
+                    $btn.css("visibility", "hidden");
                     return params.submit(data);
                 },
 
@@ -100,6 +101,7 @@
 
                     // Hide progress
                     if(params.progress) $progress.css('width', '0%');
+                    $btn.css("visibility", "visible");
 
                     // Call user callback
                     if(params.done(data)) {
@@ -212,7 +214,7 @@ function createSharpFile($el)
             return true;
         },
         browseButton:{
-            text:'<i class="fa fa-upload"></i> Parcourir...',
+            text:'<i class="fa fa-upload"></i> ' + $el.data("browse_text"),
             className:'btn'
         },
         deleteButton:{
