@@ -12,18 +12,6 @@ Well, I think I can try to be clearer: in many of my web projects there's a lot 
 
 ---
 
-##Overview in screenshots
-
-![](docs/img/listview-giraffe-search-pagination-sublist.png)
-*Sharp provides a simple way to handle entities lists with pagination, search, state indicator and more*
-
-![](docs/img/listview-zones-reorder.png)
-*Entities lists wan easily be re-arrange*
-
-![](docs/img/formview-giraffe.png)
-*Sharp generated forms can include file uploads, dynamic lists and many more other field types*
-
-
 
 ##Installation
 
@@ -47,6 +35,22 @@ OK, you're good to go. One final note: after an composer update, always re-run t
 
 5. [Sharp Eloquent Auto-updater](docs/auto-updater.md)
 
-6. Authentification (global auth and rights management)
+6. Authentication (global auth and rights management)
 
 7. Commands
+
+---
+
+## Quick overview in screenshots
+
+![](docs/img/listview-giraffe-search-pagination-sublist.png)
+*Sharp provides a simple way to handle entities lists with ordering, pagination, search, state indicator, column data rendering and more*
+
+![](docs/img/listview-zones-reorder.png)
+*Entities lists can easily be re-arrange*
+
+![](docs/img/formview-giraffe.png)
+*Sharp generated forms can include file uploads, dynamic lists and many more other field types*
+
+![](docs/img/formview-validation.png)
+*Form Validation is mostly automatic and easy*
