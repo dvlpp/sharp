@@ -31,7 +31,7 @@ class AuthController extends BaseController {
 
             // Next: check credentials
             $authService = SharpSiteConfig::getAuthService();
-            if($user = $authService->login($data))
+            if($user = $authService->login($data["login"], $data["password"]))
             {
                 // Login succeed
                 Session::put("sharp_user", $user);

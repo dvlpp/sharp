@@ -6,7 +6,7 @@ interface SharpAuth {
     /**
      * Return true if a CMS admin is logged in.
      *
-     * @return mixed
+     * @return boolean
      */
     function checkAdmin();
 
@@ -14,10 +14,12 @@ interface SharpAuth {
      * Logs the user in.
      * Must return the user login.
      *
-     * @param $data
+     * @param $login
+     * @param $password
+     * @internal param $data
      * @return mixed
      */
-    function login($data);
+    function login($login, $password);
 
     /**
      * Logout the user.
@@ -30,11 +32,11 @@ interface SharpAuth {
      * Check if the user has the permission for the action described
      * by $type (entity), $action (view, update, ...) and $key (entity name).
      *
-     * @param $user
+     * @param $login
      * @param $type
      * @param $action
      * @param $key
-     * @return mixed
+     * @return boolean
      */
-    function checkAccess($user, $type, $action, $key);
+    function checkAccess($login, $type, $action, $key);
 } 

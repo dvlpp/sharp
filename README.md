@@ -35,7 +35,7 @@ OK, you're good to go. One final note: after an composer update, always re-run t
 
 5. [Sharp Eloquent Auto-updater](docs/auto-updater.md)
 
-6. Authentication (global auth and rights management)
+6. [Authentication](docs/authentication.md) (global auth and rights management)
 
 7. Commands
 
