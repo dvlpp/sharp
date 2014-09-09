@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\Form\Facades;
 
-
 use Illuminate\Support\Facades\Facade;
 
 class SharpCmsField extends Facade {

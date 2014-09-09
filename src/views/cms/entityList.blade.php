@@ -67,7 +67,7 @@
                     <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                 </span>
             </div>
-            @foreach(Input::except(['search','page']) as $qs => $qsVal)
+            @foreach(Input::only(['sort','dir','sub']) as $qs => $qsVal)
                 {{ Form::hidden($qs, $qsVal) }}
             @endforeach
         </form>
@@ -76,6 +76,38 @@
 @stop
 
 @section('content')
+
+@if($entity->advanced_search->data)
+
+    <div id="advsearch_panel" class="panel-collapse collapse {{ Input::has("adv") ? 'in' : '' }}">
+        <form id="advsearch" method="get" class="">
+
+            @foreach($entity->advanced_search->rows as $advsrow)
+
+                @include("sharp::cms.advancedsearch.row_partial", ["row" => $entity->advanced_search->rows->$advsrow])
+
+            @endforeach
+
+            @foreach(Input::only(['sort','dir','sub']) as $qs => $qsVal)
+                {{ Form::hidden($qs, $qsVal) }}
+            @endforeach
+
+            {{ Form::hidden('adv', true) }}
+
+            <div class="clearfix">
+                <div class="col-sm-2 col-sm-offset-3">
+                    <button type="submit" class="btn btn-block"><i class='fa fa-search'></i> {{ trans('sharp::ui.list_advancedSearchBtn') }}</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <a class="advancedsearch-toggle" data-toggle="collapse" href="#advsearch_panel">
+        Show / hide advanced search
+    </a>
+
+@endif
 
 <table class="table table-responsive table-striped" id="entity-list">
     <thead>
@@ -171,4 +203,7 @@
 @section("scripts")
 @parent
 <script src="/packages/dvlpp/sharp/js/sharp.list.min.js"></script>
+@if($entity->advanced_search->data)
+    <script src="/packages/dvlpp/sharp/js/sharp.advancedsearch.min.js"></script>
+@endif
 @stop

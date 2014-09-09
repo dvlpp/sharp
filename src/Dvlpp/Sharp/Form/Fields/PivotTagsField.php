@@ -77,7 +77,7 @@ class PivotTagsField extends AbstractSharpField {
                     }
                     $this->addData("to_add", implode(",", $valuesToAdd));
                 }
-                else
+                elseif($this->fieldValue)
                 {
                     foreach($this->fieldValue as $val)
                     {

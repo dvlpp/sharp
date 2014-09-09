@@ -1,6 +1,5 @@
 <?php
 
-
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;

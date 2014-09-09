@@ -1,6 +1,4 @@
-<?php 
-
-namespace Dvlpp\Sharp\Config\Entities;
+<?php namespace Dvlpp\Sharp\Config\Entities;
 
 class SharpEntityFormLayout extends HasProperties implements \Iterator, \Countable {
 

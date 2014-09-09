@@ -14,6 +14,7 @@ return [
     'list_reorderOkBtn' => 'Update order',
     'list_reorderCancelBtn' => 'Cancel',
     'list_searchPlaceholder' => 'Search',
+    'list_advancedSearchBtn' => 'Search',
 
     'form_updateTitle' => ':entity update',
     'form_createTitle' => ':entity creation',

@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\ListView;
 
-
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
@@ -160,31 +159,57 @@ class SharpEntitiesList {
 
     public function createParams()
     {
-        // Manage column sort
-        $sortedColumn = null;
-        $sortedDirection = null;
+        $this->params = new SharpEntitiesListParams();
 
-        // First determine which column is sorted
+        if($this->currentSubListId)
+        {
+            $this->params->setCurrentSubListId($this->getCurrentSublistId());
+        }
+
+        // Manage column sort: first determine which column is sorted
         foreach($this->entity->list_template->columns as $colKey=>$col)
         {
             if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
             {
-                $sortedColumn = $colKey;
-                $sortedDirection = Input::get("dir") ?: "asc";
+                $this->params->setSortedColumn($colKey);
+                $this->params->setSortedDirection(Input::get("dir") ?: "asc");
                 break;
             }
         }
 
         // Manage search
         $search = null;
-
-        if($this->entity->list_template->searchable && Input::get("search"))
+        if($this->entity->list_template->searchable && Input::has("search"))
         {
             $search = urldecode(Input::get("search"));
         }
 
-        // Create the params object
-        $this->params = new SharpEntitiesListParams($sortedColumn, $sortedDirection, $search, $this->getCurrentSublistId());
+        // Manage advanced search
+        if(!$search && $this->entity->advanced_search->data && Input::has("adv"))
+        {
+            $this->params->setAdvancedSearch(true);
+            $search = [];
+            foreach(Input::all() as $input => $value)
+            {
+                if(!starts_with($input, "adv_")) continue;
+                if((is_array($value) && !sizeof($value))
+                    || !is_array($value) && !strlen(trim($value))) continue;
+
+                if(is_array($value))
+                {
+                    foreach($value as $v)
+                    {
+                        $search[substr($input, 4)][] = urldecode($v);
+                    }
+                }
+                else
+                {
+                    $search[substr($input, 4)] = urldecode($value);
+                }
+            }
+        }
+
+        $this->params->setSearch($search);
 
         return $this->params;
     }

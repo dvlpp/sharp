@@ -89,7 +89,7 @@ class SharpEloquentAutoUpdaterService {
         $isCreatable = $pivotConfig->addable ?: false;
         $createAttribute = $isCreatable ? $pivotConfig->create_attribute : "name";
         $hasOrder = $pivotConfig->sortable ?: false;
-        $orderAttribute = $hasOrder ? $pivotConfig->order_attribute : "order";
+        $orderAttribute = $hasOrder ? $pivotConfig->order_attribute : null;
 
         $existingPivots = [];
         $newPivots = [];
@@ -202,9 +202,9 @@ class SharpEloquentAutoUpdaterService {
                     // that takes the precedence. Method name should be "create[$listKey]ListItem"
                     $methodName = "create" . ucFirst(Str::camel($listKey)) . "ListItem";
 
-                    if(method_exists($this, $methodName))
+                    if(method_exists($this->sharpRepository, $methodName))
                     {
-                        $item = $this->$methodName($instance);
+                        $item = $this->sharpRepository->$methodName($instance);
                     }
                     else
                     {
@@ -429,15 +429,7 @@ class SharpEloquentAutoUpdaterService {
                 if(!$instance->id) $instance->save();
 
                 // Find list config
-                $listFieldConfig = null;
-                foreach ($this->entityConfig->form_fields as $fieldId)
-                {
-                    if ($fieldId == ($baseAttribute ?: $dataAttribute))
-                    {
-                        $listFieldConfig = $this->entityConfig->form_fields->$fieldId;
-                        break;
-                    }
-                }
+                $listFieldConfig = $this->findListConfig($dataAttribute, $baseAttribute);
 
                 $this->valuateListAttribute($instance, $dataAttribute, $value, $listFieldConfig);
                 break;
@@ -448,11 +440,22 @@ class SharpEloquentAutoUpdaterService {
 
                 // Find pivot config
                 $pivotConfig = null;
-                foreach ($this->entityConfig->form_fields as $fieldId)
+                if($listKey)
+                {
+                    // It's in a list item
+                    $listConfig = $this->findListConfig($listKey);
+                    $fields = $listConfig->item;
+                }
+                else
+                {
+                    $fields = $this->entityConfig->form_fields;
+                }
+
+                foreach ($fields as $fieldId)
                 {
                     if ($fieldId == ($baseAttribute ?: $dataAttribute))
                     {
-                        $pivotConfig = $this->entityConfig->form_fields->$fieldId;
+                        $pivotConfig = $fields->$fieldId;
                         break;
                     }
                 }
@@ -465,5 +468,26 @@ class SharpEloquentAutoUpdaterService {
         }
 
 
+    }
+
+    /**
+     * @param $dataAttribute
+     * @param $baseAttribute
+     * @return mixed
+     */
+    private function findListConfig($dataAttribute, $baseAttribute=null)
+    {
+        $listFieldConfig = null;
+
+        foreach ($this->entityConfig->form_fields as $fieldId)
+        {
+            if ($fieldId == ($baseAttribute ?: $dataAttribute))
+            {
+                $listFieldConfig = $this->entityConfig->form_fields->$fieldId;
+                break;
+            }
+        }
+
+        return $listFieldConfig;
     }
 } 

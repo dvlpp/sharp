@@ -34,6 +34,9 @@ class SharpServiceProvider extends ServiceProvider {
         // Register the SharpCmsField Facade used in cms views
 		$this->app->bind("sharpCmsField", 'Dvlpp\Sharp\Form\SharpCmsField');
 
+        // Register the SharpAdvancedSearchField Facade used in cms views
+        $this->app->bind("sharpAdvancedSearchField", 'Dvlpp\Sharp\AdvancedSearch\SharpAdvancedSearchField');
+
         // Register the intervention/image dependency
         $this->app->register('Intervention\Image\ImageServiceProvider');
 	}

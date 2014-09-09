@@ -150,6 +150,12 @@ $(window).load(function() {
                         createSharpRef($(this));
                     });
 
+                    // Manage sharp-tags in the item
+                    item.find('.sharp-tags-template').each(function() {
+                        $(this).removeClass('sharp-tags-template').addClass('sharp-tags');
+                        createSharpTags($(this));
+                    });
+
                     // Manage conditional display in the item
                     item.find('.sharp-field[data-conditional_display]').each(function() {
                         manageConditionalDisplay($(this));

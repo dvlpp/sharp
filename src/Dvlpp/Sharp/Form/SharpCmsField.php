@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\Form;
 
-
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Form\Fields\CheckField;
 use Dvlpp\Sharp\Form\Fields\ChooseField;
@@ -18,6 +17,10 @@ use Dvlpp\Sharp\Form\Fields\TextareaField;
 use Dvlpp\Sharp\Form\Fields\TextField;
 use Form;
 
+/**
+ * Class SharpCmsField
+ * @package Dvlpp\Sharp\Form
+ */
 class SharpCmsField {
 
     /**
@@ -126,6 +129,12 @@ class SharpCmsField {
         return Form::label($key, $name, ['class' => 'control-label']);
     }
 
+    /**
+     * Add a style class name to the field.
+     *
+     * @param $className
+     * @param $attributes
+     */
     private function addClass($className, &$attributes)
     {
         $attributes["class"] = $className . (array_key_exists("class", $attributes) ? " ".$attributes["class"] : "");
