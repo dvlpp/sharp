@@ -22,7 +22,7 @@ class AdvancedSearchPivotTagsField extends AdvancedSearchAbstractField {
 
             if(method_exists($reflistRepo, "formList"))
             {
-                $values = $reflistRepo->formList();
+                $values = $reflistRepo->formList(null);
 
                 // Field name has to be an array (books[] for example) to generate an array on data post
                 return Form::select($this->key . "[]", $values, $this->value, $this->attributes);

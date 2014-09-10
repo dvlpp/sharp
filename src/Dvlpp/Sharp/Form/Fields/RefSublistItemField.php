@@ -48,7 +48,7 @@ class RefSublistItemField extends AbstractSharpField {
 
             if(method_exists($repo, "formListForSublist"))
             {
-                $allValues = $repo->formListForSublist($this->field->ref_list_id);
+                $allValues = $repo->formListForSublist($this->field->ref_list_id, $this->instance);
 
                 // First we create a "datastore" hidden select, with all values,
                 // to allow JS code to search in
@@ -65,11 +65,11 @@ class RefSublistItemField extends AbstractSharpField {
                 return $str;
             }
 
-            throw new MandatoryMethodNotFoundException("Method formListForSublist() not found in the $repoName class");
+            throw new MandatoryMethodNotFoundException("Method formListForSublist(refListId, askingInstance) not found in the [$repoName] class");
         }
         else
         {
-            throw new MandatoryClassNotFoundException("Class $repoName not found");
+            throw new MandatoryClassNotFoundException("Class [$repoName] not found");
         }
 
     }

@@ -64,7 +64,7 @@ class RefField extends AbstractSharpField {
 
             if(method_exists($reflistRepo, "formList"))
             {
-                $values = $reflistRepo->formList();
+                $values = $reflistRepo->formList($this->instance);
 
                 // Initial value *could be* tricky...
                 $value = $this->fieldValue;
@@ -79,11 +79,11 @@ class RefField extends AbstractSharpField {
                 return Form::select($this->fieldName, $values, $value, $this->attributes);
             }
 
-            throw new MandatoryMethodNotFoundException("Method formList() not found in the $reflistRepoName class");
+            throw new MandatoryMethodNotFoundException("Method formList(askingInstance) not found in the [$reflistRepoName] class");
         }
         else
         {
-            throw new MandatoryClassNotFoundException("Class $reflistRepoName not found");
+            throw new MandatoryClassNotFoundException("Class [$reflistRepoName] not found");
         }
 
     }
