@@ -237,10 +237,10 @@ This one is used to reference a related instance, in a one-to-* relationship.
 
 The form field *key* attribute usually refers to a foreign key.
 
-- **repository**: the full class path of the repo in charge of creating the available list of instances. The method called is `formList()`, which has to be created: 
+- **repository**: the full class path of the repo in charge of creating the available list of instances. The method called is `formList($askingInstance)`, which has to be created:
 
 ```
-function formList()
+function formList($askingInstance)
 {
 	$zookeepers = Zookeeper::orderBy("name", "ASC")->get();
 	$tab = [];
@@ -384,12 +384,12 @@ This one is for a quite rare case: to reference an specific item in a list of an
 
 - **linked_ref_field**: the key of the linked ref field responsible for the entity instance selection. In out comment case, we first need to select the related Giraffe, and then the photo which we want to comment. This means the form MUST declare a giraffe_id Reference field.
 - **ref_list_id**: the key of the list of the referenced entity (photos, here).
-- **repository**: the repo where the `formListForSublist()` method is defined (see below).
+- **repository**: the repo where the `formListForSublist($sublistId, $askingInstance)` method is defined (see below).
 
 The giraffe repository, here, must declare a new method:
 
 ```
-function formListForSublist($sublistId)
+function formListForSublist($sublistId, $askingInstance)
  {
 	$tab = [];
 
@@ -427,10 +427,10 @@ With this structure, here's the Sharp config needed:
 ```
 
 - **addable**: if true, a new tag can be created by the user. In this case, the text string is sent for the update.
-- **repository**: the tag repo which has to define a formList() method, like for instance:
+- **repository**: the tag repo which has to define a formList($askingInstance) method, like for instance:
 
 ```
-function formList()
+function formList($askingInstance)
 {
 	$particularities = Particularity::orderBy("name", "ASC")->get();
 	$tab = [];
