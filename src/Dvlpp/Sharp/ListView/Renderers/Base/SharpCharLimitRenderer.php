@@ -1,8 +1,7 @@
 <?php namespace Dvlpp\Sharp\ListView\Renderers\Base;
 
 use Dvlpp\Sharp\ListView\Renderers\SharpRenderer;
-use HTML;
-use Str;
+use Illuminate\Support\Str;
 
 class SharpCharLimitRenderer implements SharpRenderer {
 

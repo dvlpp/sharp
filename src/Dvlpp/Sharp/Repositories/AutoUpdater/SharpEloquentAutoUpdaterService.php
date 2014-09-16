@@ -10,8 +10,8 @@ use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\FileValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\SimpleValuator;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Str;
 
 /**
  * Class SharpEloquentAutoUpdaterService

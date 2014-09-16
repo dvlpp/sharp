@@ -3,7 +3,7 @@
 use Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Str;
+use Illuminate\Support\Str;
 
 /**
  * Class EmbedValuator

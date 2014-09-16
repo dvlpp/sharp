@@ -1,10 +1,9 @@
 <?php namespace Dvlpp\Sharp\ListView\Renderers;
 
-
 use Dvlpp\Sharp\Config\Entities\SharpEntityListTemplateColumn;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
+use Illuminate\Support\Str;
 use App;
-use Str;
 
 class SharpColumnRendererManager {
 

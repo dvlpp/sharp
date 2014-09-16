@@ -3,7 +3,7 @@
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
-use Str;
+use Illuminate\Support\Str;
 
 class EmbedListValuator implements Valuator {
 

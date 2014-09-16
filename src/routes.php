@@ -1,6 +1,7 @@
 <?php
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Illuminate\Support\Str;
 
 Route::get('/admin', function() {
 

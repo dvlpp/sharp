@@ -2,8 +2,8 @@
 
 use Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Str;
 
 /**
  * Class ListValuator

@@ -1,8 +1,8 @@
 <?php namespace Dvlpp\Sharp\ListView\Renderers\Base;
 
 use Dvlpp\Sharp\ListView\Renderers\SharpRenderer;
+use Illuminate\Support\Str;
 use HTML;
-use Str;
 
 class SharpThumbnailRenderer implements SharpRenderer {
 
