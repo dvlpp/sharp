@@ -4,6 +4,7 @@ use Dvlpp\Sharp\Form\Facades\SharpCmsField;
 use Form;
 use Input;
 use Lang;
+use Log;
 
 /**
  * An ordered list of items containing fields.
@@ -42,6 +43,7 @@ class ListField extends AbstractSharpField {
             {
                 foreach(Input::old($listkey) as $item)
                 {
+                    Log::debug("item OLD : " . print_r($item, true));
                     $str .= $this->createItem((object)$item);
                 }
             }
@@ -54,6 +56,7 @@ class ListField extends AbstractSharpField {
 
             foreach($collection as $item)
             {
+                Log::debug("item : " . print_r($item, true));
                 $str .= $this->createItem($item);
             }
         }
@@ -71,7 +74,7 @@ class ListField extends AbstractSharpField {
     /**
      * @return string
      */
-    private function createTemplate()
+    protected function createTemplate()
     {
         return $this->createItem(null);
     }
@@ -80,31 +83,18 @@ class ListField extends AbstractSharpField {
      * @param $item
      * @return string
      */
-    private function createItem($item)
+    protected function createItem($item)
     {
         $itemIdAttribute = $this->field->item_id_attribute ?: "id";
 
         $isTemplate = ($item === null);
 
-        $hiddenKey = $this->key."[".($isTemplate?"--N--":$item->id)."][$itemIdAttribute]";
+        $hiddenKey = $this->key."[".($isTemplate?"--N--":$item->$itemIdAttribute)."][$itemIdAttribute]";
 
         $strItem = '<li class="list-group-item sharp-list-item '.($isTemplate?"template":"").'"><div class="row">'
-            . Form::hidden($hiddenKey, $isTemplate?"N":$item->$itemIdAttribute, ["class"=>"sharp-list-item-id"]);
-
-        foreach($this->field->item as $key)
-        {
-            $itemField = $this->field->item->$key;
-
-            $strField = '<div class="col-md-' . ($itemField->field_width ?: "12") . '">'
-                . '<div class="form-group sharp-field sharp-field-' . $itemField->type . '"'
-                . ($itemField->conditional_display ? ' data-conditional_display='.$itemField->conditional_display : '')
-                .'>' . SharpCmsField::make($key, $itemField, $item, $this->key)
-                . '</div></div>';
-
-            $strItem .= $strField;
-        }
-
-        $strItem .= '</div>';
+            . Form::hidden($hiddenKey, $isTemplate?"N":$item->$itemIdAttribute, ["class"=>"sharp-list-item-id"])
+            . $this->createItemField($item)
+            . '</div>';
 
         if($this->field->sortable || $this->field->removable)
         {
@@ -125,6 +115,26 @@ class ListField extends AbstractSharpField {
         }
 
         $strItem .= '</li>';
+
+        return $strItem;
+    }
+
+    protected function createItemField($item)
+    {
+        $strItem = "";
+
+        foreach($this->field->item as $key)
+        {
+            $itemField = $this->field->item->$key;
+
+            $strField = '<div class="col-md-' . ($itemField->field_width ?: "12") . '">'
+                . '<div class="form-group sharp-field sharp-field-' . $itemField->type . '"'
+                . ($itemField->conditional_display ? ' data-conditional_display='.$itemField->conditional_display : '')
+                .'>' . SharpCmsField::make($key, $itemField, $item, $this->key)
+                . '</div></div>';
+
+            $strItem .= $strField;
+        }
 
         return $strItem;
     }

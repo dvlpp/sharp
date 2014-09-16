@@ -16,6 +16,13 @@ Route::get('/admin', function() {
 
 Route::group(['before' => 'sharp_auth'], function() {
 
+    // Routes for embedded field
+    Route::match(['PUT','POST','GET'], '/admin/cms/embedded/{category}/{entity}/{fieldKey}/{embeddedCategory}/{embeddedEntity}/create', ["as"=>"cms.embedded.create", "uses"=>"CmsEmbeddedEntityController@create", "before"=>"sharp_access_granted:entity create *embedded_entity"]);
+    Route::match(['PUT','POST','GET'], '/admin/cms/embedded/{category}/{entity}/{fieldKey}/{embeddedCategory}/{embeddedEntity}/edit/{id}', ["as"=>"cms.embedded.edit", "uses"=>"CmsEmbeddedEntityController@edit", "before"=>"sharp_access_granted:entity update *embedded_entity"]);
+    Route::put('/admin/cms/embedded/{category}/{entity}/{fieldKey}/{embeddedCategory}/{embeddedEntity}/{id}', ["as"=>"cms.embedded.update", "uses"=>"CmsEmbeddedEntityController@update", "before"=>"sharp_access_granted:entity update *embedded_entity"]);
+    Route::post('/admin/cms/embedded/{category}/{entity}/{fieldKey}/{embeddedCategory}/{embeddedEntity}', ["as"=>"cms.embedded.store", "uses"=>"CmsEmbeddedEntityController@store", "before"=>"sharp_access_granted:entity create *embedded_entity"]);
+    Route::post('/admin/cms/embedded/{category}/{entity}/cancel', ["as"=>"cms.embedded.cancel", "uses"=>"CmsEmbeddedEntityController@cancel", "before"=>"sharp_access_granted:entity update *entity"]);
+
     Route::get('/admin/cms', ["as"=>"cms", "uses"=>"CmsController@index"]);
     Route::get('/admin/cms/{category}', ["as"=>"cms.category", "uses"=>"CmsController@category", "before"=>"sharp_access_granted:category view *category"]);
     Route::get('/admin/cms/{category}/{entity}', ["as"=>"cms.list", "uses"=>"CmsController@listEntities", "before"=>"sharp_access_granted:entity list *entity"]);

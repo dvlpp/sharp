@@ -18,19 +18,21 @@ class SharpCmsConfig {
      */
     protected static $categories = [];
 
-    public static function findEntity($categoryName, $entityName)
+    public static function findEntity($categoryKey, $entityKey)
     {
-        $category = self::findCategory($categoryName);
+        $category = self::findCategory($categoryKey);
 
         foreach($category->entities as $entityConfig)
         {
-            if($entityConfig == $entityName)
+            if($entityConfig == $entityKey)
             {
-                return $category->entities->$entityConfig;
+                $entity = $category->entities->$entityConfig;
+                $entity->key = $entityKey;
+                return $entity;
             }
         }
 
-        throw new EntityConfigurationNotFoundException("Entity configuration for [$categoryName.$entityName] can't be found");
+        throw new EntityConfigurationNotFoundException("Entity configuration for [$categoryKey.$entityKey] can't be found");
     }
 
     public static function findCategory($categoryName)

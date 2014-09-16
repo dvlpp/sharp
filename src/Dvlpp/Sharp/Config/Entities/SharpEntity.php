@@ -5,6 +5,10 @@ class SharpEntity extends HasProperties {
 
     protected $mandatoryProperties = ["label", "repository"];
 
+    protected $defaultPropertiesValues = [
+        "id_attribute" => "id",
+    ];
+
     protected $structProperties = [
         "commands" => 'Dvlpp\Sharp\Config\Entities\SharpEntityCommands',
         "advanced_search" => 'Dvlpp\Sharp\Config\Entities\SharpEntityAdvancedSearch',

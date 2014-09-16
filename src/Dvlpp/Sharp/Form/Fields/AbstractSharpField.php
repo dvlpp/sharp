@@ -17,7 +17,7 @@ abstract class AbstractSharpField {
      */
     protected $key;
     /**
-     * @var \Dvlpp\Sharp\Config\Entities\SharpEntityFormField
+     * @var SharpEntityFormField
      */
     protected $field;
     /**
@@ -69,7 +69,9 @@ abstract class AbstractSharpField {
         $this->attributes = $attributes;
         $this->instance = $instance;
 
-        $this->fieldName = $listKey ? $listKey."[".($instance?$instance->id:"--N--")."][".$key."]" : $key;
+        $this->fieldName = $listKey
+            ? ($listKey."[".($instance?$instance->id:"--N--")."]". ($key ? "[".$key."]" : ""))
+            : $key;
 
         $this->relation = null;
         $this->relationKey = null;
@@ -85,7 +87,8 @@ abstract class AbstractSharpField {
         }
         else
         {
-            $this->fieldValue = $instance ? $instance->$key : null;
+            // Value is instance->key, except for null key: in this case, value IS the instance
+            $this->fieldValue = $key&&$key!="__embed_data" ? ($instance ? $instance->$key : null) : $instance;
         }
 
         if($listKey)

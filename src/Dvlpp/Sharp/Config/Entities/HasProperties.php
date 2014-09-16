@@ -37,8 +37,17 @@ abstract class HasProperties {
      */
     protected $data = [];
 
+    /**
+     * @var
+     */
+    protected $parent;
 
-    public function __construct($data)
+
+    /**
+     * @param $data
+     * @param $parent
+     */
+    public function __construct($data, $parent)
     {
         if(!is_array($data))
         {
@@ -48,9 +57,15 @@ abstract class HasProperties {
         }
 
         $this->data = $data;
+
+        $this->parent = $parent;
     }
 
 
+    /**
+     * @param $attribute
+     * @return null
+     */
     public function __get($attribute)
     {
         if(!isset($this->$attribute))
@@ -61,7 +76,7 @@ abstract class HasProperties {
                 $className = $this->structProperties[
                     array_key_exists("__ALL__", $this->structProperties)?"__ALL__":$attribute
                 ];
-                $struct = new $className(isset($this->data[$attribute]) ? $this->data[$attribute] : []);
+                $struct = new $className(isset($this->data[$attribute]) ? $this->data[$attribute] : [], $this);
                 $this->$attribute = $struct;
             }
 
@@ -80,6 +95,45 @@ abstract class HasProperties {
         return $this->$attribute;
     }
 
+    /**
+     * Get the key of the entity which owns the field
+     *
+     * @return null|string
+     */
+    public function getEntityKey()
+    {
+        $parent = $this->parent;
+        while($parent && !$parent instanceof SharpEntity)
+        {
+            $parent = $parent->parent;
+        }
+
+        return $parent ? $parent->key : null;
+    }
+
+    /**
+     * Get the key of the category which owns the field
+     *
+     * @return null|string
+     */
+    public function getCategoryKey()
+    {
+        $parent = $this->parent;
+        while($parent && !$parent instanceof SharpCategory)
+        {
+            $parent = $parent->parent;
+        }
+
+        return $parent ? $parent->key : null;
+    }
+
+    /**
+     * @param $name
+     * @param bool $mandatory
+     * @param null $defaultValue
+     * @return null
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException
+     */
     private function getEntitySimpleProperty($name, $mandatory=false, $defaultValue=null)
     {
         $val = array_key_exists($name, $this->data) ? $this->data[$name] : null;

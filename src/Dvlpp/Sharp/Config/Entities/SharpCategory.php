@@ -11,7 +11,7 @@ class SharpCategory extends HasProperties {
 
     public function __construct($key, Array $data)
     {
-        parent::__construct($data);
+        parent::__construct($data, null);
         $this->key = $key;
     }
 

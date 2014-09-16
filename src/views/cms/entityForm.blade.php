@@ -9,17 +9,34 @@
 
 @section('contextbar')
 
+    @if(isset($isEmbedded) && $isEmbedded)
+        <button type="submit" form="sharp_embedded_cancel" class="btn navbar-btn navbar-btn-trail">
+            @if($masterInstanceId)
+                {{ trans('sharp::ui.form_updateTitle', ["entity" => $masterEntityLabel]) }}
+            @else
+                {{ trans('sharp::ui.form_createTitle', ["entity" => $masterEntityLabel]) }}
+            @endif
+        </button>
+        <p class="navbar-text">/</p>
+    @endif
+
     <p class="navbar-text">
+
         @if($instance->id)
             {{ trans('sharp::ui.form_updateTitle', ["entity"=>$entity->label]) }}
         @else
             {{ trans('sharp::ui.form_createTitle', ["entity"=>$entity->label]) }}
         @endif
+
     </p>
 
     <button type="submit" form="sharpform" class="btn navbar-btn btn-ok navbar-right"><i class='fa fa-check'></i> {{ trans('sharp::ui.form_updateBtn') }}</button>
 
-    <a href="{{ URL::route("cms.list", [$category->key, $entityKey]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
+    @if(isset($isEmbedded) && $isEmbedded)
+        <button type="submit" form="sharp_embedded_cancel" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</button>
+    @else
+        <a href="{{ URL::route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
+    @endif
 
 @stop
 
@@ -39,18 +56,35 @@
 
     @endif
 
-    {{ Form::model($instance, ["route"=>$instance->id?["cms.update", $category->key, $entityKey, $instance->id]:["cms.store", $category->key, $entityKey],
-        "method"=>$instance->id?"put":"post", "id"=>"sharpform"]) }}
+    @if(isset($isEmbedded) && $isEmbedded)
+        {{ Form::open(["route"=>["cms.embedded.cancel", $masterCategoryKey, $masterEntityKey], "method"=>"POST", "id"=>"sharp_embedded_cancel"]) }}
+            {{ Form::hidden('masterInstanceData', $masterInstanceData) }}
+            {{ Form::hidden('masterInstanceId', $masterInstanceId) }}
+        {{ Form::close() }}
+    @endif
+
+    {{ Form::model($instance, ["route"=>(isset($isEmbedded) && $isEmbedded
+            ? get_embedded_entity_update_form_route($masterCategoryKey, $masterEntityKey, $masterFieldKey, $category, $entity, $instance)
+            : get_entity_update_form_route($category, $entity, $instance)),
+            "method"=>$instance->{$entity->id_attribute}?"put":"post", "id"=>"sharpform"]) }}
+
+        {{ Form::hidden($entity->id_attribute, $instance->{$entity->id_attribute}) }}
+
+        @if(isset($isEmbedded) && $isEmbedded)
+            {{ Form::hidden('masterInstanceData', $masterInstanceData) }}
+            {{ Form::hidden('masterInstanceId', $masterInstanceId) }}
+            {{ Form::hidden('masterEntityLabel', $masterEntityLabel) }}
+        @endif
 
         @if(count($entity->form_layout) > 1)
             {{-- There are tabs --}}
 
             <div class="row">
                 <div class="col-xs-12">
-                    <ul class="nav nav-pills" role="tablist">
+                    <ul class="nav nav-pills entity-tabs" role="tablist">
                         <?php $k=0 ?>
                         @foreach($entity->form_layout as $keytab)
-                            <li class="{{ $k==0?'active':'' }}"><a href="#tab{{ $k++ }}" role="tab" data-toggle="tab">{{ $entity->form_layout->$keytab->tab }}</a></li>
+                            <li class="{{ $k==0?'active':'' }}"><a href="#tab{{ $k++ }}">{{ $entity->form_layout->$keytab->tab }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -95,14 +129,18 @@
 
     {{ Form::close() }}
 
-    @if($instance->id && \Dvlpp\Sharp\Auth\SharpAccessManager::granted("entity", "delete", $entityKey))
+    @if(!isset($isEmbedded) || !$isEmbedded)
 
-        {{ Form::open(["route"=>["cms.destroy", $category->key, $entityKey, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete"]) }}
+        @if($instance->id && \Dvlpp\Sharp\Auth\SharpAccessManager::granted("entity", "delete", $entity->key))
 
-            <hr/>
-            <button data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}" type="submit" class="btn btn-lg btn-danger">{{ trans('sharp::ui.form_deleteBtn') }}</button>
+            {{ Form::open(["route"=>["cms.destroy", $category->key, $entity->key, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete"]) }}
 
-        {{ Form::close() }}
+                <hr/>
+                <button data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}" type="submit" class="btn btn-lg btn-danger">{{ trans('sharp::ui.form_deleteBtn') }}</button>
+
+            {{ Form::close() }}
+
+        @endif
 
     @endif
 
@@ -110,10 +148,5 @@
 
 @section("scripts")
 @parent
-<script src="/packages/dvlpp/sharp/js/sharp.upload.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.markdown.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.list.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.date.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.ref.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.refSublistItem.min.js"></script>
+<script src="/packages/dvlpp/sharp/js/sharp.form.min.js"></script>
 @stop

@@ -23,10 +23,10 @@ class SharpEntityListTemplateColumns extends HasProperties {
 
     public function __construct(Array $data)
     {
-        parent::__construct($data);
+        parent::__construct($data, $this->parent);
         foreach($data as $key => $field)
         {
-            $this->$key = new SharpEntityListTemplateColumn($field);
+            $this->$key = new SharpEntityListTemplateColumn($field, $this->parent);
         }
     }
 }

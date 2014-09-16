@@ -31,6 +31,8 @@ return [
 			"label"   => "Giraffe",
 			"icon"    => "star",
 			"plural"  => "Giraffes",
+			
+			"id_attribute" => "id",
 
 			"active_state_field" => "alive",
 
@@ -171,6 +173,9 @@ First, at the top, we start with a *category* defined with a key (`africa`) and 
 
 ### Entity presentation : label, icon, plural
 The *entity* also has a key (`giraffe`) and a label, and two other presentation attributes: a plural name and an icon. For now, icons are picked in the [Font Awesome 4 icons base](http://fontawesome.io/icons/).
+
+### Instance id: id_attribute
+This is also an optional attribute, because "id" is the default. This attribute must be added if you model identifier attribute is something else — Sharp will use this in some parts (fields creation or auto-updater).
 
 ### Entity state field: active_state_field
 This optional attribute is useful when you need a online/offline switch, which is common is CMS cases. It's really basic: if you specify an value here, let's say `alive` like in this example, Sharp will check for an alive boolean attribute on each giraffe instance, and will display on each row an indicator button which permits to toggle the state. We will talk about this in the Entities list section of this documentation.

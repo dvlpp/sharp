@@ -27,5 +27,9 @@ return [
     'form_listField_deleteItem' => 'Supprimer cet item',
     'form_fileField_browseText' => 'Parcourir...',
     'form_pivotTagsField_addText' => 'Ajouter',
+    'form_embedField_editBtn' => "Modifier",
+    'form_embedField_createBtn' => "Créer",
+    'form_embedField_deleteBtn' => "Supprimer",
+    'form_embedField_restoreBtn' => "Restaurer"
 
 ];

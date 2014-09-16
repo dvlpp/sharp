@@ -20,7 +20,8 @@
             "src/controllers"
         ],
         "files": [
-            "src/helpers/sharp_cms.php"
+            "src/helpers/sharp_cms.php",
+            "src/helpers/sharp_internal.php"
         ],
         "psr-4": {
             "Dvlpp\\": "src/"

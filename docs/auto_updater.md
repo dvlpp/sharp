@@ -6,6 +6,8 @@ The good news is that if you are using Eloquent for your models, you can probabl
 
 1. [The auto-updater Trait magic](#magic)
 2. [The file upload case](#file)
+3. [List special config](#list)
+3. [Pivot tags special config](#tags)
 3. [Wait, this particular attribute is specific](#specific)
 
 
@@ -79,7 +81,39 @@ Finally, the last method, `deleteFileUpload()`, is called when a file is deleted
 Of course, it's easy to manage this in a project Trait, and code it only once, based on your file upload storage implementation choices.
 
 
-##<a name="specific"></a>  3. Wait, this particular attribute is specific
+##<a name="list"></a>  3. List special config
+
+Lists offers two optional config parameters:
+
+- `item_id_attribute` must be added if your items id field is not `id`;
+- `order_attribute` is useful for sortable lists: if you write there the name of an integer order field, Sharp auto-updater will do the rest.
+
+So, as an example:
+
+```
+"photos" => [
+	"label" => "Photos",
+	"type" => "list",
+	"sortable" => true,
+	"addable" => true,
+	"removable" => true,
+	"add_button_text" => "Add a photo",
+	"item_id_attribute" => "id",
+	"order_attribute" => "order",
+	"item" => [ ... ]
+]
+```
+
+
+##<a name="tags"></a> 4. Pivot tags special config
+
+Very similarly to lists, pivot tags have also optional config parameters dedicated to the auto-updater:
+
+- `order_attribute`, like list
+- `create_attribute` is more specific: for pivot tags fields which authorize on-the-fly creation (with `addable` parameter), this must be filled with the model attribute name which will be updated with the string tag.
+
+
+##<a name="specific"></a> 5. Wait, this particular attribute is specific
 
 Of course, you will sometimes need extra code for some attributes, or you will maybe want to override the default behavior. Well, you want hooks, and there's one per attribute.
 

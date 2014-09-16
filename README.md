@@ -12,7 +12,6 @@ Well, I think I can try to be clearer: in many of my web projects there's a lot 
 
 ---
 
-
 ##Installation
 
 - Through composer, add `"dvlpp/sharp": "~1.0"` in your require section, and run `composer update`.
@@ -23,21 +22,11 @@ Well, I think I can try to be clearer: in many of my web projects there's a lot 
 
 OK, you're good to go. One final note: after an composer update, always re-run the asset publish command to be sure to have the last files (but DO NOT re-run the config:publish command, which will erase your existing Sharp config).
 
-1. [Concepts](docs/concepts.md)
+---
 
-2. [The config file(s)](docs/config.md)
+##Full documentation
 
-1. [Repository and data management](docs/repository.md)
-
-3. [Entities lists](docs/entities_list.md) (renderers, sorting, activation, reordering, pagination, search, ...)
-
-4. [Entity forms](docs/entity_form.md) (fields, validation, update, ...)
-
-5. [Sharp Eloquent Auto-updater](docs/auto-updater.md)
-
-6. [Authentication](docs/authentication.md) (global auth and rights management)
-
-7. [Commands](docs/commands.md)
+[Here's the doc index](docs/index.md).
 
 ---
 

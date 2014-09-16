@@ -4,6 +4,8 @@ use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Form\Fields\CheckField;
 use Dvlpp\Sharp\Form\Fields\ChooseField;
 use Dvlpp\Sharp\Form\Fields\DateField;
+use Dvlpp\Sharp\Form\Fields\EmbedField;
+use Dvlpp\Sharp\Form\Fields\EmbedListField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\HiddenField;
 use Dvlpp\Sharp\Form\Fields\LabelField;
@@ -27,9 +29,9 @@ class SharpCmsField {
      * Make the form field
      *
      * @param $key
-     * @param \Dvlpp\Sharp\Config\Entities\SharpEntityFormField $field
-     * @param $instance : the Model object valuated
-     * @param null $listKey : the key of the list field if the current field is part of a list item
+     * @param SharpEntityFormField $field
+     * @param Object $instance  : the Model object valuated
+     * @param string|null $listKey : the key of the list field if the current field is part of a list item
      * @return mixed
      */
     public function make($key, SharpEntityFormField $field, $instance, $listKey=null)
@@ -44,9 +46,9 @@ class SharpCmsField {
      * Create the form field
      *
      * @param $key
-     * @param \Dvlpp\Sharp\Config\Entities\SharpEntityFormField $field
-     * @param $instance : the Model object valuated
-     * @param $listKey
+     * @param SharpEntityFormField $field
+     * @param Object $instance : the Model object valuated
+     * @param string $listKey
      * @return null|string
      */
     protected function createField($key, SharpEntityFormField $field, $instance, $listKey)
@@ -111,6 +113,14 @@ class SharpCmsField {
 
             case 'label':
                 $field = new LabelField($field, $instance);
+                return $field->make();
+
+            case 'embed':
+                $field = new EmbedField($key, $listKey, $field, $attributes, $instance);
+                return $field->make();
+
+            case 'embed_list':
+                $field = new EmbedListField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
 
 

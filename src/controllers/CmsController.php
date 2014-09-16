@@ -237,11 +237,18 @@ class CmsController extends BaseController {
 
         if($instance)
         {
+            if(Session::has('masterInstanceData'))
+            {
+                // We are back from a embedded entity form.
+                // We have to repopulate the master form (this form) as it was before
+                $formOldDataStr = unserialize(Session::get('masterInstanceData'));
+                Session::flashInput($formOldDataStr);
+            }
+
             // And return the View
             return View::make('sharp::cms.entityForm', [
                 'instance'=>$instance,
                 'entity'=>$entity,
-                'entityKey'=>$entityName,
                 'category'=>SharpCmsConfig::findCategory($categoryName)
             ]);
         }
@@ -263,13 +270,13 @@ class CmsController extends BaseController {
     {
         $data = Input::all();
 
+        // Find Entity config (from sharp CMS config file)
+        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+
+        // Instantiate the entity repository
+        $repo = App::make($entity->repository);
+
         try {
-            // Find Entity config (from sharp CMS config file)
-            $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
-
-            // Instantiate the entity repository
-            $repo = App::make($entity->repository);
-
             // First : validation
             if($entity->validator)
             {

@@ -32,9 +32,6 @@
                 // Add disabled attr to prevent sending the template data to the server
                 template.find("input, select, textarea").attr("disabled", "disabled");
 
-                // Hide template
-                //template.hide();
-
                 // Create button "Add"
                 var $addBtn = $('<a/>').addClass(params.addButton.className).addClass("sharp-list-add").html(params.addButton.text);
                 var $addBtnListItem = $('<li/>').addClass("list-group-item sharp-list-item-add").append($addBtn);
@@ -154,6 +151,21 @@ $(window).load(function() {
                     item.find('.sharp-tags-template').each(function() {
                         $(this).removeClass('sharp-tags-template').addClass('sharp-tags');
                         createSharpTags($(this));
+                    });
+
+                    // Manage sharp-field-embed in the item
+                    item.find('.sharp-field-embed').each(function() {
+                        key = item.find(".sharp-list-item-id").val();
+                        $(this).find(".sharp-embed-update").each(function() {
+                            href = $(this).prop("href");
+                            href = href.replace(/(--N--)/i, key);
+                            $(this).prop("href", href);
+                        });
+                        $(this).find(".sharp-embed-delete").each(function() {
+                            fieldname = $(this).data("fieldname");
+                            fieldname = fieldname.replace(/(--N--)/i, key);
+                            $(this).data("fieldname", fieldname);
+                        });
                     });
 
                     // Manage conditional display in the item
