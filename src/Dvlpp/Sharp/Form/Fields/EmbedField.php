@@ -2,7 +2,6 @@
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
-use Dvlpp\Sharp\Form\Fields\Utils\SharpEmbedFieldRenderer;
 use App;
 use Lang;
 use Input;
@@ -54,7 +53,7 @@ class EmbedField extends AbstractSharpField {
             if(!$renderer instanceof SharpEmbedFieldRenderer)
             {
                 throw new MandatoryClassNotFoundException("Class [".$this->field->renderer
-                    ."] must implements Dvlpp\\Sharp\\Form\\Fields\\Utils\\SharpEmbedFieldRenderer");
+                    ."] must implements Dvlpp\\Sharp\\Form\\Fields\\SharpEmbedFieldRenderer");
             }
 
             $strField .= $renderer->render($embeddedInstance, $this->instance);
