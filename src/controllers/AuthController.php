@@ -3,8 +3,9 @@
 use Dvlpp\Sharp\Auth\SharpLoginFormValidator;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\ValidationException;
+use Illuminate\Routing\Controller;
 
-class AuthController extends BaseController {
+class AuthController extends Controller {
 
     /**
      * @var Dvlpp\Sharp\Auth\SharpLoginFormValidator
