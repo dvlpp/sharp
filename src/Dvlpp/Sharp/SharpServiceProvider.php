@@ -1,5 +1,6 @@
 <?php namespace Dvlpp\Sharp;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class SharpServiceProvider extends ServiceProvider {
@@ -39,6 +40,12 @@ class SharpServiceProvider extends ServiceProvider {
 
         // Register the intervention/image dependency
         $this->app->register('Intervention\Image\ImageServiceProvider');
+
+        // Register the Illuminate/Html dependency (no more included in Laravel 5)
+        $this->app->register('Illuminate\Html\HtmlServiceProvider');
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Form', 'Illuminate\Html\Facades\FormFacade');
+        $loader->alias('HTML', 'Illuminate\Html\Facades\HtmlFacade');
 	}
 
 	/**
