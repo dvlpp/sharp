@@ -63,7 +63,7 @@ class PivotTagsField extends AbstractSharpField {
                 $value = $this->getInitialValue();
 
                 // Field name has to be an array (books[] for example) to generate an array on data post
-                $str = '<input type="hidden" name="'.$this->fieldName.'[]" value="">';
+                $str = '<input type="hidden" name="'.$this->fieldName.'" value="">';
                 $str .= Form::select($this->fieldName . "[]", $values, $value, $this->attributes);
 
                 return $str;
