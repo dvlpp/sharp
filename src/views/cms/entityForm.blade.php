@@ -57,23 +57,23 @@
     @endif
 
     @if(isset($isEmbedded) && $isEmbedded)
-        {{ Form::open(["route"=>["cms.embedded.cancel", $masterCategoryKey, $masterEntityKey], "method"=>"POST", "id"=>"sharp_embedded_cancel"]) }}
-            {{ Form::hidden('masterInstanceData', $masterInstanceData) }}
-            {{ Form::hidden('masterInstanceId', $masterInstanceId) }}
-        {{ Form::close() }}
+        {!! Form::open(["route"=>["cms.embedded.cancel", $masterCategoryKey, $masterEntityKey], "method"=>"POST", "id"=>"sharp_embedded_cancel"]) !!}
+            {!! Form::hidden('masterInstanceData', $masterInstanceData) !!}
+            {!! Form::hidden('masterInstanceId', $masterInstanceId) !!}
+        {!! Form::close() !!}
     @endif
 
-    {{ Form::model($instance, ["route"=>(isset($isEmbedded) && $isEmbedded
+    {!! Form::model($instance, ["route"=>(isset($isEmbedded) && $isEmbedded
             ? get_embedded_entity_update_form_route($masterCategoryKey, $masterEntityKey, $masterFieldKey, $category, $entity, $instance)
             : get_entity_update_form_route($category, $entity, $instance)),
-            "method"=>$instance->{$entity->id_attribute}?"put":"post", "id"=>"sharpform"]) }}
+            "method"=>$instance->{$entity->id_attribute}?"put":"post", "id"=>"sharpform"]) !!}
 
-        {{ Form::hidden($entity->id_attribute, $instance->{$entity->id_attribute}) }}
+        {!! Form::hidden($entity->id_attribute, $instance->{$entity->id_attribute}) !!}
 
         @if(isset($isEmbedded) && $isEmbedded)
-            {{ Form::hidden('masterInstanceData', $masterInstanceData) }}
-            {{ Form::hidden('masterInstanceId', $masterInstanceId) }}
-            {{ Form::hidden('masterEntityLabel', $masterEntityLabel) }}
+            {!! Form::hidden('masterInstanceData', $masterInstanceData) !!}
+            {!! Form::hidden('masterInstanceId', $masterInstanceId) !!}
+            {!! Form::hidden('masterEntityLabel', $masterEntityLabel) !!}
         @endif
 
         @if(count($entity->form_layout) > 1)
@@ -127,18 +127,18 @@
             @endforeach
         </div>
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
     @if(!isset($isEmbedded) || !$isEmbedded)
 
         @if($instance->id && \Dvlpp\Sharp\Auth\SharpAccessManager::granted("entity", "delete", $entity->key))
 
-            {{ Form::open(["route"=>["cms.destroy", $category->key, $entity->key, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete"]) }}
+            {!! Form::open(["route"=>["cms.destroy", $category->key, $entity->key, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete"]) !!}
 
                 <hr/>
                 <button data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}" type="submit" class="btn btn-lg btn-danger">{{ trans('sharp::ui.form_deleteBtn') }}</button>
 
-            {{ Form::close() }}
+            {!! Form::close() !!}
 
         @endif
 

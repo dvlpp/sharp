@@ -68,7 +68,7 @@
                 </span>
             </div>
             @foreach(Input::only(['sort','dir','sub']) as $qs => $qsVal)
-                {{ Form::hidden($qs, $qsVal) }}
+                {!! Form::hidden($qs, $qsVal) !!}
             @endforeach
         </form>
     @endif
@@ -89,10 +89,10 @@
             @endforeach
 
             @foreach(Input::only(['sort','dir','sub']) as $qs => $qsVal)
-                {{ Form::hidden($qs, $qsVal) }}
+                {!! Form::hidden($qs, $qsVal) !!}
             @endforeach
 
-            {{ Form::hidden('adv', true) }}
+            {!! Form::hidden('adv', true) !!}
 
             <div class="clearfix">
                 <div class="col-sm-2 col-sm-offset-3">
@@ -142,7 +142,7 @@
                 <td class="entity-data"
                     data-link="{{ \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey) ? route('cms.edit', [$category->key, $entityKey, $instance->id]) : '' }}">
                     @if($col->renderer)
-                        {{ \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($col, $colKey, $instance) }}
+                        {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($col, $colKey, $instance) !!}
                     @else
                         {{ $instance->$colKey }}
                     @endif
