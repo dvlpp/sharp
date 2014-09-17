@@ -139,10 +139,10 @@ class SharpEloquentAutoUpdaterService {
             . ucFirst(Str::camel( str_replace("~", "_", $dataAttribute)))
             . "Attribute";
 
-        if(method_exists($this, $methodName))
+        if(method_exists($this->sharpRepository, $methodName))
         {
             // Method exists, we call it
-            if(!$this->$methodName($instance, $data[$dataAttribute]))
+            if(!$this->sharpRepository->$methodName($instance, $data[$dataAttribute]))
             {
                 // Returns false: we are done with this attribute.
                 return;
