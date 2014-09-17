@@ -44,8 +44,8 @@ class SharpServiceProvider extends ServiceProvider {
         // Register the Illuminate/Html dependency (no more included in Laravel 5)
         $this->app->register('Illuminate\Html\HtmlServiceProvider');
         $loader = AliasLoader::getInstance();
-        $loader->alias('Form', 'Illuminate\Html\Facades\FormFacade');
-        $loader->alias('HTML', 'Illuminate\Html\Facades\HtmlFacade');
+        $loader->alias('Form', 'Illuminate\Html\FormFacade');
+        $loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
 	}
 
 	/**
