@@ -18,6 +18,12 @@ function manageConditionalDisplay($field)
         // State field has a specific value (probably a <select> case)
         stateFieldValue = stateFieldName.substring(valPos+1);
         stateFieldName = stateFieldName.substring(0, valPos);
+
+        if((valPos = stateFieldValue.indexOf(',')) != -1)
+        {
+            // Multiple values
+            stateFieldValue = stateFieldValue.split(',');
+        }
     }
 
     var $item = $field.parents(".sharp-list-item");
@@ -70,9 +76,29 @@ function checkboxShowHide($checkbox, $field, fieldShowOnChecked)
 
 function selectShowHide($select, value, $field, fieldShowIfSelected)
 {
-    showHideField($field,
-        ($select.find('option:selected').val() == value && fieldShowIfSelected)
-            || ($select.find('option:selected').val() != value && !fieldShowIfSelected));
+    var values = null;
+    if(!$.isArray(value))
+    {
+        values = [];
+        values.push(value);
+    }
+    else
+    {
+        values = value;
+    }
+
+    show = false;
+    for(var i=0; i<values.length; i++)
+    {
+        value = values[i];
+
+        show = ($select.find('option:selected').val() == value && fieldShowIfSelected)
+            || ($select.find('option:selected').val() != value && !fieldShowIfSelected);
+
+        if(show) break;
+    }
+
+    showHideField($field, show);
 }
 
 function showHideField($field, show)
