@@ -1,7 +1,7 @@
 <?php namespace Dvlpp\Sharp\Config;
 
-
 use Dvlpp\Sharp\Config\Entities\SharpCategory;
+use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException;
 use Config;
 
@@ -18,6 +18,12 @@ class SharpCmsConfig {
      */
     protected static $categories = [];
 
+    /**
+     * @param $categoryKey
+     * @param $entityKey
+     * @return SharpEntity
+     * @throws EntityConfigurationNotFoundException
+     */
     public static function findEntity($categoryKey, $entityKey)
     {
         $category = self::findCategory($categoryKey);
@@ -28,6 +34,7 @@ class SharpCmsConfig {
             {
                 $entity = $category->entities->$entityConfig;
                 $entity->key = $entityKey;
+
                 return $entity;
             }
         }
@@ -35,6 +42,11 @@ class SharpCmsConfig {
         throw new EntityConfigurationNotFoundException("Entity configuration for [$categoryKey.$entityKey] can't be found");
     }
 
+    /**
+     * @param $categoryName
+     * @return SharpCategory
+     * @throws EntityConfigurationNotFoundException
+     */
     public static function findCategory($categoryName)
     {
         if(!array_key_exists($categoryName, SharpCmsConfig::$categories))
@@ -51,6 +63,9 @@ class SharpCmsConfig {
         return SharpCmsConfig::$categories[$categoryName];
     }
 
+    /**
+     * @return array
+     */
     public static function listCategories()
     {
         $config = Config::get('sharp::cms');

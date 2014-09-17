@@ -1,4 +1,6 @@
 <?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
+use Dvlpp\Sharp\Repositories\SharpCmsRepository;
+use Illuminate\Support\Str;
 
 /**
  * Class PivotTagValuator
@@ -25,19 +27,25 @@ class PivotTagValuator implements Valuator {
      * @var
      */
     private $pivotConfig;
+    /**
+     * @var SharpCmsRepository
+     */
+    private $sharpRepository;
 
     /**
      * @param $instance
      * @param $pivotKey
      * @param $dataPivot
      * @param $pivotConfig
+     * @param SharpCmsRepository $sharpRepository
      */
-    function __construct($instance, $pivotKey, $dataPivot, $pivotConfig)
+    function __construct($instance, $pivotKey, $dataPivot, $pivotConfig, SharpCmsRepository $sharpRepository)
     {
         $this->instance = $instance;
         $this->pivotKey = $pivotKey;
         $this->dataPivot = $dataPivot;
         $this->pivotConfig = $pivotConfig;
+        $this->sharpRepository = $sharpRepository;
     }
 
     /**
@@ -82,11 +90,22 @@ class PivotTagValuator implements Valuator {
         $this->instance->{$this->pivotKey}()->sync($existingPivots);
 
         // Create new
+        $methodName = "create" . ucFirst(Str::camel($this->pivotKey)) . "PivotTag";
+
         foreach($newPivots as $order => $newPivot)
         {
-            $joiningArray = $orderAttribute ? [$orderAttribute=>$order] : [];
+            if(method_exists($this->sharpRepository, $methodName))
+            {
+                // There's a special method for that in the repo
+                $this->sharpRepository->$methodName($newPivot, $order);
+            }
+            else
+            {
+                // We have to create this ourselves
+                $joiningArray = $orderAttribute ? [$orderAttribute => $order] : [];
 
-            $this->instance->{$this->pivotKey}()->create([$createAttribute => $newPivot], $joiningArray);
+                $this->instance->{$this->pivotKey}()->create([$createAttribute => $newPivot], $joiningArray);
+            }
         }
     }
 

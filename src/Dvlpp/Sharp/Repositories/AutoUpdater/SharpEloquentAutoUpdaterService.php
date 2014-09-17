@@ -253,7 +253,7 @@ class SharpEloquentAutoUpdaterService {
             case "pivot":
                 // Find pivot config
                 $pivotConfig = $this->findPivotConfig($baseAttribute ? : $dataAttribute, $listKey);
-                $valuator = new PivotTagValuator($instance, $dataAttribute, $value, $pivotConfig);
+                $valuator = new PivotTagValuator($instance, $dataAttribute, $value, $pivotConfig, $this->sharpRepository);
                 break;
 
             case "embed":
