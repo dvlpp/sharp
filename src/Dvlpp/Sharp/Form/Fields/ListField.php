@@ -4,7 +4,6 @@ use Dvlpp\Sharp\Form\Facades\SharpCmsField;
 use Form;
 use Input;
 use Lang;
-use Log;
 
 /**
  * An ordered list of items containing fields.
@@ -43,7 +42,6 @@ class ListField extends AbstractSharpField {
             {
                 foreach(Input::old($listkey) as $item)
                 {
-                    Log::debug("item OLD : " . print_r($item, true));
                     $str .= $this->createItem((object)$item);
                 }
             }
@@ -56,7 +54,6 @@ class ListField extends AbstractSharpField {
 
             foreach($collection as $item)
             {
-                Log::debug("item : " . print_r($item, true));
                 $str .= $this->createItem($item);
             }
         }
