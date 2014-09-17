@@ -538,6 +538,16 @@ This could be done with a Choose field too:
 ]
 ```
 
+You can even indicate multiple matches, separated by a comma (Choose only):
+
+```
+"legend" => [
+	"label" => "Legend",
+	"type" => "text",
+	"conditional_display" => 'type:photo,video'
+]
+```
+
 
 ##<a name="update"></a> 4. Update and create
 
