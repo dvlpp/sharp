@@ -1,6 +1,7 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Form\Facades\SharpCmsField;
+use Illuminate\Support\Collection;
 use Form;
 use Input;
 use Lang;
@@ -38,9 +39,10 @@ class ListField extends AbstractSharpField {
         if(Input::old($listkey))
         {
             // Form is re-displayed (validation errors): have to grab old values instead of DB
-            if(is_array(Input::old($listkey)))
+            $values = Input::old($listkey);
+            if(is_array($values) || $values instanceof Collection)
             {
-                foreach(Input::old($listkey) as $item)
+                foreach($values as $item)
                 {
                     $str .= $this->createItem((object)$item);
                 }
