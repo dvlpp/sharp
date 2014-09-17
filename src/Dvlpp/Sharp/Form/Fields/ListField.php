@@ -31,7 +31,7 @@ class ListField extends AbstractSharpField {
         // Add this hidden to send the list with nothing in case of 0 item.
         // It's useful to post the empty list and be able to delete all
         // potentially existing items.
-        $str = '<input type="hidden" name="'.$this->key.'" value="empty">';
+        $str = '<input type="hidden" name="'.$this->key.'" value="">';
 
         $str .= '<ul class="sharp-list list-group" '.$strAttr.'>';
 

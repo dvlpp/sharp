@@ -10,6 +10,7 @@ use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\FileValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\SimpleValuator;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
@@ -107,10 +108,9 @@ class SharpEloquentAutoUpdaterService {
         // Then save the actual instance
         $instance->save();
 
-        // And finally manage (potential) single relation objects with a "OneToOne" relation
+        // And finally manage (potential) single relation objects with a "OneToOne" or "morphTo" relation
         foreach($this->singleRelationOneToOneObjects as $relationKey => $singleRelationOneToOne)
         {
-            //$relationObject->setAttribute($instance->$relationKey()->getPlainForeignKey(), $instance->$relationKey()->getParentKey());
             $instance->$relationKey()->save($singleRelationOneToOne);
         }
 
@@ -201,19 +201,19 @@ class SharpEloquentAutoUpdaterService {
             // We can't save it right now because of potential mandatory attributes which will be treated later
             // in the process, and for the OneToOne case because we can't be sure that the current instance
             // has an ID to provide
-            if($configFieldAttr->type != "list")
+//            if($configFieldAttr->type != "list")
+//            {
+            if($instance->$relationKey() instanceof BelongsTo)
             {
-                if($instance->$relationKey() instanceof BelongsTo)
-                {
-                    // BelongsTo: foreign key is on the instance object side
-                    $this->singleRelationBelongsToObjects[$relationKey] = $relationObject;
-                }
-                else
-                {
-                    // One-to-one: foreign key is on the related object side
-                    $this->singleRelationOneToOneObjects[$relationKey] = $relationObject;
-                }
+                // BelongsTo: foreign key is on the instance object side
+                $this->singleRelationBelongsToObjects[$relationKey] = $relationObject;
             }
+            else
+            {
+                // One-to-one or morphOne: foreign key is on the related object side
+                $this->singleRelationOneToOneObjects[$relationKey] = $relationObject;
+            }
+//            }
 
             // Finally, we translate attributes to the related object
             $baseAttribute = $dataAttribute;
