@@ -60,33 +60,13 @@ class PivotTagsField extends AbstractSharpField {
             {
                 $values = $reflistRepo->formList($this->instance);
 
-                // Initial value is tricky...
-                $value = [];
-                if($this->getOldValue())
-                {
-                    // Repopulate after validation error
-                    $valuesToAdd = [];
-                    foreach($this->getOldValue() as $val)
-                    {
-                        if(!is_numeric($val))
-                        {
-                            // Tag was created by user before. Have to tell selectize.js to add this non existent option in the list
-                            $valuesToAdd[] = $val;
-                        }
-                        $value[] = $val;
-                    }
-                    $this->addData("to_add", implode(",", $valuesToAdd));
-                }
-                elseif($this->fieldValue)
-                {
-                    foreach($this->fieldValue as $val)
-                    {
-                        $value[] = $val->id;
-                    }
-                }
+                $value = $this->getInitialValue();
 
                 // Field name has to be an array (books[] for example) to generate an array on data post
-                return Form::select($this->fieldName . "[]", $values, $value, $this->attributes);
+                $str = '<input type="hidden" name="'.$this->fieldName.'[]" value="">';
+                $str .= Form::select($this->fieldName . "[]", $values, $value, $this->attributes);
+
+                return $str;
             }
 
             throw new MandatoryMethodNotFoundException("Method formList(askingInstance) not found in the [$reflistRepoName] class");
@@ -95,5 +75,40 @@ class PivotTagsField extends AbstractSharpField {
         {
             throw new MandatoryClassNotFoundException("Class [$reflistRepoName] not found");
         }
+    }
+
+    /**
+     * @return array
+     */
+    private function getInitialValue()
+    {
+        // Initial value is tricky...
+        $value = [];
+
+        if ($this->getOldValue())
+        {
+            // Repopulate after validation error
+            $valuesToAdd = [];
+            foreach ($this->getOldValue() as $val)
+            {
+                if (!is_numeric($val))
+                {
+                    // Tag was created by user before. Have to tell selectize.js to add this non existent option in the list
+                    $valuesToAdd[] = $val;
+                }
+                $value[] = $val;
+            }
+
+            $this->addData("to_add", implode(",", $valuesToAdd));
+        }
+        elseif ($this->fieldValue)
+        {
+            foreach ($this->fieldValue as $val)
+            {
+                $value[] = $val->id;
+            }
+        }
+
+        return $value;
     }
 } 

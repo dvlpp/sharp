@@ -64,25 +64,27 @@ class PivotTagValuator implements Valuator {
         $existingPivots = [];
         $newPivots = [];
         $order = 1;
-        foreach($this->dataPivot as $d)
+        if(is_array($this->dataPivot))
         {
-            if(!starts_with($d, '#'))
+            foreach ($this->dataPivot as $d)
             {
-                // Existing tag
-                if($hasOrder)
+                if (!starts_with($d, '#'))
                 {
-                    $existingPivots[$d] = [$orderAttribute=>$order++];
+                    // Existing tag
+                    if ($hasOrder)
+                    {
+                        $existingPivots[$d] = [$orderAttribute => $order++];
+                    }
+                    else
+                    {
+                        $existingPivots[] = $d;
+                    }
                 }
-                else
+                elseif ($isCreatable)
                 {
-                    $existingPivots[] = $d;
+                    // Create a new tag
+                    $newPivots[$order++] = substr($d, 1);
                 }
-            }
-
-            elseif($isCreatable)
-            {
-                // Create a new tag
-                $newPivots[$order++] = substr($d, 1);
             }
         }
 
@@ -94,16 +96,17 @@ class PivotTagValuator implements Valuator {
 
         foreach($newPivots as $order => $newPivot)
         {
+            $joiningArray = $orderAttribute ? [$orderAttribute => $order] : [];
+
             if(method_exists($this->sharpRepository, $methodName))
             {
                 // There's a special method for that in the repo
-                $this->sharpRepository->$methodName($newPivot, $order);
+                $tag = $this->sharpRepository->$methodName($newPivot, $order);
+                $this->instance->{$this->pivotKey}()->attach($tag, $joiningArray);
             }
             else
             {
                 // We have to create this ourselves
-                $joiningArray = $orderAttribute ? [$orderAttribute => $order] : [];
-
                 $this->instance->{$this->pivotKey}()->create([$createAttribute => $newPivot], $joiningArray);
             }
         }
