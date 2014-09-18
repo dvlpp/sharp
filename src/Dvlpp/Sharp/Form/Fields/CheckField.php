@@ -22,12 +22,13 @@ class CheckField extends AbstractSharpField {
         // We can't use Form::hidden because we *don't want* repopulation here
         $str = '<input type="hidden" name="'.$this->fieldName.'" value="0">';
 
-        // And manage the checkbox itself
-        $str .= '<div class="checkbox"><label>';
-
         // For the checkbox value, we take the instance value, and fallback with an optional config default "checked"
-        $str .= Form::checkbox($this->fieldName, 1, $this->field->checked);
-        $str .= $this->field->text . '</label></div>';
+        $value = $this->fieldValue !== null ? $this->fieldValue : $this->field->checked;
+
+        $str .= '<div class="checkbox"><label>'
+            . Form::checkbox($this->fieldName, 1, $value)
+            . $this->field->text
+            . '</label></div>';
 
         return $str;
     }
