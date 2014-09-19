@@ -41,8 +41,8 @@ if ( ! function_exists('sharp_thumbnail'))
                 {
                     // This param means $w and $h are minimums. We find which dimension of the original image is the most distant
                     // from the wanted size, and we keep this one as constraint
-                    $dw = $sourceImg->width / $w;
-                    $dh = $sourceImg->height / $h;
+                    $dw = $sourceImg->width() / $w;
+                    $dh = $sourceImg->height() / $h;
                     if($dw>$dh) $w = null;
                     else $h = null;
                 }
