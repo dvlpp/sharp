@@ -18,8 +18,8 @@
 	16. [Tags field](#f-tags)
 18. [The form layout](#form-layout)
 17. [Conditional display (hide and show fields)](#conditional)
-18. [Update and create](#f-update)
-19. [Form validation](#f-validation)
+18. [Update and create](#update)
+19. [Form validation](#validation)
 20. [Single relation case (the tilde)](#singlerelation)
 
 OK, here we are: we created some [entities config file(s)](config.md), and wrote [the base classes](entities_list.md) to handle lists display, reordering, searching and stuff. Now, let's tackle the big part, the actual data entry. This is in fact the final purpose of Sharp: provide a simple way to enter complex data without having to develop big javascript objects each time.
@@ -706,12 +706,10 @@ You can easily set specific creation or update rules: override the `getUpdateRul
 public function getUpdateRules()
 {
 	return [
-		"photos" => "array"
+		"photos" => "required"
 	];
 }
 ```
-
-Note that the Laravel standard "array" rule is a good way to test if a list is empty.
 
 Finally, you can define your own error messages by overriding the `getMessage()` method. In our example, it may be nice to put:
 
@@ -719,7 +717,7 @@ Finally, you can define your own error messages by overriding the `getMessage()`
 public function getMessages()
 {
 	return [
-		'photos.array' => 'Please provide at least one photo.',
+		'photos.required' => 'Please provide at least one photo.',
 	];
 }
 ```
