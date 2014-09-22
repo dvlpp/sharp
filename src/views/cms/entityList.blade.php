@@ -195,7 +195,7 @@
 </table>
 
 @if($pagination)
-    {{ $pagination->appends(Input::except(['page']))->links() }}
+    {!! $pagination->appends(Input::except(['page']))->links() !!}
 @endif
 
 @stop
