@@ -200,7 +200,8 @@ Only one parameter to configure: set a page count in the paginate attribute. The
 ```
 function listAll(SharpEntitiesListParams $params)
 {
-	throw new BadMethodCallException("Not implemented");}
+	throw new BadMethodCallException("Not implemented");
+}
 
 function paginate($count, SharpEntitiesListParams $params)
 {
@@ -301,7 +302,7 @@ function reorder(Array $entitiesIds)
 	$k = 1;
 	foreach($entitiesIds as $id)
 	{
-		Zone::where("id", $id)->update(["ordre"=>$k++]);
+		Zone::where("id", $id)->update(["order"=>$k++]);
 	}
 }
 ```
