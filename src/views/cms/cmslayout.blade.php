@@ -79,6 +79,7 @@
 @section("scripts")
 <script src="/packages/dvlpp/sharp/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/packages/dvlpp/sharp/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/packages/dvlpp/sharp/js/vendor/query-ui-1.10.4.custom.min.js"></script>
 <script src="/packages/dvlpp/sharp/js/sharp.ui.min.js"></script>
 @show
 
