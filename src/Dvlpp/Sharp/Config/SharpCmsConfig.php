@@ -21,12 +21,13 @@ class SharpCmsConfig {
     /**
      * @param $categoryKey
      * @param $entityKey
-     * @return SharpEntity
+     * @param bool $withCache
      * @throws EntityConfigurationNotFoundException
+     * @return SharpEntity
      */
-    public static function findEntity($categoryKey, $entityKey)
+    public static function findEntity($categoryKey, $entityKey, $withCache=true)
     {
-        $category = self::findCategory($categoryKey);
+        $category = self::findCategory($categoryKey, $withCache);
 
         foreach($category->entities as $entityConfig)
         {
@@ -44,12 +45,13 @@ class SharpCmsConfig {
 
     /**
      * @param $categoryName
-     * @return SharpCategory
+     * @param bool $withCache
      * @throws EntityConfigurationNotFoundException
+     * @return SharpCategory
      */
-    public static function findCategory($categoryName)
+    public static function findCategory($categoryName, $withCache=true)
     {
-        if(!array_key_exists($categoryName, SharpCmsConfig::$categories))
+        if(!$withCache || !array_key_exists($categoryName, SharpCmsConfig::$categories))
         {
             $categoryConfig = Config::get('sharp::cms.'.$categoryName);
             if(!$categoryConfig)
@@ -57,7 +59,14 @@ class SharpCmsConfig {
                 throw new EntityConfigurationNotFoundException("Category configuration for [$categoryConfig] can't be found");
             }
 
-            SharpCmsConfig::$categories[$categoryName] = new SharpCategory($categoryName, $categoryConfig);
+            $sharpCategorie = new SharpCategory($categoryName, $categoryConfig);
+
+            if(!$withCache)
+            {
+                return $sharpCategorie;
+            }
+
+            SharpCmsConfig::$categories[$categoryName] = $sharpCategorie;
         }
 
         return SharpCmsConfig::$categories[$categoryName];

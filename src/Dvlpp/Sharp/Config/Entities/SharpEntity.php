@@ -29,7 +29,7 @@ class SharpEntity extends HasProperties {
         {
             // This Entity is configured to extend another entity config
             list($cat, $ent) = explode(".", $this->data['extends']);
-            $extendedEntity = SharpCmsConfig::findEntity($cat, $ent);
+            $extendedEntity = SharpCmsConfig::findEntity($cat, $ent, false);
             if(!$extendedEntity)
             {
                 throw new EntityConfigurationNotFoundException("Extended entity [".$this->data['extends']."] configuration not found");
