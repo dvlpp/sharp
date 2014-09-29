@@ -266,6 +266,10 @@ class SharpEloquentAutoUpdaterService {
                 $valuator = new EmbedListValuator($instance, $dataAttribute, $value, $configFieldAttr, $embedConfig, $this->sharpRepository);
                 break;
 
+            case "label":
+                // Nothing to do...
+                return;
+
             default:
                 throw new InvalidArgumentException("Config type [".$configFieldAttr->type."] is invalid.");
         }

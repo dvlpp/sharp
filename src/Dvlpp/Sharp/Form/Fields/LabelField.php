@@ -12,27 +12,7 @@ use Mustache_Engine;
  * Class LabelField
  * @package Dvlpp\Sharp\Form\Fields
  */
-class LabelField {
-
-    /**
-     * @var
-     */
-    private $field;
-
-    /**
-     * @var
-     */
-    private $instance;
-
-    /**
-     * @param $field
-     * @param $instance
-     */
-    function __construct($field, $instance)
-    {
-        $this->field = $field;
-        $this->instance = $instance;
-    }
+class LabelField extends AbstractSharpField {
 
     /**
      * The actual HTML creation of the field.
@@ -47,21 +27,31 @@ class LabelField {
             throw new MandatoryEntityAttributeNotFoundException("LabelField : Mandatory attribute format can't be found");
         }
 
-        $baseEntity = $this->instance;
-        if($baseEntity instanceof Model)
+        if($this->getOldValue() === null)
         {
-            // Eloquent Model case: in order to have properties to work with Mustache, we
-            // have to cheat a little, adding a MustacheModelHelper Decorator to force
-            // Mustache to take properties even if method exists (relation case)
-            $baseEntity = new MustacheModelHelper($baseEntity);
-        }
+            $baseEntity = $this->instance;
+            if ($baseEntity instanceof Model)
+            {
+                // Eloquent Model case: in order to have properties to work with Mustache, we
+                // have to cheat a little, adding a MustacheModelHelper Decorator to force
+                // Mustache to take properties even if method exists (relation case)
+                $baseEntity = new MustacheModelHelper($baseEntity);
+            }
 
-        $val = $this->_format($baseEntity, $this->field->format);
+            $val = $this->_format($baseEntity, $this->field->format);
+        }
+        else
+        {
+            $val = $this->getOldValue();
+        }
 
         $attributes = $this->field->attributes || [];
         $attributes["class"] = "control-label";
 
-        return Form::label("", $val, $attributes);
+        $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
+            . Form::label("", $val, $attributes);
+
+        return $str;
     }
 
     /**
