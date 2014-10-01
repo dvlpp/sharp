@@ -29,6 +29,7 @@
 
     <nav class="navbar" role="navigation">
         <div class="container-fluid">
+
             <ul class="nav navbar-nav">
                 <li class="site"><a href="{{ URL::route('cms') }}">{{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}</a></li>
                 @foreach($cmsCategories as $catKey => $cat)
@@ -37,17 +38,19 @@
                     @endif
                 @endforeach
             </ul>
+
             @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService())
-            <div class="navbar-right user">
-                {{ Session::get("sharp_user") }}
-                <a class="btn" href="{{ URL::route('logout') }}">
-                    <span class="fa-stack">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-power-off fa-stack-1x"></i>
-                    </span>
-                </a>
-            </div>
+                <div class="navbar-right user">
+                    {{ Session::get("sharp_user") }}
+                    <a class="btn" href="{{ URL::route('logout') }}">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-power-off fa-stack-1x"></i>
+                        </span>
+                    </a>
+                </div>
             @endif
+
         </div>
     </nav>
 
@@ -55,16 +58,25 @@
 
 <div id="contenu">
     <div class="container-fluid" id="mainrow">
+
             <div id="navcol">
+
                 @yield('navcol')
+
             </div>
+
             <div class="row" id="maincontent">
-                <div class="col-sm-12" id="contextbar">
+
+                <div class="col-sm-12 {{ isset($isEmbedded) && $isEmbedded ? "embedded" : "" }}" id="contextbar">
+
                     <nav class="navbar" role="navigation">
                         <ul class="nav navbar-nav">
+
                             @yield('contextbar')
+
                         </ul>
                     </nav>
+
                 </div>
 
                 <div class="col-sm-12" id="page">

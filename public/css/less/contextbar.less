@@ -1,29 +1,82 @@
 #maincontent #contextbar {
-  background: @sharp-contexbar-bg; padding-right: 0;
+  background: @sharp-contexbar-bg;
+  padding-right: 0;
+
+  &.embedded {
+    background-color: desaturate(@sharp-contexbar-bg, 80%);
+  }
+
   .navbar {
     margin-bottom: 0;
+
     .navbar-nav {
       float: none;
-      p.navbar-text { margin-left:0; font-size: 18px; color:#fff; line-height: normal; font-weight: normal; }
+
+      p.navbar-text {
+        margin-left:0;
+        font-size: 18px;
+        color:#fff;
+        line-height: normal;
+        font-weight: normal;
+      }
+
       .navbar-btn {
-        font-size: 18px; line-height:normal; color:#fff; margin: 0; padding-top:14px; padding-bottom: 14px; border-left:1px solid #fff; background: transparent;
-        &:active { background: darken(@sharp-contexbar-bg, 10%); }
-      }
-      .navbar-btn-trail {
-        border:none; display: inline-block; padding:0; margin:15px 10px 15px 0; float:left;
-      }
-      .navbar-form { margin-right: 0; }
-      #search {
-        max-width: 215px;
-        input { border:none; box-shadow: none; background: #fff; }
-        .btn { color:#ccc; background: #fff; }
-      }
-      .dropdown {
-        &.open {
-          .btn-sublist { background: none; border-top-color:transparent; border-bottom-color:transparent; border-right-color:transparent; color:#fff; }
+        font-size: 18px;
+        line-height:normal;
+        color:#fff;
+        margin: 0;
+        padding-top:14px;
+        padding-bottom: 14px;
+        border-left:1px solid #fff;
+        background: transparent;
+
+        &:active {
+          background: darken(@sharp-contexbar-bg, 10%);
         }
       }
-      .btn-ok { font-weight: bold; }
+
+      .navbar-btn-trail {
+        border:none;
+        display: inline-block;
+        padding:0;
+        margin:15px 10px 15px 0;
+        float:left;
+      }
+
+      .navbar-form {
+        margin-right: 0;
+      }
+
+      #search {
+        max-width: 215px;
+
+        input {
+          border:none;
+          box-shadow: none;
+          background: #fff;
+        }
+
+        .btn {
+          color:#ccc;
+          background: #fff;
+        }
+      }
+
+      .dropdown {
+        &.open {
+          .btn-sublist {
+            background: none;
+            border-top-color:transparent;
+            border-bottom-color:transparent;
+            border-right-color:transparent;
+            color:#fff;
+          }
+        }
+      }
+
+      .btn-ok {
+        font-weight: bold;
+      }
     }
   }
 }
