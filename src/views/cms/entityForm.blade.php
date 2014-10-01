@@ -3,7 +3,7 @@
 @section('viewname') sharp-form @stop
 
 @section('navcol')
-    @include("sharp::cms.navcol_partial", ["current"=>$entity->key])
+    @include("sharp::cms.partials.navcol", ["current"=>$entity->key])
 @stop
 
 
@@ -103,7 +103,7 @@
 
                         @foreach($entity->form_layout->$keytab->col1->data as $key)
 
-                            @include("sharp::cms.entityFormField_partial", ["field" => $entity->form_fields->$key])
+                            @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
 
                         @endforeach
 
@@ -115,7 +115,7 @@
 
                         @foreach($entity->form_layout->$keytab->col2->data as $key)
 
-                            @include("sharp::cms.entityFormField_partial", ["field" => $entity->form_fields->$key])
+                            @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
 
                         @endforeach
 

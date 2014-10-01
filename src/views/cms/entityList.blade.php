@@ -3,7 +3,7 @@
 @section('viewname') sharp-list @stop
 
 @section('navcol')
-    @include("sharp::cms.navcol_partial", ["category"=>$category, "entityKey"=>$entityKey])
+    @include("sharp::cms.partials.navcol", ["category"=>$category, "entityKey"=>$entityKey])
 @stop
 
 @section('contextbar')
@@ -84,7 +84,7 @@
 
             @foreach($entity->advanced_search->rows as $advsrow)
 
-                @include("sharp::cms.advancedsearch.row_partial", ["row" => $entity->advanced_search->rows->$advsrow])
+                @include("sharp::cms.partials.advancedsearch.row", ["row" => $entity->advanced_search->rows->$advsrow])
 
             @endforeach
 
