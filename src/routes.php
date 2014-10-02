@@ -1,6 +1,7 @@
 <?php
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Illuminate\Support\Str;
 
 Route::get('/admin', function() {
@@ -24,10 +25,17 @@ Route::group(['before' => 'sharp_auth'], function() {
     Route::post('/admin/cms/embedded/{category}/{entity}/{fieldKey}/{embeddedCategory}/{embeddedEntity}', ["as"=>"cms.embedded.store", "uses"=>"CmsEmbeddedEntityController@store", "before"=>"sharp_access_granted:entity create *embedded_entity"]);
     Route::post('/admin/cms/embedded/{category}/{entity}/cancel', ["as"=>"cms.embedded.cancel", "uses"=>"CmsEmbeddedEntityController@cancel", "before"=>"sharp_access_granted:entity update *entity"]);
 
+    // CMS Home
     Route::get('/admin/cms', ["as"=>"cms", "uses"=>"CmsController@index"]);
+
+    // Language management
+    Route::get('/admin/cms/lang/{lang}', ["as"=>"cms.lang", "uses"=>"CmsController@lang"]);
+
+    // Entity
     Route::get('/admin/cms/{category}', ["as"=>"cms.category", "uses"=>"CmsController@category", "before"=>"sharp_access_granted:category view *category"]);
     Route::get('/admin/cms/{category}/{entity}', ["as"=>"cms.list", "uses"=>"CmsController@listEntities", "before"=>"sharp_access_granted:entity list *entity"]);
     Route::get('/admin/cms/{category}/{entity}/{id}/edit', ["as"=>"cms.edit", "uses"=>"CmsController@editEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');
+    Route::get('/admin/cms/{category}/{entity}/{id}/duplicate/{lang?}', ["as"=>"cms.duplicate", "uses"=>"CmsController@duplicateEntity", "before"=>"sharp_access_granted:entity create *entity"])->where('id', '[0-9]+');
     Route::get('/admin/cms/{category}/{entity}/create', ["as"=>"cms.create", "uses"=>"CmsController@createEntity", "before"=>"sharp_access_granted:entity create *entity"]);
     Route::put('/admin/cms/{category}/{entity}/{id}', ["as"=>"cms.update", "uses"=>"CmsController@updateEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');
     Route::post('/admin/cms/{category}/{entity}', ["as"=>"cms.store", "uses"=>"CmsController@storeEntity", "before"=>"sharp_access_granted:entity create *entity"]);
@@ -55,10 +63,27 @@ Route::group(['before' => 'sharp_guest'], function() {
 });
 
 
-View::composer(['sharp::cms.*'], function($view)
+View::composer(['sharp::cms.cmslayout'], function($view)
 {
+    // Load categories
     $categories = SharpCmsConfig::listCategories();
     $view->with('cmsCategories', $categories);
+
+    // Get current language
+    $language = Session::get("sharp_lang");
+    $languages = SharpSiteConfig::getLanguages();
+    if($languages)
+    {
+        if (!$language || !array_key_exists($language, $languages))
+        {
+            $language = array_values($languages)[0];
+        }
+        else
+        {
+            $language = $languages[$language];
+        }
+    }
+    $view->with('language', $language);
 });
 
 

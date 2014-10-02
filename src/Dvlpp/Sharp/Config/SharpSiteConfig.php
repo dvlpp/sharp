@@ -26,6 +26,11 @@ class SharpSiteConfig {
         return Config::get('sharp::site.name');
     }
 
+    public static function getLanguages()
+    {
+        return Config::get('sharp::site.languages');
+    }
+
     /**
      * @return bool|null
      * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException

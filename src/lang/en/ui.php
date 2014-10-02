@@ -15,10 +15,11 @@ return [
     'list_reorderCancelBtn' => 'Cancel',
     'list_searchPlaceholder' => 'Search',
     'list_advancedSearchBtn' => 'Search',
+    'list_entityDeleteAction' => 'Delete...',
+    'list_entityDuplicateAction' => 'Duplicate...',
 
     'form_updateTitle' => ':entity update',
     'form_createTitle' => ':entity creation',
-    'form_deleteBtn' => 'Delete permanently',
     'form_deleteConfirmMsg' => 'Delete this entity permanently?',
     'form_updateBtn' => 'Update',
     'form_cancelBtn' => 'Cancel',

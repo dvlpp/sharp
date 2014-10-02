@@ -15,10 +15,11 @@ return [
     'list_reorderCancelBtn' => 'Annuler',
     'list_searchPlaceholder' => 'Rechercher',
     'list_advancedSearchBtn' => 'Rechercher',
+    'list_entityDeleteAction' => 'Supprimer...',
+    'list_entityDuplicateAction' => 'Dupliquer...',
 
     'form_updateTitle' => 'Mise à jour :entity',
     'form_createTitle' => 'Création :entity',
-    'form_deleteBtn' => 'Supprimer',
     'form_deleteConfirmMsg' => 'Supprimer cet élément définitivement ?',
     'form_updateBtn' => 'Valider',
     'form_cancelBtn' => 'Annuler',

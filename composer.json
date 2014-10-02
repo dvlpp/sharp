@@ -9,11 +9,11 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~5.0",
+        "illuminate/support": "5.0.*",
+        "illuminate/html": "5.0.*",
         "intervention/image": "2.*",
         "michelf/php-markdown": "1.4.*@dev",
-        "mustache/mustache": "~2.6.0",
-        "illuminate/html": "5.0.*@dev"
+        "mustache/mustache": "~2.6.0"
     },
     "autoload": {
         "classmap": [
@@ -25,8 +25,8 @@
             "src/helpers/sharp_internal.php"
         ],
         "psr-4": {
-            "Dvlpp\\": "src/"
+            "Dvlpp\\Sharp\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

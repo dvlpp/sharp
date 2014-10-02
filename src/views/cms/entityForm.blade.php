@@ -22,8 +22,14 @@
 
     <p class="navbar-text">
 
-        @if($instance->id)
-            {{ trans('sharp::ui.form_updateTitle', ["entity"=>$entity->label]) }}
+        @if($instance->{$entity->id_attribute})
+
+            @if($instance->__sharp_duplication)
+                {{ trans('sharp::ui.form_duplicateTitle', ["entity"=>$entity->label]) }}
+            @else
+                {{ trans('sharp::ui.form_updateTitle', ["entity"=>$entity->label]) }}
+            @endif
+
         @else
             {{ trans('sharp::ui.form_createTitle', ["entity"=>$entity->label]) }}
         @endif
@@ -63,12 +69,14 @@
         {!! Form::close() !!}
     @endif
 
-    {!! Form::model($instance, ["route"=>(isset($isEmbedded) && $isEmbedded
-            ? get_embedded_entity_update_form_route($masterCategoryKey, $masterEntityKey, $masterFieldKey, $category, $entity, $instance)
-            : get_entity_update_form_route($category, $entity, $instance)),
-            "method"=>$instance->{$entity->id_attribute}?"put":"post", "id"=>"sharpform"]) !!}
+    {!! Form::model($instance, [
+            "route"=>(isset($isEmbedded) && $isEmbedded
+                ? get_embedded_entity_update_form_route($masterCategoryKey, $masterEntityKey, $masterFieldKey, $category, $entity, $instance)
+                : get_entity_update_form_route($category, $entity, $instance)),
+            "method"=>!$instance->__sharp_duplication && $instance->{$entity->id_attribute}?"put":"post",
+            "id"=>"sharpform"]) !!}
 
-        {!! Form::hidden($entity->id_attribute, $instance->{$entity->id_attribute}) !!}
+        {!! Form::hidden($entity->id_attribute, ($instance->__sharp_duplication ? "" : $instance->{$entity->id_attribute})) !!}
 
         @if(isset($isEmbedded) && $isEmbedded)
             {!! Form::hidden('masterInstanceData', $masterInstanceData) !!}
@@ -128,21 +136,6 @@
         </div>
 
     {!! Form::close() !!}
-
-    @if(!isset($isEmbedded) || !$isEmbedded)
-
-        @if($instance->id && \Dvlpp\Sharp\Auth\SharpAccessManager::granted("entity", "delete", $entity->key))
-
-            {!! Form::open(["route"=>["cms.destroy", $category->key, $entity->key, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete"]) !!}
-
-                <hr/>
-                <button data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}" type="submit" class="btn btn-lg btn-danger">{{ trans('sharp::ui.form_deleteBtn') }}</button>
-
-            {!! Form::close() !!}
-
-        @endif
-
-    @endif
 
 @stop
 

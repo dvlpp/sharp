@@ -67,8 +67,11 @@ $(window).load(function() {
     // ---
     // Show confirm on delete entity click
     // ---
-    $("body.sharp-form #sharpdelete").submit(function() {
-        return confirm($(this).find("button").data("confirm"));
+    $("body.sharp-list .sharp-delete").click(function() {
+        if(confirm($(this).data("confirm")))
+        {
+            $("form#" + $(this).data("form")).submit();
+        }
     });
 
     // ---

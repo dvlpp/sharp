@@ -54,8 +54,16 @@ class ListField extends AbstractSharpField {
                 ? ($this->instance && $this->instance->{$this->relation} ? $this->instance->{$this->relation}->{$this->relationKey} : [])
                 : $this->instance->$listkey;
 
+            $itemIdAttribute = $this->field->item_id_attribute ?: "id";
+
             foreach($collection as $item)
             {
+                if($this->instance->__sharp_duplication)
+                {
+                    // Duplication case: we change each existing item ID to make
+                    // them like new ones.
+                    $item->$itemIdAttribute = "N_" . $item->$itemIdAttribute;
+                }
                 $str .= $this->createItem($item);
             }
         }
@@ -137,4 +145,4 @@ class ListField extends AbstractSharpField {
 
         return $strItem;
     }
-} 
+}

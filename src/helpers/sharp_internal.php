@@ -55,7 +55,7 @@ if ( ! function_exists('get_entity_update_form_route'))
      */
     function get_entity_update_form_route($category, $entity, $instance)
     {
-        if($instance->{$entity->id_attribute})
+        if($instance->{$entity->id_attribute} && !$instance->__sharp_duplication)
         {
             return ["cms.update", $category->key, $entity->key, $instance->{$entity->id_attribute}];
         }

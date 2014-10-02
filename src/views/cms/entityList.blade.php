@@ -16,18 +16,18 @@
 
     {{-- Commands --}}
     @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
-    <div class="dropdown navbar-right normal-mode">
-        <a class="btn navbar-btn" data-toggle="dropdown" data-target="#"><i class="fa fa-caret-down"></i></a>
-        <ul class="dropdown-menu">
-            @foreach($entity->commands->list as $command)
-            <li>
-                <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
-                {{ $entity->commands->list->$command->text }}
-                </a>
-            </li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="dropdown navbar-right normal-mode">
+            <a class="btn navbar-btn" data-toggle="dropdown" data-target="#"><i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+                @foreach($entity->commands->list as $command)
+                <li>
+                    <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
+                    {{ $entity->commands->list->$command->text }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
     {{-- Create button --}}
@@ -49,7 +49,8 @@
     {{-- Sublist --}}
     @if($subList)
         <div class="dropdown navbar-right normal-mode">
-            <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">{{ $subLists[$subList] }} <span class="caret"></span></a>
+            <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">
+                {{ $subLists[$subList] }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 @foreach($subLists as $idsl => $sl)
                     <li><a href="{{ URL::route('cms.list', ["category"=>$category->key, "entity"=>$entityKey, "sub"=>$idsl]) }}">{{ $sl }}</a></li>
@@ -164,12 +165,36 @@
                     @endif
 
                     {{-- Entity commands --}}
-                    @if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
-                        <div class="btn-group normal-mode">
-                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="btn-group normal-mode">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+
+                            @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'delete', $entityKey))
+                                <li>
+                                    {!! Form::open(["route"=>["cms.destroy", $category->key, $entityKey, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete".$instance->id]) !!}
+                                    {!! Form::close() !!}
+                                    <a href="#" class="sharp-delete" data-form="{{ "sharpdelete".$instance->id }}" data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}">
+                                        <i class="fa fa-trash"></i>
+                                        {{ trans('sharp::ui.list_entityDeleteAction') }}
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+                                <li>
+                                    <a href="{{ route('cms.duplicate', [$category->key, $entityKey, $instance->id]) }}">
+                                        <i class="fa fa-copy"></i>
+                                        {{ trans('sharp::ui.list_entityDuplicateAction') }}
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+
+                                <li class="divider"></li>
+
                                 @foreach($entity->commands->entity as $command)
                                     <li>
                                         <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entityKey, $command, $instance->id], Input::all())) }}" {{ $entity->commands->entity->$command->type=="view" ? 'target="_blank"' : ''}}>
@@ -177,9 +202,9 @@
                                         </a>
                                     </li>
                                 @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                            @endif
+                        </ul>
+                    </div>
 
                 </div>
 

@@ -31,11 +31,17 @@
         <div class="container-fluid">
 
             <ul class="nav navbar-nav">
+
                 <li class="site"><a href="{{ URL::route('cms') }}">{{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}</a></li>
+
                 @foreach($cmsCategories as $catKey => $cat)
+
                     @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted("category", "view", $catKey))
-                        <li class="{{ isset($category) && $catKey == $category->key ? 'active' : '' }}"><a href="{{ URL::route('cms.category', [$catKey]) }}">{{ $cat->label }}</a></li>
+                        <li class="{{ isset($category) && $catKey == $category->key ? 'active' : '' }}">
+                            <a class="category" href="{{ URL::route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
+                        </li>
                     @endif
+
                 @endforeach
             </ul>
 
@@ -48,6 +54,23 @@
                             <i class="fa fa-power-off fa-stack-1x"></i>
                         </span>
                     </a>
+                </div>
+            @endif
+
+            @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages())
+                <div class="dropdown navbar-right languages">
+                    <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
+                        {{ $language }} <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages() as $languageCode => $languageName)
+                            <li>
+                                <a href="{{ route("cms.lang", [$languageCode]) }}">
+                                    {{ $languageName }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 

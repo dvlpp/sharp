@@ -1,6 +1,7 @@
 <?php
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
@@ -105,7 +106,31 @@ class CmsController extends Controller {
      */
     public function createEntity($categoryName, $entityName)
     {
-        return $this->form($categoryName, $entityName, null, true);
+        return $this->form($categoryName, $entityName, null);
+    }
+
+    /**
+     * Show duplicate form of an entity.
+     *
+     * @param $categoryName
+     * @param $entityName
+     * @param $id
+     * @param null $lang
+     * @throws InstanceNotFoundException
+     * @return mixed
+     */
+    public function duplicateEntity($categoryName, $entityName, $id, $lang=null)
+    {
+        Session::keep("listViewInput_{$categoryName}_{$entityName}");
+
+        if($lang)
+        {
+            // We have to first change the language
+            // (duplication is useful for i18n copy)
+            $this->changeLang($lang);
+        }
+
+        return $this->form($categoryName, $entityName, $id, true);
     }
 
     /**
@@ -131,7 +156,7 @@ class CmsController extends Controller {
      */
     public function storeEntity($categoryName, $entityName)
     {
-        return $this->save($categoryName, $entityName, null, true);
+        return $this->save($categoryName, $entityName, null);
     }
 
     /**
@@ -193,7 +218,22 @@ class CmsController extends Controller {
 
         $repo->delete($id);
 
-        return Redirect::route("cms.list", [$categoryName, $entityName]);
+        return Redirect::back();
+
+        //return Redirect::route("cms.list", [$categoryName, $entityName]);
+    }
+
+    /**
+     * Switch current language, and redirects back
+     *
+     * @param $lang
+     * @return mixed
+     */
+    public function lang($lang)
+    {
+        $this->changeLang($lang);
+
+        return Redirect::back();
     }
 
     /**
@@ -221,12 +261,14 @@ class CmsController extends Controller {
      * @param $categoryName
      * @param $entityName
      * @param $id
-     * @param bool $creation
+     * @param bool $duplication
      * @throws Dvlpp\Sharp\Exceptions\InstanceNotFoundException
      * @return mixed
      */
-    private function form($categoryName, $entityName, $id, $creation=false)
+    private function form($categoryName, $entityName, $id, $duplication=false)
     {
+        $creation = ($id === null);
+
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
@@ -246,6 +288,9 @@ class CmsController extends Controller {
                 Session::flashInput($formOldDataStr);
             }
 
+            // Duplication management: we simply add an attribute here
+            $instance->__sharp_duplication = $duplication;
+
             // And return the View
             return View::make('sharp::cms.entityForm', [
                 'instance'=>$instance,
@@ -264,11 +309,12 @@ class CmsController extends Controller {
      * @param $categoryName
      * @param $entityName
      * @param $id
-     * @param bool $creation
      * @return mixed
      */
-    private function save($categoryName, $entityName, $id, $creation=false)
+    private function save($categoryName, $entityName, $id)
     {
+        $creation = ($id === null);
+
         $data = Input::all();
 
         // Find Entity config (from sharp CMS config file)
@@ -282,7 +328,7 @@ class CmsController extends Controller {
             if($entity->validator)
             {
                 $validator = App::make($entity->validator);
-                $validator->validate($data, !$creation?$id:null);
+                $validator->validate($data, $id);
             }
 
             // Then : update (calling repo)
@@ -305,5 +351,18 @@ class CmsController extends Controller {
         }
     }
 
+    private function changeLang($lang)
+    {
+        $languages = SharpSiteConfig::getLanguages();
+        if($languages)
+        {
+            if(!$lang || !array_key_exists($lang, $languages))
+            {
+                $lang = array_values($languages)[0];
+            }
+
+            Session::put("sharp_lang", $lang);
+        }
+    }
 
 } 

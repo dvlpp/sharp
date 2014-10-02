@@ -1,21 +1,53 @@
 #sharp header {
-  background-color: @sharp-navbar-bg; padding:@grid-gutter-width/2 0; font-weight: normal;
+  background-color: @sharp-navbar-bg;
+  padding:ceil(@grid-gutter-width/2) 0;
+  font-weight: normal;
+
   .navbar {
     margin: 0;
     li {
-      &.site a { font-weight: 100; color:#fff; }
-      a { font-size: 36px; color:lighten(@sharp-navbar-bg, 15%); }
-      a:hover, &.active a, a:focus { color:#fff; background: none; }
+
+      &.site a {
+        font-size: 36px;
+        font-weight: 100;
+        color:#fff;
+      }
+
+      .category {
+        font-size: 36px;
+        color:lighten(@sharp-navbar-bg, 15%);
+      }
+
+      .category:hover,
+      &.active .category,
+      .category:focus {
+        color:#fff;
+        background: none;
+      }
+    }
+
+    .languages .btn {
+      color:#fff;
     }
 
     .user {
-      color:#fff; font-weight: normal; line-height:50px;
+      color:#fff;
+      font-weight: normal;
+      line-height:50px;
+
       .btn {
-        border:none; padding: 0 5px;
-        .fa-circle { color:#666; }
-        .fa-power-off {
-          color:#fff;
-          &:hover { color:@sharp-contexbar-bg; }
+        border: none;
+        padding: 0 5px;
+      }
+
+      .fa-circle {
+        color:#666;
+      }
+
+      .fa-power-off {
+        color:#fff;
+        &:hover {
+          color:@sharp-contexbar-bg;
         }
       }
     }
