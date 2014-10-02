@@ -60,12 +60,6 @@ class FileValuator implements Valuator {
         if($this->fileData && $this->fileData != $this->instance->{$this->attr})
         {
             // Update (or create)
-
-            // First, we move the file in the correct folder
-            $folderPath = $this->sharpRepository->getFileUploadPath($this->instance, $this->attr);
-            sharp_move_tmp_file($this->fileData, $folderPath);
-
-            // Then, update database
             $this->sharpRepository->updateFileUpload($this->instance, $this->attr, $this->fileData);
         }
 

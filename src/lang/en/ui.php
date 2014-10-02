@@ -20,6 +20,7 @@ return [
 
     'form_updateTitle' => ':entity update',
     'form_createTitle' => ':entity creation',
+    'form_duplicateTitle' => ':entity duplication',
     'form_deleteConfirmMsg' => 'Delete this entity permanently?',
     'form_updateBtn' => 'Update',
     'form_cancelBtn' => 'Cancel',

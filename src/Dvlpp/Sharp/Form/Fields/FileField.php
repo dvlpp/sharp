@@ -103,7 +103,9 @@ class FileField extends AbstractSharpField {
 
         // Valuation of the Form::hidden: first one is the value...
         $strField .= Form::hidden($this->fieldName,
-            $fieldValue,
+            $this->instance && $this->instance->__sharp_duplication
+                ? ":DUPL:" . $instanceFile // Duplication case: we provide the full original file path
+                : $fieldValue, // Regular case: value is the field value
             ["class"=>"sharp-file-id", "autocomplete"=>"off"]);
 
         // ... second one is to manage "repopulation": we store the file path

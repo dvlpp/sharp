@@ -61,30 +61,6 @@ if ( ! function_exists('sharp_thumbnail'))
     }
 }
 
-if ( ! function_exists('sharp_move_tmp_file'))
-{
-    /**
-     * Moves a file from a public/tmp directory to a dest dir, with
-     * dest dir creation if needed.
-     *
-     * @param $file
-     * @param $destDir
-     */
-    function sharp_move_tmp_file($file, $destDir)
-    {
-        $srcFile = public_path("tmp/$file");
-        if(File::exists($srcFile))
-        {
-            if(!File::isDirectory($destDir))
-            {
-                File::makeDirectory($destDir, 0777, true);
-            }
-
-            File::move($srcFile, $destDir."/".$file);
-        }
-    }
-}
-
 if ( ! function_exists('sharp_markdown'))
 {
     /**

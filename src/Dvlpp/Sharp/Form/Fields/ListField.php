@@ -63,6 +63,7 @@ class ListField extends AbstractSharpField {
                     // Duplication case: we change each existing item ID to make
                     // them like new ones.
                     $item->$itemIdAttribute = "N_" . $item->$itemIdAttribute;
+                    $item->__sharp_duplication = true;
                 }
                 $str .= $this->createItem($item);
             }
