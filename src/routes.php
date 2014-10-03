@@ -84,6 +84,9 @@ View::composer(['sharp::cms.cmslayout'], function($view)
         }
     }
     $view->with('language', $language);
+
+    // Get sharp version
+    $view->with('sharpVersion', File::get(__DIR__ . "/../version.txt"));
 });
 
 

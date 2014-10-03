@@ -3,7 +3,9 @@
 @import "theme.less";
 
 body#sharp {
-  .btn:active, .btn:focus { box-shadow: none; }
+  .btn:active, .btn:focus {
+    box-shadow: none;
+  }
 }
 
 body.sharp-cms {
@@ -13,8 +15,14 @@ body.sharp-cms {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 
   #mainrow {
-    #navcol { width:140px; float: left; }
-    #maincontent { width: ~"calc(100% - 160px + 10px*2)"; float: right; }
+    #navcol {
+      width: 140px;
+      float: left;
+    }
+    #maincontent {
+      width: ~"calc(100% - 160px + 10px*2)";
+      float: right;
+    }
   }
 
   #maincontent {
@@ -22,10 +30,16 @@ body.sharp-cms {
   }
 }
 
+footer {
+  margin: 40px 0 20px 0;
+  text-align: center;
+  font-size: 9px;
+  color: #aaa;
+}
+
 body.sharp-auth {
   background: @sharp-navbar-bg;
 }
-
 
 @import "header.less";
 @import "navcol.less";

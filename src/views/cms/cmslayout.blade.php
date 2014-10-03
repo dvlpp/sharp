@@ -111,6 +111,12 @@
     </div>
 </div>
 
+<footer>
+
+    <p class="credits">Sharp {{ $sharpVersion }} — © Développlan 2014.</p>
+
+</footer>
+
 @section("scripts")
 <script src="/packages/dvlpp/sharp/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/packages/dvlpp/sharp/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
