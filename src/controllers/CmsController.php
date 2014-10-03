@@ -291,6 +291,13 @@ class CmsController extends Controller {
             // Duplication management: we simply add an attribute here
             $instance->__sharp_duplication = $duplication;
 
+            if($duplication && method_exists($repo, "prepareForDuplication"))
+            {
+                // We call the repository hook for duplication, in case there's some
+                // ajusts to make on the instance
+                $instance = $repo->prepareForDuplication($instance);
+            }
+
             // And return the View
             return View::make('sharp::cms.entityForm', [
                 'instance'=>$instance,

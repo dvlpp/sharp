@@ -99,6 +99,8 @@ class CmsEmbeddedEntityController extends Controller {
      */
     private function form($masterCategoryKey, $masterEntityKey, $masterFieldKey, $embeddedCategoryKey, $embeddedEntityKey, $id=null)
     {
+        $isSharpDuplication = false;
+
         if(!Input::old("masterInstanceData"))
         {
             // First time this form is displayed, meaning we are coming from a "master entity"
@@ -122,6 +124,7 @@ class CmsEmbeddedEntityController extends Controller {
                 if($masterFieldValue != "__DELETE__")
                 {
                     $formOldDataStr = sharp_decode_embedded_entity_data($masterFieldValue);
+                    $isSharpDuplication = isset($formOldDataStr["__sharp_duplication"]) && $formOldDataStr["__sharp_duplication"];
                     Session::flashInput($formOldDataStr);
                 }
             }
@@ -145,6 +148,8 @@ class CmsEmbeddedEntityController extends Controller {
 
         if($instance)
         {
+            $instance->__sharp_duplication = $isSharpDuplication;
+
             // And return the View
             return View::make('sharp::cms.entityForm', [
                 'instance'=>$instance,

@@ -32,10 +32,27 @@ class EmbedField extends AbstractSharpField {
             // in order to post the current value of the embedded object
             $embeddedEntityConfig = SharpCmsConfig::findEntity($this->field->entity_category, $this->field->entity);
             $std = [];
-            foreach($embeddedEntityConfig->data["form_fields"] as $fieldKey=>$tmp)
+            foreach($embeddedEntityConfig->data["form_fields"] as $fieldKey=>$configField)
             {
-                $std[$fieldKey] = $this->fieldValue->$fieldKey;
+                if($this->instance && isset($this->instance->__sharp_duplication)
+                    && $this->instance->__sharp_duplication
+                    && $this->fieldValue->$fieldKey
+                    && $configField["type"] == "file")
+                {
+                    // Hum... This is a special case. Indeed.
+                    // Duplication case + valuated file field: have to put the correct data format
+                    // for this, and it's :DUPL: + the file path.
+                    // @see FileField
+                    $std[$fieldKey] = ":DUPL:" . $this->instance->getSharpFilePathFor($fieldKey);
+                }
+                else
+                {
+                    $std[$fieldKey] = $this->fieldValue->$fieldKey;
+                }
             }
+
+            $std["__sharp_duplication"] = $this->instance->__sharp_duplication;
+
             $initialVal = sharp_encode_embedded_entity_data($std);
         }
 

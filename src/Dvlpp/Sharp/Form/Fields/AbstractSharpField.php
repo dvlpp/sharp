@@ -69,9 +69,13 @@ abstract class AbstractSharpField {
         $this->attributes = $attributes;
         $this->instance = $instance;
 
-        $this->fieldName = $listKey
-            ? ($listKey."[".($instance?$instance->id:"--N--")."]". ($key ? "[".$key."]" : ""))
-            : $key;
+        if($listKey)
+        {
+            $this->listKey = $listKey;
+            $this->isListItem = true;
+        }
+
+        $this->fieldName = $this->buildFieldName();
 
         $this->relation = null;
         $this->relationKey = null;
@@ -89,12 +93,6 @@ abstract class AbstractSharpField {
         {
             // Value is instance->key, except for null key: in this case, value IS the instance
             $this->fieldValue = $key&&$key!="__embed_data" ? ($instance ? $instance->$key : null) : $instance;
-        }
-
-        if($listKey)
-        {
-            $this->listKey = $listKey;
-            $this->isListItem = true;
         }
     }
 
@@ -165,4 +163,48 @@ abstract class AbstractSharpField {
      * @return mixed
      */
     abstract function make();
+
+    /**
+     * Build the field name, depending on it's a list item or not, and if it's for
+     * a duplication or not.
+     * TODO supprimer l'accès en dur à l'attribut "id" de l'item dans le cas d'une liste
+     *
+     * @return string
+     */
+    private function buildFieldName()
+    {
+        if($this->isListItem)
+        {
+            // It's a list item
+            $str = $this->listKey . "[";
+
+            if($this->instance)
+            {
+                if(isset($this->instance->__sharp_duplication)
+                    && $this->instance->__sharp_duplication
+                    && !starts_with($this->instance->id, "N_"))
+                {
+                    // It's for a duplicated instance (creation with data): we have
+                    // to set the field ID to new
+                    $str .= "N_" . $this->instance->id;
+                }
+                else
+                {
+                    $str .= $this->instance->id;
+                }
+            }
+            else
+            {
+                $str .= "--N--";
+            }
+
+            $str .= "]" . ($this->key ? "[" . $this->key . "]" : "");
+
+            return $str;
+        }
+        else
+        {
+            return $this->key;
+        }
+    }
 }

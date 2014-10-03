@@ -75,6 +75,48 @@ if ( ! function_exists('sharp_markdown'))
     }
 }
 
+if ( ! function_exists('explode_search_words'))
+{
+    /**
+     * Return an array of words from a given string, with optional prefix / suffix.
+     *
+     * @param $text
+     * @param bool $isLike
+     * @param bool $handleStar
+     * @param string $noStarTermPrefix
+     * @param string $noStarTermSuffix
+     * @return array
+     */
+    function explode_search_words($text, $isLike=true, $handleStar=true, $noStarTermPrefix='%', $noStarTermSuffix='%')
+    {
+        $terms = [];
+
+        foreach(explode(" ", $text) as $term)
+        {
+            $term = trim($term);
+            if(!$term) continue;
+
+            if($isLike)
+            {
+                if($handleStar && strpos($term, '*') !== false)
+                {
+                    $terms[] = str_replace('*', '%', $term);
+                }
+                else
+                {
+                    $terms[] = $noStarTermPrefix . $term . $noStarTermSuffix;
+                }
+            }
+            else
+            {
+                $terms[] = $term;
+            }
+        }
+
+        return $terms;
+    }
+}
+
 if ( ! function_exists('sharp_encode_embedded_entity_data'))
 {
     /**

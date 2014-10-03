@@ -44,6 +44,7 @@ class FileField extends AbstractSharpField {
             $fieldName = $this->fieldName;
         }
 
+
         // Field Value
         if(Input::old($fieldName) !== null)
         {
@@ -56,11 +57,16 @@ class FileField extends AbstractSharpField {
 
         if($fieldValue)
         {
-            // File valued
-            if(Input::old($fieldName))
+            // File valued: have to grab the full file path
+            if(Input::old("__file__" . $fieldName))
             {
                 // Repopulate
                 $instanceFile = Input::old("__file__" . $fieldName);
+            }
+            elseif(is_string($fieldValue) && starts_with($fieldValue, ":DUPL:"))
+            {
+                // Duplication case: file path is in the value
+                $instanceFile = substr($fieldValue, strlen(":DUPL:"));
             }
             else
             {
@@ -85,25 +91,25 @@ class FileField extends AbstractSharpField {
         {
             // This file is populated (or repopulated after a validation failure)
 
-            if($this->field->thumbnail)
+            if ($this->field->thumbnail)
             {
                 // There's a thumbnail to display
                 list($w, $h) = explode("x", $this->field->thumbnail);
                 $strField .= '<img class="sharp-file-thumbnail" src="'
                     . sharp_thumbnail($instanceFile, $w, $h)
-                    .'">';
+                    . '">';
             }
 
             // Manage label
             $strField .= '<div class="sharp-file-label">'
-                .'<div class="type"><i class="fa fa-file-o"></i><span>'.(file_exists($instanceFile) ? pathinfo($instanceFile, PATHINFO_EXTENSION) : "").'</span></div>'
-                .'<span class="mime">('.(file_exists($instanceFile) ? mime_content_type($instanceFile) : "").')</span>'
-                .'<span class="size">'.(file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "").'</span></div>';
+                . '<div class="type"><i class="fa fa-file-o"></i><span>' . (file_exists($instanceFile) ? pathinfo($instanceFile, PATHINFO_EXTENSION) : "") . '</span></div>'
+                . '<span class="mime">(' . (file_exists($instanceFile) ? mime_content_type($instanceFile) : "") . ')</span>'
+                . '<span class="size">' . (file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "") . '</span></div>';
         }
 
         // Valuation of the Form::hidden: first one is the value...
         $strField .= Form::hidden($this->fieldName,
-            $this->instance && $this->instance->__sharp_duplication
+            $this->instance && isset($this->instance->__sharp_duplication) && $this->instance->__sharp_duplication
                 ? ":DUPL:" . $instanceFile // Duplication case: we provide the full original file path
                 : $fieldValue, // Regular case: value is the field value
             ["class"=>"sharp-file-id", "autocomplete"=>"off"]);
