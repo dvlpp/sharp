@@ -182,13 +182,30 @@
                                 </li>
                             @endif
 
-                            @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
-                                <li>
-                                    <a href="{{ route('cms.duplicate', [$category->key, $entityKey, $instance->id]) }}">
-                                        <i class="fa fa-copy"></i>
-                                        {{ trans('sharp::ui.list_entityDuplicateAction') }}
-                                    </a>
-                                </li>
+                            @if($entity->duplicable && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
+
+                                @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages())
+
+                                    @foreach(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages() as $languageCode => $languageName)
+                                        <li>
+                                            <a href="{{ route('cms.duplicate', [$category->key, $entityKey, $instance->id, $languageCode]) }}">
+                                                <i class="fa fa-copy"></i>
+                                                {{ trans('sharp::ui.list_entityDuplicateActionLocalized', ['lang' => $languageName]) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+
+                                @else
+
+                                    <li>
+                                        <a href="{{ route('cms.duplicate', [$category->key, $entityKey, $instance->id]) }}">
+                                            <i class="fa fa-copy"></i>
+                                            {{ trans('sharp::ui.list_entityDuplicateAction') }}
+                                        </a>
+                                    </li>
+
+                                @endif
+
                             @endif
 
                             @if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))

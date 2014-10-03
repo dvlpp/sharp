@@ -15,8 +15,9 @@ return [
     'list_reorderCancelBtn' => 'Cancel',
     'list_searchPlaceholder' => 'Search',
     'list_advancedSearchBtn' => 'Search',
-    'list_entityDeleteAction' => 'Delete...',
-    'list_entityDuplicateAction' => 'Duplicate...',
+    'list_entityDeleteAction' => 'Delete',
+    'list_entityDuplicateAction' => 'Duplicate',
+    'list_entityDuplicateActionLocalized' => 'Duplicate in :lang',
 
     'form_updateTitle' => ':entity update',
     'form_createTitle' => ':entity creation',

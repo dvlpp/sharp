@@ -10,6 +10,7 @@ class SharpEntity extends HasProperties {
 
     protected $defaultPropertiesValues = [
         "id_attribute" => "id",
+        "duplicable" => false
     ];
 
     protected $structProperties = [
