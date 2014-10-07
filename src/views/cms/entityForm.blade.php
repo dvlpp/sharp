@@ -49,12 +49,12 @@
 
 @section('content')
 
-    @if(count($errors))
+    @if(Session::has("errors"))
 
         <div class="alert alert-danger" role="alert">
             <h4>{{ trans('sharp::ui.form_errors') }}</h4>
             <ul>
-            @foreach($errors->all() as $error)
+            @foreach(Session::get("errors")->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
             </ul>

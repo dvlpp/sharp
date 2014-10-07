@@ -3,12 +3,11 @@
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
-use Illuminate\Routing\Controller;
 
 /**
  * Class CmsEmbeddedEntityController
  */
-class CmsEmbeddedEntityController extends Controller {
+class CmsEmbeddedEntityController {
 
     /**
      * @param $masterCategoryKey

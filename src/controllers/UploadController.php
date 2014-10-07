@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Routing\Controller;
-
-class UploadController extends Controller {
+class UploadController {
 
     public function upload()
     {

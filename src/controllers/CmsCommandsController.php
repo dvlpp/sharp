@@ -3,14 +3,13 @@
 use Dvlpp\Sharp\Commands\SharpCommandsManager;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
-use Illuminate\Routing\Controller;
 
 /**
  * Controller which manages project specific commands on entities list or on entity.
  *
  * Class CmsCommandsController
  */
-class CmsCommandsController extends Controller {
+class CmsCommandsController {
 
     /**
      * @var Dvlpp\Sharp\Commands\SharpCommandsManager
