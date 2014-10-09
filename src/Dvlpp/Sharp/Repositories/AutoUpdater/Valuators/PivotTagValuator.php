@@ -101,7 +101,7 @@ class PivotTagValuator implements Valuator {
             if(method_exists($this->sharpRepository, $methodName))
             {
                 // There's a special method for that in the repo
-                $tag = $this->sharpRepository->$methodName($newPivot, $order);
+                $tag = $this->sharpRepository->$methodName($newPivot);
                 $this->instance->{$this->pivotKey}()->attach($tag, $joiningArray);
             }
             else
