@@ -19,13 +19,13 @@
 
         {!! Form::open(['route' => 'login', 'class' => 'form well', 'role' => 'form']) !!}
 
-        <div class="form-group {{ $errors->first('login') ? 'has-error' : '' }}">
+        <div class="form-group {{ Session::has("errors") && Session::get("errors")->first('login') ? 'has-error' : '' }}">
             {!! Form::text('login', '', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_loginPlaceholder')]) !!}
-            {{ $errors->first('login', '<p class="help-block">:message</p>') }}
+            {{ Session::has("errors") && Session::get("errors")->first('login', '<p class="help-block">:message</p>') }}
         </div>
-        <div class="form-group {{ $errors->first('password') ? 'has-error' : '' }}">
+        <div class="form-group {{ Session::has("errors") && Session::get("errors")->first('password') ? 'has-error' : '' }}">
             {!! Form::password('password', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_passwordPlaceholder')]) !!}
-            {{ $errors->first('password', '<p class="help-block">:message</p>') }}
+            {{ Session::has("errors") && Session::get("errors")->first('password', '<p class="help-block">:message</p>') }}
         </div>
         {!! Form::submit(trans('sharp::ui.login_submitBtn'), ["class"=>"btn btn-info"]) !!}
         <!--a class="btn btn-link" href="">{{ trans('sharp::ui.login_passwordForgotten') }}</a-->
