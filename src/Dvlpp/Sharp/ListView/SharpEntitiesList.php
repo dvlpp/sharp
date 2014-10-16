@@ -104,12 +104,11 @@ class SharpEntitiesList {
         if($this->entity->list_template->paginate)
         {
             // Pagination config is set: grab the current page
-            $pagination = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
+            $this->pagination = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
 
-            $this->count = $pagination->getTotal();
-            $this->pagination = $pagination;
+            $this->count = $this->pagination->total();
 
-            return $pagination->getItems();
+            return $this->pagination->getItems();
         }
         else
         {
