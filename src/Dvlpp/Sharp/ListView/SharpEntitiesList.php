@@ -108,7 +108,7 @@ class SharpEntitiesList {
 
             $this->count = $this->pagination->total();
 
-            return $this->pagination->getItems();
+            return $this->pagination->items();
         }
         else
         {

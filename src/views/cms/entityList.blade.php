@@ -9,8 +9,8 @@
 @section('contextbar')
     <p class="navbar-text">
         {{ Lang::choice('sharp::ui.list_title', $totalCount) }}
-        @if($pagination && $pagination->getLastPage() > 1)
-            {{ trans('sharp::ui.list_pagination', ['current'=>$pagination->getCurrentPage(), 'total'=>$pagination->getLastPage()]) }}
+        @if($pagination && $pagination->lastPage() > 1)
+            {{ trans('sharp::ui.list_pagination', ['current'=>$pagination->currentPage(), 'total'=>$pagination->lastPage()]) }}
         @endif
     </p>
 
@@ -237,7 +237,7 @@
 </table>
 
 @if($pagination)
-    {!! $pagination->appends(Input::except(['page']))->links() !!}
+    {!! $pagination->appends(Input::except(['page']))->render() !!}
 @endif
 
 @stop
