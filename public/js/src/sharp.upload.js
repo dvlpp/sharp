@@ -166,6 +166,14 @@
                         postParams[attrKey] = v;
                     });
                 }
+
+                // Token Laravel
+                var $token = $("#sharpform").find("input[name=_token]");
+                if($token.length)
+                {
+                    postParams["_token"] = $token.val();
+                }
+
                 data.formData = postParams;
             });
         });
