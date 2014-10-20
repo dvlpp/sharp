@@ -78,6 +78,10 @@
 
 @section('content')
 
+<form id="formToken">
+    {!! Form::token() !!}
+</form>
+
 @if($entity->advanced_search->data)
 
     <div id="advsearch_panel" class="panel-collapse collapse {{ Input::has("adv") ? 'in' : '' }}">
