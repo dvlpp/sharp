@@ -5,11 +5,12 @@ use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
+use Illuminate\Routing\Controller;
 
 /**
  * Class CmsController
  */
-class CmsController {
+class CmsController extends Controller {
 
     /**
      * @return mixed
