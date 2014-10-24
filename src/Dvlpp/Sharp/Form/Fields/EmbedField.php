@@ -53,6 +53,9 @@ class EmbedField extends AbstractSharpField {
 
             $std["__sharp_duplication"] = $this->instance->__sharp_duplication;
 
+            // Add Id
+            $std[$embeddedEntityConfig->id_attribute] = $this->fieldValue->{$embeddedEntityConfig->id_attribute};
+
             $initialVal = sharp_encode_embedded_entity_data($std);
         }
 
