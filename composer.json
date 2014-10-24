@@ -12,7 +12,7 @@
         "illuminate/support": "~5.0",
         "illuminate/html": "~5.0",
         "intervention/image": "2.*",
-        "michelf/php-markdown": "1.4.*@dev",
+        "erusev/parsedown": "~1.1",
         "mustache/mustache": "~2.6.0"
     },
     "autoload": {

@@ -71,7 +71,8 @@ if ( ! function_exists('sharp_markdown'))
      */
     function sharp_markdown($text)
     {
-        return \Michelf\Markdown::defaultTransform($text);
+        return (new Parsedown)->text($text);
+//        return \Michelf\Markdown::defaultTransform($text);
     }
 }
 
