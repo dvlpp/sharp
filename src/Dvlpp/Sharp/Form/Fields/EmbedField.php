@@ -82,7 +82,7 @@ class EmbedField extends AbstractSharpField {
             . '"><div class="panel-body panel-embed-body">'
             . $strField
             . '</div><div class="panel-footer">'
-            . $this->buildEmbedButtons($this->instance?$this->instance->id:0)
+            . $this->buildEmbedButtons($embeddedInstance?$embeddedInstance->id:0)
             . '</div></div>';
 
         return $strField;
