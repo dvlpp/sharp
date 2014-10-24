@@ -45,6 +45,17 @@ class EmbedField extends AbstractSharpField {
                     // @see FileField
                     $std[$fieldKey] = ":DUPL:" . $this->instance->getSharpFilePathFor($fieldKey);
                 }
+
+                elseif($configField["type"] == "list")
+                {
+                    // If list, make an array of items
+                    $std[$fieldKey] = [];
+                    foreach($this->fieldValue->$fieldKey as $item)
+                    {
+                        $std[$fieldKey][] = $item;
+                    }
+                }
+
                 else
                 {
                     $std[$fieldKey] = $this->fieldValue->$fieldKey;
