@@ -70,8 +70,17 @@ class FileField extends AbstractSharpField {
             }
             else
             {
-                // Populate from "normal" data (field): we gets the file path from the model
-                $instanceFile = $this->instance->getSharpFilePathFor($this->key);
+                // Populate from "normal" data (field): we get the file path from the model
+                if(method_exists($this->instance, "getSharpFilePathFor"))
+                {
+                    $instanceFile = $this->instance->getSharpFilePathFor($this->key);
+                }
+                elseif(is_object($fieldValue) && method_exists($fieldValue, "getSharpFilePath"))
+                {
+                    // Optional second method: call getSharpField on the File object itself (if it's an object)
+                    // Useful when files are stored in separate table
+                    $instanceFile = $fieldValue->getSharpFilePath();
+                }
             }
 
             $className .= ($instanceFile?' valuated':'');

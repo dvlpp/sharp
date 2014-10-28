@@ -94,7 +94,7 @@ class ListField extends AbstractSharpField {
             {
                 // Duplication case: we change each existing item ID to make
                 // them like new ones.
-                $itemId = "N_" . $item->$itemIdAttribute;
+                $itemId = (!starts_with($item->$itemIdAttribute, "N_") ? "N_" : "") . $item->$itemIdAttribute;
                 $item->__sharp_duplication = true;
             }
             else
