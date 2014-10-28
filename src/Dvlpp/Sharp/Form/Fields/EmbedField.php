@@ -28,46 +28,7 @@ class EmbedField extends AbstractSharpField {
         $initialVal = "";
         if($this->fieldValue && $this->getOldValue() === null)
         {
-            // First time we display the embed field. We have to valuate its __embed_data field,
-            // in order to post the current value of the embedded object
-            $embeddedEntityConfig = SharpCmsConfig::findEntity($this->field->entity_category, $this->field->entity);
-            $std = [];
-            foreach($embeddedEntityConfig->data["form_fields"] as $fieldKey=>$configField)
-            {
-                if($this->instance && isset($this->instance->__sharp_duplication)
-                    && $this->instance->__sharp_duplication
-                    && $this->fieldValue->$fieldKey
-                    && $configField["type"] == "file")
-                {
-                    // Hum... This is a special case. Indeed.
-                    // Duplication case + valuated file field: have to put the correct data format
-                    // for this, and it's :DUPL: + the file path.
-                    // @see FileField
-                    $std[$fieldKey] = ":DUPL:" . $this->instance->getSharpFilePathFor($fieldKey);
-                }
-
-                elseif($configField["type"] == "list")
-                {
-                    // If list, make an array of items
-                    $std[$fieldKey] = [];
-                    foreach($this->fieldValue->$fieldKey as $item)
-                    {
-                        $std[$fieldKey][] = $item;
-                    }
-                }
-
-                else
-                {
-                    $std[$fieldKey] = $this->fieldValue->$fieldKey;
-                }
-            }
-
-            $std["__sharp_duplication"] = $this->instance->__sharp_duplication;
-
-            // Add Id
-            $std[$embeddedEntityConfig->id_attribute] = $this->fieldValue->{$embeddedEntityConfig->id_attribute};
-
-            $initialVal = sharp_encode_embedded_entity_data($std);
+            $initialVal = $this->initValue();
         }
 
         $strHiddenValue = Form::hidden($this->fieldName, $initialVal);
@@ -206,6 +167,74 @@ class EmbedField extends AbstractSharpField {
         }
 
         return Input::old($this->fieldName);
+    }
+
+    /**
+     * @return string
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
+     */
+    private function initValue()
+    {
+        // First time we display the embed field. We have to valuate its __embed_data field,
+        // in order to post the current value of the embedded object
+        $embeddedEntityConfig = SharpCmsConfig::findEntity($this->field->entity_category, $this->field->entity);
+        $std = [];
+        foreach ($embeddedEntityConfig->data["form_fields"] as $fieldKey => $configField)
+        {
+            $std[$fieldKey] = $this->initValueFormField($fieldKey, $configField, $this->fieldValue);
+        }
+
+        $std["__sharp_duplication"] = $this->instance->__sharp_duplication;
+
+        // Add Id
+        $std[$embeddedEntityConfig->id_attribute] = $this->fieldValue->{$embeddedEntityConfig->id_attribute};
+
+        $initialVal = sharp_encode_embedded_entity_data($std);
+
+        return $initialVal;
+    }
+
+    private function initValueFormField($fieldKey, $configField, $startingPoint)
+    {
+        $isDuplication = $this->instance && isset($this->instance->__sharp_duplication) && $this->instance->__sharp_duplication;
+
+        if ($isDuplication && $startingPoint->$fieldKey && $configField["type"] == "file")
+        {
+            // Hum... This is a special case. Indeed.
+            // Duplication case + valuated file field: have to put the correct data format
+            // for this, and it's :DUPL: + the file path.
+            // @see FileField
+            return ":DUPL:" . $startingPoint->getSharpFilePathFor($fieldKey);
+        }
+
+        elseif ($configField["type"] == "list")
+        {
+            // If list, make an array of items
+            $tab = [];
+            foreach ($this->fieldValue->$fieldKey as $item)
+            {
+                $tabItem = [];
+                foreach($configField["item"] as $itemFieldKey => $itemConfigField)
+                {
+                    $tabItem[$itemFieldKey] = $this->initValueFormField($itemFieldKey, $itemConfigField, $item);
+                }
+
+                $itemIdAttribute = isset($configField["item"]["item_id_attribute"])
+                    ? $configField["item"]["item_id_attribute"]
+                    : "id";
+
+                $tabItem[$itemIdAttribute] =
+                    ($isDuplication && !starts_with($item->{$itemIdAttribute}, "N_") ? "N_" : "")
+                    . $item->{$itemIdAttribute};
+
+                $tab[] = $tabItem;
+            }
+
+            return $tab;
+        }
+
+        return $startingPoint->$fieldKey;
+
     }
 
 }
