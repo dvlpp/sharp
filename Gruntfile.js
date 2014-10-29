@@ -8,7 +8,10 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             ui: {
-                src: ['public/js/src/sharp.ui.js','public/js/src/sharp.conditional_display.js'],
+                src: [
+                    'public/js/src/sharp.ui.js',
+                    'public/js/src/sharp.conditional_display.js'
+                ],
                 dest: 'public/js/<%= pkg.name %>.ui.js'
             },
             advancedsearch: {
@@ -77,7 +80,11 @@ module.exports = function(grunt) {
 
         watch: {
             js: {
-                files: ['<%= concat.dist.src %>'],
+                files: [
+                    '<%= concat.ui.src %>',
+                    '<%= concat.advancedsearch.src %>',
+                    '<%= concat.form.src %>'
+                ],
                 tasks: ['concat', 'uglify']
             },
 
