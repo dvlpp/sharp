@@ -13,9 +13,9 @@
 @gray-light:             lighten(#000, 60%);   // #999
 @gray-lighter:           lighten(#000, 93.5%); // #eee
 
-@brand-primary:         #66707a;
+@brand-primary:         #428bca;
 @brand-success:         #5cb85c;
-@brand-info:            #12dbe8;
+@brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
 
@@ -95,9 +95,9 @@
 @line-height-large:         1.33;
 @line-height-small:         1.5;
 
-@border-radius-base:        0px;
-@border-radius-large:       0px;
-@border-radius-small:       0px;
+@border-radius-base:        4px;
+@border-radius-large:       6px;
+@border-radius-small:       3px;
 
 //** Global color for active items (e.g., navs or dropdowns).
 @component-active-color:    #fff;
@@ -219,7 +219,7 @@
 //** Hover color for dropdown links.
 @dropdown-link-hover-color:      darken(@gray-dark, 5%);
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg:         @brand-info;
+@dropdown-link-hover-bg:         #f5f5f5;
 
 //** Active dropdown menu item text color.
 @dropdown-link-active-color:     @component-active-color;
@@ -293,7 +293,7 @@
 //** Number of columns in the grid.
 @grid-columns:              12;
 //** Padding between columns. Gets divided in half for the left and right.
-@grid-gutter-width:         20px;
+@grid-gutter-width:         30px;
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
 @grid-float-breakpoint:     @screen-sm-min;
@@ -627,7 +627,6 @@
 //** Warning progress bar color
 @progress-bar-warning-bg:     @brand-warning;
 //** Danger progress bar color
-//** Danger progress bar color
 @progress-bar-danger-bg:      @brand-danger;
 //** Info progress bar color
 @progress-bar-info-bg:        @brand-info;
@@ -638,9 +637,9 @@
 //##
 
 //** Background color on `.list-group-item`
-@list-group-bg:                 #E5E8EB;
+@list-group-bg:                 #fff;
 //** `.list-group-item` border color
-@list-group-border:             #BAC4CC;
+@list-group-border:             #ddd;
 //** List group border radius
 @list-group-border-radius:      @border-radius-base;
 
@@ -824,7 +823,7 @@
 //##
 
 //** Horizontal line color.
-@hr-border:                   @gray-light;
+@hr-border:                   @gray-lighter;
 
 //** Horizontal offset for forms and lists.
 @component-offset-horizontal: 180px;

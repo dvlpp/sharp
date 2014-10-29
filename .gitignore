@@ -2,6 +2,6 @@
 composer.phar
 composer.lock
 .DS_Store
-config.codekit
-.codekit-cache
 tests/_output/*
+/node_modules
+/public/bower_components

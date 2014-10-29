@@ -12,9 +12,9 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    <link href="/packages/dvlpp/sharp/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--link href="/packages/dvlpp/sharp/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"-->
     <link href="/packages/dvlpp/sharp/css/sharp.css" rel="stylesheet">
-    <link rel="stylesheet" href="/packages/dvlpp/sharp/bower_components/fontawesome/css/font-awesome.min.css">
+    <!--link rel="stylesheet" href="/packages/dvlpp/sharp/bower_components/fontawesome/css/font-awesome.min.css"-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
