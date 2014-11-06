@@ -24,8 +24,8 @@
             "src/helpers/sharp_cms.php",
             "src/helpers/sharp_internal.php"
         ],
-        "psr-4": {
-            "Dvlpp\\Sharp\\": "src/"
+        "psr-0": {
+            "Dvlpp\\Sharp": "src/"
         }
     },
     "minimum-stability": "dev"
