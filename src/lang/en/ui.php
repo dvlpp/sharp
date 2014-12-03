@@ -34,5 +34,6 @@ return [
     'form_embedField_createBtn' => "Create",
     'form_embedField_deleteBtn' => "Delete",
     'form_embedField_restoreBtn' => "Restore",
+    'form_fileField_cropBtn' => "Crop",
 
 ];

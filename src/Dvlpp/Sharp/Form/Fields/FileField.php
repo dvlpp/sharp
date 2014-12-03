@@ -77,7 +77,7 @@ class FileField extends AbstractSharpField {
                 }
                 elseif(is_object($fieldValue) && method_exists($fieldValue, "getSharpFilePath"))
                 {
-                    // Optional second method: call getSharpField on the File object itself (if it's an object)
+                    // Optional second method: call getSharpField on the File object itself (if it's an object).
                     // Useful when files are stored in separate table
                     $instanceFile = $fieldValue->getSharpFilePath();
                 }
@@ -85,6 +85,7 @@ class FileField extends AbstractSharpField {
 
             $className .= ($instanceFile?' valuated':'');
         }
+
         elseif(!$this->instance && $this->isListItem)
         {
             // No data and part of a list item: this field is meant to be in the template item.
@@ -104,16 +105,27 @@ class FileField extends AbstractSharpField {
             {
                 // There's a thumbnail to display
                 list($w, $h) = explode("x", $this->field->thumbnail);
-                $strField .= '<img class="sharp-file-thumbnail" src="'
+                $strField .= '<div class="sharp-file-image"><img class="sharp-file-thumbnail" src="'
                     . sharp_thumbnail($instanceFile, $w, $h)
-                    . '">';
+                    . '"></div>';
             }
 
             // Manage label
             $strField .= '<div class="sharp-file-label">'
                 . '<div class="type"><i class="fa fa-file-o"></i><span>' . (file_exists($instanceFile) ? pathinfo($instanceFile, PATHINFO_EXTENSION) : "") . '</span></div>'
                 . '<span class="mime">(' . (file_exists($instanceFile) ? mime_content_type($instanceFile) : "") . ')</span>'
-                . '<span class="size">' . (file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "") . '</span></div>';
+                . '<span class="size">' . (file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "") . '</span>';
+
+            if($this->field->crop && !$this->isListItem)
+            {
+                $strField .= '<a class="sharp-file-crop" href="'
+                    . sharp_thumbnail($instanceFile, 410, 410)
+                    . '" data-ratio="'
+                    . ($this->field->crop_ratio ?: '')
+                    . '"><i class="fa fa-crop"></i> ' . trans('ui.form_fileField_cropBtn') . '</a>';
+            }
+
+            $strField .= '</div>';
         }
 
         // Valuation of the Form::hidden: first one is the value...
@@ -123,10 +135,18 @@ class FileField extends AbstractSharpField {
                 : $fieldValue, // Regular case: value is the field value
             ["class"=>"sharp-file-id", "autocomplete"=>"off"]);
 
-        // ... second one is to manage "repopulation": we store the file path
+        // ... second one is to manage "repopulation": we store the file path...
         $strField .= Form::hidden("__file__" . $this->fieldName,
             $instanceFile,
             ["class"=>"sharp-file-path", "autocomplete"=>"off"]);
+
+        if($this->field->crop)
+        {
+            // ... and finally, crop
+            $strField .= Form::hidden("__filecrop__" . $this->fieldName,
+                "",
+                ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
+        }
 
         return $strField . '</div>';
     }

@@ -241,7 +241,8 @@ class SharpEloquentAutoUpdaterService {
                 break;
 
             case "file":
-                $valuator = new FileValuator($instance, $dataAttribute, $value, $this->sharpRepository);
+                $cropValues = isset($data["__filecrop__" . $dataAttribute]) ? $data["__filecrop__" . $dataAttribute] : null;
+                $valuator = new FileValuator($instance, $dataAttribute, $value, $this->sharpRepository, $cropValues);
                 break;
 
             case "list":

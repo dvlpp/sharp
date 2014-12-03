@@ -39,6 +39,8 @@ module.exports = function(grunt) {
                     // Upload
                     'public/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
                     'public/bower_components/jquery-file-upload/js/jquery.fileupload.js',
+                    // Image crop
+                    'public/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
                     // Sharp
                     'public/js/src/sharp.form.js',
                     'public/js/src/sharp.date.js',
@@ -48,6 +50,7 @@ module.exports = function(grunt) {
                     'public/js/src/sharp.ref.js',
                     'public/js/src/sharp.refSublistItem.js',
                     'public/js/src/sharp.upload.js',
+                    'public/js/src/sharp.imagecrop.js',
                     'public/js/src/sharp.list.js'
                 ],
                 dest: 'public/js/<%= pkg.name %>.form.js'
@@ -89,7 +92,7 @@ module.exports = function(grunt) {
             },
 
             css: {
-                files: ['public/css/less/*.less'],
+                files: ['public/css/less/**/*.less'],
                 tasks: ['less']
             }
         }

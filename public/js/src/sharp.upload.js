@@ -53,8 +53,10 @@
             if(params.thumbnail) {
                 $imgThumbnail = $(this).find(".sharp-file-thumbnail");
                 if($imgThumbnail.length == 0) {
+                    var $divThumbnail = $('<div/>').addClass('sharp-file-image');
                     $imgThumbnail = $('<img/>').addClass("sharp-file-thumbnail");
-                    $(this).prepend($imgThumbnail);
+                    $divThumbnail.append($imgThumbnail);
+                    $(this).prepend($divThumbnail);
                 }
             }
 
@@ -62,6 +64,7 @@
             var $fileLabel = $(this).find(".sharp-file-label");
             if($fileLabel.length == 0) {
                 $fileLabel = $('<div/>').addClass("sharp-file-label");
+                // TODO gérer création btn sharp-crop ??
                 $(this).append($fileLabel);
             }
 
@@ -167,7 +170,7 @@
                     });
                 }
 
-                // Token Laravel
+                // Laravel token
                 var $token = $("#sharpform").find("input[name=_token]");
                 if($token.length)
                 {

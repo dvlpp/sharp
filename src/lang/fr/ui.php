@@ -33,6 +33,7 @@ return [
     'form_embedField_editBtn' => "Modifier",
     'form_embedField_createBtn' => "Créer",
     'form_embedField_deleteBtn' => "Supprimer",
-    'form_embedField_restoreBtn' => "Restaurer"
+    'form_embedField_restoreBtn' => "Restaurer",
+    'form_fileField_cropBtn' => "Retailler",
 
 ];

@@ -127,6 +127,10 @@ $(window).load(function() {
                     item.find('.sharp-file-template').each(function() {
                         $(this).removeClass('sharp-file-template').addClass('sharp-file');
                         createSharpFile($(this));
+
+                        //$(this).find(".sharp-file-crop").each(function() {
+                        //    createSharpFileCrop($(this));
+                        //});
                     });
 
                     // Manage sharp-markdown in the item
