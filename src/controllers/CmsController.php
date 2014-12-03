@@ -94,6 +94,7 @@ class CmsController extends Controller {
     public function editEntity($categoryName, $entityName, $id)
     {
         Session::keep("listViewInput_{$categoryName}_{$entityName}");
+
         return $this->form($categoryName, $entityName, $id);
     }
 
@@ -106,6 +107,8 @@ class CmsController extends Controller {
      */
     public function createEntity($categoryName, $entityName)
     {
+        Session::keep("listViewInput_{$categoryName}_{$entityName}");
+
         return $this->form($categoryName, $entityName, null);
     }
 
@@ -156,6 +159,7 @@ class CmsController extends Controller {
      */
     public function storeEntity($categoryName, $entityName)
     {
+        Session::keep("listViewInput_{$categoryName}_{$entityName}");
         return $this->save($categoryName, $entityName, null);
     }
 
