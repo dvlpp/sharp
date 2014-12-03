@@ -8,7 +8,7 @@
             selectOnTab: false,
             persist: false,
             maxItems: null,
-            sortField: null
+            sortField: 'text'
         };
 
         var params = $.extend(defauts, options);
