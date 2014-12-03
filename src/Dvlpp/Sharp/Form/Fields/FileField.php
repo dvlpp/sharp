@@ -122,7 +122,7 @@ class FileField extends AbstractSharpField {
                     . sharp_thumbnail($instanceFile, 410, 410)
                     . '" data-ratio="'
                     . ($this->field->crop_ratio ?: '')
-                    . '"><i class="fa fa-crop"></i> ' . trans('ui.form_fileField_cropBtn') . '</a>';
+                    . '"><i class="fa fa-crop"></i> ' . trans('sharp::ui.form_fileField_cropBtn') . '</a>';
             }
 
             $strField .= '</div>';
