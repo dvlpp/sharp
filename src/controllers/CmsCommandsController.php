@@ -74,7 +74,7 @@ class CmsCommandsController extends Controller {
         {
             // Return view; data is in $commandReturn
             $commandView = $commandConfig->view;
-            return Response::view($commandView, $commandReturn);
+            return view($commandView, $commandReturn);
         }
 
         // Just reload

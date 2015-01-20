@@ -71,7 +71,7 @@ class FileValuator implements Valuator {
             $this->sharpRepository->deleteFileUpload($this->instance, $this->attr);
         }
 
-        elseif($this->fileData)
+        elseif($this->fileData && $this->fileData != ":DUPL:")
         {
             if($this->fileData != $this->instance->{$this->attr})
             {
