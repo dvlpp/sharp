@@ -2,7 +2,6 @@
 
 use Illuminate\Foundation\AliasLoader;
 use Orchestra\Support\Providers\ServiceProvider;
-use ReflectionClass;
 
 class SharpServiceProvider extends ServiceProvider {
 
@@ -15,40 +14,11 @@ class SharpServiceProvider extends ServiceProvider {
 
 	public function boot()
 	{
-		$this->loadViewsFrom("sharp", $this->guessPackagePath() . '/views');
-		$this->loadTranslationsFrom("sharp", $this->guessPackagePath() . '/lang');
-		$this->addConfigComponent('dvlpp/sharp', 'dvlpp/sjarp', realpath(__DIR__.'/../config'));
-
-//		$this->setConfig(["cms", "site"]);
-
-		dd($this->app['config']);
+		$this->package('dvlpp/sharp');
 
 		// Include Sharp's routes.php file
 		include __DIR__.'/../../routes.php';
 	}
-
-	protected function guessPackagePath()
-	{
-		$path = (new ReflectionClass($this))->getFileName();
-
-		return realpath(dirname($path).'/../../');
-	}
-
-//	protected function setConfig($configs)
-//	{
-//		if( ! is_array($configs)) $configs = [$configs];
-//
-//		foreach($configs as $configFile)
-//		{
-//			$path = $this->guessPackagePath() . "/config/$configFile.php";
-//			$config = require $path;
-//
-//			foreach ($config as $key => $value)
-//			{
-//				$this->app['config']->set("sharp::$configFile.$key", $value);
-//			}
-//		}
-//	}
 
 	/**
 	 * Register the service provider.

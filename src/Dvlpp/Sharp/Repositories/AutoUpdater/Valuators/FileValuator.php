@@ -96,7 +96,7 @@ class FileValuator implements Valuator {
                 $cropVals = explode(",", $this->cropValues);
                 if(sizeof($cropVals) != 4) return;
 
-                $manager = new ImageManager(array('driver' => 'imagick'));
+                $manager = new ImageManager;
                 $img = $manager->make($file);
 
                 $w = (int) ($img->width() - $cropVals[0]*$img->width() - ($img->width() - $cropVals[2]*$img->width()));

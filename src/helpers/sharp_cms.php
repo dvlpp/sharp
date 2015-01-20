@@ -37,7 +37,7 @@ if ( ! function_exists('sharp_thumbnail'))
                 // Create thumbnail directories if needed
                 if(!File::exists(dirname($thumbFile))) mkdir(dirname($thumbFile), 0777, true);
 
-                $manager = new ImageManager(array('driver' => 'imagick'));
+                $manager = new ImageManager;
                 $sourceImg = $manager->make($source);
 
                 if($sizeMin && $w && $h)
