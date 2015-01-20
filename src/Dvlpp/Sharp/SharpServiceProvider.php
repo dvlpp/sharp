@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
+use Orchestra\Support\Providers\ServiceProvider;
+use ReflectionClass;
 
 class SharpServiceProvider extends ServiceProvider {
 
@@ -12,16 +13,42 @@ class SharpServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
 	public function boot()
 	{
-        // Include Sharp's routes.php file
-        include __DIR__.'/../../routes.php';
+		$this->loadViewsFrom("sharp", $this->guessPackagePath() . '/views');
+		$this->loadTranslationsFrom("sharp", $this->guessPackagePath() . '/lang');
+		$this->addConfigComponent('dvlpp/sharp', 'dvlpp/sjarp', realpath(__DIR__.'/../config'));
+
+//		$this->setConfig(["cms", "site"]);
+
+		dd($this->app['config']);
+
+		// Include Sharp's routes.php file
+		include __DIR__.'/../../routes.php';
 	}
+
+	protected function guessPackagePath()
+	{
+		$path = (new ReflectionClass($this))->getFileName();
+
+		return realpath(dirname($path).'/../../');
+	}
+
+//	protected function setConfig($configs)
+//	{
+//		if( ! is_array($configs)) $configs = [$configs];
+//
+//		foreach($configs as $configFile)
+//		{
+//			$path = $this->guessPackagePath() . "/config/$configFile.php";
+//			$config = require $path;
+//
+//			foreach ($config as $key => $value)
+//			{
+//				$this->app['config']->set("sharp::$configFile.$key", $value);
+//			}
+//		}
+//	}
 
 	/**
 	 * Register the service provider.
@@ -30,24 +57,11 @@ class SharpServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		// Set config
-		$this->app['config']->set([
-			'dvlpp' => [
-				'sharp' => [
-					'cms' => include_once(__DIR__ . '/../../config/cms.php'),
-					'site' => include_once(__DIR__ . '/../../config/site.php')
-				]
-			]
-		]);
-
         // Register the SharpCmsField Facade used in cms views
 		$this->app->bind("sharpCmsField", 'Dvlpp\Sharp\Form\SharpCmsField');
 
         // Register the SharpAdvancedSearchField Facade used in cms views
         $this->app->bind("sharpAdvancedSearchField", 'Dvlpp\Sharp\AdvancedSearch\SharpAdvancedSearchField');
-
-        // Register the intervention/image dependency
-//        $this->app->register('Intervention\Image\ImageServiceProvider');
 
         // Register the Illuminate/Html dependency (no more included in Laravel 5)
         $this->app->register('Illuminate\Html\HtmlServiceProvider');
