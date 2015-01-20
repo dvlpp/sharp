@@ -19,8 +19,6 @@ class SharpServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('dvlpp/sharp');
-
         // Include Sharp's routes.php file
         include __DIR__.'/../../routes.php';
 	}
@@ -32,6 +30,16 @@ class SharpServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		// Set config
+		$this->app['config']->set([
+			'dvlpp' => [
+				'sharp' => [
+					'cms' => include_once(__DIR__ . '/../../config/cms.php'),
+					'site' => include_once(__DIR__ . '/../../config/site.php')
+				]
+			]
+		]);
+
         // Register the SharpCmsField Facade used in cms views
 		$this->app->bind("sharpCmsField", 'Dvlpp\Sharp\Form\SharpCmsField');
 
@@ -39,7 +47,7 @@ class SharpServiceProvider extends ServiceProvider {
         $this->app->bind("sharpAdvancedSearchField", 'Dvlpp\Sharp\AdvancedSearch\SharpAdvancedSearchField');
 
         // Register the intervention/image dependency
-        $this->app->register('Intervention\Image\ImageServiceProvider');
+//        $this->app->register('Intervention\Image\ImageServiceProvider');
 
         // Register the Illuminate/Html dependency (no more included in Laravel 5)
         $this->app->register('Illuminate\Html\HtmlServiceProvider');

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
 
 if ( ! function_exists('sharp_thumbnail'))
 {
@@ -36,7 +37,9 @@ if ( ! function_exists('sharp_thumbnail'))
                 // Create thumbnail directories if needed
                 if(!File::exists(dirname($thumbFile))) mkdir(dirname($thumbFile), 0777, true);
 
-                $sourceImg = Intervention\Image\Facades\Image::make($source);
+                $manager = new ImageManager(array('driver' => 'imagick'));
+                $sourceImg = $manager->make($source);
+
                 if($sizeMin && $w && $h)
                 {
                     // This param means $w and $h are minimums. We find which dimension of the original image is the most distant

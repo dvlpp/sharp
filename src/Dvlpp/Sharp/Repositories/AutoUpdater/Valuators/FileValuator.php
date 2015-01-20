@@ -3,7 +3,7 @@
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithImageAlteration;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 
 /**
  * Class FileValuator
@@ -96,7 +96,9 @@ class FileValuator implements Valuator {
                 $cropVals = explode(",", $this->cropValues);
                 if(sizeof($cropVals) != 4) return;
 
-                $img = Image::make($file);
+                $manager = new ImageManager(array('driver' => 'imagick'));
+                $img = $manager->make($file);
+
                 $w = (int) ($img->width() - $cropVals[0]*$img->width() - ($img->width() - $cropVals[2]*$img->width()));
                 $h = (int) ($img->height() - $cropVals[1]*$img->height() - ($img->height() - $cropVals[3]*$img->height()));
                 $x = (int) ($cropVals[0]*$img->width());
