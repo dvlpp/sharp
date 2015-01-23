@@ -6,6 +6,7 @@ Let's say that our zoo administrator wants to execute some specific actions like
 2. [Reload command](#reload)
 3. [View command](#view)
 3. [Download command](#download)
+4. [Auth](#auth)
 
 ##<a name="config"></a> 1. Command config
 
@@ -162,3 +163,20 @@ As you can see, the execute method accept a SharpEntitiesListParams parameter, v
 
 As expected, when the command is called, the generated csv file is downloaded.
 
+##<a name="auth"></a> 4. Auth
+
+Commands require by default an "update" auth on the entity. To change that, simply add a `auth` attribute on the command config:
+
+```
+	(...)
+
+	"commands" => [
+		"entity" => [
+			"birthday" => [
+				"text" => "Add one year",
+				"auth" => "view",
+				"type" => "reload",
+				"handler" => '\Quincy\Sharp\Giraffe\BirthdayCommand'
+			]
+		],
+```
