@@ -1,5 +1,6 @@
 <?php
 
+use Dvlpp\Sharp\Auth\SharpAccessManager;
 use Dvlpp\Sharp\Commands\SharpCommandsManager;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
@@ -36,6 +37,14 @@ class CmsCommandsController extends Controller {
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
+        // Have to manage access auth here, because it can be managed from the config
+        $granted = SharpAccessManager::granted(
+            'entity',
+            $entity->commands->list->$commandKey->auth ?: "update",
+            $entity->key);
+
+        if( ! $granted) return redirect("/");
+
         // Instantiate the entity repository
         $repo = App::make($entity->repository);
 
@@ -53,6 +62,14 @@ class CmsCommandsController extends Controller {
     {
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+
+        // Have to manage access auth here, because it can be managed from the config
+        $granted = SharpAccessManager::granted(
+            'entity',
+            $entity->commands->entity->$commandKey->auth ?: "update",
+            $entity->key);
+
+        if( ! $granted) return redirect("/");
 
         $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
 

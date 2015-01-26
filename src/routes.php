@@ -41,8 +41,8 @@ Route::group(['before' => 'sharp_auth'], function() {
     Route::post('/admin/cms/{category}/{entity}', ["as"=>"cms.store", "uses"=>"CmsController@storeEntity", "before"=>"sharp_access_granted:entity create *entity"]);
     Route::delete('/admin/cms/{category}/{entity}/{id}', ["as"=>"cms.destroy", "uses"=>"CmsController@destroyEntity", "before"=>"sharp_access_granted:entity delete *entity"]);
 
-    Route::get('/admin/cms/{category}/{entity}/command/{action}/{id}', ["as"=>"cms.entityCommand", "uses"=>"CmsCommandsController@entityCommand", "before"=>"sharp_access_granted:entity update *entity"]);
-    Route::get('/admin/cms/{category}/{entity}/command/{action}', ["as"=>"cms.listCommand", "uses"=>"CmsCommandsController@entitiesListCommand", "before"=>"sharp_access_granted:entity update *entity"]);
+    Route::get('/admin/cms/{category}/{entity}/command/{action}/{id}', ["as"=>"cms.entityCommand", "uses"=>"CmsCommandsController@entityCommand"]);
+    Route::get('/admin/cms/{category}/{entity}/command/{action}', ["as"=>"cms.listCommand", "uses"=>"CmsCommandsController@entitiesListCommand"]);
 
     Route::post('/admin/cms/{category}/{entity}/{id}/activate', ["as"=>"cms.activate", "uses"=>"CmsController@ax_activateEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');
     Route::post('/admin/cms/{category}/{entity}/{id}/deactivate', ["as"=>"cms.deactivate", "uses"=>"CmsController@ax_deactivateEntity", "before"=>"sharp_access_granted:entity update *entity"])->where('id', '[0-9]+');
