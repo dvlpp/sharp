@@ -95,7 +95,7 @@ class CmsCommandsController extends Controller {
         }
 
         // Just reload
-        return route("cms.list", array_merge([$categoryName, $entityName], Input::all()));
+        return redirect()->route("cms.list", array_merge([$categoryName, $entityName], Input::all()));
     }
 
 } 
