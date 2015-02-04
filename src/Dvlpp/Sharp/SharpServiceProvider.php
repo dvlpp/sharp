@@ -16,6 +16,21 @@ class SharpServiceProvider extends ServiceProvider {
 	{
 		$this->package('dvlpp/sharp');
 
+		// Utiliser code ci-dessous, mais en plus :
+		// - publier assets (CSS + JS)
+		// - fusionner config dans sharp.php
+		// - remodeler structure répertoires (jouter /ressources/views, /ressources/lang, ...)
+		// - partout où config('sharp::XXX') est utilisé, remplacer par ->config('XXX')
+		// - utiliser nouveaux helpers view() et response()
+
+//		$this->loadViewsFrom('sharp', __DIR__ . '/../../views');
+//		$this->loadTranslationsFrom('sharp', __DIR__ . '/../../lang');
+//
+//		$this->publishes([
+//			__DIR__.'/../../config/cms.php' => config_path('cms.php'),
+//			__DIR__.'/../../config/site.php' => config_path('site.php')
+//		]);
+
 		// Include Sharp's routes.php file
 		include __DIR__.'/../../routes.php';
 	}
