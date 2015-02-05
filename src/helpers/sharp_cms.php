@@ -53,7 +53,7 @@ if ( ! function_exists('sharp_thumbnail'))
                 // Create thumbnail
                 $sourceImg->resize($w, $h, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save($thumbFile);
+                })->save($thumbFile, isset($params["quality"]) ? $params["quality"] : null);
             }
 
             return url($thumbName);
