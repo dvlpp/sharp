@@ -7484,7 +7484,7 @@ body.sharp-auth {
   margin: 0;
 }
 #sharp header .navbar li.site a {
-  font-size: 36px;
+  font-size: 22px;
   font-weight: 100;
   color: #fff;
 }
@@ -7493,7 +7493,7 @@ body.sharp-auth {
   background: none;
 }
 #sharp header .navbar li .category {
-  font-size: 36px;
+  font-size: 22px;
   color: #515b66;
 }
 #sharp header .navbar li .category:hover,
