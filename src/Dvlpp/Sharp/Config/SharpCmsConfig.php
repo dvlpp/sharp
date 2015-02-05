@@ -53,7 +53,7 @@ class SharpCmsConfig {
     {
         if(!$withCache || !array_key_exists($categoryName, SharpCmsConfig::$categories))
         {
-            $categoryConfig = Config::get('sharp::cms.'.$categoryName);
+            $categoryConfig = Config::get('sharp.cms.'.$categoryName);
             if(!$categoryConfig)
             {
                 throw new EntityConfigurationNotFoundException("Category configuration for [$categoryConfig] can't be found");
@@ -77,7 +77,7 @@ class SharpCmsConfig {
      */
     public static function listCategories()
     {
-        $config = Config::get('sharp::cms');
+        $config = Config::get('sharp.cms');
         $tab = [];
         foreach($config as $key => $values)
         {

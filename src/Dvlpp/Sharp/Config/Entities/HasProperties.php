@@ -49,11 +49,11 @@ abstract class HasProperties {
      */
     public function __construct($data, $parent)
     {
-        if(!is_array($data))
+        if(!is_array($data) && starts_with($data, "file:"))
         {
             // Case $data is a simple string: it refers to an external Config file
             // We load it and gets its data
-            $data = \Config::get($data);
+            $data = \Config::get(substr($data, strlen("file:")));
         }
 
         $this->data = $data;

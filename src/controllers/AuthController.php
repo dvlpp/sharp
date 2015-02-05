@@ -3,32 +3,32 @@
 use Dvlpp\Sharp\Auth\SharpLoginFormValidator;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\ValidationException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class AuthController extends Controller {
 
     /**
-     * @var Dvlpp\Sharp\Auth\SharpLoginFormValidator
+     * @return \Illuminate\View\View
      */
-    protected $loginValidator;
-
-    function __construct(SharpLoginFormValidator $validator)
-    {
-        $this->loginValidator = $validator;
-    }
-
     public function index()
     {
-        return View::make('sharp::auth.login');
+        return view('sharp::auth.login');
     }
 
-    public function login()
+    /**
+     * @param Request $request
+     * @param SharpLoginFormValidator $loginValidator
+     * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     */
+    public function login(Request $request, SharpLoginFormValidator $loginValidator)
     {
-        $data = Input::all();
+        $data = $request->all();
 
         try {
             // First: validation
-            $this->loginValidator->validate($data);
+            $loginValidator->validate($data);
 
             // Next: check credentials
             $authService = SharpSiteConfig::getAuthService();
@@ -36,27 +36,35 @@ class AuthController extends Controller {
             {
                 // Login succeed
                 Session::put("sharp_user", $user);
-                return Redirect::intended("cms");
+                return redirect()->intended("cms");
             }
             else
             {
-                return Redirect::back()->withInput()->with(["flashMessage" => Lang::get('sharp::messages.login_invalid')]);
+                return redirect()->back()
+                    ->withInput()
+                    ->with(["flashMessage" => trans('sharp::messages.login_invalid')]);
             }
         }
 
         catch(ValidationException $e)
         {
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($e->getErrors());
         }
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     */
     public function logout()
     {
         $authService = SharpSiteConfig::getAuthService();
         $authService->logout();
         Session::forget("sharp_user");
 
-        return Redirect::to("/");
+        return redirect()->to("/");
     }
 
 } 

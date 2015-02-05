@@ -1,7 +1,7 @@
 <?php namespace Dvlpp\Sharp;
 
 use Illuminate\Foundation\AliasLoader;
-use Orchestra\Support\Providers\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class SharpServiceProvider extends ServiceProvider {
 
@@ -14,22 +14,39 @@ class SharpServiceProvider extends ServiceProvider {
 
 	public function boot()
 	{
-		$this->package('dvlpp/sharp');
-
-		// Utiliser code ci-dessous, mais en plus :
-		// - publier assets (CSS + JS)
-		// - fusionner config dans sharp.php
 		// - remodeler structure répertoires (jouter /ressources/views, /ressources/lang, ...)
-		// - partout où config('sharp::XXX') est utilisé, remplacer par ->config('XXX')
-		// - utiliser nouveaux helpers view() et response()
 
-//		$this->loadViewsFrom('sharp', __DIR__ . '/../../views');
-//		$this->loadTranslationsFrom('sharp', __DIR__ . '/../../lang');
-//
-//		$this->publishes([
-//			__DIR__.'/../../config/cms.php' => config_path('cms.php'),
-//			__DIR__.'/../../config/site.php' => config_path('site.php')
-//		]);
+		$this->loadViewsFrom(__DIR__ . '/../../views', 'sharp');
+		$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'sharp');
+
+		// Publish config
+		$this->publishes([
+			__DIR__.'/../../config/sharp.php' => config_path('sharp.php')
+		], 'config');
+
+		// Publish assets
+		$this->publishes([
+			__DIR__.'/../../../public/css/sharp.css' => public_path('sharp/sharp.css'),
+
+			__DIR__.'/../../../public/js/sharp.ui.min.js' => public_path('sharp/sharp.ui.min.js'),
+			__DIR__.'/../../../public/js/sharp.form.min.js' => public_path('sharp/sharp.form.min.js'),
+			__DIR__.'/../../../public/js/sharp.advancedsearch.min.js' => public_path('sharp/sharp.advancedsearch.min.js'),
+
+			__DIR__.'/../../../public/bower_components/jquery/dist/jquery.min.js' => public_path('sharp/vendor/jquery.min.js'),
+			__DIR__.'/../../../public/bower_components/bootstrap/dist/js/bootstrap.min.js' => public_path('sharp/vendor/bootstrap.min.js'),
+			__DIR__.'/../../../public/js/vendor/jquery-ui-1.10.4.custom.min.js' => public_path('sharp/vendor/jquery-ui-1.10.4.custom.min.js'),
+
+			__DIR__.'/../../../public/bower_components/fontawesome/fonts/fontawesome-webfont.eot' => public_path('sharp/fonts/fontawesome-webfont.eot'),
+			__DIR__.'/../../../public/bower_components/fontawesome/fonts/fontawesome-webfont.svg' => public_path('sharp/fonts/fontawesome-webfont.svg'),
+			__DIR__.'/../../../public/bower_components/fontawesome/fonts/fontawesome-webfont.ttf' => public_path('sharp/fonts/fontawesome-webfont.ttf'),
+			__DIR__.'/../../../public/bower_components/fontawesome/fonts/fontawesome-webfont.woff' => public_path('sharp/fonts/fontawesome-webfont.woff'),
+
+			__DIR__.'/../../../public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot' => public_path('sharp/fonts/glyphicons-halflings-regular.eot'),
+			__DIR__.'/../../../public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg' => public_path('sharp/fonts/glyphicons-halflings-regular.svg'),
+			__DIR__.'/../../../public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf' => public_path('sharp/fonts/glyphicons-halflings-regular.ttf'),
+			__DIR__.'/../../../public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff' => public_path('sharp/fonts/glyphicons-halflings-regular.woff'),
+
+		], 'assets');
 
 		// Include Sharp's routes.php file
 		include __DIR__.'/../../routes.php';

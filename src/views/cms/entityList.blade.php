@@ -258,6 +258,6 @@
 @section("scripts")
     @parent
     @if($entity->advanced_search->data)
-        <script src="/packages/dvlpp/sharp/js/sharp.advancedsearch.min.js"></script>
+        <script src="/sharp/sharp.advancedsearch.min.js"></script>
     @endif
 @stop

@@ -141,5 +141,5 @@
 
 @section("scripts")
 @parent
-<script src="/packages/dvlpp/sharp/js/sharp.form.min.js"></script>
+<script src="/sharp/sharp.form.min.js"></script>
 @stop

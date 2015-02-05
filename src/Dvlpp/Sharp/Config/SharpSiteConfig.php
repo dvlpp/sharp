@@ -23,12 +23,12 @@ class SharpSiteConfig {
      */
     public static function getName()
     {
-        return Config::get('sharp::site.name');
+        return Config::get('sharp.name');
     }
 
     public static function getLanguages()
     {
-        return Config::get('sharp::site.languages');
+        return Config::get('sharp.languages');
     }
 
     /**
@@ -39,7 +39,7 @@ class SharpSiteConfig {
     {
         if(self::$authService === null)
         {
-            $authService = Config::get('sharp::site.auth_service');
+            $authService = Config::get('sharp.auth_service');
             if($authService)
             {
                 if(class_exists($authService))

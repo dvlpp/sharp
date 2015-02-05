@@ -13,7 +13,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
     <!--link href="/packages/dvlpp/sharp/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"-->
-    <link href="/packages/dvlpp/sharp/css/sharp.css" rel="stylesheet">
+    <link href="/sharp/sharp.css" rel="stylesheet">
     <!--link rel="stylesheet" href="/packages/dvlpp/sharp/bower_components/fontawesome/css/font-awesome.min.css"-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -118,10 +118,10 @@
 </footer>
 
 @section("scripts")
-<script src="/packages/dvlpp/sharp/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/packages/dvlpp/sharp/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.ui.min.js"></script>
+<script src="/sharp/vendor/jquery.min.js"></script>
+<script src="/sharp/vendor/bootstrap.min.js"></script>
+<script src="/sharp/vendor/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="/sharp/sharp.ui.min.js"></script>
 @show
 
 </body>

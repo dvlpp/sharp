@@ -17,7 +17,7 @@ class CmsController extends Controller {
      */
     public function index()
     {
-        return View::make('sharp::cms.index');
+        return view('sharp::cms.index');
     }
 
     /**
@@ -33,7 +33,7 @@ class CmsController extends Controller {
 
         $entityName = $category->entities->current();
 
-        return Redirect::route("cms.list", [$categoryName, $entityName]);
+        return redirect()->route("cms.list", [$categoryName, $entityName]);
     }
 
     /**
@@ -51,7 +51,7 @@ class CmsController extends Controller {
             // with some pagination, or sorting, or search config. We simply redirect
             // with the correct querystring based on old input
             $input = Session::get("listViewInput_{$categoryName}_{$entityName}");
-            return Redirect::route('cms.list', array_merge(["category"=>$categoryName, "entity"=>$entityName], $input));
+            return redirect()->route('cms.list', array_merge(["category"=>$categoryName, "entity"=>$entityName], $input));
         }
         else
         {
@@ -69,7 +69,7 @@ class CmsController extends Controller {
         $entitiesList = new SharpEntitiesList($entity, $repo);
 
         // And return the View
-        return View::make('sharp::cms.entityList', [
+        return view('sharp::cms.entityList', [
             'instances'=>$entitiesList->getInstances(),
             'category'=>SharpCmsConfig::findCategory($categoryName),
             'entity'=>$entity,
@@ -203,7 +203,7 @@ class CmsController extends Controller {
         // Reorder
         $repo->reorder($entities);
 
-        return Response::json(["ok"=>true]);
+        return response()->json(["ok"=>true]);
     }
 
     /**
@@ -222,9 +222,9 @@ class CmsController extends Controller {
 
         $repo->delete($id);
 
-        return Redirect::back();
+        return redirect()->back();
 
-        //return Redirect::route("cms.list", [$categoryName, $entityName]);
+        //return redirect()->route("cms.list", [$categoryName, $entityName]);
     }
 
     /**
@@ -237,7 +237,7 @@ class CmsController extends Controller {
     {
         $this->changeLang($lang);
 
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**
@@ -258,7 +258,7 @@ class CmsController extends Controller {
         // Activate / deactivate
         $activate ? $repo->activate($id) : $repo->deactivate($id);
 
-        return Response::json(["ok"=>true]);
+        return response()->json(["ok"=>true]);
     }
 
     /**
@@ -303,7 +303,7 @@ class CmsController extends Controller {
             }
 
             // And return the View
-            return View::make('sharp::cms.entityForm', [
+            return view('sharp::cms.entityForm', [
                 'instance'=>$instance,
                 'entity'=>$entity,
                 'category'=>SharpCmsConfig::findCategory($categoryName)
@@ -353,12 +353,12 @@ class CmsController extends Controller {
             }
 
             // And redirect
-            return Redirect::route("cms.list", [$categoryName, $entityName]);
+            return redirect()->route("cms.list", [$categoryName, $entityName]);
         }
 
         catch(ValidationException $e)
         {
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
+            return redirect()->back()->withInput()->withErrors($e->getErrors());
         }
     }
 
