@@ -27,6 +27,5 @@
         "psr-0": {
             "Dvlpp\\Sharp": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
