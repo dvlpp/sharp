@@ -10,7 +10,7 @@
             {{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}
         </h1>
 
-        @if(Session::get("flashMessage"))
+        @if(Session::has("flashMessage"))
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 {{ Session::get("flashMessage") }}
@@ -19,13 +19,13 @@
 
         {!! Form::open(['route' => 'login', 'class' => 'form well', 'role' => 'form']) !!}
 
-        <div class="form-group {{ Session::has("errors") && Session::get("errors")->first('login') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->first('login') ? 'has-error' : '' }}">
             {!! Form::text('login', '', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_loginPlaceholder')]) !!}
-            {{ Session::has("errors") && Session::get("errors")->first('login', '<p class="help-block">:message</p>') }}
+            {!! $errors->first('login') ? '<p class="help-block">'. $errors->first('login') .'</p>' : '' !!}
         </div>
-        <div class="form-group {{ Session::has("errors") && Session::get("errors")->first('password') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->first('password') ? 'has-error' : '' }}">
             {!! Form::password('password', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_passwordPlaceholder')]) !!}
-            {{ Session::has("errors") && Session::get("errors")->first('password', '<p class="help-block">:message</p>') }}
+            {!! $errors->first('password') ? '<p class="help-block">'. $errors->first('password') .'</p>' : '' !!}
         </div>
         {!! Form::submit(trans('sharp::ui.login_submitBtn'), ["class"=>"btn btn-info"]) !!}
         <!--a class="btn btn-link" href="">{{ trans('sharp::ui.login_passwordForgotten') }}</a-->

@@ -10,9 +10,7 @@
     <title>Sharp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-    <link href="/packages/dvlpp/sharp/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/packages/dvlpp/sharp/css/sharp.css" rel="stylesheet">
-    <link rel="stylesheet" href="/packages/dvlpp/sharp/bower_components/fontawesome/css/font-awesome.min.css">
+    <link href="/sharp/sharp.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,9 +33,6 @@
 </div>
 
 @section("scripts")
-<script src="/packages/dvlpp/sharp/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/packages/dvlpp/sharp/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/packages/dvlpp/sharp/js/sharp.ui.min.js"></script>
 @show
 
 </body>
