@@ -156,7 +156,11 @@ class FileField extends AbstractSharpField {
         if($this->field->crop)
         {
             // ... and finally, crop
-            $strField .= Form::hidden("__filecrop__" . $this->fieldName,
+
+            // In single relation case (~), we use the relationKey for name only
+            $fileName = $this->relation ? $this->relationKey : $this->fieldName;
+
+            $strField .= Form::hidden("__filecrop__$fileName",
                 "",
                 ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
         }
