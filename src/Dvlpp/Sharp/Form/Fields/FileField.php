@@ -71,10 +71,23 @@ class FileField extends AbstractSharpField {
             else
             {
                 // Populate from "normal" data (field): we get the file path from the model
-                if(method_exists($this->instance, "getSharpFilePathFor"))
+                if($this->relation)
                 {
-                    $instanceFile = $this->instance->getSharpFilePathFor($this->key);
+                    // Single relationship ~ case
+                    $ownerInstance = $this->instance->{$this->relation};
+                    $key = $this->relationKey;
                 }
+                else
+                {
+                    $ownerInstance = $this->instance;
+                    $key = $this->key;
+                }
+
+                if(method_exists($ownerInstance, "getSharpFilePathFor"))
+                {
+                    $instanceFile = $ownerInstance->getSharpFilePathFor($key);
+                }
+
                 elseif(is_object($fieldValue) && method_exists($fieldValue, "getSharpFilePath"))
                 {
                     // Optional second method: call getSharpField on the File object itself (if it's an object).
