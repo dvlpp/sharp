@@ -87,7 +87,10 @@ abstract class AbstractSharpField {
             // For instance : boss~name indicate that the instance as a single "boss" relation,
             // which has a "name" attribute.
             list($this->relation, $this->relationKey) = explode("~", $key);
-            $this->fieldValue = $instance && $instance->{$this->relation} ? $instance->{$this->relation}->{$this->relationKey} : null;
+
+            $this->fieldValue = $instance && isset($instance->{$this->relation})
+                ? $instance->{$this->relation}->{$this->relationKey}
+                : null;
         }
         else
         {
