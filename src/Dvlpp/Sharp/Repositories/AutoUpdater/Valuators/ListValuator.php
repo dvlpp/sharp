@@ -120,42 +120,51 @@ class ListValuator implements Valuator {
                 }
 
                 // Update item
-                foreach($itemForm as $attr => $value)
+                $methodName = "update" . ucFirst(Str::camel($this->listKey)) . "ListItem";
+
+                if(method_exists($this->sharpRepository, $methodName))
                 {
-                    if($attr == $itemIdAttribute)
+                    $item = $this->sharpRepository->$methodName($this->instance, $item, $itemForm);
+                }
+                else
+                {
+                    foreach ($itemForm as $attr => $value)
                     {
-                        // Id is not updatable
-                        continue;
-                    }
-
-                    // For other attributes:
-                    foreach ($this->listFieldConfig->item as $configListItemKey)
-                    {
-                        if ($configListItemKey == $attr)
+                        if ($attr == $itemIdAttribute)
                         {
-                            $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
+                            // Id is not updatable
+                            continue;
+                        }
 
-                            // Call the auto-updater updateField method
-                            $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $this->listKey);
+                        // For other attributes:
+                        foreach ($this->listFieldConfig->item as $configListItemKey)
+                        {
+                            if ($configListItemKey == $attr)
+                            {
+                                $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
+
+                                // Call the auto-updater updateField method
+                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $this->listKey);
+                            }
                         }
                     }
-                }
 
-                // Manage order
-                if($this->listFieldConfig->order_attribute)
-                {
-                    if(Str::contains($this->listFieldConfig->order_attribute, "~"))
+                    // Manage order
+                    if ($this->listFieldConfig->order_attribute)
                     {
-                        list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
-                        $itemRelation = $item->{$relation};
-                        $itemRelation->{$orderAttr} = $order;
-                        $itemRelation->save();
+                        if (Str::contains($this->listFieldConfig->order_attribute, "~"))
+                        {
+                            list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
+                            $itemRelation = $item->{$relation};
+                            $itemRelation->{$orderAttr} = $order;
+                            $itemRelation->save();
+                        }
+                        else
+                        {
+                            $item->{$this->listFieldConfig->order_attribute} = $order;
+                        }
+                        $order++;
                     }
-                    else
-                    {
-                        $item->{$this->listFieldConfig->order_attribute} = $order;
-                    }
-                    $order++;
                 }
 
                 // Eloquent save
