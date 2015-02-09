@@ -3,6 +3,7 @@
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use Input;
+use stdClass;
 
 /**
  * This this all Sharp's fields superclass.
@@ -88,7 +89,7 @@ abstract class AbstractSharpField {
             // which has a "name" attribute.
             list($this->relation, $this->relationKey) = explode("~", $key);
 
-            $this->fieldValue = $instance && isset($instance->{$this->relation})
+            $this->fieldValue = $instance && ! $instance instanceof stdClass && $instance->{$this->relation}
                 ? $instance->{$this->relation}->{$this->relationKey}
                 : null;
         }
