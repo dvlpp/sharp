@@ -144,7 +144,17 @@ class ListValuator implements Valuator {
                 // Manage order
                 if($this->listFieldConfig->order_attribute)
                 {
-                    $item->{$this->listFieldConfig->order_attribute} = $order;
+                    if(Str::contains($this->listFieldConfig->order_attribute, "~"))
+                    {
+                        list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
+                        $itemRelation = $item->{$relation};
+                        $itemRelation->{$orderAttr} = $order;
+                        $itemRelation->save();
+                    }
+                    else
+                    {
+                        $item->{$this->listFieldConfig->order_attribute} = $order;
+                    }
                     $order++;
                 }
 
