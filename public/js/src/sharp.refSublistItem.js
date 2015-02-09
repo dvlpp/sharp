@@ -3,12 +3,11 @@
     $.fn.sharp_refSublistItem=function(options)
     {
         var defauts = { };
-
         var params = $.extend(defauts, options);
 
         function refreshSubList($baseRefField, $refSublistField, $datastore)
         {
-            baseRefValue = $baseRefField.find("option:selected").val();
+            var baseRefValue = $baseRefField.find("option:selected").val();
 
             $refSublistField.disable();
             $refSublistField.clearOptions();
@@ -36,11 +35,11 @@
         {
             $(this).selectize(params);
 
-            $datastore = $(this).prev("select[name=" + $(this).attr("id") + "_values]");
+            var $datastore = $(this).prev("select[name=" + escapeFieldId($(this).prop("id")) + "_values]");
 
-            $refSublistField = $(this)[0].selectize;
+            var $refSublistField = $(this)[0].selectize;
 
-            $baseRefField = $("#" + params.linked_ref_field);
+            var $baseRefField = $("#" + escapeFieldId(params.linked_ref_field));
 
             $baseRefField.on('change', function()
             {
@@ -77,4 +76,9 @@ function createSharpRefSublistItem($el)
     };
 
     $el.sharp_refSublistItem(options);
+}
+
+function escapeFieldId(id)
+{
+    return id.replace( /(:|\.|\[|\]|\~|,)/g, "\\$1" );
 }
