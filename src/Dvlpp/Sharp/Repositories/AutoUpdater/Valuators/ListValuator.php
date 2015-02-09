@@ -148,23 +148,23 @@ class ListValuator implements Valuator {
                             }
                         }
                     }
+                }
 
-                    // Manage order
-                    if ($this->listFieldConfig->order_attribute)
+                // Manage order
+                if ($this->listFieldConfig->order_attribute)
+                {
+                    if (Str::contains($this->listFieldConfig->order_attribute, "~"))
                     {
-                        if (Str::contains($this->listFieldConfig->order_attribute, "~"))
-                        {
-                            list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
-                            $itemRelation = $item->{$relation};
-                            $itemRelation->{$orderAttr} = $order;
-                            $itemRelation->save();
-                        }
-                        else
-                        {
-                            $item->{$this->listFieldConfig->order_attribute} = $order;
-                        }
-                        $order++;
+                        list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
+                        $itemRelation = $item->{$relation};
+                        $itemRelation->{$orderAttr} = $order;
+                        $itemRelation->save();
                     }
+                    else
+                    {
+                        $item->{$this->listFieldConfig->order_attribute} = $order;
+                    }
+                    $order++;
                 }
 
                 // Eloquent save
