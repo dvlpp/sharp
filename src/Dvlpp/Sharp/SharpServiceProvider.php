@@ -66,10 +66,10 @@ class SharpServiceProvider extends ServiceProvider {
         $this->app->bind("sharpAdvancedSearchField", 'Dvlpp\Sharp\AdvancedSearch\SharpAdvancedSearchField');
 
         // Register the Illuminate/Html dependency (no more included in Laravel 5)
-        $this->app->register('Illuminate\Html\HtmlServiceProvider');
+        $this->app->register('Collective\Html\HtmlServiceProvider');
         $loader = AliasLoader::getInstance();
-        $loader->alias('Form', 'Illuminate\Html\FormFacade');
-        $loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
+        $loader->alias('Form', 'Collective\Html\FormFacade');
+        $loader->alias('HTML', 'Collective\Html\HtmlFacade');
 	}
 
 	/**
