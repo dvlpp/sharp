@@ -11,12 +11,15 @@
     "autocomplete"
   ],
   "description": "A library for textually searching arrays and hashes of objects by property (or multiple properties). Designed specifically for autocomplete.",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "author": "Brian Reavis <brian@thirdroute.com>",
   "main": "./sifter.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/brianreavis/sifter.js.git"
+  },
+  "scripts": {
+  	"test": "mocha -R list"
   },
   "bin": {
     "sifter": "./bin/sifter.js"
