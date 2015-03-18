@@ -158,7 +158,7 @@
 
                     <div class="normal-mode">
                         @if($entity->active_state_field && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
-                            <span class="state {{ $instance->{$entity->active_state_field}?'state-active':'state-inactive' }}">
+                            <span class="state {{ get_entity_attribute_value($instance, $entity->active_state_field)?'state-active':'state-inactive' }}">
                             <a href="{{ route('cms.deactivate', [$category->key, $entityKey, $instance->id]) }}"
                                class="btn btn-state-active ajax"
                                data-success="deactivate"><i class="fa fa-star"></i></a>

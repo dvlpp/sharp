@@ -82,3 +82,28 @@ if ( ! function_exists('append_counter_to_filename'))
         return $filename . "_" . $increment . $ext;
     }
 }
+
+/**
+ * Returns the value of a given attribute for an entity.
+ *
+ * @param $instance
+ * @param $attributeName
+ * @return string
+ */
+function get_entity_attribute_value($instance, $attributeName)
+{
+    if(strpos($attributeName, "~"))
+    {
+        // If there's a "~" in the field $key, this means we are in a single relation case
+        // (One-To-One or Belongs To). The ~ separate the relation name and the value.
+        // For instance : boss~name indicate that the instance as a single "boss" relation,
+        // which has a "name" attribute.
+        list($relation, $attributeName) = explode("~", $attributeName);
+
+        return $instance->{$relation}->{$attributeName};
+    }
+    else
+    {
+        return $instance->{$attributeName};
+    }
+}
