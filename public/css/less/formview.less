@@ -4,20 +4,44 @@ body.sharp-form {
 
     .nav-pills {
       margin-bottom: @grid-gutter-width;
-      li a { background: #ddd; color:#999; }
-      li.active a { border-bottom-color: @sharp-contexbar-bg; color:#fff; background:@sharp-contexbar-bg; border:none; }
+
+      li a {
+        background: #ddd; color:#999;
+      }
+      li.active a {
+        border-bottom-color: @sharp-contexbar-bg;
+        color:#fff;
+        background:@sharp-contexbar-bg;
+        border:none;
+      }
     }
   }
 
   form {
     .clearfix();
-    label.control-label { font-weight: normal; font-size: 18px; color:#666 }
-    .form-group:not(.has-error) .help-block { color:#ACB2B7; font-style: italic; }
-    textarea { overflow: auto; resize: none; }
+
+    label.control-label {
+      font-weight: normal;
+      font-size: 14px;
+      text-transform: uppercase;
+      color:#666
+    }
+
+    .form-group:not(.has-error) .help-block {
+      color:#ACB2B7; font-style: italic;
+    }
+
+    textarea {
+      overflow: auto; resize: none;
+    }
   }
 
   #sharpdelete {
     margin-top:60px;
-    button { margin:auto; display: block; }
+
+    button {
+      margin:auto;
+      display: block;
+    }
   }
 }
