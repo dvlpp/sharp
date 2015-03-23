@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/../maillon/config/sharp_page.php" description="&quot;is_accordeon&quot; =&gt; [" line="134" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="Replace markdown JS component (switch to MirrorMark)">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sharp.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-exif-map.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-exif.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-meta.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-orientation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image.all.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/compile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/runtime.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/tmpl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/tmpl.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/Gruntfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-glyphicons-data-generator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-lessdoc-parser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-raw-files-generator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/shrinkwrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/affix.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/alert.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/button.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/carousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/collapse.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/dropdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/modal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/popover.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/scrollspy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/tab.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/tooltip.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/transition.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/alerts.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/badges.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/bootstrap.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/breadcrumbs.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/button-groups.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/buttons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/carousel.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/close.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/code.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/component-animations.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/dropdowns.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/forms.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/glyphicons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/grid.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/input-groups.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/jumbotron.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/labels.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/list-group.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/media.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/modals.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/navbar.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/navs.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/normalize.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/pager.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/pagination.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/panels.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/popovers.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/print.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/progress-bars.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/responsive-utilities.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/scaffolding.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/tables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/theme.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/thumbnails.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/tooltip.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/type.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/utilities.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/wells.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/npm-shrinkwrap.canonical.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/requirements.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/s3_cache.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/sauce_browsers.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/test-infra/uncached-npm-install.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/jquery.datetimepicker.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/jquery.datetimepicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/css/font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/css/font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/core.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/icons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/larger.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/list.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/path.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_bordered-pulled.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_core.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_fixed-width.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_larger.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_list.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_path.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_rotated-flipped.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_stacked.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/font-awesome.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-noscript.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-ui-noscript.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-ui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/img/progressbar.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/cors/jquery.postmessage-transport.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/cors/jquery.xdr-transport.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-audio.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-image.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-jquery-ui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-process.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-ui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-video.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.iframe-transport.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/MIT-LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.min.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/jsonp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/load.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/parseJSON.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/parseXML.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/script.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/var/nonce.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/var/rquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/xhr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/attr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/classes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/prop.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/support.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/val.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/callbacks.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/access.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/parseHTML.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/ready.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/var/rsingleTag.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/addGetHookIf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/curCSS.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/defaultDisplay.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/hiddenVisibleSelectors.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/support.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/swap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/cssExpand.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/getStyles.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/isHidden.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/rmargin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/rnumnonpx.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/Data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/accepts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/var/data_priv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/var/data_user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/deferred.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/deprecated.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/dimensions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects/Tween.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects/animatedSelector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event/alias.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event/support.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/exports/amd.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/exports/global.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/intro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/_evalUrl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/support.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/var/rcheckableType.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/offset.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/outro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/queue.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/queue/delay.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector-native.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector-sizzle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/serialize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.min.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing/findFilter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing/var/rneedsContext.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/arr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/class2type.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/concat.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/hasOwn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/indexOf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/pnum.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/push.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/rnotwhite.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/slice.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/strundefined.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/support.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/toString.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/wrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.spmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/Gruntfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/component.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/markdown.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/markdown.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/marked.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/yue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/editor.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/paper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/src/editor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/src/intro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/codemirror.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/continuelist.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.dev.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/license.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/lte-ie7.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/xml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/src/microplugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.bootstrap2.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.bootstrap3.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.default.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.legacy.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/selectize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/selectize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/standalone/selectize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/standalone/selectize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/drag_drop.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/dropdown_header.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/optgroup_columns.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/remove_button.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.bootstrap2.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.bootstrap3.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.default.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.legacy.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/sifter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/sifter.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/src/sharp.date.js" afterPath="$PROJECT_DIR$/public/js/src/sharp.date.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/sharp.form.js" afterPath="$PROJECT_DIR$/public/js/sharp.form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/sharp.form.min.js" afterPath="$PROJECT_DIR$/public/js/sharp.form.min.js" />
+    </list>
+    <ignored path="sharp.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="sharp" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="sharp.date.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/src/sharp.date.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1600">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.10964912" vertical-offset="0" max-vertical-offset="1368">
+              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/helpers/sharp_cms.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/ListView/Renderers/Base/DateRenderer.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/docs/commands.md" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/routes.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/AuthController.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/config/site.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/config/sharp.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/CmsController.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/cmslayout.blade.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/entityForm.blade.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/entityList.blade.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpSiteConfig.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/public/css/less/main.less" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/public/css/less/bootstrap-variables.less" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/Entities/HasProperties.php" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/version.txt" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/composer.json" />
+        <option value="$PROJECT_DIR$/artisan" />
+        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/public/css/less/header.less" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Commands/SharpCommandsManager.php" />
+        <option value="$PROJECT_DIR$/src/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/src/helpers/sharp_cms.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php" />
+        <option value="$PROJECT_DIR$/src/routes.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/ListValuator.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php" />
+        <option value="$PROJECT_DIR$/public/js/src/sharp.refSublistItem.js" />
+        <option value="$PROJECT_DIR$/src/helpers/sharp_internal.php" />
+        <option value="$PROJECT_DIR$/src/views/cms/entityList.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/src/sharp.markdown.js" />
+        <option value="$PROJECT_DIR$/public/bower_components/mirrormark/dist/js/mirrormark.package.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/src/views/cms/cmslayout.blade.php" />
+        <option value="$PROJECT_DIR$/src/views/auth/authlayout.blade.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
+        <option value="$PROJECT_DIR$/public/css/less/formfields/field-markdown.less" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/public/js/src/sharp.date.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="JsGruntFileManager">
+    <gruntfiles>
+      <GruntfileState>
+        <gruntfile-path>$PROJECT_DIR$/Gruntfile.js</gruntfile-path>
+      </GruntfileState>
+    </gruntfiles>
+    <initial>false</initial>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="130" />
+    <option name="y" value="22" />
+    <option name="width" value="1340" />
+    <option name="height" value="1418" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jquery" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/workbench/dvlpp/sharp/src" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistory" value="&#10;giraffe&#10;cms&#10;listva&#10;flush&#10;routes&#10;embe&#10;embedRE&#10;helpers&#10;listfield&#10;entityFormField_partial&#10;sharpcms&#10;sharpcmsf&#10;giraffe/repo&#10;Request&#10;input&#10;old&#10;auto&#10;embed&#10;composer.json&#10;SharpEntityListTemplate&#10;sharpcate&#10;em&#10;interna&#10;form&#10;webpage&#10;Model&#10;eloquent&#10;cms.&#10;sharp_&#10;trait&#10;giraffe/reposi&#10;reposit&#10;flash&#10;entity&#10;explode_search_words&#10;updater&#10;withinput&#10;withInput&#10;morphto&#10;MorphOne&#10;row_partial.blade&#10;zookeeper/re&#10;pivottag&#10;starts_w&#10;fr&#10;checkAccess&#10;laravel.log&#10;hasone&#10;belong" />
+    <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="service&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;layout&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/auth/authlayout.blade.php&#10;app.php&#9;null&#9;null&#10;composer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;sharpserv&#9;null&#9;null&#10;list.js&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/public/js/src/sharp.refSublistItem.js&#10;Abstractsharp&#9;null&#9;null&#10;Listva&#9;null&#9;null&#10;routes.php&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/routes.php&#10;Filefield&#9;null&#9;null&#10;sharp_cms&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/helpers/sharp_cms.php&#10;auth&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/auth/authlayout.blade.php&#10;Config\Repository&#9;null&#9;null&#10;Config&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/vendor/laravel/framework/src/Illuminate/Support/Facades/Config.php&#10;sharp&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;SharpSiteConfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpSiteConfig.php&#10;sharpcmsconfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php&#10;compos&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;sharpservice&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;routes&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/routes.php&#10;Commands&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;dateren&#9;null&#9;null&#10;Response&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php&#10;Command&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;SharpManager&#9;null&#9;null&#10;checkAccess&#9;null&#9;null&#10;file&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;Sharpcmsconfig&#9;null&#9;null&#10;compose&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;index.blade&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/index.blade.php&#10;Imageservicepro&#9;null&#9;null&#10;Serviceprovider&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;compo&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;FileVal&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;cmscommands&#9;null&#9;null&#10;filefield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/FileField.php&#10;ui.&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/lang/fr/ui.php&#10;sharp.tag&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.tags.js&#10;crop&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.imagecrop.js&#10;sharp.list&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.list.js&#10;sharp_inter&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/helpers/sharp_internal.php&#10;sharpeloquent&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/SharpEloquentAutoUpdaterService.php&#10;filevalua&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;autou&#9;null&#9;null&#10;cmsla&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/cmslayout.blade.php&#10;listfield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/ListField.php&#10;embedfield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/EmbedField.php&#10;cmscontroller&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsController.php&#10;formfield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/partials/formField.blade.php&#10;embed&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/EmbedField.php" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+    <property name="LayoutCode.rearrangeEntriesLESS" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/public/css/less" />
+      <recent name="$PROJECT_DIR$/app/Quincy/Sharp/Giraffe/Show" />
+      <recent name="$PROJECT_DIR$/app/Quincy/Sharp/Webpage/Webblock" />
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators" />
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/partials" />
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields" />
+      <recent name="$PROJECT_DIR$/app/Quincy/Sharp/User" />
+      <recent name="$PROJECT_DIR$/app/Quincy/Sharp/Giraffe/Show" />
+      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="" />
+      <created>1398153883083</created>
+      <option name="number" value="Default" />
+      <updated>1398153883083</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Add _token in POST uploads vars (CSRF)">
+      <created>1413817500139</created>
+      <option name="number" value="00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1413817500139</updated>
+    </task>
+    <task id="LOCAL-00158" summary="L5 fix: Controllers have to extend something after all">
+      <created>1413881755231</created>
+      <option name="number" value="00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1413881755231</updated>
+    </task>
+    <task id="LOCAL-00159" summary="change markdown parser">
+      <created>1414151868346</created>
+      <option name="number" value="00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1414151868346</updated>
+    </task>
+    <task id="LOCAL-00160" summary="fix embedfield id bug">
+      <created>1414156984551</created>
+      <option name="number" value="00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1414156984551</updated>
+    </task>
+    <task id="LOCAL-00161" summary="fix embedfield id bug">
+      <created>1414159485647</created>
+      <option name="number" value="00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1414159485647</updated>
+    </task>
+    <task id="LOCAL-00162" summary="fix embedfield id bug">
+      <created>1414161071780</created>
+      <option name="number" value="00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1414161071780</updated>
+    </task>
+    <task id="LOCAL-00163" summary="Allow HTML in form field help">
+      <created>1414407132047</created>
+      <option name="number" value="00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1414407132047</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Fix a tricky embedfield bug in duplication case">
+      <created>1414510157547</created>
+      <option name="number" value="00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1414510157547</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Fix a tricky embedfield bug in duplication case">
+      <created>1414510185698</created>
+      <option name="number" value="00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1414510185699</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Configure bower and grunt">
+      <created>1414586513495</created>
+      <option name="number" value="00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1414586513495</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Fix gitignore">
+      <created>1414586641062</created>
+      <option name="number" value="00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1414586641062</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Tweak CSS &amp; grunt watch">
+      <created>1414587526431</created>
+      <option name="number" value="00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1414587526431</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Change composer autoloading from PSR-4 to PSR-0">
+      <created>1415267534329</created>
+      <option name="number" value="00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1415267534329</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Add image crop functionality">
+      <created>1417618213985</created>
+      <option name="number" value="00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1417618213985</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Try to keep sublist ref when create">
+      <created>1417618941003</created>
+      <option name="number" value="00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1417618941003</updated>
+    </task>
+    <task id="LOCAL-00172" summary="bower update">
+      <created>1417619272229</created>
+      <option name="number" value="00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1417619272230</updated>
+    </task>
+    <task id="LOCAL-00173" summary="fix tags order in PivotTagsFields">
+      <created>1417622508986</created>
+      <option name="number" value="00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1417622508986</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Fix translation">
+      <created>1417623114832</created>
+      <option name="number" value="00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1417623114832</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Fix file duplication">
+      <created>1421747219396</created>
+      <option name="number" value="00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1421747219396</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Fix Laravel 5 config">
+      <created>1421748148139</created>
+      <option name="number" value="00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1421748148139</updated>
+    </task>
+    <task id="LOCAL-00177" summary="Fix Laravel 5 config">
+      <created>1421752871320</created>
+      <option name="number" value="00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1421752871320</updated>
+    </task>
+    <task id="LOCAL-00178" summary="Fix Laravel 5 config">
+      <created>1421754429268</created>
+      <option name="number" value="00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1421754429268</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Fix routing using laravel helpers">
+      <created>1421918170604</created>
+      <option name="number" value="00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1421918170604</updated>
+    </task>
+    <task id="LOCAL-00180" summary="Add &quot;auth&quot; attribute in commands to allow commands with &quot;view&quot; or &quot;list&quot; right">
+      <created>1422008935428</created>
+      <option name="number" value="00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1422008935428</updated>
+    </task>
+    <task id="LOCAL-00181" summary="&quot;auth&quot; attribute documentation">
+      <created>1422009460056</created>
+      <option name="number" value="00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1422009460056</updated>
+    </task>
+    <task id="LOCAL-00182" summary="fix &quot;auth&quot; attribute for commands">
+      <created>1422286285886</created>
+      <option name="number" value="00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1422286285886</updated>
+    </task>
+    <task id="LOCAL-00183" summary="Fix command reload">
+      <created>1422286297660</created>
+      <option name="number" value="00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1422286297660</updated>
+    </task>
+    <task id="LOCAL-00184" summary="Update to laravel 5 stable">
+      <created>1423061131495</created>
+      <option name="number" value="00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1423061131495</updated>
+    </task>
+    <task id="LOCAL-00185" summary="Configure regulat L5 Service Provider">
+      <created>1423133529408</created>
+      <option name="number" value="00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1423133529408</updated>
+    </task>
+    <task id="LOCAL-00186" summary="Fix version number">
+      <created>1423133975291</created>
+      <option name="number" value="00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1423133975291</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Use stable release">
+      <created>1423135352039</created>
+      <option name="number" value="00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1423135352039</updated>
+    </task>
+    <task id="LOCAL-00188" summary="Fix some CSS">
+      <created>1423140233562</created>
+      <option name="number" value="00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1423140233562</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Fix authlayout CSS links">
+      <created>1423165336514</created>
+      <option name="number" value="00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1423165336514</updated>
+    </task>
+    <task id="LOCAL-00190" summary="Add quality param in sharp_thumbnail">
+      <created>1423166075346</created>
+      <option name="number" value="00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1423166075346</updated>
+    </task>
+    <task id="LOCAL-00191" summary="Update composer with laravelcollective/html">
+      <created>1423241655357</created>
+      <option name="number" value="00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1423241655357</updated>
+    </task>
+    <task id="LOCAL-00192" summary="Fix single relationship case">
+      <created>1423302247891</created>
+      <option name="number" value="00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1423302247891</updated>
+    </task>
+    <task id="LOCAL-00193" summary="Fix single relationship case (crop)">
+      <created>1423302974353</created>
+      <option name="number" value="00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1423302974353</updated>
+    </task>
+    <task id="LOCAL-00194" summary="Remove [0-9] test on routes for entity id">
+      <created>1423314987694</created>
+      <option name="number" value="00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1423314987694</updated>
+    </task>
+    <task id="LOCAL-00195" summary="Add single relation to list order">
+      <created>1423478945388</created>
+      <option name="number" value="00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1423478945389</updated>
+    </task>
+    <task id="LOCAL-00196" summary="Add update[List]ListItem hook">
+      <created>1423487029169</created>
+      <option name="number" value="00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1423487029169</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Fix update[List]ListItem hook">
+      <created>1423487201638</created>
+      <option name="number" value="00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1423487201638</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Fix bug with single relationship and repopulate">
+      <created>1423490391569</created>
+      <option name="number" value="00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1423490391569</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Fix bug with single relationship and repopulate (2)">
+      <created>1423491951096</created>
+      <option name="number" value="00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1423491951096</updated>
+    </task>
+    <task id="LOCAL-00200" summary="Allow ~ in field id">
+      <created>1423498075488</created>
+      <option name="number" value="00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1423498075489</updated>
+    </task>
+    <task id="LOCAL-00201" summary="Update JS dependencies&#10;Bower update">
+      <created>1423562067252</created>
+      <option name="number" value="00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1423562067252</updated>
+    </task>
+    <task id="LOCAL-00202" summary="Update Serice Provider with LaravelCollective dependencies">
+      <created>1423562788815</created>
+      <option name="number" value="00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1423562788816</updated>
+    </task>
+    <task id="LOCAL-00203" summary="Add ~ management for entity state (active / inactive)">
+      <created>1426691468648</created>
+      <option name="number" value="00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1426691468648</updated>
+    </task>
+    <task id="LOCAL-00204" summary="Update footer credits">
+      <created>1426692627004</created>
+      <option name="number" value="00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1426692627004</updated>
+    </task>
+    <task id="LOCAL-00205" summary="Replace markdown JS component (switch to MirrorMark)">
+      <created>1427124519070</created>
+      <option name="number" value="00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1427124519071</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="130" y="22" width="1340" height="1418" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22462687" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14461046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="&quot;auth&quot; attribute documentation" />
+    <MESSAGE value="fix &quot;auth&quot; attribute for commands" />
+    <MESSAGE value="Fix command reload" />
+    <MESSAGE value="Update to laravel 5 stable" />
+    <MESSAGE value="Configure regulat L5 Service Provider" />
+    <MESSAGE value="Fix version number" />
+    <MESSAGE value="Use stable release" />
+    <MESSAGE value="Fix some CSS" />
+    <MESSAGE value="Fix authlayout CSS links" />
+    <MESSAGE value="Add quality param in sharp_thumbnail" />
+    <MESSAGE value="Update composer with laravelcollective/html" />
+    <MESSAGE value="Fix single relationship case" />
+    <MESSAGE value="Fix single relationship case (crop)" />
+    <MESSAGE value="Remove [0-9] test on routes for entity id" />
+    <MESSAGE value="Add single relation to list order" />
+    <MESSAGE value="Add update[List]ListItem hook" />
+    <MESSAGE value="Fix update[List]ListItem hook" />
+    <MESSAGE value="Fix bug with single relationship and repopulate" />
+    <MESSAGE value="Fix bug with single relationship and repopulate (2)" />
+    <MESSAGE value="Allow ~ in field id" />
+    <MESSAGE value="Update JS dependencies&#10;Bower update" />
+    <MESSAGE value="Update Serice Provider with LaravelCollective dependencies" />
+    <MESSAGE value="Add ~ management for entity state (active / inactive)" />
+    <MESSAGE value="Update footer credits" />
+    <MESSAGE value="Replace markdown JS component (switch to MirrorMark)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replace markdown JS component (switch to MirrorMark)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3025">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="425">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/CmsCommandsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="2650">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/SharpColumnRendererManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1525">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/Base/SharpThumbnailRenderer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="650">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3672" max-vertical-offset="4600">
+          <caret line="181" column="1" selection-start-line="181" selection-start-column="1" selection-end-line="181" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3125">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/CmsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="7049" max-vertical-offset="9600">
+          <caret line="271" column="67" selection-start-line="271" selection-start-column="67" selection-end-line="271" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Commands/SharpCommandsManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2150">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.024523161" vertical-offset="27" max-vertical-offset="31875">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="8074" max-vertical-offset="12825">
+          <caret line="334" column="13" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Config/Repository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033816423" vertical-offset="1572" max-vertical-offset="10475">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/auth/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9057971" vertical-offset="200" max-vertical-offset="1100">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Commands/SharpCommandsManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="2150">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/CmsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6974" max-vertical-offset="9600">
+          <caret line="271" column="67" selection-start-line="271" selection-start-column="67" selection-end-line="271" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/CmsCommandsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2650">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/SharpColumnRendererManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1525">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/Base/SharpThumbnailRenderer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3672" max-vertical-offset="4600">
+          <caret line="181" column="1" selection-start-line="181" selection-start-column="1" selection-end-line="181" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.refSublistItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0567633" vertical-offset="0" max-vertical-offset="2225">
+          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/ListValuator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9094203" vertical-offset="4072" max-vertical-offset="4975">
+          <caret line="196" column="2" selection-start-line="196" selection-start-column="2" selection-end-line="196" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.8985507" vertical-offset="575" max-vertical-offset="3125">
+          <caret line="121" column="3" selection-start-line="121" selection-start-column="3" selection-end-line="121" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.embed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1025">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.conditional_display.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71910113" vertical-offset="2299" max-vertical-offset="3100">
+          <caret line="115" column="24" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1747077" vertical-offset="1732" max-vertical-offset="3100">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/sharp_cms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16447368" vertical-offset="725" max-vertical-offset="3750">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.6498537" vertical-offset="0" max-vertical-offset="6700">
+          <caret line="145" column="44" selection-start-line="145" selection-start-column="44" selection-end-line="145" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/TextareaField.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/sharp_internal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2850">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80409354" vertical-offset="1300" max-vertical-offset="5400">
+          <caret line="99" column="9" selection-start-line="83" selection-start-column="8" selection-end-line="99" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/bower_components/mirrormark/dist/js/mirrormark.package.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07309941" vertical-offset="0" max-vertical-offset="532675">
+          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/bower_components/leptureeditor/src/intro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29239765" vertical-offset="25" max-vertical-offset="9025">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/sharp.form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16374269" vertical-offset="657826" max-vertical-offset="760850">
+          <caret line="26322" column="24" selection-start-line="26322" selection-start-column="24" selection-end-line="26322" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18274854" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/bower_components/mirrormark/dist/css/mirrormark.package.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10800">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/sharp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3472222" vertical-offset="90925" max-vertical-offset="224275">
+          <caret line="3656" column="21" selection-start-line="3656" selection-start-column="21" selection-end-line="3656" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/sharp.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/MarkdownField.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38377193" vertical-offset="2075" max-vertical-offset="4800">
+          <caret line="104" column="2" selection-start-line="104" selection-start-column="2" selection-end-line="104" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2741228" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.markdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65789473" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1644737" vertical-offset="7" max-vertical-offset="3275">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+          <folding>
+            <marker date="1427123708000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031432748" vertical-offset="332" max-vertical-offset="2250">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/less/formfields/field-markdown.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.018274853" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/auth/authlayout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21929824" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/cms/cmslayout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25584796" vertical-offset="0" max-vertical-offset="3275">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.date.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1600">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10964912" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

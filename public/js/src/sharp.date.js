@@ -6,6 +6,7 @@
         {
             timepicker: false,
             datepicker:true,
+            scrollInput: false,
             step:30,
             lang:'fr',
             format:'d/m/Y',

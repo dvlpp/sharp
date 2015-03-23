@@ -3,9 +3,8 @@
     "version": "2.0.0",
     "dependencies": {
         "jquery": "~2.1.1",
-        "bootstrap": "~3.1.0",
-        "datetimepicker": "git://github.com/xdan/datetimepicker.git#~2.3.0",
-        "leptureeditor": "git://github.com/lepture/editor.git#~0.1.0",
+        "bootstrap": "~3.3.0",
+        "datetimepicker": "git://github.com/xdan/datetimepicker.git#~2.4.0",
         "mirrormark": "~1.0.0",
         "fontawesome": "~4.3.0",
         "selectize": "git://github.com/brianreavis/selectize.js.git#~0.12.0",
