@@ -14,7 +14,7 @@ class SharpServiceProvider extends ServiceProvider {
 
 	public function boot()
 	{
-		// - remodeler structure répertoires (jouter /ressources/views, /ressources/lang, ...)
+		// TODO remodeler structure répertoires (ajouter /ressources/views, /ressources/lang, ...)
 
 		$this->loadViewsFrom(__DIR__ . '/../../views', 'sharp');
 		$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'sharp');
@@ -26,7 +26,7 @@ class SharpServiceProvider extends ServiceProvider {
 
 		// Publish assets
 		$this->publishes([
-			__DIR__.'/../../../public/css/sharp.css' => public_path('sharp/sharp.css'),
+			__DIR__.'/../../../public/css/sharp.min.css' => public_path('sharp/sharp.min.css'),
 
 			__DIR__.'/../../../public/js/sharp.ui.min.js' => public_path('sharp/sharp.ui.min.js'),
 			__DIR__.'/../../../public/js/sharp.form.min.js' => public_path('sharp/sharp.form.min.js'),

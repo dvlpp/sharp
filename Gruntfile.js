@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 src: [
                     'public/bower_components/selectize/dist/js/selectize.js',
                     'public/js/src/advancedsearch/sharp.adv.js',
-                    'public/js/src/advancedsearch/sharp.adv.tags.js',
+                    'public/js/src/advancedsearch/sharp.adv.tags.js'
                 ],
                 dest: 'public/js/<%= pkg.name %>.advancedsearch.js'
             },
@@ -31,11 +31,12 @@ module.exports = function(grunt) {
                     // Date
                     'public/bower_components/datetimepicker/jquery.datetimepicker.js',
                     // Markdown
-                    'public/bower_components/leptureeditor/src/intro.js',
-                    'public/bower_components/leptureeditor/src/editor.js',
-                    'public/bower_components/leptureeditor/vendor/codemirror.js',
-                    'public/bower_components/leptureeditor/vendor/markdown.js',
-                    'public/bower_components/leptureeditor/docs/marked.js',
+                    //'public/bower_components/leptureeditor/src/intro.js',
+                    //'public/bower_components/leptureeditor/src/editor.js',
+                    //'public/bower_components/leptureeditor/vendor/codemirror.js',
+                    //'public/bower_components/leptureeditor/vendor/markdown.js',
+                    //'public/bower_components/leptureeditor/docs/marked.js',
+                    'public/bower_components/mirrormark/dist/js/mirrormark.package.js',
                     // Upload
                     'public/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
                     'public/bower_components/jquery-file-upload/js/jquery.fileupload.js',
@@ -81,6 +82,17 @@ module.exports = function(grunt) {
             }
         },
 
+        cssmin: {
+            target: {
+                files: {
+                    'public/css/sharp.min.css': [
+                        'public/bower_components/mirrormark/dist/css/mirrormark.package.css',
+                        'public/css/sharp.css'
+                    ]
+                }
+            }
+        },
+
         watch: {
             js: {
                 files: [
@@ -94,6 +106,11 @@ module.exports = function(grunt) {
             css: {
                 files: ['public/css/less/**/*.less'],
                 tasks: ['less']
+            },
+
+            mincss: {
+                files: ['public/css/sharp.css'],
+                tasks: ['cssmin']
             }
         }
     });
@@ -102,7 +119,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', ['concat', 'uglify', 'less']);
+    grunt.registerTask('default', ['concat', 'uglify', 'less', 'mincss']);
 
 };

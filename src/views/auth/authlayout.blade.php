@@ -10,7 +10,7 @@
     <title>Sharp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-    <link href="/sharp/sharp.css" rel="stylesheet">
+    <link href="/sharp/sharp.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

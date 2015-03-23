@@ -5775,15 +5775,15 @@ button.close {
   }
 }
 /*!
- *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fonts//fontawesome-webfont.eot?v=4.2.0');
-  src: url('fonts//fontawesome-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('fonts//fontawesome-webfont.woff?v=4.2.0') format('woff'), url('fonts//fontawesome-webfont.ttf?v=4.2.0') format('truetype'), url('fonts//fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+  src: url('fonts//fontawesome-webfont.eot?v=4.3.0');
+  src: url('fonts//fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('fonts//fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('fonts//fontawesome-webfont.woff?v=4.3.0') format('woff'), url('fonts//fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('fonts//fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -5794,6 +5794,7 @@ button.close {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
 }
 /* makes the font 33% larger relative to the icon container */
 .fa-lg {
@@ -5855,6 +5856,10 @@ button.close {
 .fa-spin {
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
+}
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
 }
 @-webkit-keyframes fa-spin {
   0% {
@@ -6386,6 +6391,7 @@ button.close {
 .fa-twitter:before {
   content: "\f099";
 }
+.fa-facebook-f:before,
 .fa-facebook:before {
   content: "\f09a";
 }
@@ -7035,7 +7041,8 @@ button.close {
 .fa-male:before {
   content: "\f183";
 }
-.fa-gittip:before {
+.fa-gittip:before,
+.fa-gratipay:before {
   content: "\f184";
 }
 .fa-sun-o:before {
@@ -7302,6 +7309,7 @@ button.close {
 .fa-history:before {
   content: "\f1da";
 }
+.fa-genderless:before,
 .fa-circle-thin:before {
   content: "\f1db";
 }
@@ -7445,6 +7453,127 @@ button.close {
 }
 .fa-meanpath:before {
   content: "\f20c";
+}
+.fa-buysellads:before {
+  content: "\f20d";
+}
+.fa-connectdevelop:before {
+  content: "\f20e";
+}
+.fa-dashcube:before {
+  content: "\f210";
+}
+.fa-forumbee:before {
+  content: "\f211";
+}
+.fa-leanpub:before {
+  content: "\f212";
+}
+.fa-sellsy:before {
+  content: "\f213";
+}
+.fa-shirtsinbulk:before {
+  content: "\f214";
+}
+.fa-simplybuilt:before {
+  content: "\f215";
+}
+.fa-skyatlas:before {
+  content: "\f216";
+}
+.fa-cart-plus:before {
+  content: "\f217";
+}
+.fa-cart-arrow-down:before {
+  content: "\f218";
+}
+.fa-diamond:before {
+  content: "\f219";
+}
+.fa-ship:before {
+  content: "\f21a";
+}
+.fa-user-secret:before {
+  content: "\f21b";
+}
+.fa-motorcycle:before {
+  content: "\f21c";
+}
+.fa-street-view:before {
+  content: "\f21d";
+}
+.fa-heartbeat:before {
+  content: "\f21e";
+}
+.fa-venus:before {
+  content: "\f221";
+}
+.fa-mars:before {
+  content: "\f222";
+}
+.fa-mercury:before {
+  content: "\f223";
+}
+.fa-transgender:before {
+  content: "\f224";
+}
+.fa-transgender-alt:before {
+  content: "\f225";
+}
+.fa-venus-double:before {
+  content: "\f226";
+}
+.fa-mars-double:before {
+  content: "\f227";
+}
+.fa-venus-mars:before {
+  content: "\f228";
+}
+.fa-mars-stroke:before {
+  content: "\f229";
+}
+.fa-mars-stroke-v:before {
+  content: "\f22a";
+}
+.fa-mars-stroke-h:before {
+  content: "\f22b";
+}
+.fa-neuter:before {
+  content: "\f22c";
+}
+.fa-facebook-official:before {
+  content: "\f230";
+}
+.fa-pinterest-p:before {
+  content: "\f231";
+}
+.fa-whatsapp:before {
+  content: "\f232";
+}
+.fa-server:before {
+  content: "\f233";
+}
+.fa-user-plus:before {
+  content: "\f234";
+}
+.fa-user-times:before {
+  content: "\f235";
+}
+.fa-hotel:before,
+.fa-bed:before {
+  content: "\f236";
+}
+.fa-viacoin:before {
+  content: "\f237";
+}
+.fa-train:before {
+  content: "\f238";
+}
+.fa-subway:before {
+  content: "\f239";
+}
+.fa-medium:before {
+  content: "\f23a";
 }
 body#sharp .btn:active,
 body#sharp .btn:focus {
@@ -7807,505 +7936,17 @@ body.sharp-form #sharpdelete button {
   color: red !important;
   background: #ffffff !important;
 }
-.sharp-field-markdown {
-  /* PADDING */
-  /* CURSOR */
-  /* Shown when moving in bi-directional text */
-  /* Can style cursor different in overwrite (non-insert) mode */
-  /* DEFAULT THEME */
-  /* STOP */
-  /* The rest of this file contains styles related to the mechanics of
-     the editor. You probably shouldn't touch them. */
-  /* The fake, visible scrollbars. Used to force redraw during scrolling
-     before actuall scrolling happens, thus preventing shaking and
-     flickering artifacts. */
-  /* IE7 hack to prevent it from returning funny offsetTops on the spans */
-  /* this is the title */
-  /* SPECIFIQUE SHARP */
-}
-.sharp-field-markdown .CodeMirror {
-  height: 300px;
-}
-.sharp-field-markdown .CodeMirror-scroll {
-  /* Set scrolling behaviour here */
-  overflow: auto;
-}
-.sharp-field-markdown .CodeMirror-lines {
-  padding: 4px 0;
-  /* Vertical padding around content */
-}
-.sharp-field-markdown .CodeMirror pre {
-  padding: 0 4px;
-  /* Horizontal padding of content */
-}
-.sharp-field-markdown .CodeMirror-scrollbar-filler {
-  background-color: white;
-  /* The little square between H and V scrollbars */
-}
-.sharp-field-markdown .CodeMirror div.CodeMirror-cursor {
-  border-left: 1px solid black;
-  z-index: 3;
-}
-.sharp-field-markdown .CodeMirror div.CodeMirror-secondarycursor {
-  border-left: 1px solid silver;
-}
-.sharp-field-markdown .CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor {
-  width: auto;
-  border: 0;
-  background: #7e7;
-  z-index: 1;
-}
-.sharp-field-markdown .cm-s-paper .cm-keyword {
-  color: #555;
-}
-.sharp-field-markdown .cm-s-paper .cm-atom {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-s-paper .cm-number {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-s-paper .cm-def {
-  color: #00f;
-}
-.sharp-field-markdown .cm-s-paper .cm-variable {
-  color: black;
-}
-.sharp-field-markdown .cm-s-paper .cm-variable-2 {
-  color: #555;
-}
-.sharp-field-markdown .cm-s-paper .cm-variable-3 {
-  color: #085;
-}
-.sharp-field-markdown .cm-s-paper .cm-property {
-  color: black;
-}
-.sharp-field-markdown .cm-s-paper .cm-operator {
-  color: black;
-}
-.sharp-field-markdown .cm-s-paper .cm-comment {
-  color: #959595;
-}
-.sharp-field-markdown .cm-s-paper .cm-string {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-s-paper .cm-string-2 {
-  color: #f50;
-}
-.sharp-field-markdown .cm-s-paper .cm-meta {
-  color: #555;
-}
-.sharp-field-markdown .cm-s-paper .cm-error {
-  color: #f00;
-}
-.sharp-field-markdown .cm-s-paper .cm-qualifier {
-  color: #555;
-}
-.sharp-field-markdown .cm-s-paper .cm-builtin {
-  color: #555;
-}
-.sharp-field-markdown .cm-s-paper .cm-bracket {
-  color: #997;
-}
-.sharp-field-markdown .cm-s-paper .cm-tag {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-s-paper .cm-attribute {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-s-paper .cm-header {
-  color: #000;
-}
-.sharp-field-markdown .cm-s-paper .cm-quote {
-  color: #888;
-}
-.sharp-field-markdown .cm-s-paper .cm-hr {
-  color: #999;
-}
-.sharp-field-markdown .cm-s-paper .cm-link {
-  color: #7f8c8d;
-}
-.sharp-field-markdown .cm-negative {
-  color: #d44;
-}
-.sharp-field-markdown .cm-positive {
-  color: #292;
-}
-.sharp-field-markdown .cm-header,
-.sharp-field-markdown .cm-strong {
-  font-weight: bold;
-}
-.sharp-field-markdown .cm-em {
-  font-style: italic;
-}
-.sharp-field-markdown .cm-link {
-  text-decoration: underline;
-}
-.sharp-field-markdown .cm-invalidchar {
-  color: #f00;
-}
-.sharp-field-markdown div.CodeMirror span.CodeMirror-matchingbracket {
-  color: #0f0;
-}
-.sharp-field-markdown div.CodeMirror span.CodeMirror-nonmatchingbracket {
-  color: #f22;
-}
-.sharp-field-markdown .CodeMirror {
-  position: relative;
-  overflow: hidden;
-}
-.sharp-field-markdown .CodeMirror-scroll {
-  /* 30px is the magic margin used to hide the element's real scrollbars */
-  /* See overflow: hidden in .CodeMirror, and the paddings in .CodeMirror-sizer */
-  margin-bottom: -30px;
-  margin-right: -30px;
-  padding-bottom: 30px;
-  padding-right: 30px;
-  height: 100%;
-  outline: none;
-  /* Prevent dragging from highlighting the element */
-  position: relative;
-}
-.sharp-field-markdown .CodeMirror-sizer {
-  position: relative;
-}
-.sharp-field-markdown .CodeMirror-vscrollbar,
-.sharp-field-markdown .CodeMirror-hscrollbar,
-.sharp-field-markdown .CodeMirror-scrollbar-filler {
-  position: absolute;
-  z-index: 6;
-  display: none;
-}
-.sharp-field-markdown .CodeMirror-vscrollbar {
-  right: 0;
-  top: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.sharp-field-markdown .CodeMirror-hscrollbar {
-  bottom: 0;
-  left: 0;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-.sharp-field-markdown .CodeMirror-scrollbar-filler {
-  right: 0;
-  bottom: 0;
-  z-index: 6;
-}
-.sharp-field-markdown .CodeMirror-lines {
-  cursor: text;
-}
-.sharp-field-markdown .CodeMirror pre {
-  /* Reset some styles that the rest of the page might have set */
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
-  border-width: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  white-space: pre-wrap;
-  word-wrap: normal;
-  line-height: inherit;
-  color: inherit;
-  z-index: 2;
-  position: relative;
-  overflow: visible;
-}
-.sharp-field-markdown .CodeMirror-wrap pre {
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: normal;
-}
-.sharp-field-markdown .CodeMirror-linebackground {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-}
-.sharp-field-markdown .CodeMirror-linewidget {
-  position: relative;
-  z-index: 2;
-  overflow: auto;
-}
-.sharp-field-markdown .CodeMirror-widget {
-  display: inline-block;
-}
-.sharp-field-markdown .CodeMirror-wrap .CodeMirror-scroll {
-  overflow-x: hidden;
-}
-.sharp-field-markdown .CodeMirror-measure {
-  position: absolute;
-  width: 100%;
-  height: 0px;
-  overflow: hidden;
-  visibility: hidden;
-}
-.sharp-field-markdown .CodeMirror-measure pre {
-  position: static;
-}
-.sharp-field-markdown .CodeMirror div.CodeMirror-cursor {
-  position: absolute;
-  visibility: hidden;
-  border-right: none;
-  width: 0;
-}
-.sharp-field-markdown .CodeMirror-focused div.CodeMirror-cursor {
-  visibility: visible;
-}
-.sharp-field-markdown .CodeMirror-selected {
-  background: #d9d9d9;
-}
-.sharp-field-markdown .CodeMirror-focused .CodeMirror-selected {
-  background: #BDC3C7;
-}
-.sharp-field-markdown .cm-searching {
-  background: #ffa;
-  background: rgba(255, 255, 0, 0.4);
-}
-.sharp-field-markdown .CodeMirror span {
-  *vertical-align: text-bottom;
-}
-@media print {
-  .sharp-field-markdown {
-    /* Hide the cursor when printing */
-  }
-  .sharp-field-markdown .CodeMirror div.CodeMirror-cursor {
-    visibility: hidden;
-  }
-}
-.sharp-field-markdown .CodeMirror {
-  height: 450px;
-}
-.sharp-field-markdown :-webkit-full-screen {
-  background: #f9f9f5;
-  padding: 0.5em 1em;
-  width: 100%;
-  height: 100%;
-}
-.sharp-field-markdown :-moz-full-screen {
-  padding: 0.5em 1em;
-  background: #f9f9f5;
-  width: 100%;
-  height: 100%;
-}
-.sharp-field-markdown .editor-wrapper {
-  font: 16px/1.62 "Helvetica Neue", "Xin Gothic", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
-  color: #2c3e50;
-}
-.sharp-field-markdown .editor-wrapper input.title {
-  font: 18px "Helvetica Neue", "Xin Gothic", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
-  background: transparent;
-  padding: 4px;
-  width: 100%;
-  border: none;
-  outline: none;
-  opacity: 0.6;
-}
-.sharp-field-markdown .editor-toolbar {
-  position: relative;
-  opacity: 0.6;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-.sharp-field-markdown .editor-toolbar:before,
-.sharp-field-markdown .editor-toolbar:after {
-  display: block;
-  content: ' ';
-  height: 1px;
-  background-color: #bdc3c7;
-  background: -moz-linear-gradient(45deg, #f9f9f9, #bdc3c7, #f9f9f9);
-  background: -webkit-linear-gradient(45deg, #f9f9f9, #bdc3c7, #f9f9f9);
-  background: -ms-linear-gradient(45deg, #f9f9f9, #bdc3c7, #f9f9f9);
-  background: linear-gradient(45deg, #f9f9f9, #bdc3c7, #f9f9f9);
-}
-.sharp-field-markdown .editor-toolbar:before {
-  margin-bottom: 8px;
-}
-.sharp-field-markdown .editor-toolbar:after {
-  margin-top: 8px;
-}
-.sharp-field-markdown .editor-wrapper input.title:hover,
-.sharp-field-markdown .editor-wrapper input.title:focus,
-.sharp-field-markdown .editor-toolbar:hover {
-  opacity: 0.8;
-}
-.sharp-field-markdown .editor-toolbar a {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none !important;
-  color: #2c3e50 !important;
-  width: 24px;
-  height: 24px;
-  margin: 2px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  cursor: pointer;
-}
-.sharp-field-markdown .editor-toolbar a:hover,
-.sharp-field-markdown .editor-toolbar a.active {
-  background: #fcfcfc;
-  border-color: #95a5a6;
-}
-.sharp-field-markdown .editor-toolbar a:before {
-  line-height: 24px;
-}
-.sharp-field-markdown .editor-toolbar i.separator {
-  display: inline-block;
-  width: 0;
-  border-left: 1px solid #d9d9d9;
-  border-right: 1px solid white;
-  color: transparent;
-  text-indent: -10px;
-  margin: 0 6px;
-}
-.sharp-field-markdown .editor-toolbar a.icon-fullscreen {
-  position: absolute;
-  right: 0;
-}
-.sharp-field-markdown .editor-statusbar {
-  border-top: 1px solid #ece9e9;
-  padding: 8px 10px;
-  font-size: 12px;
-  color: #959694;
-  text-align: right;
-}
-.sharp-field-markdown .editor-statusbar span {
-  display: inline-block;
-  min-width: 4em;
-  margin-left: 1em;
-}
-.sharp-field-markdown .editor-statusbar .lines:before {
-  content: 'lines: ';
-}
-.sharp-field-markdown .editor-statusbar .words:before {
-  content: 'words: ';
-}
-.sharp-field-markdown .editor-preview {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 100%;
-  background: #f9f9f5;
-  z-index: 9999;
-  overflow: auto;
-  -webkit-transition: left 0.2s ease;
-  -moz-transition: left 0.2s ease;
-  -ms-transition: left 0.2s ease;
-  transition: left 0.2s ease;
-}
-.sharp-field-markdown .editor-preview-active {
-  left: 0;
-}
-.sharp-field-markdown .editor-preview > p {
-  margin-top: 0;
-}
-.sharp-field-markdown .editor-statusbar {
-  display: none;
-}
-.sharp-field-markdown .cm-s-paper {
-  border: 1px solid #ddd;
-}
-.sharp-field-markdown.has-error .cm-s-paper {
-  border-color: #A94442;
-}
-.sharp-field-markdown .editor-toolbar:before,
-.sharp-field-markdown .editor-toolbar:after {
-  background: none;
-  margin: 0;
-}
-.sharp-field-markdown .CodeMirror {
-  height: 250px;
-  background: #fff;
-}
-.sharp-field-markdown .CodeMirror pre {
-  word-break: normal !important;
-  /* override Bootstrap */
-}
-.sharp-field-markdown .icon-bold,
-.sharp-field-markdown .icon-italic,
-.sharp-field-markdown .icon-quote,
-.sharp-field-markdown .icon-unordered-list,
-.sharp-field-markdown .icon-ordered-list,
-.sharp-field-markdown .icon-link,
-.sharp-field-markdown .icon-image,
-.sharp-field-markdown .icon-play,
-.sharp-field-markdown .icon-music,
-.sharp-field-markdown .icon-contract,
-.sharp-field-markdown .icon-fullscreen,
-.sharp-field-markdown .icon-question,
-.sharp-field-markdown .icon-info,
-.sharp-field-markdown .icon-undo,
-.sharp-field-markdown .icon-redo,
-.sharp-field-markdown .icon-code,
-.sharp-field-markdown .icon-preview {
-  font-family: 'Glyphicons Halflings';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-.sharp-field-markdown .icon-bold:before {
-  content: "\e048";
-}
-.sharp-field-markdown .icon-italic:before {
-  content: "\e049";
-}
-.sharp-field-markdown .icon-quote:before {
-  content: "\e111";
-}
-.sharp-field-markdown .icon-unordered-list:before {
-  content: "\e056";
-}
-.sharp-field-markdown .icon-ordered-list:before {
-  content: "\e032";
-}
-.sharp-field-markdown .icon-link:before {
-  content: "\e144";
-}
-.sharp-field-markdown .icon-image:before {
-  content: "\e060";
-}
-.sharp-field-markdown .icon-play:before {
-  content: "\e008";
-}
-.sharp-field-markdown .icon-music:before {
-  content: "\e009";
-}
-.sharp-field-markdown .icon-contract:before {
-  content: "\e00a";
-}
-.sharp-field-markdown .icon-fullscreen:before {
-  content: "\e096";
-}
-.sharp-field-markdown .icon-question:before {
-  content: "\e00c";
-}
-.sharp-field-markdown .icon-info:before {
-  content: "\e00d";
-}
-.sharp-field-markdown .icon-undo:before {
-  content: "\e00e";
-}
-.sharp-field-markdown .icon-redo:before {
-  content: "\e00f";
-}
-.sharp-field-markdown .icon-code:before {
-  content: "\e011";
-}
-.sharp-field-markdown .icon-preview:before {
-  content: "\e105";
+.sharp-field-markdown .mirrormark-toolbar {
+  margin-bottom: 0;
+  border: 1px solid #ccc;
+  border-bottom-width: 0;
+  padding: 0;
+}
+.sharp-field-markdown .CodeMirror-wrap {
+  border: 1px solid #ccc;
+  border-top-width: 0;
+  padding: 0 10px;
+  font-size: 14px;
 }
 .sharp-field-file .sharp-file {
   position: relative;
@@ -8861,8 +8502,8 @@ body.sharp-form #sharpdelete button {
   position: relative;
 }
 /**
- * selectize.bootstrap3.css (v0.11.2) - Bootstrap 3 Theme
- * Copyright (c) 2013 Brian Reavis & contributors
+ * selectize.bootstrap3.css (v0.12.0) - Bootstrap 3 Theme
+ * Copyright (c) 2013–2015 Brian Reavis & contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
@@ -8977,8 +8618,8 @@ body.sharp-form #sharpdelete button {
 .selectize-input,
 .selectize-input input {
   color: #333333;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: inherit;
   line-height: 20px;
   -webkit-font-smoothing: inherit;
 }
@@ -9089,7 +8730,7 @@ body.sharp-form #sharpdelete button {
 .selectize-dropdown {
   position: absolute;
   z-index: 10;
-  border: 1px solid #cccccc;
+  border: 1px solid #d0d0d0;
   background: #ffffff;
   margin: -1px 0 0 0;
   border-top: 0 none;

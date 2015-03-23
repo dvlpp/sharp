@@ -12,7 +12,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    <link href="/sharp/sharp.css" rel="stylesheet">
+    <link href="/sharp/sharp.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
