@@ -94,8 +94,8 @@
       <file leaf-file-name="entityList.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25876212" vertical-offset="3853" max-vertical-offset="6700">
-              <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.37061894" vertical-offset="753" max-vertical-offset="6700">
+              <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -365,12 +365,6 @@
       <created>1398153883083</created>
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
-    </task>
-    <task id="LOCAL-00160" summary="fix embedfield id bug">
-      <created>1414156984551</created>
-      <option name="number" value="00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1414156984551</updated>
     </task>
     <task id="LOCAL-00161" summary="fix embedfield id bug">
       <created>1414159485647</created>
@@ -660,7 +654,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427128647347</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="Fix dropdown menu direction">
+      <created>1427187063293</created>
+      <option name="number" value="00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1427187063293</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -732,7 +732,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Update to laravel 5 stable" />
     <MESSAGE value="Configure regulat L5 Service Provider" />
     <MESSAGE value="Fix version number" />
     <MESSAGE value="Use stable release" />
@@ -757,7 +756,8 @@
     <MESSAGE value="Bower update + remove input mouse scroll on Dates" />
     <MESSAGE value="Slight CSS changes" />
     <MESSAGE value="Version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version" />
+    <MESSAGE value="Fix dropdown menu direction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix dropdown menu direction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1156,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25876212" vertical-offset="3853" max-vertical-offset="6700">
-          <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.37061894" vertical-offset="753" max-vertical-offset="6700">
+          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
           <folding />
         </state>
       </provider>

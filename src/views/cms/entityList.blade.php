@@ -48,7 +48,7 @@
 
     {{-- Sublist --}}
     @if($subList)
-        <div class="dropdown navbar-right normal-mode">
+        <div class="dropdown pull-right normal-mode">
             <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">
                 {{ $subLists[$subList] }} <span class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-right">
