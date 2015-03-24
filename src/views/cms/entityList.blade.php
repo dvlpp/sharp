@@ -18,7 +18,7 @@
     @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
         <div class="dropdown navbar-right normal-mode">
             <a class="btn navbar-btn" data-toggle="dropdown" data-target="#"><i class="fa fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-right">
                 @foreach($entity->commands->list as $command)
                     <li>
                         <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
@@ -51,7 +51,7 @@
         <div class="dropdown navbar-right normal-mode">
             <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">
                 {{ $subLists[$subList] }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-right">
                 @foreach($subLists as $idsl => $sl)
                     <li><a href="{{ URL::route('cms.list', ["category"=>$category->key, "entity"=>$entityKey, "sub"=>$idsl]) }}">{{ $sl }}</a></li>
                 @endforeach
