@@ -18,7 +18,7 @@
     @if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && \Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'update', $entityKey))
         <div class="dropdown navbar-right normal-mode">
             <a class="btn navbar-btn" data-toggle="dropdown" data-target="#"><i class="fa fa-caret-down"></i></a>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="dropdown-menu pull-right">
                 @foreach($entity->commands->list as $command)
                     <li>
                         <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
@@ -51,7 +51,7 @@
         <div class="dropdown pull-right normal-mode">
             <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">
                 {{ $subLists[$subList] }} <span class="caret"></span></a>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="dropdown-menu pull-right">
                 @foreach($subLists as $idsl => $sl)
                     <li><a href="{{ URL::route('cms.list', ["category"=>$category->key, "entity"=>$entityKey, "sub"=>$idsl]) }}">{{ $sl }}</a></li>
                 @endforeach
@@ -173,7 +173,7 @@
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-caret-down"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <ul class="dropdown-menu pull-right" role="menu">
 
                                 @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted('entity', 'delete', $entityKey))
                                     <li>
