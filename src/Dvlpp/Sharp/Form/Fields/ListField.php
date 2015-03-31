@@ -36,7 +36,7 @@ class ListField extends AbstractSharpField {
         $str .= '<ul class="sharp-list list-group" '.$strAttr.'>';
 
         $listkey = $this->key;
-        if(Input::old($listkey))
+        if( ! is_null(Input::old($listkey)))
         {
             // Form is re-displayed (validation errors): have to grab old values instead of DB
             $values = Input::old($listkey);
