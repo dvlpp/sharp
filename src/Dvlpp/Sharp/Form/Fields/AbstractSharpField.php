@@ -152,6 +152,9 @@ abstract class AbstractSharpField {
         {
             // If is list item, have to look inside list array
             $list = Input::old($this->listKey);
+
+            if( ! is_array($list)) return [];
+
             $item = $list[$this->instance->id];
             return $item[$this->key];
         }
