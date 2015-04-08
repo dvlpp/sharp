@@ -27,7 +27,7 @@ class LabelField extends AbstractSharpField {
             throw new MandatoryEntityAttributeNotFoundException("LabelField : Mandatory attribute format can't be found");
         }
 
-        if($this->getOldValue() === null)
+        if($this->getOldValue() === null || (is_array($this->getOldValue()) && !sizeof($this->getOldValue())))
         {
             $baseEntity = $this->instance;
             if ($baseEntity instanceof Model)
