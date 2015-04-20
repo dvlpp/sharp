@@ -4,6 +4,7 @@ use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use App;
 use Form;
+use Illuminate\Support\Str;
 use Input;
 use Lang;
 
@@ -112,9 +113,11 @@ class PivotTagsField extends AbstractSharpField {
             $valuesToAdd = [];
             foreach ($this->getOldValue() as $val)
             {
-                if (!is_numeric($val))
+                if (!is_numeric($val) && Str::startsWith($val, "#"))
                 {
-                    // Tag was created by user before. Have to tell selectize.js to add this non existent option in the list
+                    // Tag was created by user before. Have to tell selectize.js
+                    // to add this non existent option in the list
+                    $val = substr($val, 1);
                     $valuesToAdd[] = $val;
                 }
                 $value[] = $val;
