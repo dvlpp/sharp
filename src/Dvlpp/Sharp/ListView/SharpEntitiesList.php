@@ -166,12 +166,13 @@ class SharpEntitiesList {
         }
 
         // Manage column sort: first determine which column is sorted
+        list($sortCol, $sortDir) = $this->retrieveSorting();
         foreach($this->entity->list_template->columns as $colKey=>$col)
         {
-            if($col->sortable && ($colKey==Input::get("sort") || !Input::has("sort")))
+            if($col->sortable && (!$sortCol || $colKey==$sortCol))
             {
                 $this->params->setSortedColumn($colKey);
-                $this->params->setSortedDirection(Input::get("dir") ?: "asc");
+                $this->params->setSortedDirection($sortDir);
                 break;
             }
         }
@@ -211,6 +212,31 @@ class SharpEntitiesList {
         $this->params->setSearch($search);
 
         return $this->params;
+    }
+
+    private function retrieveSorting()
+    {
+        $sortCol = null;
+        $sortDir = null;
+
+        if($this->entity->list_template->sort_default)
+        {
+            if(strpos($this->entity->list_template->sort_default, ':'))
+            {
+                list($sortCol, $sortDir) = explode(":", $this->entity->list_template->sort_default);
+            }
+            else
+            {
+                $sortCol = $this->entity->list_template->sort_default;
+            }
+        }
+        else
+        {
+            $sortCol = Input::has("sort") ? Input::get("sort") : null;
+            $sortDir = Input::has("dir") ? Input::get("dir") : 'asc';
+        }
+
+        return [$sortCol, $sortDir];
     }
 
 
