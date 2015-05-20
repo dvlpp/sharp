@@ -4,8 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/../maillon/config/sharp_page.php" description="&quot;is_accordeon&quot; =&gt; [" line="134" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="Add">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php" />
+    <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sharp.iml" afterPath="$PROJECT_DIR$/.idea/sharp.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sharp.iws" />
@@ -31,21 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PivotTagsField.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/PivotTagsField.php">
+      <file leaf-file-name="SharpAuth.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuth.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2597" max-vertical-offset="3425">
-              <caret line="116" column="17" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SharpEntitiesList.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.736715" vertical-offset="372" max-vertical-offset="6100">
-              <caret line="242" column="1" selection-start-line="242" selection-start-column="1" selection-end-line="242" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.16447368" vertical-offset="0" max-vertical-offset="1850">
+              <caret line="11" column="72" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -64,13 +55,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/docs/commands.md" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/routes.php" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/AuthController.php" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/config/site.php" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/config/sharp.php" />
-        <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php" />
         <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers/CmsController.php" />
         <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/cmslayout.blade.php" />
         <option value="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/entityForm.blade.php" />
@@ -99,7 +83,6 @@
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/src/views/cms/cmslayout.blade.php" />
         <option value="$PROJECT_DIR$/src/views/auth/authlayout.blade.php" />
-        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
         <option value="$PROJECT_DIR$/public/css/less/formfields/field-markdown.less" />
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/public/js/src/sharp.date.js" />
@@ -115,6 +98,14 @@
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/EmbedField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/PivotTagsField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/SharpAuthConfigImpl.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuthGuard.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/AuthenticateMiddleware.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuthenticateMiddleware.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/RedirectIfAuthenticatedMiddleware.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/SharpAuthenticateMiddleware.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuth.php" />
       </list>
     </option>
   </component>
@@ -133,8 +124,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="52" />
     <option name="y" value="22" />
-    <option name="width" value="1321" />
-    <option name="height" value="878" />
+    <option name="width" value="2508" />
+    <option name="height" value="1418" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -256,7 +247,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
+              <option name="myItemId" value="Config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -282,11 +273,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
+              <option name="myItemId" value="Auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Fields" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dvlpp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -297,7 +318,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/workbench/dvlpp/sharp/src" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="web-ide.project.structure" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -317,11 +338,11 @@
       <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth" />
+      <recent name="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config" />
       <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/partials" />
       <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields" />
       <recent name="$PROJECT_DIR$/app/Quincy/Sharp/User" />
-      <recent name="$PROJECT_DIR$/app/Quincy/Sharp/Giraffe/Show" />
-      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators" />
     </key>
   </component>
   <component name="RunManager">
@@ -339,9 +360,6 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -349,6 +367,9 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -363,12 +384,6 @@
       <created>1398153883083</created>
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
-    </task>
-    <task id="LOCAL-00167" summary="Fix gitignore">
-      <created>1414586641062</created>
-      <option name="number" value="00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1414586641062</updated>
     </task>
     <task id="LOCAL-00168" summary="Tweak CSS &amp; grunt watch">
       <created>1414587526431</created>
@@ -658,11 +673,17 @@
       <option name="project" value="LOCAL" />
       <updated>1429534708903</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Add &quot;sort_default&quot; config attribute for columns">
+      <created>1430467570001</created>
+      <option name="number" value="00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1430467570001</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="22" width="1321" height="878" extended-state="0" />
+    <frame x="52" y="22" width="2508" height="1418" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -672,7 +693,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22785768" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22767144" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -683,9 +704,9 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -705,9 +726,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14461046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="UnknownFeatures">
@@ -730,7 +751,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fix authlayout CSS links" />
     <MESSAGE value="Add quality param in sharp_thumbnail" />
     <MESSAGE value="Update composer with laravelcollective/html" />
     <MESSAGE value="Fix single relationship case" />
@@ -755,7 +775,8 @@
     <MESSAGE value="Fix repopulation of empty list" />
     <MESSAGE value="Fix LabelField Old value check when in List Item" />
     <MESSAGE value="Fix repopulation (remove initial # if tag was created)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix repopulation (remove initial # if tag was created)" />
+    <MESSAGE value="Add &quot;sort_default&quot; config attribute for columns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add &quot;sort_default&quot; config attribute for columns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -764,41 +785,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controllers/CmsCommandsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2650">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/SharpColumnRendererManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1525">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/Renderers/Base/SharpThumbnailRenderer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3672" max-vertical-offset="4600">
-          <caret line="181" column="1" selection-start-line="181" selection-start-column="1" selection-end-line="181" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.refSublistItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0567633" vertical-offset="0" max-vertical-offset="2225">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/ListValuator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9094203" vertical-offset="4072" max-vertical-offset="4975">
@@ -974,13 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031432748" vertical-offset="332" max-vertical-offset="2250">
-          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/CmsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.861111" vertical-offset="0" max-vertical-offset="9475">
@@ -1090,9 +1069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25804093" vertical-offset="3522" max-vertical-offset="5550">
           <caret line="155" column="45" selection-start-line="155" selection-start-column="45" selection-end-line="155" selection-end-column="45" />
-          <folding>
-            <element signature="e#42#95#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1110,18 +1086,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09356725" vertical-offset="372" max-vertical-offset="6100">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/PivotTagsField.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2597" max-vertical-offset="3425">
+        <state vertical-scroll-proportion="0.5065789" vertical-offset="2057" max-vertical-offset="3425">
           <caret line="116" column="17" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php">
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/SharpAuth.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.736715" vertical-offset="372" max-vertical-offset="6100">
-          <caret line="242" column="1" selection-start-line="242" selection-start-column="1" selection-end-line="242" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.18274854" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Config/SharpSiteConfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41520467" vertical-offset="382" max-vertical-offset="1750">
+          <caret line="41" column="61" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2975147" vertical-offset="0" max-vertical-offset="2275">
+          <caret line="71" column="61" selection-start-line="71" selection-start-column="61" selection-end-line="71" selection-end-column="61" />
+          <folding>
+            <element signature="e#30#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16447368" vertical-offset="0" max-vertical-offset="1850">
+          <caret line="11" column="72" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="72" />
           <folding />
         </state>
       </provider>
