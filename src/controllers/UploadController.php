@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class UploadController extends Controller {
@@ -8,48 +10,65 @@ class UploadController extends Controller {
     {
         try
         {
-            $tab = $this->_uploadFile();
-            return Response::json(["file"=>$tab]);
+            $tab = $this->uploadFile();
+            return response()->json(["file"=>$tab]);
         }
         catch(Exception $e)
         {
-            return Response::json(["err"=>$e->getMessage()]);
+            return response()->json(["err"=>$e->getMessage()]);
         }
     }
 
-    public function uploadWithThumbnail()
+    public function uploadWithThumbnail(Request $request)
     {
         try
         {
-            $tab = $this->_uploadFile();
+            $tab = $this->uploadFile();
 
             // Manage thumbnail creation
-            $th = Input::get("thumbnail_height");
-            $tw = Input::get("thumbnail_width");
-            $file = public_path('tmp') . "/" . $tab['name'];
-            $thumb = sharp_thumbnail($file, $tw, $th);
-            $tab["thumbnail"] = $thumb;
+            $tab["thumbnail"] = sharp_thumbnail(
+                $tab["path"],
+                $request->get("thumbnail_height"),
+                $request->get("thumbnail_width")
+            );
 
-            return Response::json(["file"=>$tab]);
+            return response()->json(["file"=>$tab]);
+
         }
         catch(Exception $e)
         {
-            return Response::json(["err"=>$e->getMessage()]);
+            return response()->json(["err"=>$e->getMessage()]);
         }
 
     }
 
-    private function _uploadFile()
+    private function uploadFile()
     {
-        $file = Input::file('file');
+        $file = \Input::file('file');
+
         if($file)
         {
             $filename = uniqid() . "." . $file->getClientOriginalExtension();
             $filesize = $file->getSize();
-            $file->move(public_path('tmp'), $filename);
-            return ["name"=>$filename, "size"=>$filesize, "path"=>public_path('tmp/'.$filename)];
+
+            $file->move($this->getTmpUploadDirectory(), $filename);
+
+            return [
+                "name" => $filename,
+                "size" => $filesize,
+                "path" =>  $this->getTmpUploadDirectory() . "/" . $filename
+            ];
         }
-        throw new Exception("Fichier introuvable");
+
+        throw new FileNotFoundException;
+    }
+
+    private function getTmpUploadDirectory()
+    {
+        $dir = \Config::get("sharp.upload_tmp_base_path") ?: storage_path("app/tmp/sharp");
+        if( ! \File::exists($dir)) mkdir($dir, 0777, true);
+
+        return $dir;
     }
 
 } 

@@ -18,10 +18,13 @@ if ( ! function_exists('sharp_thumbnail'))
     {
         if(File::exists($source))
         {
+            $uploadStoragePath = Config::get("sharp.upload_storage_base_path") ?: storage_path();
+            $thumbnailPath = Config::get("sharp.thumbnail_relative_path") ?: "sharp/thumbnails";
+
             $folder = dirname($source);
-            if(Str::startsWith($folder, public_path()))
+            if(Str::startsWith($folder, $uploadStoragePath))
             {
-                $folder = substr($folder, strlen(public_path())+1);
+                $folder = substr($folder, strlen($uploadStoragePath)+1);
             }
 
             $sizeMin = isset($params["size_min"]) && $params["size_min"];
@@ -29,7 +32,7 @@ if ( ! function_exists('sharp_thumbnail'))
             if($w==0) $w=null;
             if($h==0) $h=null;
 
-            $thumbName = "thumbnails/" . $folder . "/$w-$h" .($sizeMin?"_min":"") . "/" . basename($source);
+            $thumbName = "$thumbnailPath/$folder/$w-$h" .($sizeMin?"_min":"") . "/" . basename($source);
             $thumbFile = public_path($thumbName);
 
             if(!File::exists($thumbFile))
@@ -75,7 +78,6 @@ if ( ! function_exists('sharp_markdown'))
     function sharp_markdown($text)
     {
         return (new Parsedown)->text($text);
-//        return \Michelf\Markdown::defaultTransform($text);
     }
 }
 
