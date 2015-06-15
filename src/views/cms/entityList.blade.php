@@ -149,7 +149,7 @@
                         @if($col->renderer)
                             {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($col, $colKey, $instance) !!}
                         @else
-                            {{ $instance->$colKey }}
+                            {{ get_entity_attribute_value($instance, $colKey) }}
                         @endif
                     </td>
                 @endforeach

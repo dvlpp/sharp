@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/cms/entityList.blade.php" afterPath="$PROJECT_DIR$/src/views/cms/entityList.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sharp.iws" />
@@ -34,18 +34,38 @@
       <file leaf-file-name="FileField.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2150" max-vertical-offset="4600">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4600">
               <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SharpServiceProvider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2250">
+              <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20102338" vertical-offset="0" max-vertical-offset="1368">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="925">
+              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entityList.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.56652045" vertical-offset="2850" max-vertical-offset="6700">
+              <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -96,7 +116,6 @@
         <option value="$PROJECT_DIR$/public/css/less/bootstrap-variables.less" />
         <option value="$PROJECT_DIR$/public/css/less/formview.less" />
         <option value="$PROJECT_DIR$/version.txt" />
-        <option value="$PROJECT_DIR$/src/views/cms/entityList.blade.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/ListField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/LabelField.php" />
@@ -115,6 +134,7 @@
         <option value="$PROJECT_DIR$/src/helpers/sharp_cms.php" />
         <option value="$PROJECT_DIR$/src/controllers/UploadController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/views/cms/entityList.blade.php" />
       </list>
     </option>
   </component>
@@ -131,9 +151,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1201" />
+    <option name="x" value="834" />
     <option name="y" value="22" />
-    <option name="width" value="1292" />
+    <option name="width" value="1553" />
     <option name="height" value="1418" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -528,7 +548,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistory" value="&#10;giraffe&#10;cms&#10;listva&#10;flush&#10;routes&#10;embe&#10;embedRE&#10;helpers&#10;listfield&#10;entityFormField_partial&#10;sharpcms&#10;sharpcmsf&#10;giraffe/repo&#10;Request&#10;input&#10;old&#10;auto&#10;embed&#10;composer.json&#10;SharpEntityListTemplate&#10;sharpcate&#10;em&#10;interna&#10;form&#10;webpage&#10;Model&#10;eloquent&#10;cms.&#10;sharp_&#10;trait&#10;giraffe/reposi&#10;reposit&#10;flash&#10;entity&#10;explode_search_words&#10;updater&#10;withinput&#10;withInput&#10;morphto&#10;MorphOne&#10;row_partial.blade&#10;zookeeper/re&#10;pivottag&#10;starts_w&#10;fr&#10;checkAccess&#10;laravel.log&#10;hasone&#10;belong" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Upload&#9;null&#9;null&#10;sharp_th&#9;null&#9;null&#10;sharpentit&#9;null&#9;null&#10;tagfield&#9;null&#9;null&#10;bower&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/bower.json&#10;labelfiel&#9;null&#9;null&#10;abstracts&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php&#10;entity&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;list&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;layout&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/cmslayout.blade.php&#10;footer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/node_modules/grunt-contrib-less/node_modules/less/lib/source-map/source-map-footer.js&#10;service&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;app.php&#9;null&#9;null&#10;composer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;sharpserv&#9;null&#9;null&#10;list.js&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/public/js/src/sharp.refSublistItem.js&#10;Abstractsharp&#9;null&#9;null&#10;Listva&#9;null&#9;null&#10;routes.php&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/routes.php&#10;Filefield&#9;null&#9;null&#10;sharp_cms&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/helpers/sharp_cms.php&#10;auth&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/auth/authlayout.blade.php&#10;Config\Repository&#9;null&#9;null&#10;Config&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/vendor/laravel/framework/src/Illuminate/Support/Facades/Config.php&#10;sharp&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;SharpSiteConfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpSiteConfig.php&#10;sharpcmsconfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php&#10;compos&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;sharpservice&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;routes&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/routes.php&#10;Commands&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;dateren&#9;null&#9;null&#10;Response&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php&#10;Command&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;SharpManager&#9;null&#9;null&#10;checkAccess&#9;null&#9;null&#10;file&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;Sharpcmsconfig&#9;null&#9;null&#10;compose&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;index.blade&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/index.blade.php&#10;Imageservicepro&#9;null&#9;null&#10;Serviceprovider&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;compo&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;FileVal&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;cmscommands&#9;null&#9;null&#10;filefield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/FileField.php&#10;ui.&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/lang/fr/ui.php&#10;sharp.tag&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.tags.js&#10;crop&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.imagecrop.js&#10;sharp.list&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.list.js" />
+    <property name="SearchEverywhereHistoryKey" value="composer.json&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;Upload&#9;null&#9;null&#10;sharp_th&#9;null&#9;null&#10;sharpentit&#9;null&#9;null&#10;tagfield&#9;null&#9;null&#10;bower&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/bower.json&#10;labelfiel&#9;null&#9;null&#10;abstracts&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php&#10;entity&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;list&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;layout&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/cmslayout.blade.php&#10;footer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/node_modules/grunt-contrib-less/node_modules/less/lib/source-map/source-map-footer.js&#10;service&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;app.php&#9;null&#9;null&#10;composer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;sharpserv&#9;null&#9;null&#10;list.js&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/public/js/src/sharp.refSublistItem.js&#10;Abstractsharp&#9;null&#9;null&#10;Listva&#9;null&#9;null&#10;routes.php&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/routes.php&#10;Filefield&#9;null&#9;null&#10;sharp_cms&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/helpers/sharp_cms.php&#10;auth&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/auth/authlayout.blade.php&#10;Config\Repository&#9;null&#9;null&#10;Config&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/vendor/laravel/framework/src/Illuminate/Support/Facades/Config.php&#10;sharp&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;SharpSiteConfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpSiteConfig.php&#10;sharpcmsconfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php&#10;compos&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;sharpservice&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;routes&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/routes.php&#10;Commands&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;dateren&#9;null&#9;null&#10;Response&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php&#10;Command&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;SharpManager&#9;null&#9;null&#10;checkAccess&#9;null&#9;null&#10;file&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;Sharpcmsconfig&#9;null&#9;null&#10;compose&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;index.blade&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/index.blade.php&#10;Imageservicepro&#9;null&#9;null&#10;Serviceprovider&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;compo&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;FileVal&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;cmscommands&#9;null&#9;null&#10;filefield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/FileField.php&#10;ui.&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/lang/fr/ui.php&#10;sharp.tag&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.tags.js&#10;crop&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.imagecrop.js" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="LayoutCode.rearrangeEntriesLESS" value="false" />
   </component>
@@ -587,18 +607,6 @@
       <created>1398153883083</created>
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
-    </task>
-    <task id="LOCAL-00173" summary="fix tags order in PivotTagsFields">
-      <created>1417622508986</created>
-      <option name="number" value="00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1417622508986</updated>
-    </task>
-    <task id="LOCAL-00174" summary="Fix translation">
-      <created>1417623114832</created>
-      <option name="number" value="00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1417623114832</updated>
     </task>
     <task id="LOCAL-00175" summary="Fix file duplication">
       <created>1421747219396</created>
@@ -882,11 +890,23 @@
       <option name="project" value="LOCAL" />
       <updated>1434375052831</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Try to accept L5.1 also.">
+      <created>1434375089194</created>
+      <option name="number" value="00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1434375089194</updated>
+    </task>
+    <task id="LOCAL-00223" summary="Try to accept L5.1 also.">
+      <created>1434376070633</created>
+      <option name="number" value="00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1434376070634</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1201" y="22" width="1292" height="1418" extended-state="0" />
+    <frame x="834" y="22" width="1553" height="1418" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -897,7 +917,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32507738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2704443" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1086,13 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.6111112" vertical-offset="1675" max-vertical-offset="6700">
-          <caret line="262" column="5" selection-start-line="262" selection-start-column="5" selection-end-line="262" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/less/formview.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46296296" vertical-offset="0" max-vertical-offset="1350">
@@ -1202,13 +1215,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41520467" vertical-offset="382" max-vertical-offset="1750">
           <caret line="41" column="61" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2975147" vertical-offset="0" max-vertical-offset="2275">
-          <caret line="71" column="61" selection-start-line="71" selection-start-column="61" selection-end-line="71" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -1339,10 +1345,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2250">
+          <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20102338" vertical-offset="0" max-vertical-offset="1368">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="925">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56652045" vertical-offset="2850" max-vertical-offset="6700">
+          <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
           <folding />
         </state>
       </provider>
