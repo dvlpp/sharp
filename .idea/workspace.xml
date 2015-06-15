@@ -44,8 +44,8 @@
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40204677" vertical-offset="0" max-vertical-offset="1368">
-              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.20102338" vertical-offset="0" max-vertical-offset="1368">
+              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -588,18 +588,6 @@
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
     </task>
-    <task id="LOCAL-00171" summary="Try to keep sublist ref when create">
-      <created>1417618941003</created>
-      <option name="number" value="00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1417618941003</updated>
-    </task>
-    <task id="LOCAL-00172" summary="bower update">
-      <created>1417619272229</created>
-      <option name="number" value="00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1417619272230</updated>
-    </task>
     <task id="LOCAL-00173" summary="fix tags order in PivotTagsFields">
       <created>1417622508986</created>
       <option name="number" value="00173" />
@@ -882,7 +870,19 @@
       <option name="project" value="LOCAL" />
       <updated>1432799867091</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="Try to accept L5.1 also.">
+      <created>1434374970729</created>
+      <option name="number" value="00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1434374970729</updated>
+    </task>
+    <task id="LOCAL-00221" summary="Try to accept L5.1 also.">
+      <created>1434375052831</created>
+      <option name="number" value="00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1434375052831</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -890,6 +890,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -905,7 +906,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32808024" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -954,7 +954,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fix single relationship case (crop)" />
     <MESSAGE value="Remove [0-9] test on routes for entity id" />
     <MESSAGE value="Add single relation to list order" />
     <MESSAGE value="Add update[List]ListItem hook" />
@@ -979,7 +978,8 @@
     <MESSAGE value="Add default user-in-config SharpAuth implementation" />
     <MESSAGE value="Fix spaces" />
     <MESSAGE value="Improve thumbnails&#10;Add upload_storage_base_path, thumbnail_relative_path and upload_tmp_base_path config" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve thumbnails&#10;Add upload_storage_base_path, thumbnail_relative_path and upload_tmp_base_path config" />
+    <MESSAGE value="Try to accept L5.1 also." />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to accept L5.1 also." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1341,8 +1341,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40204677" vertical-offset="0" max-vertical-offset="1368">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.20102338" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
           <folding />
         </state>
       </provider>
