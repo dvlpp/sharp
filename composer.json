@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": ">=5.0.*",
+        "laravel/framework": "~5.*",
         "laravelcollective/html": "5.0.*",
         "intervention/image": "2.*",
         "erusev/parsedown": "~1.1",
