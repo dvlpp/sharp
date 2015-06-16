@@ -34,7 +34,7 @@
 
                 @foreach($cmsCategories as $catKey => $cat)
 
-                    @if(\Dvlpp\Sharp\Auth\SharpAccessManager::granted("category", "view", $catKey))
+                    @if(sharp_granted("category", "view", $catKey))
                         <li class="{{ !isset($masterCategoryKey) && isset($category) && $catKey == $category->key ? 'active' : '' }}">
                             <a class="category" href="{{ URL::route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
                         </li>
@@ -44,6 +44,7 @@
             </ul>
 
             @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService())
+
                 <div class="navbar-right user">
                     {{ Session::get("sharp_user") }}
                     <a class="btn" href="{{ URL::route('logout') }}">
@@ -53,9 +54,11 @@
                         </span>
                     </a>
                 </div>
+
             @endif
 
             @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages())
+
                 <div class="dropdown navbar-right languages">
                     <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
                         {{ $language }} <i class="fa fa-caret-down"></i>
@@ -70,6 +73,7 @@
                         @endforeach
                     </ul>
                 </div>
+
             @endif
 
         </div>

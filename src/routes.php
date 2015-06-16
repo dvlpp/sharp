@@ -6,14 +6,11 @@ use Illuminate\Support\Str;
 
 Route::get('/admin', function() {
 
-    $authService = \Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService();
-    if($authService && !$authService->checkAdmin())
-    {
-        return Redirect::guest("admin/login");
-    }
+    $authService = SharpSiteConfig::getAuthService();
+
+    if($authService && !$authService->checkAdmin()) return Redirect::guest("admin/login");
 
     return Redirect::route("cms");
-
 });
 
 Route::group(['before' => 'sharp_auth'], function() {
@@ -92,31 +89,23 @@ View::composer(['sharp::cms.cmslayout'], function($view)
 
 Route::filter('sharp_auth', function()
 {
-    $authService = \Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService();
-    if($authService && !$authService->checkAdmin())
-    {
-        return Redirect::guest("admin/login");
-    }
+    $authService = SharpSiteConfig::getAuthService();
+
+    if($authService && !$authService->checkAdmin()) return Redirect::guest("admin/login");
 });
 
 Route::filter('sharp_guest', function()
 {
-    $authService = \Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService();
-    if(!$authService || $authService->checkAdmin())
-    {
-        return Redirect::to("/admin/cms");
-    }
+    $authService = SharpSiteConfig::getAuthService();
+
+    if( ! $authService || $authService->checkAdmin()) return Redirect::to("/admin/cms");
 });
 
 Route::filter('sharp_access_granted', function($route, $request, $value)
 {
     list($type, $action, $key) = explode(" ", $value);
-    if(Str::startsWith($key, "*"))
-    {
-        $key = $route->getParameter(substr($key, 1));
-    }
-    if(! \Dvlpp\Sharp\Auth\SharpAccessManager::granted($type, $action, $key))
-    {
-        return Redirect::to("/admin/cms");
-    }
+
+    if(starts_with($key, "*")) $key = $route->getParameter(substr($key, 1));
+
+    if( ! sharp_granted($type, $action, $key)) return Redirect::to("/admin/cms");
 });
