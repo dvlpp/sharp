@@ -45,7 +45,7 @@ class CmsController extends Controller {
      */
     public function listEntities($categoryName, $entityName)
     {
-        if(!sizeof(Input::all()) && Session::get("listViewInput_{$categoryName}_{$entityName}"))
+        if( ! sizeof(Input::all()) && Session::get("listViewInput_{$categoryName}_{$entityName}"))
         {
             // We have saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
