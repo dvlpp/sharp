@@ -107,3 +107,21 @@ function get_entity_attribute_value($instance, $attributeName)
         return $instance->{$attributeName};
     }
 }
+
+
+if ( ! function_exists('sharp_granted'))
+{
+
+    /**
+     * Helper for \Dvlpp\Sharp\Auth\SharpAccessManager::granted
+     *
+     * @param $type
+     * @param $action
+     * @param $key
+     * @return bool
+     */
+    function sharp_granted($type, $action, $key)
+    {
+        return \Dvlpp\Sharp\Auth\SharpAccessManager::granted($type, $action, $key);
+    }
+}
