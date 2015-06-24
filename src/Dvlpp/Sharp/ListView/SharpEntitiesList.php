@@ -216,10 +216,10 @@ class SharpEntitiesList {
 
     private function retrieveSorting()
     {
-        $sortCol = null;
-        $sortDir = null;
+        $sortCol = Input::has("sort") ? Input::get("sort") : null;
+        $sortDir = Input::has("dir") ? Input::get("dir") : 'asc';
 
-        if($this->entity->list_template->sort_default)
+        if( ! $sortCol && $this->entity->list_template->sort_default)
         {
             if(strpos($this->entity->list_template->sort_default, ':'))
             {
@@ -229,11 +229,6 @@ class SharpEntitiesList {
             {
                 $sortCol = $this->entity->list_template->sort_default;
             }
-        }
-        else
-        {
-            $sortCol = Input::has("sort") ? Input::get("sort") : null;
-            $sortDir = Input::has("dir") ? Input::get("dir") : 'asc';
         }
 
         return [$sortCol, $sortDir];
