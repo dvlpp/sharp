@@ -179,7 +179,7 @@ class ListValuator implements Valuator {
             {
                 if(!in_array($itemDb->$itemIdAttribute, $saved))
                 {
-                    $itemDb->delete();
+                    $this->deleteItem($itemDb);
                 }
             }
         }
@@ -189,9 +189,23 @@ class ListValuator implements Valuator {
             // No item sent.
             foreach($this->instance->{$this->listKey} as $itemDb)
             {
-                $itemDb->delete();
+                $this->deleteItem($itemDb);
             }
         }
+    }
+
+    private function deleteItem($itemDb)
+    {
+        $methodName = "delete" . ucFirst(Str::camel($this->listKey)) . "ListItem";
+
+        if(method_exists($this->sharpRepository, $methodName)
+            && ! $this->sharpRepository->$methodName($this->instance, $itemDb))
+        {
+            // Deletion managed in the repository
+            return;
+        }
+
+        $itemDb->delete();
     }
 
 } 
