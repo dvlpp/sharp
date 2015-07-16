@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/sharp.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/sharp.min.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/GPL-LICENSE.txt" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/GPL-LICENSE.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/MIT-LICENSE.txt" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/MIT-LICENSE.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/bower.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.8.3.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.8.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sharp.min.css" afterPath="$PROJECT_DIR$/resources/assets/sharp.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sharp.iws" />
@@ -34,88 +30,7 @@
     <favorites_list name="sharp" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="SharpServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="70" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="10" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sharp.ui.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.ui.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contextbar.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/less/contextbar.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.less" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/less/main.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49476048">
-              <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field-ref.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".bowerrc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.bowerrc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ui.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lang/en/ui.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -123,7 +38,9 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -260,7 +177,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -274,11 +191,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dvlpp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sharp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -300,6 +239,8 @@
     <property name="SearchEverywhereHistoryKey" value="cmscontroller&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/Http/CmsController.php&#10;composer.json&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;Upload&#9;null&#9;null&#10;sharp_th&#9;null&#9;null&#10;sharpentit&#9;null&#9;null&#10;tagfield&#9;null&#9;null&#10;bower&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/bower.json&#10;labelfiel&#9;null&#9;null&#10;abstracts&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php&#10;entity&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;list&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/entityList.blade.php&#10;layout&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/cms/cmslayout.blade.php&#10;footer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/node_modules/grunt-contrib-less/node_modules/less/lib/source-map/source-map-footer.js&#10;service&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;app.php&#9;null&#9;null&#10;composer&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/composer.json&#10;sharpserv&#9;null&#9;null&#10;list.js&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/public/js/src/sharp.refSublistItem.js&#10;Abstractsharp&#9;null&#9;null&#10;Listva&#9;null&#9;null&#10;routes.php&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/routes.php&#10;Filefield&#9;null&#9;null&#10;sharp_cms&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/helpers/sharp_cms.php&#10;auth&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/src/views/auth/authlayout.blade.php&#10;Config\Repository&#9;null&#9;null&#10;Config&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/vendor/laravel/framework/src/Illuminate/Support/Facades/Config.php&#10;sharp&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;SharpSiteConfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpSiteConfig.php&#10;sharpcmsconfig&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Config/SharpCmsConfig.php&#10;compos&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;sharpservice&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;routes&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/routes.php&#10;Commands&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;dateren&#9;null&#9;null&#10;Response&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php&#10;Command&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/controllers/CmsCommandsController.php&#10;SharpManager&#9;null&#9;null&#10;checkAccess&#9;null&#9;null&#10;file&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;Sharpcmsconfig&#9;null&#9;null&#10;compose&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;index.blade&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/views/cms/index.blade.php&#10;Imageservicepro&#9;null&#9;null&#10;Serviceprovider&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/SharpServiceProvider.php&#10;compo&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/composer.json&#10;FileVal&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Repositories/AutoUpdater/Valuators/FileValuator.php&#10;cmscommands&#9;null&#9;null&#10;filefield&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/Dvlpp/Sharp/Form/Fields/FileField.php&#10;ui.&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/src/lang/fr/ui.php&#10;sharp.tag&#9;FILE&#9;file:///Users/philippe/Documents/DEVELOPPLAN/projets/phpstorm/sharp/workbench/dvlpp/sharp/public/js/src/sharp.tags.js" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="LayoutCode.rearrangeEntriesLESS" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -355,12 +296,6 @@
       <created>1398153883083</created>
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
-    </task>
-    <task id="LOCAL-00181" summary="&quot;auth&quot; attribute documentation">
-      <created>1422009460056</created>
-      <option name="number" value="00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1422009460056</updated>
     </task>
     <task id="LOCAL-00182" summary="fix &quot;auth&quot; attribute for commands">
       <created>1422286285886</created>
@@ -650,15 +585,21 @@
       <option name="project" value="LOCAL" />
       <updated>1437034401932</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="Fix grunt config">
+      <created>1437034547258</created>
+      <option name="number" value="00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1437034547258</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="549" y="22" width="1758" height="1386" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291789" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -720,7 +661,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Allow ~ in field id" />
     <MESSAGE value="Update JS dependencies&#10;Bower update" />
     <MESSAGE value="Update Serice Provider with LaravelCollective dependencies" />
     <MESSAGE value="Add ~ management for entity state (active / inactive)" />
@@ -745,7 +685,8 @@
     <MESSAGE value="More code cleaning" />
     <MESSAGE value="Code cleaning + namespacing controllers" />
     <MESSAGE value="Reorganize resources directeories" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganize resources directeories" />
+    <MESSAGE value="Fix grunt config" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix grunt config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1067,22 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/ui.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.bowerrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sharp.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39296407">
@@ -1095,30 +1020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/less/contextbar.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1141,24 +1042,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.61751497">
           <caret line="34" column="70" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="10" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/less/main.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49476048">
-          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.63622755">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/less/contextbar.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2911676">
+          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5988024">
+          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43862274">
+          <caret line="77" column="10" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.018712575">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/ui.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
