@@ -3,6 +3,11 @@
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
+/**
+ * Class SharpEloquentLengthAwarePaginatorCreatorTrait
+ * @package Dvlpp\Sharp\Repositories
+ * @deprecated
+ */
 trait SharpEloquentLengthAwarePaginatorCreatorTrait {
 
     /**

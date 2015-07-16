@@ -9,52 +9,47 @@ module.exports = function(grunt) {
             },
             ui: {
                 src: [
-                    'public/js/src/sharp.ui.js',
-                    'public/js/src/sharp.conditional_display.js'
+                    'resources/assets/js/sharp.ui.js',
+                    'resources/assets/js/sharp.conditional_display.js'
                 ],
-                dest: 'public/js/<%= pkg.name %>.ui.js'
+                dest: 'resources/assets/<%= pkg.name %>.ui.js'
             },
             advancedsearch: {
                 src: [
-                    'public/bower_components/selectize/dist/js/selectize.js',
-                    'public/js/src/advancedsearch/sharp.adv.js',
-                    'public/js/src/advancedsearch/sharp.adv.tags.js'
+                    'resources/assets/bower_components/selectize/dist/js/selectize.js',
+                    'resources/assets/js/advancedsearch/sharp.adv.js',
+                    'resources/assets/js/advancedsearch/sharp.adv.tags.js'
                 ],
-                dest: 'public/js/<%= pkg.name %>.advancedsearch.js'
+                dest: 'resources/assets/<%= pkg.name %>.advancedsearch.js'
             },
             form: {
                 src: [
                     // Tags, ref
-                    'public/bower_components/microplugin/src/microplugin.js',
-                    'public/bower_components/sifter/sifter.js',
-                    'public/bower_components/selectize/dist/js/selectize.js',
+                    'resources/assets/bower_components/microplugin/src/microplugin.js',
+                    'resources/assets/bower_components/sifter/sifter.js',
+                    'resources/assets/bower_components/selectize/dist/js/selectize.js',
                     // Date
-                    'public/bower_components/datetimepicker/jquery.datetimepicker.js',
+                    'resources/assets/bower_components/datetimepicker/jquery.datetimepicker.js',
                     // Markdown
-                    //'public/bower_components/leptureeditor/src/intro.js',
-                    //'public/bower_components/leptureeditor/src/editor.js',
-                    //'public/bower_components/leptureeditor/vendor/codemirror.js',
-                    //'public/bower_components/leptureeditor/vendor/markdown.js',
-                    //'public/bower_components/leptureeditor/docs/marked.js',
-                    'public/bower_components/mirrormark/dist/js/mirrormark.package.js',
+                    'resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js',
                     // Upload
-                    'public/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
-                    'public/bower_components/jquery-file-upload/js/jquery.fileupload.js',
+                    'resources/assets/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
+                    'resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload.js',
                     // Image crop
-                    'public/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
+                    'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
                     // Sharp
-                    'public/js/src/sharp.form.js',
-                    'public/js/src/sharp.date.js',
-                    'public/js/src/sharp.embed.js',
-                    'public/js/src/sharp.markdown.js',
-                    'public/js/src/sharp.tags.js',
-                    'public/js/src/sharp.ref.js',
-                    'public/js/src/sharp.refSublistItem.js',
-                    'public/js/src/sharp.upload.js',
-                    'public/js/src/sharp.imagecrop.js',
-                    'public/js/src/sharp.list.js'
+                    'resources/assets/js/sharp.form.js',
+                    'resources/assets/js/sharp.date.js',
+                    'resources/assets/js/sharp.embed.js',
+                    'resources/assets/js/sharp.markdown.js',
+                    'resources/assets/js/sharp.tags.js',
+                    'resources/assets/js/sharp.ref.js',
+                    'resources/assets/js/sharp.refSublistItem.js',
+                    'resources/assets/js/sharp.upload.js',
+                    'resources/assets/js/sharp.imagecrop.js',
+                    'resources/assets/js/sharp.list.js'
                 ],
-                dest: 'public/js/<%= pkg.name %>.form.js'
+                dest: 'resources/assets/<%= pkg.name %>.form.js'
             }
         },
 
@@ -64,9 +59,9 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'public/js/<%= pkg.name %>.ui.min.js': ['<%= concat.ui.dest %>'],
-                    'public/js/<%= pkg.name %>.advancedsearch.min.js': ['<%= concat.advancedsearch.dest %>'],
-                    'public/js/<%= pkg.name %>.form.min.js': ['<%= concat.form.dest %>']
+                    'resources/assets/<%= pkg.name %>.ui.min.js': ['<%= concat.ui.dest %>'],
+                    'resources/assets/<%= pkg.name %>.advancedsearch.min.js': ['<%= concat.advancedsearch.dest %>'],
+                    'resources/assets/<%= pkg.name %>.form.min.js': ['<%= concat.form.dest %>']
                 }
             }
         },
@@ -74,10 +69,10 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["public/css/less"]
+                    paths: ["resources/assets/less"]
                 },
                 files: {
-                    "public/css/sharp.css": "public/css/less/main.less"
+                    "resources/assets/sharp.css": "resources/assets/less/main.less"
                 }
             }
         },
@@ -85,9 +80,9 @@ module.exports = function(grunt) {
         cssmin: {
             target: {
                 files: {
-                    'public/css/sharp.min.css': [
-                        'public/bower_components/mirrormark/dist/css/mirrormark.package.css',
-                        'public/css/sharp.css'
+                    'resources/assets/sharp.min.css': [
+                        'resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.css',
+                        'resources/assets/sharp.css'
                     ]
                 }
             }
@@ -104,12 +99,12 @@ module.exports = function(grunt) {
             },
 
             css: {
-                files: ['public/css/less/**/*.less'],
+                files: ['resources/assets/less/**/*.less'],
                 tasks: ['less']
             },
 
             mincss: {
-                files: ['public/css/sharp.css'],
+                files: ['resources/assets/sharp.css'],
                 tasks: ['cssmin']
             }
         }

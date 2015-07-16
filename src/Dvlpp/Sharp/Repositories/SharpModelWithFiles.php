@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\Repositories;
 
-
 /**
  * Entities that declares files (with Sharp files ui) for their form must be linked to Model which
  * implements this interface.

@@ -1,4 +1,5 @@
 <?php namespace Dvlpp\Sharp\Repositories;
+
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 
 
