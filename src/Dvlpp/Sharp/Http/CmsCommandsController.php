@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dvlpp\Sharp\Http;
 
 use Dvlpp\Sharp\Auth\SharpAccessManager;
 use Dvlpp\Sharp\Commands\SharpCommandsManager;
@@ -14,7 +14,7 @@ use Illuminate\Routing\Controller;
 class CmsCommandsController extends Controller {
 
     /**
-     * @var Dvlpp\Sharp\Commands\SharpCommandsManager
+     * @var \Dvlpp\Sharp\Commands\SharpCommandsManager
      */
     private $commandsManager;
 
@@ -46,7 +46,7 @@ class CmsCommandsController extends Controller {
         if( ! $granted) return redirect("/");
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         // Grab request params (input is managed there, for search, pagination, ...)
         $entitiesList = new SharpEntitiesList($entity, $repo);
@@ -84,7 +84,7 @@ class CmsCommandsController extends Controller {
         if($commandType == "download")
         {
             // Return file
-            return Response::download($commandReturn);
+            return response()->download($commandReturn);
         }
 
         elseif($commandType == "view")
@@ -95,7 +95,7 @@ class CmsCommandsController extends Controller {
         }
 
         // Just reload
-        return redirect()->route("cms.list", array_merge([$categoryName, $entityName], Input::all()));
+        return redirect()->route("cms.list", array_merge([$categoryName, $entityName], \Input::all()));
     }
 
 } 

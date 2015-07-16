@@ -1,10 +1,11 @@
-<?php
+<?php namespace Dvlpp\Sharp\Http;
 
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 /**
@@ -41,29 +42,31 @@ class CmsController extends Controller {
      *
      * @param $categoryName
      * @param $entityName
+     * @param Request $request
      * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function listEntities($categoryName, $entityName)
+    public function listEntities($categoryName, $entityName, Request $request)
     {
-        if( ! sizeof(Input::all()) && Session::get("listViewInput_{$categoryName}_{$entityName}"))
+        if( ! sizeof($request->all()) && session("listViewInput_{$categoryName}_{$entityName}"))
         {
             // We have saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
             // with the correct querystring based on old input
-            $input = Session::get("listViewInput_{$categoryName}_{$entityName}");
+            $input = session("listViewInput_{$categoryName}_{$entityName}");
             return redirect()->route('cms.list', array_merge(["category"=>$categoryName, "entity"=>$entityName], $input));
         }
         else
         {
             // Save input (we can use it later, see up)
-            Session::flash("listViewInput_{$categoryName}_{$entityName}", Input::only('page','sort','dir','search','sub'));
+            \Session::flash("listViewInput_{$categoryName}_{$entityName}", $request->only(['page','sort','dir','search','sub']));
         }
 
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         // Grab entities (input is managed there, for search, pagination, ...)
         $entitiesList = new SharpEntitiesList($entity, $repo);
@@ -93,7 +96,7 @@ class CmsController extends Controller {
      */
     public function editEntity($categoryName, $entityName, $id)
     {
-        Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, $id);
     }
@@ -107,7 +110,7 @@ class CmsController extends Controller {
      */
     public function createEntity($categoryName, $entityName)
     {
-        Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, null);
     }
@@ -124,7 +127,7 @@ class CmsController extends Controller {
      */
     public function duplicateEntity($categoryName, $entityName, $id, $lang=null)
     {
-        Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
 
         if($lang)
         {
@@ -142,12 +145,14 @@ class CmsController extends Controller {
      * @param $categoryName
      * @param $entityName
      * @param $id
+     * @param Request $request
      * @return mixed
      */
-    public function updateEntity($categoryName, $entityName, $id)
+    public function updateEntity($categoryName, $entityName, $id, Request $request)
     {
-        Session::keep("listViewInput_{$categoryName}_{$entityName}");
-        return $this->save($categoryName, $entityName, $id);
+        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+
+        return $this->save($categoryName, $entityName, $request, $id);
     }
 
     /**
@@ -155,12 +160,14 @@ class CmsController extends Controller {
      *
      * @param $categoryName
      * @param $entityName
+     * @param Request $request
      * @return mixed
      */
-    public function storeEntity($categoryName, $entityName)
+    public function storeEntity($categoryName, $entityName, Request $request)
     {
-        Session::keep("listViewInput_{$categoryName}_{$entityName}");
-        return $this->save($categoryName, $entityName, null);
+        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+
+        return $this->save($categoryName, $entityName, $request, null);
     }
 
     /**
@@ -188,17 +195,19 @@ class CmsController extends Controller {
     /**
      * @param $categoryName
      * @param $entityName
+     * @param Request $request
      * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function ax_reorderEntities($categoryName, $entityName)
+    public function ax_reorderEntities($categoryName, $entityName, Request $request)
     {
-        $entities = Input::get("entities");
+        $entities = $request->get("entities");
 
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         // Reorder
         $repo->reorder($entities);
@@ -218,7 +227,7 @@ class CmsController extends Controller {
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         $repo->delete($id);
 
@@ -253,7 +262,7 @@ class CmsController extends Controller {
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         // Activate / deactivate
         $activate ? $repo->activate($id) : $repo->deactivate($id);
@@ -266,7 +275,7 @@ class CmsController extends Controller {
      * @param $entityName
      * @param $id
      * @param bool $duplication
-     * @throws Dvlpp\Sharp\Exceptions\InstanceNotFoundException
+     * @throws \Dvlpp\Sharp\Exceptions\InstanceNotFoundException
      * @return mixed
      */
     private function form($categoryName, $entityName, $id, $duplication=false)
@@ -277,19 +286,19 @@ class CmsController extends Controller {
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         // Retrieve the corresponding DB entity
         $instance = $creation ? $repo->newInstance() : $repo->find($id);
 
         if($instance)
         {
-            if(Session::has('masterInstanceData'))
+            if(\Session::has('masterInstanceData'))
             {
                 // We are back from a embedded entity form.
                 // We have to repopulate the master form (this form) as it was before
                 $formOldDataStr = unserialize(Session::get('masterInstanceData'));
-                Session::flashInput($formOldDataStr);
+                \Session::flashInput($formOldDataStr);
             }
 
             // Duplication management: we simply add an attribute here
@@ -309,36 +318,36 @@ class CmsController extends Controller {
                 'category'=>SharpCmsConfig::findCategory($categoryName)
             ]);
         }
-        else
-        {
-            throw new InstanceNotFoundException("Instance of id [$id] and type [$categoryName.$entityName] can't be found");
-        }
+
+        throw new InstanceNotFoundException("Instance of id [$id] and type [$categoryName.$entityName] can't be found");
 
     }
 
     /**
      * @param $categoryName
      * @param $entityName
+     * @param Request $request
      * @param $id
      * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    private function save($categoryName, $entityName, $id)
+    private function save($categoryName, $entityName, Request $request, $id)
     {
         $creation = ($id === null);
 
-        $data = Input::all();
+        $data = $request->all();
 
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
-        $repo = App::make($entity->repository);
+        $repo = app($entity->repository);
 
         try {
             // First : validation
             if($entity->validator)
             {
-                $validator = App::make($entity->validator);
+                $validator = app($entity->validator);
                 $validator->validate($data, $id);
             }
 
@@ -372,7 +381,7 @@ class CmsController extends Controller {
                 $lang = array_values($languages)[0];
             }
 
-            Session::put("sharp_lang", $lang);
+            \Session::put("sharp_lang", $lang);
         }
     }
 

@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dvlpp\Sharp\Http;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class UploadController extends Controller {
             $tab = $this->uploadFile();
             return response()->json(["file"=>$tab]);
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             return response()->json(["err"=>$e->getMessage()]);
         }
@@ -35,7 +35,7 @@ class UploadController extends Controller {
             return response()->json(["file"=>$tab]);
 
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             return response()->json(["err"=>$e->getMessage()]);
         }

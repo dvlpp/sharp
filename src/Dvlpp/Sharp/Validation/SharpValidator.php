@@ -1,6 +1,5 @@
 <?php namespace Dvlpp\Sharp\Validation;
 
-
 use Dvlpp\Sharp\Exceptions\ValidationException;
 use Validator;
 

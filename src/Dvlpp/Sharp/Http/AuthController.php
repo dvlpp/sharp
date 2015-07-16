@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dvlpp\Sharp\Http;
 
 use Dvlpp\Sharp\Auth\SharpLoginFormValidator;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
@@ -35,7 +35,7 @@ class AuthController extends Controller {
             if($user = $authService->login($data["login"], $data["password"]))
             {
                 // Login succeed
-                Session::put("sharp_user", $user);
+                \Session::put("sharp_user", $user);
                 return redirect()->intended("cms");
             }
             else
@@ -62,7 +62,7 @@ class AuthController extends Controller {
     {
         $authService = SharpSiteConfig::getAuthService();
         $authService->logout();
-        Session::forget("sharp_user");
+        \Session::forget("sharp_user");
 
         return redirect()->to("/");
     }
