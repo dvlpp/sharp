@@ -5,16 +5,528 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e66db0b-86d5-4c43-98e2-2bcb913d29f0" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/AuthController.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/AuthController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/CmsCommandsController.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsCommandsController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/CmsController.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/CmsEmbeddedEntityController.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsEmbeddedEntityController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/UploadController.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/UploadController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpCmsRepository.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpCmsRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpEloquentLengthAwarePaginatorCreatorTrait.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpEloquentLengthAwarePaginatorCreatorTrait.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpModelWithFiles.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Repositories/SharpModelWithFiles.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/Validation/SharpValidator.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/Validation/SharpValidator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes.php" afterPath="$PROJECT_DIR$/src/routes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/border-anim-h.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/border-anim-v.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/border-h.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/border-v.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/data/elephant-small.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/data/elephant.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/.csscomb.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/.csslintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/.jscsrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/GPL-LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/Gruntfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/MIT-LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_animated.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/css/_settings.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/event/ajax.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/ajax.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/alerts.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/animated.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/unit/api.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/background-variant.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/unit/basic.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/border-radius.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/bs-commonjs-generator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/buttons.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/center-block.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/clearfix.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/common.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/configBridge.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/core.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/demo.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/src/css/demo.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/demo.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/fastclick.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/css/font-awesome.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/forms.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/gallery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/gradients.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/grid-framework.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/grid.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/gulpfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/hide-text.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/iframe.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/image.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/image.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/imgareaselect-animated.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/imgareaselect-default.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/css/imgareaselect-deprecated.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/src/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/inline.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.3.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.4.4.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.5.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.6.4.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.7.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.8.3.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/jquery-1.9.0.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/dist/jquery.magnific-popup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/dist/jquery.magnific-popup.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/distfiles/scripts/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/other/jquery.simulate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/other/jquery.validate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/other/jquery.validate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/other/jquery.validate.pack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/karma.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/unit/keyboard.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/labels.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/list-group.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/dist/magnific-popup.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/magnific-popup.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/css/main.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/mirrormark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/src/css/mirrormark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/js/mirrormark.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/src/js/mirrormark.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/mirrormark.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/js/mirrormark.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/unit/misc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/nav-divider.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/nav-vertical-align.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/js/npm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/opacity.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/unit/options.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/package.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/mirrormark/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/pagination.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/panels.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/progress-bar.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/qunit/qunit.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/qunit/qunit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/reset-filter.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/resize.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/responsive-embed.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/responsive-visibility.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/retina.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/sauce_browsers.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/size.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/tab-focus.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/table-row.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.3.2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.4.4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.5.2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.6.4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.7.2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.8.3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/imgareaselect/test/test-jquery-1.9.0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/text-emphasis.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/text-overflow.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins/vendor-prefixes.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/bower_components/magnificpopup/src/js/zoom.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lang/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/views/.gitkeep" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/.gitkeep" afterPath="$PROJECT_DIR$/resources/config/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-canvas-to-blob/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-canvas-to-blob/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-exif-map.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image-exif-map.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-exif.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image-exif.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-ios.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image-ios.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-meta.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image-meta.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image-orientation.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image-orientation.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image.all.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image.all.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-load-image/js/load-image.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-load-image/js/load-image.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/compile.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/js/compile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/runtime.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/js/runtime.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/tmpl.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/js/tmpl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/blueimp-tmpl/js/tmpl.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/blueimp-tmpl/js/tmpl.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/Gruntfile.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/Gruntfile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/LICENSE" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/README.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.css.map" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.css.map" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap.css.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/js/bootstrap.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/js/bootstrap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/dist/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/dist/js/bootstrap.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-glyphicons-data-generator.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/bs-glyphicons-data-generator.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-lessdoc-parser.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/bs-lessdoc-parser.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/grunt/bs-raw-files-generator.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/grunt/bs-raw-files-generator.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/affix.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/affix.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/alert.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/alert.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/button.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/button.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/carousel.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/carousel.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/collapse.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/collapse.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/dropdown.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/dropdown.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/modal.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/modal.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/popover.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/popover.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/scrollspy.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/scrollspy.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/tab.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/tab.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/tooltip.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/tooltip.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/js/transition.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/js/transition.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/alerts.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/alerts.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/badges.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/badges.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/bootstrap.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/bootstrap.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/breadcrumbs.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/breadcrumbs.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/button-groups.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/button-groups.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/buttons.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/buttons.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/carousel.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/carousel.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/close.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/close.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/code.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/code.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/component-animations.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/component-animations.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/dropdowns.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/dropdowns.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/forms.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/forms.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/glyphicons.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/glyphicons.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/grid.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/grid.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/input-groups.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/input-groups.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/jumbotron.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/jumbotron.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/labels.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/labels.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/list-group.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/list-group.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/media.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/media.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/mixins.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/mixins.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/modals.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/modals.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/navbar.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/navbar.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/navs.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/navs.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/normalize.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/normalize.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/pager.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/pager.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/pagination.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/pagination.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/panels.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/panels.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/popovers.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/popovers.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/print.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/print.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/progress-bars.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/progress-bars.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/responsive-utilities.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/responsive-utilities.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/scaffolding.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/scaffolding.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/tables.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/tables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/theme.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/theme.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/thumbnails.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/thumbnails.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/tooltip.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/tooltip.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/type.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/type.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/utilities.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/utilities.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/variables.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/variables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/less/wells.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/less/wells.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/bootstrap/package.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/bootstrap/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/jquery.datetimepicker.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/jquery.datetimepicker.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/datetimepicker/jquery.datetimepicker.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/datetimepicker/jquery.datetimepicker.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/.npmignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/.npmignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/css/font-awesome.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/css/font-awesome.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/FontAwesome.otf" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/FontAwesome.otf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/fonts/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/bordered-pulled.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/bordered-pulled.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/core.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/core.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/fixed-width.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/fixed-width.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/font-awesome.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/font-awesome.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/icons.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/icons.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/larger.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/larger.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/list.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/list.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/mixins.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/mixins.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/path.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/path.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/rotated-flipped.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/rotated-flipped.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/stacked.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/stacked.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/less/variables.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/less/variables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_bordered-pulled.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_bordered-pulled.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_core.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_core.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_fixed-width.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_fixed-width.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_icons.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_icons.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_larger.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_larger.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_list.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_list.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_mixins.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_mixins.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_path.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_path.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_rotated-flipped.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_rotated-flipped.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_stacked.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_stacked.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/_variables.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/_variables.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/fontawesome/scss/font-awesome.scss" afterPath="$PROJECT_DIR$/resources/assets/bower_components/fontawesome/scss/font-awesome.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-noscript.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/css/jquery.fileupload-noscript.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-ui-noscript.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/css/jquery.fileupload-ui-noscript.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload-ui.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/css/jquery.fileupload-ui.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/css/jquery.fileupload.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/css/jquery.fileupload.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/img/loading.gif" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/img/loading.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/img/progressbar.gif" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/img/progressbar.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/cors/jquery.postmessage-transport.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/cors/jquery.postmessage-transport.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/cors/jquery.xdr-transport.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/cors/jquery.xdr-transport.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-audio.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-audio.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-image.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-image.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-jquery-ui.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-jquery-ui.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-process.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-process.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-ui.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-ui.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload-video.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload-video.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.fileupload.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/jquery.iframe-transport.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/jquery.iframe-transport.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/MIT-LICENSE.txt" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/MIT-LICENSE.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/dist/jquery.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/dist/jquery.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/dist/jquery.min.map" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/dist/jquery.min.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/jsonp.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/jsonp.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/load.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/load.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/parseJSON.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/parseJSON.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/parseXML.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/parseXML.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/script.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/script.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/var/nonce.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/var/nonce.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/var/rquery.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/var/rquery.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/ajax/xhr.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/ajax/xhr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/attr.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes/attr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/classes.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes/classes.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/prop.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes/prop.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/support.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes/support.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/attributes/val.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/attributes/val.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/callbacks.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/callbacks.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/access.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core/access.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/init.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core/init.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/parseHTML.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core/parseHTML.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/ready.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core/ready.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/core/var/rsingleTag.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/core/var/rsingleTag.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/addGetHookIf.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/addGetHookIf.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/curCSS.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/curCSS.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/defaultDisplay.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/defaultDisplay.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/hiddenVisibleSelectors.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/hiddenVisibleSelectors.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/support.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/support.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/swap.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/swap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/cssExpand.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/cssExpand.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/getStyles.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/getStyles.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/isHidden.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/isHidden.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/rmargin.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/rmargin.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/css/var/rnumnonpx.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/rnumnonpx.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/data.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/Data.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/data/Data.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/accepts.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/data/accepts.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/var/data_priv.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/data/var/data_priv.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/data/var/data_user.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/data/var/data_user.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/deferred.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/deferred.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/deprecated.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/deprecated.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/dimensions.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/dimensions.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/effects.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects/Tween.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/effects/Tween.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/effects/animatedSelector.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/effects/animatedSelector.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/event.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event/alias.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/event/alias.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/event/support.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/event/support.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/exports/amd.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/exports/amd.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/exports/global.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/exports/global.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/intro.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/intro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/jquery.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/jquery.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/manipulation.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/_evalUrl.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/manipulation/_evalUrl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/support.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/manipulation/support.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/manipulation/var/rcheckableType.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/manipulation/var/rcheckableType.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/offset.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/offset.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/outro.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/outro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/queue.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/queue.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/queue/delay.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/queue/delay.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector-native.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/selector-native.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector-sizzle.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/selector-sizzle.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/selector.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/selector.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/serialize.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/serialize.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/sizzle/dist/sizzle.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/sizzle/dist/sizzle.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/sizzle/dist/sizzle.min.map" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/sizzle/dist/sizzle.min.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/traversing.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing/findFilter.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/traversing/findFilter.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/traversing/var/rneedsContext.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/traversing/var/rneedsContext.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/arr.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/arr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/class2type.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/class2type.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/concat.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/concat.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/hasOwn.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/hasOwn.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/indexOf.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/indexOf.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/pnum.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/pnum.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/push.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/push.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/rnotwhite.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/rnotwhite.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/slice.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/slice.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/strundefined.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/strundefined.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/support.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/support.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/var/toString.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/var/toString.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/jquery/src/wrap.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/jquery/src/wrap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/.spmignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/.spmignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/CONTRIBUTING.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/Gruntfile.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/Gruntfile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/Makefile" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/Makefile" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/README.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/component.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/component.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/index.html" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/docs/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/markdown.html" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/docs/markdown.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/markdown.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/docs/markdown.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/marked.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/docs/marked.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/docs/yue.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/docs/yue.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/editor.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/editor.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/package.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/paper.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/paper.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/src/editor.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/src/editor.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/src/intro.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/src/intro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/codemirror.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/codemirror.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/continuelist.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/continuelist.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.dev.svg" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.dev.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.eot" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.svg" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.ttf" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.woff" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/fonts/icomoon.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/index.html" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/license.txt" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/license.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/lte-ie7.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/lte-ie7.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/icomoon/style.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/icomoon/style.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/markdown.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/markdown.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/leptureeditor/vendor/xml.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/leptureeditor/vendor/xml.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/.npmignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/.npmignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/README.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/package.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/microplugin/src/microplugin.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/microplugin/src/microplugin.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/LICENSE" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/README.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.bootstrap2.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/css/selectize.bootstrap2.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.bootstrap3.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/css/selectize.bootstrap3.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/css/selectize.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.default.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/css/selectize.default.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/css/selectize.legacy.css" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/css/selectize.legacy.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/selectize.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/js/selectize.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/selectize.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/js/selectize.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/standalone/selectize.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/js/standalone/selectize.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/js/standalone/selectize.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/js/standalone/selectize.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/drag_drop.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/plugins/drag_drop.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/dropdown_header.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/plugins/dropdown_header.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/optgroup_columns.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/plugins/optgroup_columns.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/plugins/remove_button.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/plugins/remove_button.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.bootstrap2.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/selectize.bootstrap2.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.bootstrap3.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/selectize.bootstrap3.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.default.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/selectize.default.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.legacy.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/selectize.legacy.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/selectize/dist/less/selectize.less" afterPath="$PROJECT_DIR$/resources/assets/bower_components/selectize/dist/less/selectize.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.gitignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/.npmignore" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/.npmignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/README.md" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/bower.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/package.json" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/sifter.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/sifter.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/bower_components/sifter/sifter.min.js" afterPath="$PROJECT_DIR$/resources/assets/bower_components/sifter/sifter.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/advancedsearch.less" afterPath="$PROJECT_DIR$/resources/assets/less/advancedsearch.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/bootstrap-variables.less" afterPath="$PROJECT_DIR$/resources/assets/less/bootstrap-variables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/contextbar.less" afterPath="$PROJECT_DIR$/resources/assets/less/contextbar.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-date.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-date.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-embed.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-embed.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-file.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-file.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-list.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-list.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-markdown.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-markdown.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formfields/field-ref.less" afterPath="$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/formview.less" afterPath="$PROJECT_DIR$/resources/assets/less/formview.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/header.less" afterPath="$PROJECT_DIR$/resources/assets/less/header.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/listview.less" afterPath="$PROJECT_DIR$/resources/assets/less/listview.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/loginview.less" afterPath="$PROJECT_DIR$/resources/assets/less/loginview.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/main.less" afterPath="$PROJECT_DIR$/resources/assets/less/main.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/navcol.less" afterPath="$PROJECT_DIR$/resources/assets/less/navcol.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/less/theme.less" afterPath="$PROJECT_DIR$/resources/assets/less/theme.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/sharp.css" afterPath="$PROJECT_DIR$/resources/assets/sharp.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/sharp.min.css" afterPath="$PROJECT_DIR$/resources/assets/sharp.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.advancedsearch.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.advancedsearch.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.advancedsearch.min.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.advancedsearch.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.form.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.form.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.form.min.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.form.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.ui.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.ui.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/sharp.ui.min.js" afterPath="$PROJECT_DIR$/resources/assets/sharp.ui.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/advancedsearch/sharp.adv.js" afterPath="$PROJECT_DIR$/resources/assets/js/advancedsearch/sharp.adv.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/advancedsearch/sharp.adv.tags.js" afterPath="$PROJECT_DIR$/resources/assets/js/advancedsearch/sharp.adv.tags.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.conditional_display.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.conditional_display.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.date.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.date.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.embed.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.embed.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.form.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.form.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.imagecrop.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.imagecrop.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.list.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.list.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.markdown.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.markdown.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.ref.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.ref.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.refSublistItem.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.refSublistItem.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.tags.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.tags.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.ui.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.ui.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/src/sharp.upload.js" afterPath="$PROJECT_DIR$/resources/assets/js/sharp.upload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/vendor/jquery-ui-1.10.4.custom.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/jquery-ui-1.10.4.custom.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/config/.gitkeep" afterPath="$PROJECT_DIR$/resources/lang/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/config/sharp.php" afterPath="$PROJECT_DIR$/resources/config/sharp.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/controllers/.gitkeep" afterPath="$PROJECT_DIR$/resources/views/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/en/format.php" afterPath="$PROJECT_DIR$/resources/lang/en/format.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/en/messages.php" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/en/ui.php" afterPath="$PROJECT_DIR$/resources/lang/en/ui.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/fr/format.php" afterPath="$PROJECT_DIR$/resources/lang/fr/format.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/fr/messages.php" afterPath="$PROJECT_DIR$/resources/lang/fr/messages.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lang/fr/ui.php" afterPath="$PROJECT_DIR$/resources/lang/fr/ui.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/auth/authlayout.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/authlayout.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/cmslayout.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/cmslayout.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/entityForm.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/entityForm.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/entityList.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/entityList.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/index.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/advancedsearch/row.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/advancedsearch/row.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/formField.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/formField.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/activateDeactivate-button.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/activateDeactivate-button.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/advancedsearch-form.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/advancedsearch-form.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/contextbar/create-button.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/create-button.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/contextbar/entities-commands.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/entities-commands.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/contextbar/quicksearch.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/quicksearch.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/contextbar/reorder-button.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/reorder-button.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/list/contextbar/sublist-button.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/sublist-button.blade.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/cms/partials/navcol.blade.php" afterPath="$PROJECT_DIR$/resources/views/cms/partials/navcol.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="$PROJECT_DIR$/.bowerrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" afterPath="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sharp.iws" />
@@ -37,83 +549,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/AuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-              <folding>
-                <element signature="e#35#80#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmsController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61452097">
-              <caret line="154" column="70" selection-start-line="154" selection-start-column="70" selection-end-line="154" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UploadController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/UploadController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sharp_internal.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/helpers/sharp_internal.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="115" column="63" selection-start-line="115" selection-start-column="63" selection-end-line="115" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="27" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmsCommandsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsCommandsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="97" column="88" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmsEmbeddedEntityController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsEmbeddedEntityController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="251" column="87" selection-start-line="251" selection-start-column="87" selection-end-line="251" selection-end-column="87" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SharpServiceProvider.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SharpServiceProvider.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.61751497">
+              <caret line="34" column="70" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+              <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sharp.ui.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.ui.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contextbar.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/less/contextbar.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/less/main.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="field-ref.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".bowerrc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.bowerrc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ui.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/ui.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -132,13 +642,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/public/css/less/theme.less" />
-        <option value="$PROJECT_DIR$/public/css/less/bootstrap-variables.less" />
-        <option value="$PROJECT_DIR$/public/css/less/formview.less" />
-        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/AbstractSharpField.php" />
-        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/ListField.php" />
-        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/LabelField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/EmbedField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/PivotTagsField.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/ListView/SharpEntitiesList.php" />
@@ -148,7 +651,6 @@
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuthenticateMiddleware.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/RedirectIfAuthenticatedMiddleware.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/SharpAuthenticateMiddleware.php" />
-        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config/SharpAuth.php" />
         <option value="$PROJECT_DIR$/public/js/src/sharp.conditional_display.js" />
         <option value="$PROJECT_DIR$/src/helpers/sharp_cms.php" />
@@ -183,6 +685,14 @@
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsEmbeddedEntityController.php" />
         <option value="$PROJECT_DIR$/src/routes.php" />
         <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsController.php" />
+        <option value="$PROJECT_DIR$/.bowerrc" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/sharp.ui.js" />
+        <option value="$PROJECT_DIR$/resources/assets/less/contextbar.less" />
+        <option value="$PROJECT_DIR$/resources/assets/less/main.less" />
+        <option value="$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less" />
+        <option value="$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php" />
       </list>
     </option>
   </component>
@@ -282,24 +792,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Dvlpp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -318,19 +810,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dvlpp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Validation" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -344,19 +824,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Dvlpp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -370,55 +842,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Dvlpp" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Exceptions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sharp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="vendor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -450,11 +882,11 @@
       <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Dvlpp/Sharp/Http" />
-      <recent name="$PROJECT_DIR$/src/views/cms/partials/list/contextbar" />
-      <recent name="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth" />
-      <recent name="$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/Impl/Config" />
-      <recent name="$PROJECT_DIR$/workbench/dvlpp/sharp/src/views/cms/partials" />
+      <recent name="$PROJECT_DIR$/resources/assets" />
+      <recent name="$PROJECT_DIR$/resources/assets/js" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/resources/assets" />
+      <recent name="$PROJECT_DIR$/src/resources/assets/js" />
     </key>
   </component>
   <component name="RunManager">
@@ -495,12 +927,6 @@
       <created>1398153883083</created>
       <option name="number" value="Default" />
       <updated>1398153883083</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Fix routing using laravel helpers">
-      <created>1421918170604</created>
-      <option name="number" value="00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1421918170604</updated>
     </task>
     <task id="LOCAL-00180" summary="Add &quot;auth&quot; attribute in commands to allow commands with &quot;view&quot; or &quot;list&quot; right">
       <created>1422008935428</created>
@@ -790,21 +1216,28 @@
       <option name="project" value="LOCAL" />
       <updated>1434453204698</updated>
     </task>
-    <option name="localTasksCounter" value="228" />
+    <task id="LOCAL-00228" summary="Code cleaning + namespacing controllers">
+      <created>1437033098693</created>
+      <option name="number" value="00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1437033098694</updated>
+    </task>
+    <option name="localTasksCounter" value="229" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="549" y="22" width="1758" height="1386" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2701934" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2701934" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -814,7 +1247,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -860,7 +1292,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fix bug with single relationship and repopulate" />
     <MESSAGE value="Fix bug with single relationship and repopulate (2)" />
     <MESSAGE value="Allow ~ in field id" />
     <MESSAGE value="Update JS dependencies&#10;Bower update" />
@@ -885,7 +1316,8 @@
     <MESSAGE value="View code cleaning (list)" />
     <MESSAGE value="View code cleaning (others)" />
     <MESSAGE value="More code cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="More code cleaning" />
+    <MESSAGE value="Code cleaning + namespacing controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code cleaning + namespacing controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -894,135 +1326,21 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.markdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65789473">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2660819">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.ref.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.date.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23245615">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.conditional_display.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/ListField.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72587717">
-          <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/SharpCmsField.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5767543">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/src/sharp.form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Form/Fields/FileField.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Auth/SharpAccessManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Config/SharpSiteConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/contextbar/sublist-button.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/activateDeactivate-button.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/advancedsearch-form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/contextbar/reorder-button.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/contextbar/quicksearch.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/contextbar/entities-commands.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/entities-commands.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/list/contextbar/create-button.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/create-button.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/sharp.php">
+    <entry file="file://$PROJECT_DIR$/resources/config/sharp.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07309941">
           <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
@@ -1044,63 +1362,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/auth/authlayout.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/authlayout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/auth/login.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4751462">
           <caret line="26" column="85" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/navcol.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/navcol.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29239765">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/cmslayout.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/cmslayout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.1381578">
           <caret line="117" column="45" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/entityList.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/entityList.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49542683">
           <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/entityForm.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/entityForm.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.7412281">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/advancedsearch/row.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/advancedsearch/row.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/cms/partials/formField.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/formField.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20102338">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
@@ -1184,16 +1502,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
           <folding>
-            <element signature="e#35#80#0#PHP" expanded="true" />
+            <element signature="e#35#80#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/UploadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,14 +1511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33308384">
           <caret line="380" column="13" selection-start-line="380" selection-start-column="13" selection-end-line="380" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsCommandsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="88" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
           <folding />
         </state>
       </provider>
@@ -1223,7 +1525,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsEmbeddedEntityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="3.5179641">
           <caret line="251" column="87" selection-start-line="251" selection-start-column="87" selection-end-line="251" selection-end-column="87" />
           <folding />
         </state>
@@ -1237,14 +1539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/sharp_cms.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1253,18 +1547,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/sharp_internal.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cms/partials/list/contextbar/quicksearch.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="63" selection-start-line="115" selection-start-column="63" selection-end-line="115" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.2245509">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.php">
+    <entry file="file://$PROJECT_DIR$/resources/config/.gitkeep">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="27" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1273,6 +1567,158 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61452097">
           <caret line="154" column="70" selection-start-line="154" selection-start-column="70" selection-end-line="154" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/UploadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38248503">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/sharp_internal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68188626">
+          <caret line="115" column="63" selection-start-line="115" selection-start-column="63" selection-end-line="115" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.58907187">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/Http/CmsCommandsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7402694">
+          <caret line="97" column="88" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/advancedsearch/sharp.adv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/bower_components/jquery/src/css/var/rmargin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/ui.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sharp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39296407">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.refSublistItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/sharp.ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/less/contextbar.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/less/main.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/less/formfields/field-ref.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/vendor/jquery-ui-1.10.4.custom.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36287242">
+          <caret line="5" column="2477" selection-start-line="5" selection-start-column="2477" selection-end-line="5" selection-end-column="2477" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11227545">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dvlpp/Sharp/SharpServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61751497">
+          <caret line="34" column="70" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="70" />
           <folding />
         </state>
       </provider>
