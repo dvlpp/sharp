@@ -1,0 +1,27 @@
+{
+    "name": "dvlpp/sharp",
+    "description": "A kind of CMS for developers who hate CMS",
+    "authors": [
+        {
+            "name": "Philippe Lonchampt",
+            "email": "philippelonchampt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "5.*",
+        "laravelcollective/html": "5.0.*",
+        "intervention/image": "2.*",
+        "erusev/parsedown": "~1.1",
+        "mustache/mustache": "~2.6.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers/sharp_cms.php",
+            "src/helpers/sharp_internal.php"
+        ],
+        "psr-0": {
+            "Dvlpp\\Sharp": "src/"
+        }
+    }
+}

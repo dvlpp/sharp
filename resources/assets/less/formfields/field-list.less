@@ -1,0 +1,27 @@
+.sharp-field-list, .sharp-field-embed_list {
+
+  .sharp-list {
+    margin-bottom: 0;
+    .sharp-list-item {
+      padding: 5px; list-style:none;
+      .control-label { font-size: 14px; }
+      .form-group { margin-bottom: 8px; }
+      .sharp-list-remove {
+        float: right; color:desaturate(@brand-danger, 50%);
+        &:hover { color:@brand-danger; }
+      }
+      .sort-handle { cursor:pointer; color:@gray; }
+    }
+    .sharp-list-item-add:not(:first-child) {
+      background: none; border:none;
+    }
+    .sharp-list-item-add .sharp-list-add {
+      display: block; color:desaturate(@sharp-contexbar-bg, 50%);
+      &:hover { color:@sharp-contexbar-bg; }
+    }
+
+    .template { display: none; }
+  }
+
+  &.has-error .sharp-list { border:1px solid @state-danger-bg !important; }
+}
