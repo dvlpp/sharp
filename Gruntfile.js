@@ -72,7 +72,7 @@ module.exports = function(grunt) {
                     paths: ["resources/assets/less"]
                 },
                 files: {
-                    "public/css/sharp.css": "resources/assets/less/main.less"
+                    "resources/assets/sharp.css": "resources/assets/less/main.less"
                 }
             }
         },
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         cssmin: {
             target: {
                 files: {
-                    'public/css/sharp.min.css': [
+                    'resources/assets/sharp.min.css': [
                         'resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.css',
                         'resources/assets/sharp.css'
                     ]
