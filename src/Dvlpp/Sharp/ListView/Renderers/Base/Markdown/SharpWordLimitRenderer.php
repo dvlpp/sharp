@@ -22,8 +22,11 @@ class SharpWordLimitRenderer implements SharpRenderer {
 
             $append = strlen($str) != strlen($strW) ? '...' : '';
 
-            return $this->replaceParagraphsByBr($this->closeTags($strW)) . $append;
+            return '<div class="markdown-limit-renderer">'
+                . $this->replaceParagraphsByBr($this->closeTags($strW)) . $append
+                . '</div>';
         }
+
         return null;
     }
 

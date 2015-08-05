@@ -8584,6 +8584,20 @@ body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .st
 body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .reorder-mode {
   display: none;
 }
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer {
+  font-size: 12px;
+}
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h1,
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h2,
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h3,
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h4 {
+  font-weight: bold;
+  margin: 3px 0;
+  font-size: 13px;
+}
+body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h1 {
+  font-size: 15px;
+}
 body.sharp-list #maincontent #page .pagination {
   margin-left: 10px;
   margin-right: 10px;
