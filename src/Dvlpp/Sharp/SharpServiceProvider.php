@@ -39,10 +39,10 @@ class SharpServiceProvider extends ServiceProvider {
 			__DIR__.'/../../../resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.ttf' => public_path('sharp/fonts/fontawesome-webfont.ttf'),
 			__DIR__.'/../../../resources/assets/bower_components/fontawesome/fonts/fontawesome-webfont.woff' => public_path('sharp/fonts/fontawesome-webfont.woff'),
 
-			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot' => public_path('sharp/fonts/glyphicons-halflings-regular.eot'),
-			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg' => public_path('sharp/fonts/glyphicons-halflings-regular.svg'),
-			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf' => public_path('sharp/fonts/glyphicons-halflings-regular.ttf'),
-			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff' => public_path('sharp/fonts/glyphicons-halflings-regular.woff'),
+//			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot' => public_path('sharp/fonts/glyphicons-halflings-regular.eot'),
+//			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg' => public_path('sharp/fonts/glyphicons-halflings-regular.svg'),
+//			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf' => public_path('sharp/fonts/glyphicons-halflings-regular.ttf'),
+//			__DIR__.'/../../../resources/assets/bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff' => public_path('sharp/fonts/glyphicons-halflings-regular.woff'),
 
 		], 'assets');
 

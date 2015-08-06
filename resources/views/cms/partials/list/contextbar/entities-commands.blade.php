@@ -1,4 +1,4 @@
-@if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data) && sharp_granted('entity', 'update', $entityKey))
+@if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data))
 
     <div class="dropdown navbar-right normal-mode">
 
@@ -6,11 +6,15 @@
 
         <ul class="dropdown-menu pull-right">
             @foreach($entity->commands->list as $command)
-                <li>
-                    <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
-                        {{ $entity->commands->list->$command->text }}
-                    </a>
-                </li>
+
+                @if(sharp_granted('entity', $entity->commands->list->$command->auth ?: "update", $entityKey))
+                    <li>
+                        <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
+                            {{ $entity->commands->list->$command->text }}
+                        </a>
+                    </li>
+                @endif
+
             @endforeach
         </ul>
 
