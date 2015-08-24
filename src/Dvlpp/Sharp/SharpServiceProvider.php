@@ -34,6 +34,7 @@ class SharpServiceProvider extends ServiceProvider {
 			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.svg' => public_path('sharp/fonts/fontawesome-webfont.svg'),
 			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.ttf' => public_path('sharp/fonts/fontawesome-webfont.ttf'),
 			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.woff' => public_path('sharp/fonts/fontawesome-webfont.woff'),
+			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.woff2' => public_path('sharp/fonts/fontawesome-webfont.woff2'),
 
 		], 'assets');
 
