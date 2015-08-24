@@ -49,11 +49,11 @@
                         @if($col->sortable)
                             @if($sortedColumn == $colkey)
                                 <a class="sort current"
-                                   href="{{ URL::route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page']), ['sort'=>$colkey, 'dir'=>$sortedDirection=='asc'?'desc':'asc'])) }}">
+                                   href="{{ route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page']), ['sort'=>$colkey, 'dir'=>$sortedDirection=='asc'?'desc':'asc'])) }}">
                                     {{ $col->header }} <i class="fa fa-angle-{{ $sortedDirection=='asc'?'up':'down' }}"></i>
                                 </a>
                             @else
-                                <a class="sort" href="{{ URL::route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page','dir']), ['sort'=>$colkey])) }}">
+                                <a class="sort" href="{{ route('cms.list', array_merge([$category->key, $entityKey], Input::except(['page','dir']), ['sort'=>$colkey])) }}">
                                     {{ $col->header }} <i class="fa fa-angle-up"></i>
                                 </a>
                             @endif

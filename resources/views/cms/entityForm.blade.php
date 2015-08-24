@@ -41,7 +41,7 @@
     @if(isset($isEmbedded) && $isEmbedded)
         <button type="submit" form="sharp_embedded_cancel" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</button>
     @else
-        <a href="{{ URL::route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
+        <a href="{{ route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
     @endif
 
 @stop
@@ -54,7 +54,7 @@
         <div class="alert alert-danger" role="alert">
             <h4>{{ trans('sharp::ui.form_errors') }}</h4>
             <ul>
-            @foreach(Session::get("errors")->all() as $error)
+            @foreach(session("errors")->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
             </ul>

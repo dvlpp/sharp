@@ -36,7 +36,7 @@
 
                     @if(sharp_granted("category", "view", $catKey))
                         <li class="{{ !isset($masterCategoryKey) && isset($category) && $catKey == $category->key ? 'active' : '' }}">
-                            <a class="category" href="{{ URL::route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
+                            <a class="category" href="{{ route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
                         </li>
                     @endif
 
