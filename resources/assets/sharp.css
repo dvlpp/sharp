@@ -8840,6 +8840,12 @@ body.sharp-form #sharpdelete button {
   font-weight: bold;
   font-size: 8px;
 }
+.sharp-field-file .sharp-file.valuated .sharp-file-label .dl {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 11px;
+}
 .sharp-field-file .sharp-file.with-thumbnail .sharp-file-label .type {
   display: none;
 }

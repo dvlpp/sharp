@@ -9,6 +9,9 @@ module.exports = function(grunt) {
             },
             ui: {
                 src: [
+                    'resources/assets/bower_components/jquery/dist/jquery.js',
+                    'resources/assets/bower_components/bootstrap/dist/js/bootstrap.js',
+                    'resources/assets/vendor/jquery-ui-1.10.4.custom.min.js',
                     'resources/assets/js/sharp.ui.js',
                     'resources/assets/js/sharp.conditional_display.js'
                 ],
@@ -69,7 +72,9 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["resources/assets/less"]
+                    paths: [
+                        "resources/assets/less"
+                    ]
                 },
                 files: {
                     "resources/assets/sharp.css": "resources/assets/less/main.less"
@@ -85,6 +90,18 @@ module.exports = function(grunt) {
                         'resources/assets/sharp.css'
                     ]
                 }
+            }
+        },
+
+        copy: {
+            main: {
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['resources/assets/bower_components/fontawesome/fonts/**'],
+                    dest: 'resources/assets/fonts/',
+                    filter: 'isFile'
+                }]
             }
         },
 
@@ -115,7 +132,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['concat', 'uglify', 'less', 'mincss']);
+    grunt.registerTask('default', ['concat', 'uglify', 'less', 'cssmin', 'copy']);
 
 };

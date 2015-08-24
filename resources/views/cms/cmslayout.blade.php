@@ -120,9 +120,6 @@
 </footer>
 
 @section("scripts")
-<script src="/sharp/vendor/jquery.min.js"></script>
-<script src="/sharp/vendor/bootstrap.min.js"></script>
-<script src="/sharp/vendor/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="/sharp/sharp.ui.min.js"></script>
 @show
 
