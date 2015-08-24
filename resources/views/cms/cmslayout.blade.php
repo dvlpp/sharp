@@ -30,7 +30,7 @@
 
             <ul class="nav navbar-nav">
 
-                <li class="site"><a href="{{ URL::route('cms') }}">{{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}</a></li>
+                <li class="site"><a href="{{ route('cms') }}">{{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}</a></li>
 
                 @foreach($cmsCategories as $catKey => $cat)
 
@@ -46,8 +46,8 @@
             @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getAuthService())
 
                 <div class="navbar-right user">
-                    {{ Session::get("sharp_user") }}
-                    <a class="btn" href="{{ URL::route('logout') }}">
+                    {{ session("sharp_user") }}
+                    <a class="btn" href="{{ route('logout') }}">
                         <span class="fa-stack">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-power-off fa-stack-1x"></i>
