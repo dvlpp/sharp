@@ -26,11 +26,12 @@ class FileField extends AbstractSharpField {
         if($this->field->file_filter) $strAttr .= ' data-file_filter="'.e($this->field->file_filter).'"';
         if($this->field->file_filter_alert) $strAttr .= ' data-file_filter_alert="'.e($this->field->file_filter_alert).'"';
 
-        $strAttr .= ' data-browse_text="'. Lang::get('sharp::ui.form_fileField_browseText') .'"';
+        $strAttr .= ' data-browse_text="'. trans('sharp::ui.form_fileField_browseText') .'"';
 
         // Gets the file possibly valuated
         $instanceFile = null;
         $className = "sharp-file";
+        $repopulation = false;
 
         // Field name
         if($this->isListItem)
@@ -43,7 +44,6 @@ class FileField extends AbstractSharpField {
         {
             $fieldName = $this->fieldName;
         }
-
 
         // Field Value
         if(Input::old($fieldName) !== null)
@@ -62,6 +62,7 @@ class FileField extends AbstractSharpField {
             {
                 // Repopulate
                 $instanceFile = Input::old("__file__" . $fieldName);
+                $repopulation = true;
             }
             elseif(is_string($fieldValue) && starts_with($fieldValue, ":DUPL:"))
             {
@@ -128,6 +129,18 @@ class FileField extends AbstractSharpField {
                 . '<div class="type"><i class="fa fa-file-o"></i><span>' . (file_exists($instanceFile) ? pathinfo($instanceFile, PATHINFO_EXTENSION) : "") . '</span></div>'
                 . '<span class="mime">(' . (file_exists($instanceFile) ? mime_content_type($instanceFile) : "") . ')</span>'
                 . '<span class="size">' . (file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "") . '</span>';
+
+            // Add download link
+            if (!$repopulation)
+            {
+                $fileShortPath = substr($instanceFile, strlen(config("sharp.upload_storage_base_path")) + 1);
+
+                $strField .= '<a href="'
+                    . route("download", [$fileShortPath])
+                    . '" class="dl" target="_blank"><i class="fa fa-download"></i> '
+                    . trans('sharp::ui.form_fileField_dlBtn')
+                    . '</a>';
+            }
 
             if($this->field->crop && !$this->isListItem)
             {

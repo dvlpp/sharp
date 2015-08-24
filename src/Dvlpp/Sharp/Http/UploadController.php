@@ -42,6 +42,13 @@ class UploadController extends Controller {
 
     }
 
+    public function download($fileShortPath)
+    {
+        $filePath = config("sharp.upload_storage_base_path") . '/' . $fileShortPath;
+
+        return response()->download($filePath, basename($filePath));
+    }
+
     private function uploadFile()
     {
         $file = \Input::file('file');
@@ -65,7 +72,7 @@ class UploadController extends Controller {
 
     private function getTmpUploadDirectory()
     {
-        $dir = \Config::get("sharp.upload_tmp_base_path") ?: storage_path("app/tmp/sharp");
+        $dir = config("sharp.upload_tmp_base_path") ?: storage_path("app/tmp/sharp");
         if( ! \File::exists($dir)) mkdir($dir, 0777, true);
 
         return $dir;

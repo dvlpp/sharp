@@ -127,6 +127,10 @@ Route::group(['before' => 'sharp_auth'], function() {
         "as"=>"uploadWithThumbnail",
         "uses"=>'\Dvlpp\Sharp\Http\UploadController@uploadWithThumbnail'
     ]);
+    Route::get('/admin/download/{file?}', [
+        "as"=>"download",
+        "uses"=>'\Dvlpp\Sharp\Http\UploadController@download'
+    ])->where('file', '(.*)');
 
     Route::get('/admin/logout', [
         "as"=>"logout",
