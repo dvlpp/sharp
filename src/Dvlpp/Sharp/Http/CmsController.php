@@ -59,7 +59,7 @@ class CmsController extends Controller {
         else
         {
             // Save input (we can use it later, see up)
-            \Session::flash("listViewInput_{$categoryName}_{$entityName}", $request->only(['page','sort','dir','search','sub']));
+            session()->flash("listViewInput_{$categoryName}_{$entityName}", $request->only(['page','sort','dir','search','sub']));
         }
 
         // Find Entity config (from sharp CMS config file)
@@ -96,7 +96,7 @@ class CmsController extends Controller {
      */
     public function editEntity($categoryName, $entityName, $id)
     {
-        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, $id);
     }
@@ -110,7 +110,7 @@ class CmsController extends Controller {
      */
     public function createEntity($categoryName, $entityName)
     {
-        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, null);
     }
@@ -127,7 +127,7 @@ class CmsController extends Controller {
      */
     public function duplicateEntity($categoryName, $entityName, $id, $lang=null)
     {
-        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         if($lang)
         {
@@ -150,7 +150,7 @@ class CmsController extends Controller {
      */
     public function updateEntity($categoryName, $entityName, $id, Request $request)
     {
-        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->save($categoryName, $entityName, $request, $id);
     }
@@ -165,7 +165,7 @@ class CmsController extends Controller {
      */
     public function storeEntity($categoryName, $entityName, Request $request)
     {
-        \Session::keep("listViewInput_{$categoryName}_{$entityName}");
+        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->save($categoryName, $entityName, $request, null);
     }
@@ -293,12 +293,12 @@ class CmsController extends Controller {
 
         if($instance)
         {
-            if(\Session::has('masterInstanceData'))
+            if(session()->has('masterInstanceData'))
             {
                 // We are back from a embedded entity form.
                 // We have to repopulate the master form (this form) as it was before
                 $formOldDataStr = unserialize(Session::get('masterInstanceData'));
-                \Session::flashInput($formOldDataStr);
+                session()->flashInput($formOldDataStr);
             }
 
             // Duplication management: we simply add an attribute here
@@ -381,7 +381,7 @@ class CmsController extends Controller {
                 $lang = array_values($languages)[0];
             }
 
-            \Session::put("sharp_lang", $lang);
+            session()->put("sharp_lang", $lang);
         }
     }
 

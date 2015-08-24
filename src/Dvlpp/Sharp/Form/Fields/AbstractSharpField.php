@@ -63,7 +63,7 @@ abstract class AbstractSharpField {
      * @param $attributes
      * @param $instance
      */
-    function __construct($key, $listKey, SharpEntityFormField $field, $attributes, $instance)
+    function __construct($key, $listKey, $field, $attributes, $instance)
     {
         $this->key = $key;
         $this->field = $field;

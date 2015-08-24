@@ -3,7 +3,9 @@
 use Dvlpp\Sharp\Auth\SharpAccessManager;
 use Dvlpp\Sharp\Commands\SharpCommandsManager;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Exceptions\CommandValidationException;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 /**
@@ -32,7 +34,7 @@ class CmsCommandsController extends Controller {
      * @param $commandKey
      * @return mixed
      */
-    public function entitiesListCommand($categoryName, $entityName, $commandKey)
+    public function entitiesListCommand($categoryName, $entityName, $commandKey, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
@@ -54,11 +56,17 @@ class CmsCommandsController extends Controller {
 
         $commandReturn = $this->commandsManager->executeEntitiesListCommand($entity, $commandKey, $entitiesListParams);
 
-        return $this->handleCommandReturn($entity->commands->list->$commandKey, $commandReturn, $categoryName, $entityName);
+        return $this->handleCommandReturn(
+            $entity->commands->list->$commandKey,
+            $commandReturn,
+            $categoryName,
+            $entityName,
+            $request
+        );
     }
 
 
-    public function entityCommand($categoryName, $entityName, $commandKey, $instanceId)
+    public function entityCommand($categoryName, $entityName, $commandKey, $instanceId, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
@@ -71,14 +79,67 @@ class CmsCommandsController extends Controller {
 
         if( ! $granted) return redirect("/");
 
-        $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
+        $commandForm = $this->commandsManager->getEntityCommandForm($entity, $commandKey);
+        $error = false;
 
-        return $this->handleCommandReturn($entity->commands->entity->$commandKey, $commandReturn, $categoryName, $entityName);
+        if($commandForm)
+        {
+            // There's a form attached to the command:
+
+            if( ! $request->has("sharp_form_valued"))
+            {
+                // Return the view of the form
+                // to make the user fill parameters before send the command
+                return view("sharp::cms.partials.list.commandForm", [
+                    'fields' => $commandForm,
+                    'url' => route('cms.entityCommand',
+                        array_merge([$categoryName, $entityName, $commandKey, $instanceId], $request->all()))
+                ]);
+            }
+
+            // Form posted: call the command with the values of the form
+            try
+            {
+                $commandReturn = $this->commandsManager->executeEntityCommand(
+                    $entity, $commandKey, $instanceId, $request->only(array_keys($commandForm))
+                );
+            }
+            catch(CommandValidationException $ex)
+            {
+                $commandReturn = $ex->getMessage();
+                $error = true;
+            }
+        }
+        else
+        {
+            $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
+        }
+
+        return $this->handleCommandReturn(
+            $entity->commands->entity->$commandKey,
+            $commandReturn,
+            $categoryName,
+            $entityName,
+            $request->except(
+                array_merge(
+                    ["_token", "sharp_form_valued"],
+                    ($commandForm?array_keys($commandForm):[])
+                )
+            ),
+            $error
+        );
     }
 
 
-    private function handleCommandReturn($commandConfig, $commandReturn, $categoryName, $entityName)
+    private function handleCommandReturn($commandConfig, $commandReturn, $categoryName, $entityName, $request=[], $error=falselse)
     {
+        if($error)
+        {
+            return redirect()
+                ->route("cms.list", array_merge([$categoryName, $entityName], $request))
+                ->with("errorMessage", $commandReturn);
+        }
+
         $commandType = $commandConfig->type;
 
         if($commandType == "download")
@@ -95,7 +156,7 @@ class CmsCommandsController extends Controller {
         }
 
         // Just reload
-        return redirect()->route("cms.list", array_merge([$categoryName, $entityName], \Input::all()));
+        return redirect()->route("cms.list", array_merge([$categoryName, $entityName], $request));
     }
 
 } 

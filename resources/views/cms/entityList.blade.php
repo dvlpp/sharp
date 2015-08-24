@@ -38,6 +38,13 @@
         {!! Form::token() !!}
     </form>
 
+    @if(session()->has("errorMessage"))
+        <div class="alert alert-danger" role="alert">
+            <h4>{{ trans('sharp::ui.command_params_validation_error') }}</h4>
+            {{ session("errorMessage") }}
+        </div>
+    @endif
+
     @include("sharp::cms.partials.list.advancedsearch-form")
 
     <table class="table table-responsive table-striped" id="entity-list">
@@ -144,7 +151,9 @@
 
                                         @if(sharp_granted('entity', $entity->commands->entity->$command->auth ?: "update", $entityKey))
                                             <li>
-                                                <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entityKey, $command, $instance->id], Input::all())) }}" {{ $entity->commands->entity->$command->type=="view" ? 'target="_blank"' : ''}}>
+                                                <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entityKey, $command, $instance->id], Input::all())) }}"
+                                                        class="sharp-command {{ $entity->commands->entity->$command->form ? 'with-form' : '' }}"
+                                                        {!! $entity->commands->entity->$command->type=="view" ? 'target="_blank"' : '' !!}>
                                                     {{ $entity->commands->entity->$command->text }}
                                                 </a>
                                             </li>

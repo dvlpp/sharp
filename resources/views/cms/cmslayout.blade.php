@@ -120,7 +120,7 @@
 </footer>
 
 @section("scripts")
-<script src="/sharp/sharp.ui.min.js"></script>
+<script src="/sharp/sharp.ui.min.js?v=3"></script>
 @show
 
 </body>

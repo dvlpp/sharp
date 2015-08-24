@@ -2,7 +2,6 @@
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
-use App;
 
 /**
  * Handle command calls.
@@ -18,13 +17,39 @@ class SharpCommandsManager {
      * @param $entity
      * @param $commandKey
      * @param $instanceId
+     * @param array|null $params
      * @return mixed
+     * @throws MandatoryClassNotFoundException
      */
-    public function executeEntityCommand($entity, $commandKey, $instanceId)
+    public function executeEntityCommand($entity, $commandKey, $instanceId, $params=null)
     {
-        $commandHandler = $this->getCommandHandler($entity->commands->entity->$commandKey, $commandKey, true);
+        $commandHandler = $this->getCommandHandler($entity->commands->entity->$commandKey, $commandKey, $params, true);
 
-        return $commandHandler->execute($instanceId);
+        if($params) $commandHandler->validate($params);
+
+        return $commandHandler->execute($instanceId, $params);
+    }
+
+    /**
+     * @param $entity
+     * @param $commandKey
+     * @return array|null
+     */
+    public function getEntityCommandForm($entity, $commandKey)
+    {
+        if(!$entity->commands->entity->$commandKey->form) return null;
+
+        $formFields = [];
+
+        foreach($entity->commands->entity->$commandKey->form as $fieldKey => $fieldConfig)
+        {
+            $fieldConfigObject = (object)$fieldConfig;
+            $this->addAttributesIfMissing($fieldConfigObject, ["label", "attributes", "conditional_display", "field_width", "help"]);
+
+            $formFields[$fieldKey] = $fieldConfigObject;
+        }
+
+        return $formFields;
     }
 
     /**
@@ -37,7 +62,7 @@ class SharpCommandsManager {
      */
     public function executeEntitiesListCommand($entity, $commandKey, SharpEntitiesListParams $entitiesListParams)
     {
-        $commandHandler = $this->getCommandHandler($entity->commands->list->$commandKey, $commandKey);
+        $commandHandler = $this->getCommandHandler($entity->commands->list->$commandKey, null, $commandKey);
 
         return $commandHandler->execute($entitiesListParams);
     }
@@ -48,16 +73,14 @@ class SharpCommandsManager {
      *
      * @param $commandConfig
      * @param $commandKey
+     * @param array $params
      * @param bool $isEntity
      * @return mixed
-     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
+     * @throws MandatoryClassNotFoundException
      */
-    private function getCommandHandler($commandConfig, $commandKey, $isEntity=false)
+    private function getCommandHandler($commandConfig, $commandKey, array $params, $isEntity=false)
     {
-        if(!$commandConfig->data)
-        {
-            // TODO No configuration for this command
-        }
+        if(!$commandConfig->data) throw new MandatoryClassNotFoundException("Command config for [$commandKey] not found.");
 
         $commandHandlerClassName = $commandConfig->handler;
 
@@ -67,17 +90,33 @@ class SharpCommandsManager {
             throw new MandatoryClassNotFoundException("Command handler [$commandHandlerClassName] for [$commandKey] not found.");
         }
 
-        $commandHandler = App::make($commandHandlerClassName);
+        $commandHandler = app($commandHandlerClassName);
 
-        if(($isEntity && !$commandHandler instanceof SharpEntityCommand)
-            || (!$isEntity && !$commandHandler instanceof SharpEntitiesListCommand))
+        if($isEntity && $params && !$commandHandler instanceof SharpEntityCommandWithParams)
         {
-            // Handler isn't implementing correct interface
             throw new MandatoryClassNotFoundException("Command handler [$commandHandlerClassName] for ["
-                    ."$commandKey] must implement EntityCommand or EntitiesListCommand.");
+                ."$commandKey] must implement EntityCommandWithParams.");
+        }
+        elseif($isEntity && !$params && !$commandHandler instanceof SharpEntityCommand)
+        {
+            throw new MandatoryClassNotFoundException("Command handler [$commandHandlerClassName] for ["
+                ."$commandKey] must implement EntityCommand.");
+        }
+        elseif(!$isEntity && !$commandHandler instanceof SharpEntitiesListCommand)
+        {
+            throw new MandatoryClassNotFoundException("Command handler [$commandHandlerClassName] for ["
+                ."$commandKey] must implement EntitiesListCommand.");
         }
 
         return $commandHandler;
+    }
+
+    private function addAttributesIfMissing(&$fieldConfigObject, $attributes)
+    {
+        foreach($attributes as $attr)
+        {
+            if (!isset($fieldConfigObject->$attr)) $fieldConfigObject->$attr = null;
+        }
     }
 
 } 

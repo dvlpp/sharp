@@ -37,4 +37,8 @@ return [
     'form_fileField_cropBtn' => "Retailler",
     'form_fileField_dlBtn' => "Télécharger le fichier",
 
+    'command_params_modal_title' => "Veuillez préciser :",
+    'command_params_modal_btn' => "Valider",
+    'command_params_validation_error' => "Une erreur est survenue"
+
 ];

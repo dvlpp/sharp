@@ -94,7 +94,7 @@ Route::group(['before' => 'sharp_auth'], function() {
         "before"=>"sharp_access_granted:entity delete *entity"
     ]);
 
-    Route::get('/admin/cms/{category}/{entity}/command/{action}/{id}', [
+    Route::match(['POST','GET'], '/admin/cms/{category}/{entity}/command/{action}/{id}', [
         "as"=>"cms.entityCommand",
         "uses"=>'\Dvlpp\Sharp\Http\CmsCommandsController@entityCommand'
     ]);

@@ -34,7 +34,7 @@ class SharpCmsField {
      * @param string|null $listKey : the key of the list field if the current field is part of a list item
      * @return mixed
      */
-    public function make($key, SharpEntityFormField $field, $instance, $listKey=null)
+    public function make($key, $field, $instance, $listKey=null)
     {
         $label = $field->label ? $this->createLabel($key, $field->label) : '';
         $field = $this->createField($key, $field, $instance, $listKey);
@@ -51,7 +51,7 @@ class SharpCmsField {
      * @param string $listKey
      * @return null|string
      */
-    protected function createField($key, SharpEntityFormField $field, $instance, $listKey)
+    protected function createField($key, $field, $instance, $listKey)
     {
         $attributes = $field->attributes ?: [];
         $attributes["autocomplete"] = "off";

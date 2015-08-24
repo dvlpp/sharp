@@ -37,4 +37,8 @@ return [
     'form_fileField_cropBtn' => "Crop",
     'form_fileField_dlBtn' => "Download file",
 
+    'command_params_modal_title' => "Please fill the fields:",
+    'command_params_modal_btn' => "Proceed",
+    'command_params_validation_error' => "An error occurred"
+
 ];
