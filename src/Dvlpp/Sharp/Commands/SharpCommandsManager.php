@@ -78,7 +78,7 @@ class SharpCommandsManager {
      * @return mixed
      * @throws MandatoryClassNotFoundException
      */
-    private function getCommandHandler($commandConfig, $commandKey, array $params, $isEntity=false)
+    private function getCommandHandler($commandConfig, $commandKey, $params=null, $isEntity=false)
     {
         if(!$commandConfig->data) throw new MandatoryClassNotFoundException("Command config for [$commandKey] not found.");
 
