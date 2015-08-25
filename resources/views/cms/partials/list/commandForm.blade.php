@@ -11,12 +11,14 @@
                 <h4 class="modal-title">{{ trans("sharp::ui.command_params_modal_title") }}</h4>
             </div>
             <div class="modal-body">
-                @foreach($fields as $key => $field)
-                    @include("sharp::cms.partials.formField", ["field" => $field, "instance" => null])
-                @endforeach
+                <div class="row">
+                    @foreach($fields as $key => $field)
+                        @include("sharp::cms.partials.formField", ["field" => $field, "instance" => null])
+                    @endforeach
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">{{ trans("sharp::ui.command_params_modal_btn") }}</button>
+                <button type="submit" class="btn btn-primary btn-lg">{{ trans("sharp::ui.command_params_modal_btn") }}</button>
             </div>
         </div>
 
