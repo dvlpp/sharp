@@ -3,6 +3,7 @@
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
+use Dvlpp\Sharp\Repositories\SharpHasSublist;
 use Illuminate\Pagination\Paginator;
 use Input;
 
@@ -73,13 +74,14 @@ class SharpEntitiesList {
         // Sublist is used to group entities. The project repository is responsible
         // of giving the current sublist (with a default) and the available ones.
         $subLists = null;
+
         if($this->entity->list_template->sublist)
         {
-            if(!$this->repo instanceof \Dvlpp\Sharp\Repositories\SharpHasSublist)
+            if(!$this->repo instanceof SharpHasSublist)
             {
                 throw new MandatoryClassNotFoundException("Repository ["
                     .get_class($this->repo)
-                    ."] has to implements \\Dvlpp\\Sharp\\Repositories\\SharpHasSublist in order to manage sublists");
+                    ."] has to implement \\Dvlpp\\Sharp\\Repositories\\SharpHasSublist in order to manage sublists");
             }
 
             // Init current subset in repo
