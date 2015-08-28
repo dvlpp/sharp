@@ -8511,6 +8511,10 @@ body.sharp-auth {
   border-right-color: transparent;
   color: #fff;
 }
+#maincontent #contextbar .navbar .navbar-nav .dropdown.open .dropdown-menu {
+  max-height: 400px;
+  overflow: auto;
+}
 #maincontent #contextbar .navbar .navbar-nav .btn-ok {
   font-weight: bold;
 }
