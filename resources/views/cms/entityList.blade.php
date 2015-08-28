@@ -25,6 +25,7 @@
     @include("sharp::cms.partials.list.contextbar.reorder-button")
 
     {{-- Sublist --}}
+    @include("sharp::cms.partials.list.contextbar.listfilters-button")
     @include("sharp::cms.partials.list.contextbar.sublist-button")
 
     {{-- Quick search --}}

@@ -1,10 +1,13 @@
-<?php namespace Dvlpp\Sharp\ListView;
+<?php
+
+namespace Dvlpp\Sharp\ListView;
 
 /**
  * Class SharpEntitiesListParams
  * @package Dvlpp\Sharp\ListView
  */
-class SharpEntitiesListParams {
+class SharpEntitiesListParams
+{
 
     /**
      * @var string
@@ -27,10 +30,10 @@ class SharpEntitiesListParams {
     protected $isAdvancedSearch = false;
 
     /**
+     * @deprecated
      * @var null
      */
     private $currentSublistId;
-
 
     /**
      * @return string
@@ -57,6 +60,7 @@ class SharpEntitiesListParams {
     }
 
     /**
+     * @deprecated
      * @return string
      */
     public function getCurrentSublistId()
@@ -70,6 +74,7 @@ class SharpEntitiesListParams {
     }
 
     /**
+     * @deprecated
      * @param string $currentSublistId
      */
     public function setCurrentSublistId($currentSublistId)
@@ -110,16 +115,13 @@ class SharpEntitiesListParams {
     {
         $value = null;
 
-        if($this->isAdvancedSearch)
-        {
+        if ($this->isAdvancedSearch) {
             $index = null;
-            if(strpos($field, ".") !== false)
-            {
+            if (strpos($field, ".") !== false) {
                 list($field, $index) = explode(".", $field);
             }
 
-            if(array_key_exists($field, $this->search))
-            {
+            if (array_key_exists($field, $this->search)) {
                 return $index === null ? $this->search[$field] : $this->search[$field][$index];
             }
         }
