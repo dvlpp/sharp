@@ -51,19 +51,16 @@ class CmsController extends Controller
      */
     public function listEntities($categoryName, $entityName, Request $request)
     {
-        if (!sizeof($request->all()) && session("listViewInput_{$categoryName}_{$entityName}")) {
+        if ($qs = $this->restoreQuerystringForListEntities($categoryName, $entityName, $request)) {
             // We saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
             // with the correct querystring based on old input
-            $input = session("listViewInput_{$categoryName}_{$entityName}");
-
             return redirect()->route('cms.list',
-                array_merge(["category" => $categoryName, "entity" => $entityName], $input));
+                array_merge(["category" => $categoryName, "entity" => $entityName], $qs));
 
         } else {
             // Save input (we can use it later, see up)
-            session()->put("listViewInput_{$categoryName}_{$entityName}",
-                $request->only(['page', 'sort', 'dir', 'search', 'sub']));
+            $this->saveQuerystringForListEntities($categoryName, $entityName, $request);
         }
 
         // Find Entity config (from sharp CMS config file)
@@ -104,8 +101,6 @@ class CmsController extends Controller
      */
     public function editEntity($categoryName, $entityName, $id)
     {
-//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
-
         return $this->form($categoryName, $entityName, $id);
     }
 
@@ -118,8 +113,6 @@ class CmsController extends Controller
      */
     public function createEntity($categoryName, $entityName)
     {
-//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
-
         return $this->form($categoryName, $entityName, null);
     }
 
@@ -135,8 +128,6 @@ class CmsController extends Controller
      */
     public function duplicateEntity($categoryName, $entityName, $id, $lang = null)
     {
-//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
-
         if ($lang) {
             // We have to first change the language
             // (duplication is useful for i18n copy)
@@ -157,8 +148,6 @@ class CmsController extends Controller
      */
     public function updateEntity($categoryName, $entityName, $id, Request $request)
     {
-//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
-
         return $this->save($categoryName, $entityName, $request, $id);
     }
 
@@ -172,8 +161,6 @@ class CmsController extends Controller
      */
     public function storeEntity($categoryName, $entityName, Request $request)
     {
-//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
-
         return $this->save($categoryName, $entityName, $request, null);
     }
 
@@ -380,6 +367,36 @@ class CmsController extends Controller
 
             session()->put("sharp_lang", $lang);
         }
+    }
+
+    /**
+     * @param $categoryName
+     * @param $entityName
+     * @param Request $request
+     * @return bool
+     */
+    protected function restoreQuerystringForListEntities($categoryName, $entityName, Request $request)
+    {
+        $sessionQs = session("listViewInput_{$categoryName}_{$entityName}");
+
+        if(!sizeof($request->all()) && $sessionQs) {
+            foreach($sessionQs as $param=>$value) {
+                if(!is_null($value)) return $sessionQs;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $categoryName
+     * @param $entityName
+     * @param Request $request
+     */
+    protected function saveQuerystringForListEntities($categoryName, $entityName, Request $request)
+    {
+        session()->put("listViewInput_{$categoryName}_{$entityName}",
+            $request->only(['page', 'sort', 'dir', 'search', 'sub']));
     }
 
 } 
