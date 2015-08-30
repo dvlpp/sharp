@@ -1,29 +1,30 @@
-<?php namespace Dvlpp\Sharp\Http;
+<?php
+
+namespace Dvlpp\Sharp\Http;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class UploadController extends Controller {
+class UploadController extends Controller
+{
 
-    public function upload()
+    public function upload(Request $request)
     {
-        try
-        {
-            $tab = $this->uploadFile();
-            return response()->json(["file"=>$tab]);
-        }
-        catch(\Exception $e)
-        {
-            return response()->json(["err"=>$e->getMessage()]);
+        try {
+            $tab = $this->uploadFile($request);
+
+            return response()->json(["file" => $tab]);
+
+        } catch (\Exception $e) {
+            return response()->json(["err" => $e->getMessage()]);
         }
     }
 
     public function uploadWithThumbnail(Request $request)
     {
-        try
-        {
-            $tab = $this->uploadFile();
+        try {
+            $tab = $this->uploadFile($request);
 
             // Manage thumbnail creation
             $tab["thumbnail"] = sharp_thumbnail(
@@ -32,12 +33,10 @@ class UploadController extends Controller {
                 $request->get("thumbnail_width")
             );
 
-            return response()->json(["file"=>$tab]);
+            return response()->json(["file" => $tab]);
 
-        }
-        catch(\Exception $e)
-        {
-            return response()->json(["err"=>$e->getMessage()]);
+        } catch (\Exception $e) {
+            return response()->json(["err" => $e->getMessage()]);
         }
 
     }
@@ -49,21 +48,19 @@ class UploadController extends Controller {
         return response()->download($filePath, basename($filePath));
     }
 
-    private function uploadFile()
+    private function uploadFile(Request $request)
     {
-        $file = \Input::file('file');
+        $file = $request->file('file');
 
-        if($file)
-        {
+        if ($file) {
             $filename = uniqid() . "." . $file->getClientOriginalExtension();
-            $filesize = $file->getSize();
 
             $file->move($this->getTmpUploadDirectory(), $filename);
 
             return [
                 "name" => $filename,
-                "size" => $filesize,
-                "path" =>  $this->getTmpUploadDirectory() . "/" . $filename
+                "size" => $file->getSize(),
+                "path" => $this->getTmpUploadDirectory() . "/" . $filename
             ];
         }
 
@@ -73,7 +70,9 @@ class UploadController extends Controller {
     private function getTmpUploadDirectory()
     {
         $dir = config("sharp.upload_tmp_base_path") ?: storage_path("app/tmp/sharp");
-        if( ! \File::exists($dir)) mkdir($dir, 0777, true);
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
 
         return $dir;
     }

@@ -3,8 +3,7 @@
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 
-if ( ! function_exists('sharp_thumbnail'))
-{
+if (!function_exists('sharp_thumbnail')) {
     /**
      * Returns a valid URL to a thumbnail, creating it first if needed.
      *
@@ -14,49 +13,60 @@ if ( ! function_exists('sharp_thumbnail'))
      * @param array $params
      * @return null|string
      */
-    function sharp_thumbnail($source, $w, $h, $params=[])
+    function sharp_thumbnail($source, $w, $h, $params = [])
     {
-        if(File::exists($source))
-        {
+        if (file_exists($source)) {
             $uploadStoragePath = Config::get("sharp.upload_storage_base_path") ?: storage_path();
             $thumbnailPath = Config::get("sharp.thumbnail_relative_path") ?: "sharp/thumbnails";
 
             $folder = dirname($source);
-            if(Str::startsWith($folder, $uploadStoragePath))
-            {
-                $folder = substr($folder, strlen($uploadStoragePath)+1);
+            if (Str::startsWith($folder, $uploadStoragePath)) {
+                $folder = substr($folder, strlen($uploadStoragePath) + 1);
             }
 
             $sizeMin = isset($params["size_min"]) && $params["size_min"];
 
-            if($w==0) $w=null;
-            if($h==0) $h=null;
+            if ($w == 0) {
+                $w = null;
+            }
+            if ($h == 0) {
+                $h = null;
+            }
 
-            $thumbName = "$thumbnailPath/$folder/$w-$h" .($sizeMin?"_min":"") . "/" . basename($source);
+            $thumbName = "$thumbnailPath/$folder/$w-$h" . ($sizeMin ? "_min" : "") . "/" . basename($source);
             $thumbFile = public_path($thumbName);
 
-            if(!File::exists($thumbFile))
-            {
+            if (!file_exists($thumbFile)) {
                 // Create thumbnail directories if needed
-                if(!File::exists(dirname($thumbFile))) mkdir(dirname($thumbFile), 0777, true);
-
-                $manager = new ImageManager;
-                $sourceImg = $manager->make($source);
-
-                if($sizeMin && $w && $h)
-                {
-                    // This param means $w and $h are minimums. We find which dimension of the original image is the most distant
-                    // from the wanted size, and we keep this one as constraint
-                    $dw = $sourceImg->width() / $w;
-                    $dh = $sourceImg->height() / $h;
-                    if($dw>$dh) $w = null;
-                    else $h = null;
+                if (!file_exists(dirname($thumbFile))) {
+                    mkdir(dirname($thumbFile), 0777, true);
                 }
 
-                // Create thumbnail
-                $sourceImg->resize($w, $h, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($thumbFile, isset($params["quality"]) ? $params["quality"] : null);
+                try {
+
+                    $manager = new ImageManager;
+                    $sourceImg = $manager->make($source);
+
+                    if ($sizeMin && $w && $h) {
+                        // This param means $w and $h are minimums. We find which dimension of the original image is the most distant
+                        // from the wanted size, and we keep this one as constraint
+                        $dw = $sourceImg->width() / $w;
+                        $dh = $sourceImg->height() / $h;
+                        if ($dw > $dh) {
+                            $w = null;
+                        } else {
+                            $h = null;
+                        }
+                    }
+
+                    // Create thumbnail
+                    $sourceImg->resize($w, $h, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($thumbFile, isset($params["quality"]) ? $params["quality"] : null);
+
+                } catch (\Exception $e) {
+                    return null;
+                }
             }
 
             return url($thumbName);
@@ -67,8 +77,7 @@ if ( ! function_exists('sharp_thumbnail'))
     }
 }
 
-if ( ! function_exists('sharp_markdown'))
-{
+if (!function_exists('sharp_markdown')) {
     /**
      * Markdownify a string
      *
@@ -81,8 +90,7 @@ if ( ! function_exists('sharp_markdown'))
     }
 }
 
-if ( ! function_exists('explode_search_words'))
-{
+if (!function_exists('explode_search_words')) {
     /**
      * Return an array of words from a given string, with optional prefix / suffix.
      *
@@ -93,28 +101,28 @@ if ( ! function_exists('explode_search_words'))
      * @param string $noStarTermSuffix
      * @return array
      */
-    function explode_search_words($text, $isLike=true, $handleStar=true, $noStarTermPrefix='%', $noStarTermSuffix='%')
-    {
+    function explode_search_words(
+        $text,
+        $isLike = true,
+        $handleStar = true,
+        $noStarTermPrefix = '%',
+        $noStarTermSuffix = '%'
+    ) {
         $terms = [];
 
-        foreach(explode(" ", $text) as $term)
-        {
+        foreach (explode(" ", $text) as $term) {
             $term = trim($term);
-            if(!$term) continue;
+            if (!$term) {
+                continue;
+            }
 
-            if($isLike)
-            {
-                if($handleStar && strpos($term, '*') !== false)
-                {
+            if ($isLike) {
+                if ($handleStar && strpos($term, '*') !== false) {
                     $terms[] = str_replace('*', '%', $term);
-                }
-                else
-                {
+                } else {
                     $terms[] = $noStarTermPrefix . $term . $noStarTermSuffix;
                 }
-            }
-            else
-            {
+            } else {
                 $terms[] = $term;
             }
         }
@@ -123,8 +131,7 @@ if ( ! function_exists('explode_search_words'))
     }
 }
 
-if ( ! function_exists('sharp_encode_embedded_entity_data'))
-{
+if (!function_exists('sharp_encode_embedded_entity_data')) {
     /**
      * @param $data
      * @return string
@@ -135,8 +142,7 @@ if ( ! function_exists('sharp_encode_embedded_entity_data'))
     }
 }
 
-if ( ! function_exists('sharp_decode_embedded_entity_data'))
-{
+if (!function_exists('sharp_decode_embedded_entity_data')) {
     /**
      * @param $data
      * @return array

@@ -59,9 +59,10 @@ class CmsController extends Controller
 
             return redirect()->route('cms.list',
                 array_merge(["category" => $categoryName, "entity" => $entityName], $input));
+
         } else {
             // Save input (we can use it later, see up)
-            session()->flash("listViewInput_{$categoryName}_{$entityName}",
+            session()->put("listViewInput_{$categoryName}_{$entityName}",
                 $request->only(['page', 'sort', 'dir', 'search', 'sub']));
         }
 
@@ -103,7 +104,7 @@ class CmsController extends Controller
      */
     public function editEntity($categoryName, $entityName, $id)
     {
-        session()->keep("listViewInput_{$categoryName}_{$entityName}");
+//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, $id);
     }
@@ -117,7 +118,7 @@ class CmsController extends Controller
      */
     public function createEntity($categoryName, $entityName)
     {
-        session()->keep("listViewInput_{$categoryName}_{$entityName}");
+//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->form($categoryName, $entityName, null);
     }
@@ -134,7 +135,7 @@ class CmsController extends Controller
      */
     public function duplicateEntity($categoryName, $entityName, $id, $lang = null)
     {
-        session()->keep("listViewInput_{$categoryName}_{$entityName}");
+//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         if ($lang) {
             // We have to first change the language
@@ -156,7 +157,7 @@ class CmsController extends Controller
      */
     public function updateEntity($categoryName, $entityName, $id, Request $request)
     {
-        session()->keep("listViewInput_{$categoryName}_{$entityName}");
+//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->save($categoryName, $entityName, $request, $id);
     }
@@ -171,7 +172,7 @@ class CmsController extends Controller
      */
     public function storeEntity($categoryName, $entityName, Request $request)
     {
-        session()->keep("listViewInput_{$categoryName}_{$entityName}");
+//        session()->keep("listViewInput_{$categoryName}_{$entityName}");
 
         return $this->save($categoryName, $entityName, $request, null);
     }
@@ -362,6 +363,7 @@ class CmsController extends Controller
 
             // And redirect
             return redirect()->route("cms.list", [$categoryName, $entityName]);
+
         } catch (ValidationException $e) {
             return redirect()->back()->withInput()->withErrors($e->getErrors());
         }
@@ -370,6 +372,7 @@ class CmsController extends Controller
     private function changeLang($lang)
     {
         $languages = SharpSiteConfig::getLanguages();
+
         if ($languages) {
             if (!$lang || !array_key_exists($lang, $languages)) {
                 $lang = array_values($languages)[0];
