@@ -54,12 +54,13 @@ class UploadController extends Controller
 
         if ($file) {
             $filename = uniqid() . "." . $file->getClientOriginalExtension();
+            $filesize = $file->getSize();
 
             $file->move($this->getTmpUploadDirectory(), $filename);
 
             return [
                 "name" => $filename,
-                "size" => $file->getSize(),
+                "size" => $filesize,
                 "path" => $this->getTmpUploadDirectory() . "/" . $filename
             ];
         }
