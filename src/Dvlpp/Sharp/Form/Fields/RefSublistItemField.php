@@ -52,7 +52,7 @@ class RefSublistItemField extends AbstractSharpField {
 
                 // First we create a "datastore" hidden select, with all values,
                 // to allow JS code to search in
-                $str = Form::select($this->fieldName . "_values", $allValues, null, ["class"=>"hidden"]);
+                $str = Form::select("values_" . $this->fieldName, $allValues, null, ["class"=>"hidden"]);
 
                 $value = $this->getOldValue() ?: $this->fieldValue;
 

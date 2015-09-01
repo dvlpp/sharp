@@ -29958,27 +29958,22 @@ function createSharpRef($el)
         $el[0].selectize.addOption({value:data,text:data});
         $el[0].selectize.addItem(data);
     }
-};(function($)
-{
-    $.fn.sharp_refSublistItem=function(options)
-    {
-        var defauts = { };
+};(function ($) {
+    $.fn.sharp_refSublistItem = function (options) {
+        var defauts = {};
         var params = $.extend(defauts, options);
 
-        function refreshSubList($baseRefField, $refSublistField, $datastore)
-        {
+        function refreshSubList($baseRefField, $refSublistField, $datastore) {
             var baseRefValue = $baseRefField.find("option:selected").val();
 
             $refSublistField.disable();
             $refSublistField.clearOptions();
 
-            $datastore.find("optgroup").each(function()
-            {
-                if($(this).attr("label") == baseRefValue)
-                {
+            $datastore.find("optgroup").each(function () {
+                if ($(this).attr("label") == baseRefValue) {
                     $refSublistField.enable();
-                    $(this).find("option").each(function()
-                    {
+
+                    $(this).find("option").each(function () {
                         $refSublistField.addOption({
                             value: $(this).val(),
                             text: $(this).text()
@@ -29991,26 +29986,39 @@ function createSharpRef($el)
             });
         }
 
-        return this.each(function()
-        {
+        return this.each(function () {
             $(this).selectize(params);
-
-            var $datastore = $(this).prev("select[name=" + escapeFieldId($(this).prop("id")) + "_values]");
 
             var $refSublistField = $(this)[0].selectize;
 
-            var $baseRefField = $("#" + escapeFieldId(params.linked_ref_field));
+            var $item = $(this).parents(".sharp-list-item");
+            var $baseRefField = null;
+            var $datastore = $(this).prev("select");
 
-            $baseRefField.on('change', function()
-            {
+            if($item.length) {
+                // List item case: check first if it's template
+                if($item.hasClass("template")) {
+                    // Template: skip
+                    return;
+                }
+
+                // We use $= selector to look for input which end of name is [stateFieldName]
+                // (with brackets because it's a list)
+                $baseRefField = $item.find(".sharp-field *[name$=\\["+escapeFieldName(params.linked_ref_field)+"\\]]");
+
+            } else {
+                $baseRefField = $(":input[name=" + escapeFieldId(params.linked_ref_field) + "]");
+                $datastore = $(this).prev("select[name=values_" + escapeFieldId($(this).prop("name")) + "]");
+            }
+
+            $baseRefField.on('change', function () {
                 refreshSubList($baseRefField, $refSublistField, $datastore);
             });
 
             refreshSubList($baseRefField, $refSublistField, $datastore);
 
             // Restore initial value
-            if(params.initial_value)
-            {
+            if (params.initial_value) {
                 $refSublistField.setValue(params.initial_value);
             }
 
@@ -30019,17 +30027,15 @@ function createSharpRef($el)
 
 }(jQuery));
 
-$(window).load(function() {
+$(window).load(function () {
 
-    $('.sharp-refSublistItem').each(function()
-    {
+    $('.sharp-refSublistItem').each(function () {
         createSharpRefSublistItem($(this));
     });
 
 });
 
-function createSharpRefSublistItem($el)
-{
+function createSharpRefSublistItem($el) {
     var options = {
         linked_ref_field: $el.data("linked_ref_field"),
         initial_value: $el.data("initial_value")
@@ -30038,9 +30044,8 @@ function createSharpRefSublistItem($el)
     $el.sharp_refSublistItem(options);
 }
 
-function escapeFieldId(id)
-{
-    return id.replace( /(:|\.|\[|\]|\~|,)/g, "\\$1" );
+function escapeFieldId(id) {
+    return id.replace(/(:|\.|\[|\]|\~|,)/g, "\\$1");
 };(function($)
 {
     $.fn.sharp_file=function(options)
@@ -30586,6 +30591,12 @@ $(window).load(function() {
                     item.find('.sharp-ref-template').each(function() {
                         $(this).removeClass('sharp-ref-template').addClass('sharp-ref');
                         createSharpRef($(this));
+                    });
+
+                    // Manage sharp-refSublistItem in the item
+                    item.find('.sharp-refSublistItem-template').each(function() {
+                        $(this).removeClass('sharp-refSublistItem-template').addClass('sharp-refSublistItem');
+                        createSharpRefSublistItem($(this));
                     });
 
                     // Manage sharp-tags in the item

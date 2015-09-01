@@ -151,6 +151,12 @@ $(window).load(function() {
                         createSharpRef($(this));
                     });
 
+                    // Manage sharp-refSublistItem in the item
+                    item.find('.sharp-refSublistItem-template').each(function() {
+                        $(this).removeClass('sharp-refSublistItem-template').addClass('sharp-refSublistItem');
+                        createSharpRefSublistItem($(this));
+                    });
+
                     // Manage sharp-tags in the item
                     item.find('.sharp-tags-template').each(function() {
                         $(this).removeClass('sharp-tags-template').addClass('sharp-tags');

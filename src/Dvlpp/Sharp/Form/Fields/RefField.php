@@ -29,7 +29,7 @@ class RefField extends AbstractSharpField {
         $reflistRepoName = $this->field->repository;
         if(class_exists($reflistRepoName) || interface_exists($reflistRepoName))
         {
-            $reflistRepo = App::make($reflistRepoName);
+            $reflistRepo = app($reflistRepoName);
 
             /*$ui = $this->field->ui;
             if(!$ui)
