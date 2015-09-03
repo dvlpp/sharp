@@ -72,6 +72,7 @@ class SharpCmsField {
                 return $field->make();
 
             case 'choose':
+            case 'select':
                 $field = new ChooseField($key, $listKey, $field, $attributes, $instance);
                 return $field->make();
 
