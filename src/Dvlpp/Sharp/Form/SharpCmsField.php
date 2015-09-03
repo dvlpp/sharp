@@ -8,6 +8,7 @@ use Dvlpp\Sharp\Form\Fields\EmbedField;
 use Dvlpp\Sharp\Form\Fields\EmbedListField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\HiddenField;
+use Dvlpp\Sharp\Form\Fields\JavascriptCode;
 use Dvlpp\Sharp\Form\Fields\LabelField;
 use Dvlpp\Sharp\Form\Fields\ListField;
 use Dvlpp\Sharp\Form\Fields\MarkdownField;
@@ -23,23 +24,24 @@ use Form;
  * Class SharpCmsField
  * @package Dvlpp\Sharp\Form
  */
-class SharpCmsField {
+class SharpCmsField
+{
 
     /**
      * Make the form field
      *
      * @param $key
      * @param SharpEntityFormField $field
-     * @param Object $instance  : the Model object valuated
+     * @param Object $instance : the Model object valuated
      * @param string|null $listKey : the key of the list field if the current field is part of a list item
      * @return mixed
      */
-    public function make($key, $field, $instance, $listKey=null)
+    public function make($key, $field, $instance, $listKey = null)
     {
         $label = $field->label ? $this->createLabel($key, $field->label) : '';
         $field = $this->createField($key, $field, $instance, $listKey);
 
-        return $label.$field;
+        return $label . $field;
     }
 
     /**
@@ -57,75 +59,92 @@ class SharpCmsField {
         $attributes["autocomplete"] = "off";
         $this->addClass("form-control", $attributes);
 
-        switch($field->type)
-        {
+        switch ($field->type) {
             case 'text':
-                $field = new TextField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new TextField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'password':
-                $field = new PasswordField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new PasswordField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'textarea':
-                $field = new TextareaField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new TextareaField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'choose':
             case 'select':
-                $field = new ChooseField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new ChooseField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'check':
-                $field = new CheckField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new CheckField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'markdown':
-                $field = new MarkdownField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new MarkdownField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'file':
-                $field = new FileField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new FileField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'list':
-                $field = new ListField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new ListField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'ref':
-                $field = new RefField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new RefField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'refSublistItem':
-                $field = new RefSublistItemField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new RefSublistItemField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'pivot':
-                $field = new PivotTagsField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new PivotTagsField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'date':
-                $field = new DateField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new DateField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'hidden':
-                $field = new HiddenField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new HiddenField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'label':
-                $field = new LabelField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new LabelField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
+
+            case 'javascript':
+                return (new JavascriptCode($field))->make();
 
             case 'embed':
-                $field = new EmbedField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new EmbedField($key, $listKey, $field, $attributes, $instance);
+
+                return $formField->make();
 
             case 'embed_list':
-                $field = new EmbedListField($key, $listKey, $field, $attributes, $instance);
-                return $field->make();
+                $formField = new EmbedListField($key, $listKey, $field, $attributes, $instance);
 
-
+                return $formField->make();
         }
+
         return null;
     }
 
@@ -148,7 +167,7 @@ class SharpCmsField {
      */
     private function addClass($className, &$attributes)
     {
-        $attributes["class"] = $className . (array_key_exists("class", $attributes) ? " ".$attributes["class"] : "");
+        $attributes["class"] = $className . (array_key_exists("class", $attributes) ? " " . $attributes["class"] : "");
     }
 
 }
