@@ -36,6 +36,10 @@ return [
     'form_embedField_restoreBtn' => "Restore",
     'form_fileField_cropBtn' => "Crop",
     'form_fileField_dlBtn' => "Download file",
+    'form_filefield_filesize_KB' => "KB",
+    'form_filefield_filesize_MB' => "MB",
+    'form_filefield_filesize_GB' => "GB",
+    'form_filefield_filesize_b' => "bytes",
 
     'command_params_modal_title' => "Please fill the fields:",
     'command_params_modal_btn' => "Proceed",

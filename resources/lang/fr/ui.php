@@ -36,6 +36,10 @@ return [
     'form_embedField_restoreBtn' => "Restaurer",
     'form_fileField_cropBtn' => "Retailler",
     'form_fileField_dlBtn' => "Télécharger le fichier",
+    'form_filefield_filesize_KB' => "Ko",
+    'form_filefield_filesize_MB' => "Mo",
+    'form_filefield_filesize_GB' => "Go",
+    'form_filefield_filesize_b' => "octets",
 
     'command_params_modal_title' => "Veuillez préciser :",
     'command_params_modal_btn' => "Valider",

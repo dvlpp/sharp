@@ -170,15 +170,15 @@ class FileField extends AbstractSharpField
     private function humanFileSize($size)
     {
         if ($size >= 1 << 30) {
-            return number_format($size / (1 << 30), 2) . " Go";
+            return number_format($size / (1 << 30), 2) . " " . trans('sharp::ui.form_filefield_filesize_GB');
         }
         if ($size >= 1 << 20) {
-            return number_format($size / (1 << 20), 1) . " Mo";
+            return number_format($size / (1 << 20), 1) . " " . trans('sharp::ui.form_filefield_filesize_MB');
         }
         if ($size >= 1 << 10) {
-            return number_format($size / (1 << 10), 0) . " Ko";
+            return number_format($size / (1 << 10), 0) . " " . trans('sharp::ui.form_filefield_filesize_KB');
         }
 
-        return number_format($size) . " bytes";
+        return number_format($size) . " " . trans('sharp::ui.form_filefield_filesize_b');
     }
 }
