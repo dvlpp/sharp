@@ -13,7 +13,8 @@ use Illuminate\Routing\Controller;
  *
  * Class CmsCommandsController
  */
-class CmsCommandsController extends Controller {
+class CmsCommandsController extends Controller
+{
 
     /**
      * @var \Dvlpp\Sharp\Commands\SharpCommandsManager
@@ -45,13 +46,15 @@ class CmsCommandsController extends Controller {
             $entity->commands->list->$commandKey->auth ?: "update",
             $entity->key);
 
-        if( ! $granted) return redirect("/");
+        if (!$granted) {
+            return redirect("/");
+        }
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
 
         // Grab request params (input is managed there, for search, pagination, ...)
-        $entitiesList = new SharpEntitiesList($entity, $repo);
+        $entitiesList = new SharpEntitiesList($entity, $repo, $request);
         $entitiesListParams = $entitiesList->createParams();
 
         $commandReturn = $this->commandsManager->executeEntitiesListCommand($entity, $commandKey, $entitiesListParams);
@@ -77,17 +80,17 @@ class CmsCommandsController extends Controller {
             $entity->commands->entity->$commandKey->auth ?: "update",
             $entity->key);
 
-        if( ! $granted) return redirect("/");
+        if (!$granted) {
+            return redirect("/");
+        }
 
         $commandForm = $this->commandsManager->getEntityCommandForm($entity, $commandKey);
         $error = false;
 
-        if($commandForm)
-        {
+        if ($commandForm) {
             // There's a form attached to the command:
 
-            if( ! $request->has("sharp_form_valued"))
-            {
+            if (!$request->has("sharp_form_valued")) {
                 // Return the view of the form
                 // to make the user fill parameters before send the command
                 return view("sharp::cms.partials.list.commandForm", [
@@ -98,20 +101,16 @@ class CmsCommandsController extends Controller {
             }
 
             // Form posted: call the command with the values of the form
-            try
-            {
+            try {
                 $commandReturn = $this->commandsManager->executeEntityCommand(
                     $entity, $commandKey, $instanceId, $request->only(array_keys($commandForm))
                 );
-            }
-            catch(CommandValidationException $ex)
-            {
+            } catch (CommandValidationException $ex) {
                 $commandReturn = $ex->getMessage();
                 $error = true;
             }
-        }
-        else
-        {
+
+        } else {
             $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
         }
 
@@ -123,7 +122,7 @@ class CmsCommandsController extends Controller {
             $request->except(
                 array_merge(
                     ["_token", "sharp_form_valued"],
-                    ($commandForm?array_keys($commandForm):[])
+                    ($commandForm ? array_keys($commandForm) : [])
                 )
             ),
             $error
@@ -131,10 +130,9 @@ class CmsCommandsController extends Controller {
     }
 
 
-    private function handleCommandReturn($commandConfig, $commandReturn, $categoryName, $entityName, $request=[], $error=falselse)
+    private function handleCommandReturn($commandConfig, $commandReturn, $categoryName, $entityName, $request = [], $error = false)
     {
-        if($error)
-        {
+        if ($error) {
             return redirect()
                 ->route("cms.list", array_merge([$categoryName, $entityName], $request))
                 ->with("errorMessage", $commandReturn);
@@ -142,16 +140,14 @@ class CmsCommandsController extends Controller {
 
         $commandType = $commandConfig->type;
 
-        if($commandType == "download")
-        {
+        if ($commandType == "download") {
             // Return file
             return response()->download($commandReturn);
-        }
 
-        elseif($commandType == "view")
-        {
+        } elseif ($commandType == "view") {
             // Return view; data is in $commandReturn
             $commandView = $commandConfig->view;
+
             return view($commandView, $commandReturn);
         }
 
