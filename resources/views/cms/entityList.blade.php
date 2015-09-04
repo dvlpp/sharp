@@ -4,7 +4,7 @@
 
 @section('navcol')
     @include("sharp::cms.partials.navcol", ["category"=>$category, "entityKey"=>$entityKey])
-@stop
+@endsection
 
 @section('contextbar')
 
@@ -31,7 +31,7 @@
     {{-- Quick search --}}
     @include("sharp::cms.partials.list.contextbar.quicksearch")
 
-@stop
+@endsection
 
 @section('content')
 
@@ -183,11 +183,11 @@
         {!! $pagination->appends(Input::except(['page']))->render() !!}
     @endif
 
-@stop
+@endsection
 
 @section("scripts")
     @parent
     @if($entity->advanced_search->data)
         <script src="/sharp/sharp.advancedsearch.min.js"></script>
     @endif
-@stop
+@endsection

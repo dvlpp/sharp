@@ -4,7 +4,7 @@
 
 @section('navcol')
     @include("sharp::cms.partials.navcol", ["current"=>$entity->key])
-@stop
+@endsection
 
 
 @section('contextbar')
@@ -44,7 +44,7 @@
         <a href="{{ route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
     @endif
 
-@stop
+@endsection
 
 
 @section('content')
@@ -137,9 +137,9 @@
 
     {!! Form::close() !!}
 
-@stop
+@endsection
 
 @section("scripts")
 @parent
 <script src="/sharp/sharp.form.min.js"></script>
-@stop
+@endsection
