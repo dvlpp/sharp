@@ -140,6 +140,6 @@
 @endsection
 
 @section("scripts")
-@parent
-<script src="/sharp/sharp.form.min.js"></script>
+    @parent
+    <script src="/sharp/sharp.form.min.js"></script>
 @endsection
