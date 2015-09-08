@@ -163,6 +163,12 @@ $(window).load(function() {
                         createSharpTags($(this));
                     });
 
+                    // Manage sharp-customSearch in the item
+                    item.find('.sharp-customSearch-template').each(function() {
+                        $(this).removeClass('sharp-customSearch-template').addClass('sharp-customSearch');
+                        createSharpCustomSearch($(this));
+                    });
+
                     // Manage sharp-field-embed in the item
                     item.find('.sharp-field-embed').each(function() {
                         key = item.find(".sharp-list-item-id").val();
