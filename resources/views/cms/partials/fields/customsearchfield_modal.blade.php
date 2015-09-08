@@ -1,4 +1,4 @@
-<div class="modal fade customSearch-modal" id="modal-{{ $field }}">
+<div class="modal fade customSearch-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

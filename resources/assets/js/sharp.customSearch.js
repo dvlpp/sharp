@@ -13,10 +13,10 @@
             var remoteUrl = $searchField.data('remote');
             var template = $searchField.data('template');
             var idattr = $searchField.data('idattr');
-            var $sharpField = $searchField.parents(".sharp-field");
 
+            var $sharpField = $searchField.parents(".sharp-field-customSearch");
             var $hiddenField = $sharpField.find("input[type=hidden]");
-            var $modal = $("#modal-"+$hiddenField.prop("id"));
+            var $modal = $sharpField.find(".customSearch-modal");
             var $modalBody = $modal.find(".list-group");
             var $modalLoading = $modal.find(".loading");
             var $resultTemplate = $sharpField.find(".panel-template");
@@ -75,10 +75,7 @@
 
                 // Clear text field
                 $searchField.val("");
-
-                // Show selected card instead of field
                 $searchField.parent(".search").addClass("hidden");
-                //$resultTemplate.removeClass("hidden");
 
                 $modal.modal('hide');
             });
