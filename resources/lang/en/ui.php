@@ -40,6 +40,8 @@ return [
     'form_filefield_filesize_MB' => "MB",
     'form_filefield_filesize_GB' => "GB",
     'form_filefield_filesize_b' => "bytes",
+    'form_customSearchField_modalTitle' => "Found results",
+    'form_customSearchField_modalLoading' => 'Please wait...',
 
     'command_params_modal_title' => "Please fill the fields:",
     'command_params_modal_btn' => "Proceed",

@@ -6,6 +6,7 @@ use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
+use Dvlpp\Sharp\Form\Fields\CustomSearchField;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -241,6 +242,25 @@ class CmsController extends Controller
         $this->changeLang($lang);
 
         return redirect()->back();
+    }
+
+    /**
+     * @param $categoryName
+     * @param $entityName
+     * @param $fieldName
+     * @param Request $request
+     * @return mixed
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
+     */
+    public function ax_customSearchField($categoryName, $entityName, $fieldName, Request $request)
+    {
+        // Find Entity config (from sharp CMS config file)
+        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+
+        // Instantiate the entity repository
+        $repo = app($entity->repository);
+
+        return response()->json(CustomSearchField::renderCustomSearch($fieldName, $repo, $request));
     }
 
     /**

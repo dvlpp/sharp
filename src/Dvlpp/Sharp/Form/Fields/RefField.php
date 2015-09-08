@@ -3,8 +3,6 @@
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
 use Form;
-use App;
-use Input;
 
 /**
  * A reference picker field.
@@ -12,7 +10,8 @@ use Input;
  * Class RefField
  * @package Dvlpp\Sharp\Form\Fields
  */
-class RefField extends AbstractSharpField {
+class RefField extends AbstractSharpField
+{
 
     /**
      * The actual HTML creation of the field.
@@ -23,12 +22,10 @@ class RefField extends AbstractSharpField {
      */
     function make()
     {
-
         $this->_checkMandatoryAttributes(["repository"]);
 
         $reflistRepoName = $this->field->repository;
-        if(class_exists($reflistRepoName) || interface_exists($reflistRepoName))
-        {
+        if (class_exists($reflistRepoName) || interface_exists($reflistRepoName)) {
             $reflistRepo = app($reflistRepoName);
 
             /*$ui = $this->field->ui;
@@ -44,32 +41,26 @@ class RefField extends AbstractSharpField {
             $this->addData("ui", $ui);*/
 
             $create = $this->field->create;
-            if($create !== null)
-            {
+            if ($create !== null) {
                 $this->addData("create", $create);
             }
 
-            if(!$this->instance && $this->isListItem)
-            {
+            if (!$this->instance && $this->isListItem) {
                 // No instance and part of a list item : this field is meant to be in the template item.
                 // In this case, we don't set the "sharp-ref" class which will trigger the JS code for
                 // the selectize component creation
                 $this->addClass("sharp-ref-template");
-            }
-            else
-            {
+            } else {
                 // Regular case
                 $this->addClass("sharp-ref");
             }
 
-            if(method_exists($reflistRepo, "formList"))
-            {
+            if (method_exists($reflistRepo, "formList")) {
                 $values = $reflistRepo->formList($this->instance);
 
                 // Initial value *could be* tricky...
                 $value = $this->fieldValue;
-                if($this->getOldValue() && !is_numeric($this->getOldValue()))
-                {
+                if ($this->getOldValue() && !is_numeric($this->getOldValue())) {
                     // Repopulate after validation error for a ref which was created by user before.
                     // Have to tell selectize.js to add this non existent option
                     $value = $this->getOldValue();
@@ -80,9 +71,8 @@ class RefField extends AbstractSharpField {
             }
 
             throw new MandatoryMethodNotFoundException("Method formList(askingInstance) not found in the [$reflistRepoName] class");
-        }
-        else
-        {
+
+        } else {
             throw new MandatoryClassNotFoundException("Class [$reflistRepoName] not found");
         }
 

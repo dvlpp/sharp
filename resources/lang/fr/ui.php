@@ -40,6 +40,8 @@ return [
     'form_filefield_filesize_MB' => "Mo",
     'form_filefield_filesize_GB' => "Go",
     'form_filefield_filesize_b' => "octets",
+    'form_customSearchField_modalTitle' => "Résultats trouvés",
+    'form_customSearchField_modalLoading' => 'Veuillez patienter...',
 
     'command_params_modal_title' => "Veuillez préciser :",
     'command_params_modal_btn' => "Valider",

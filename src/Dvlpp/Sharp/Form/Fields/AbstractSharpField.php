@@ -2,7 +2,6 @@
 
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
-use Input;
 use stdClass;
 
 /**
@@ -11,8 +10,8 @@ use stdClass;
  * Class AbstractSharpField
  * @package Dvlpp\Sharp\Form\Fields
  */
-abstract class AbstractSharpField {
-
+abstract class AbstractSharpField
+{
     /**
      * @var string
      */
@@ -70,8 +69,7 @@ abstract class AbstractSharpField {
         $this->attributes = $attributes;
         $this->instance = $instance;
 
-        if($listKey)
-        {
+        if ($listKey) {
             $this->listKey = $listKey;
             $this->isListItem = true;
         }
@@ -81,22 +79,20 @@ abstract class AbstractSharpField {
         $this->relation = null;
         $this->relationKey = null;
 
-        if(strpos($key, "~"))
-        {
+        if (strpos($key, "~")) {
             // If there's a "~" in the field $key, this means we are in a single relation case
             // (One-To-One or Belongs To). The ~ separate the relation name and the value.
             // For instance : boss~name indicate that the instance as a single "boss" relation,
             // which has a "name" attribute.
             list($this->relation, $this->relationKey) = explode("~", $key);
 
-            $this->fieldValue = $instance && ! $instance instanceof stdClass && $instance->{$this->relation}
+            $this->fieldValue = $instance && !$instance instanceof stdClass && $instance->{$this->relation}
                 ? $instance->{$this->relation}->{$this->relationKey}
                 : null;
-        }
-        else
-        {
+
+        } else {
             // Value is instance->key, except for null key: in this case, value IS the instance
-            $this->fieldValue = $key&&$key!="__embed_data" ? ($instance ? $instance->$key : null) : $instance;
+            $this->fieldValue = $key && $key != "__embed_data" ? ($instance ? $instance->$key : null) : $instance;
         }
     }
 
@@ -107,7 +103,8 @@ abstract class AbstractSharpField {
      */
     protected function addClass($className)
     {
-        $this->attributes["class"] = $className . (array_key_exists("class", $this->attributes) ? " ".$this->attributes["class"] : "");
+        $this->attributes["class"] = $className . (array_key_exists("class",
+                $this->attributes) ? " " . $this->attributes["class"] : "");
     }
 
     /**
@@ -129,11 +126,9 @@ abstract class AbstractSharpField {
      */
     protected function _checkMandatoryAttributes(Array $attributes)
     {
-        foreach($attributes as $attr)
-        {
-            if($this->field->$attr === null)
-            {
-                throw new MandatoryEntityAttributeNotFoundException("Attribute [$attr] can't be found (Field: ".$this->key.")");
+        foreach ($attributes as $attr) {
+            if ($this->field->$attr === null) {
+                throw new MandatoryEntityAttributeNotFoundException("Attribute [$attr] can't be found (Field: " . $this->key . ")");
             }
         }
     }
@@ -146,22 +141,31 @@ abstract class AbstractSharpField {
     protected function getOldValue()
     {
         // If no instance (template for example), no need to go further
-        if(!$this->instance) return null;
+        if (!$this->instance) {
+            return null;
+        }
 
-        if($this->isListItem)
-        {
+        if ($this->isListItem) {
             // If is list item, have to look inside list array
-            $list = Input::old($this->listKey);
+            $list = old($this->listKey);
 
-            if( ! is_array($list)) return [];
+            if (!is_array($list)) {
+                return [];
+            }
 
             $item = $list[$this->instance->id];
+
             return $item[$this->key];
+
+        } else {
+            return old($this->key);
         }
-        else
-        {
-            return Input::old($this->key);
-        }
+    }
+
+    protected function isRepopulated()
+    {
+        $oldValue = $this->getOldValue();
+        return $oldValue && (!is_array($oldValue) || sizeof($oldValue));
     }
 
     /**
@@ -180,37 +184,30 @@ abstract class AbstractSharpField {
      */
     private function buildFieldName()
     {
-        if($this->isListItem)
-        {
+        if ($this->isListItem) {
             // It's a list item
             $str = $this->listKey . "[";
 
-            if($this->instance)
-            {
-                if(isset($this->instance->__sharp_duplication)
+            if ($this->instance) {
+                if (isset($this->instance->__sharp_duplication)
                     && $this->instance->__sharp_duplication
-                    && !starts_with($this->instance->id, "N_"))
-                {
+                    && !starts_with($this->instance->id, "N_")
+                ) {
                     // It's for a duplicated instance (creation with data): we have
                     // to set the field ID to new
                     $str .= "N_" . $this->instance->id;
-                }
-                else
-                {
+                } else {
                     $str .= $this->instance->id;
                 }
-            }
-            else
-            {
+            } else {
                 $str .= "--N--";
             }
 
             $str .= "]" . ($this->key ? "[" . $this->key . "]" : "");
 
             return $str;
-        }
-        else
-        {
+
+        } else {
             return $this->key;
         }
     }

@@ -233,6 +233,7 @@ class SharpEloquentAutoUpdaterService {
             case "textarea":
             case "password":
             case "markdown":
+            case "customSearch":
                 $valuator = new SimpleValuator($instance, $dataAttribute, $value);
                 break;
 

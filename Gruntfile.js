@@ -50,6 +50,7 @@ module.exports = function(grunt) {
                     'resources/assets/js/sharp.refSublistItem.js',
                     'resources/assets/js/sharp.upload.js',
                     'resources/assets/js/sharp.imagecrop.js',
+                    'resources/assets/js/sharp.customSearch.js',
                     'resources/assets/js/sharp.list.js'
                 ],
                 dest: 'resources/assets/<%= pkg.name %>.form.js'

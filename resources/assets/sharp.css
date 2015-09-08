@@ -9772,3 +9772,38 @@ body.sharp-form #sharpdelete button {
 .sharp-field-embed_list .sharp-embed-delete {
   display: none !important;
 }
+.sharp-field-customSearch .panel-template {
+  display: none;
+}
+.sharp-field-customSearch .panel-valuated {
+  position: relative;
+  border-color: #ccc;
+  box-shadow: none;
+}
+.sharp-field-customSearch .panel-valuated .close {
+  position: absolute;
+  top: 0;
+  right: 3px;
+}
+.customSearch-modal .modal-body {
+  padding: 0;
+}
+.customSearch-modal .loading {
+  margin: 20px;
+  text-align: center;
+}
+.customSearch-modal .loading .message {
+  display: block;
+  margin: 20px 0;
+}
+.customSearch-modal .list-group-item {
+  background: none;
+  border-color: #ddd;
+}
+.customSearch-modal .list-group-item:first-child {
+  border-top: none;
+}
+.customSearch-modal .list-group-item a {
+  display: block;
+  cursor: pointer;
+}

@@ -119,6 +119,11 @@ Route::group(['before' => 'sharp_auth'], function() {
         "before"=>"sharp_access_granted:entity update *entity"
     ]);
 
+    Route::post('/admin/cms/{category}/{entity}/{field}/customSearchField', [
+        "as"=>"cms.customSearchField", "uses"=>'\Dvlpp\Sharp\Http\CmsController@ax_customSearchField',
+        "before"=>"sharp_access_granted:entity update *entity"
+    ]);
+
     Route::post('/admin/upload', [
         "as"=>"upload",
         "uses"=>'\Dvlpp\Sharp\Http\UploadController@upload'
