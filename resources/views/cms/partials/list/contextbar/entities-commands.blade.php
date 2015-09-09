@@ -9,7 +9,9 @@
 
                 @if(sharp_granted('entity', $entity->commands->list->$command->auth ?: "update", $entityKey))
                     <li>
-                        <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}" {{ $entity->commands->list->$command->type=="view" ? 'target="_blank"' : ''}}>
+                        <a href="{{ route('cms.listCommand', array_merge([$category->key, $entityKey, $command], Input::all())) }}"
+                                {!! $entity->commands->list->$command->confirm ? 'data-confirm="'.e($entity->commands->list->$command->confirm).'"' : '' !!}
+                                {!! $entity->commands->list->$command->type=="view" ? 'target="_blank"' : '' !!}>
                             {{ $entity->commands->list->$command->text }}
                         </a>
                     </li>

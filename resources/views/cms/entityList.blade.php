@@ -154,6 +154,7 @@
                                             <li>
                                                 <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entityKey, $command, $instance->id], Input::all())) }}"
                                                         class="sharp-command {{ $entity->commands->entity->$command->form ? 'with-form' : '' }}"
+                                                        {!! $entity->commands->entity->$command->confirm ? 'data-confirm="'.e($entity->commands->entity->$command->confirm).'"' : '' !!}
                                                         {!! $entity->commands->entity->$command->type=="view" ? 'target="_blank"' : '' !!}>
                                                     {{ $entity->commands->entity->$command->text }}
                                                 </a>

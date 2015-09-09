@@ -11593,6 +11593,10 @@ if (typeof jQuery === 'undefined') {
     // ---
     // Show confirm on delete entity click
     // ---
+    $("a[data-confirm]").click(function() {
+        return confirm($(this).data("confirm"));
+    });
+
     $("body.sharp-list .sharp-delete").click(function () {
         if (confirm($(this).data("confirm"))) {
             $("form#" + $(this).data("form")).submit();
