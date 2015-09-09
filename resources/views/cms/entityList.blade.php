@@ -106,7 +106,7 @@
                                     <li>
                                         {!! Form::open(["route"=>["cms.destroy", $category->key, $entityKey, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete".$instance->id]) !!}
                                         {!! Form::close() !!}
-                                        <a href="#" class="sharp-delete" data-form="{{ "sharpdelete".$instance->id }}" data-confirm="{{ trans('sharp::ui.form_deleteConfirmMsg') }}">
+                                        <a href="#" class="sharp-delete" data-form="{{ "sharpdelete".$instance->id }}" data-confirmdelete="{{ trans('sharp::ui.form_deleteConfirmMsg') }}">
                                             <i class="fa fa-trash"></i>
                                             {{ trans('sharp::ui.list_entityDeleteAction') }}
                                         </a>

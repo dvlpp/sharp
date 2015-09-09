@@ -11591,14 +11591,17 @@ if (typeof jQuery === 'undefined') {
     });
 
     // ---
-    // Show confirm on delete entity click
+    // Show confirm on commands
     // ---
     $("a[data-confirm]").click(function() {
         return confirm($(this).data("confirm"));
     });
 
+    // ---
+    // Show confirm on delete entity click (with form post)
+    // ---
     $("body.sharp-list .sharp-delete").click(function () {
-        if (confirm($(this).data("confirm"))) {
+        if (confirm($(this).data("confirmdelete"))) {
             $("form#" + $(this).data("form")).submit();
         }
     });
