@@ -6,7 +6,6 @@ use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Dvlpp\Sharp\Repositories\SharpHasListFilters;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
 /**
  * This class manages all the entities listing stuff, from pagination to sublist via sorting
@@ -18,18 +17,6 @@ class SharpEntitiesList
 {
 
     /**
-     * @var array
-     * @deprecated
-     */
-    protected $subLists;
-
-    /**
-     * @var integer
-     * @deprecated
-     */
-    protected $currentSubListId;
-
-    /**
      * @var LengthAwarePaginator
      */
     protected $paginator;
@@ -38,6 +25,11 @@ class SharpEntitiesList
      * @var int
      */
     protected $count;
+
+    /**
+     * @var array
+     */
+    protected $instances;
 
     /**
      * @var \Dvlpp\Sharp\Config\Entities\SharpEntity
@@ -83,6 +75,101 @@ class SharpEntitiesList
     }
 
     /**
+     * Gets the instances
+     */
+    public function execute()
+    {
+        // First create the params object with stuff like search, sorting
+        $this->createParams();
+
+        // And finally grab the entities
+        if ($this->entity->list_template->paginate) {
+            // Pagination config is set: grab the current page
+            $this->paginator = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
+
+            $this->count = $this->paginator->total();
+            $this->instances = $this->paginator->items();
+
+        } else {
+            // Grab all entities of this kind from DB
+            $this->instances = $this->repo->listAll($this->params);
+            $this->count = sizeof($this->instances);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Grab the actual instances.
+     *
+     * @return mixed
+     */
+    public function instances()
+    {
+        return $this->instances;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return $this->count;
+    }
+
+    /**
+     * @return LengthAwarePaginator
+     */
+    public function paginator()
+    {
+        return $this->paginator;
+    }
+
+    public function listFilterCurrents()
+    {
+        return $this->listFilterCurrents;
+    }
+
+    public function listFilterContents()
+    {
+        return $this->listFilterContents;
+    }
+
+    public function sortedColumn()
+    {
+        return $this->params->sortedColumn;
+    }
+
+    public function sortedDirection()
+    {
+        return $this->params->sortedDirection;
+    }
+
+    public function createParams()
+    {
+        $this->params = new SharpEntitiesListParams();
+
+        // Manage column sort: first determine which column is sorted
+        list($sortCol, $sortDir) = $this->retrieveSorting();
+
+        foreach ($this->entity->list_template->columns as $colKey => $col) {
+            if ($col->sortable && (!$sortCol || $colKey == $sortCol)) {
+                $this->params->sortedColumn = $colKey;
+                $this->params->sortedDirection = $sortDir;
+                break;
+            }
+        }
+
+        // Manage search
+        if ($this->entity->list_template->searchable && $this->request->has("search")) {
+            $this->params->search = urldecode($this->request->get("search"));
+        }
+
+        return $this->params;
+    }
+
+    /**
      * Sublists are entities subsets. This method intents to grab all available sets
      * from the functional repo, as well as the current one.
      *
@@ -110,93 +197,6 @@ class SharpEntitiesList
             $this->listFilterCurrents = (array)$this->repo->getListFilterCurrents();
             $this->listFilterContents = (array)$this->repo->getListFilterContents();
         }
-    }
-
-
-    /**
-     * Grab the actual instances.
-     *
-     * @return mixed
-     */
-    public function getInstances()
-    {
-        // First create the params object with stuff like search, sorting
-        $this->createParams();
-
-        // And finally grab the entities
-        if ($this->entity->list_template->paginate) {
-            // Pagination config is set: grab the current page
-            $this->paginator = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
-
-            $this->count = $this->paginator->total();
-            return $this->paginator->items();
-
-        } else {
-            // Grab all entities of this kind from DB
-            $instances = $this->repo->listAll($this->params);
-            $this->count = sizeof($instances);
-
-            return $instances;
-        }
-    }
-
-    /**
-     * @return int
-     */
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-    /**
-     * @return LengthAwarePaginator
-     */
-    public function getPaginator()
-    {
-        return $this->paginator;
-    }
-
-    public function getListFilterCurrents()
-    {
-        return $this->listFilterCurrents;
-    }
-
-    public function getListFilterContents()
-    {
-        return $this->listFilterContents;
-    }
-
-    public function getSortedColumn()
-    {
-        return $this->params->sortedColumn;
-    }
-
-    public function getSortedDirection()
-    {
-        return $this->params->sortedDirection;
-    }
-
-    public function createParams()
-    {
-        $this->params = new SharpEntitiesListParams();
-
-        // Manage column sort: first determine which column is sorted
-        list($sortCol, $sortDir) = $this->retrieveSorting();
-
-        foreach ($this->entity->list_template->columns as $colKey => $col) {
-            if ($col->sortable && (!$sortCol || $colKey == $sortCol)) {
-                $this->params->sortedColumn = $colKey;
-                $this->params->sortedDirection = $sortDir;
-                break;
-            }
-        }
-
-        // Manage search
-        if ($this->entity->list_template->searchable && $this->request->has("search")) {
-            $this->params->search = urldecode($this->request->get("search"));
-        }
-
-        return $this->params;
     }
 
     private function retrieveSorting()

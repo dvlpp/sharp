@@ -54,8 +54,7 @@ class CmsCommandsController extends Controller
         $repo = app($entity->repository);
 
         // Grab request params (input is managed there, for search, pagination, ...)
-        $entitiesList = new SharpEntitiesList($entity, $repo, $request);
-        $entitiesListParams = $entitiesList->createParams();
+        $entitiesListParams = (new SharpEntitiesList($entity, $repo, $request))->createParams();
 
         $commandReturn = $this->commandsManager->executeEntitiesListCommand($entity, $commandKey, $entitiesListParams);
 

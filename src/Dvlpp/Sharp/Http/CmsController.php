@@ -72,21 +72,29 @@ class CmsController extends Controller
 
         // Grab entities (input is managed there, for search, pagination, ...)
         $entitiesList = new SharpEntitiesList($entity, $repo, $request);
+        $entitiesList->execute();
 
         // And return the View
         return view('sharp::cms.entityList', [
-            'instances' => $entitiesList->getInstances(),
             'category' => SharpCmsConfig::findCategory($categoryName),
             'entity' => $entity,
-            'entityKey' => $entityName,
-            'totalCount' => $entitiesList->getCount(),
-            'pagination' => $entitiesList->getPaginator(),
-            'listFilters' => [
-                "contents" => $entitiesList->getListFilterContents(),
-                "currents" => $entitiesList->getListFilterCurrents()
-            ],
-            'sortedColumn' => $entitiesList->getSortedColumn(),
-            'sortedDirection' => $entitiesList->getSortedDirection()
+            'list' => $entitiesList
+
+//            'instances' => [
+//
+//            ],
+//
+//            'instances' => $entitiesList->getInstances(),
+//            'totalCount' => $entitiesList->getCount(),
+//            'pagination' => $entitiesList->getPaginator(),
+//
+//            'listFilters' => [
+//                "contents" => $entitiesList->getListFilterContents(),
+//                "currents" => $entitiesList->getListFilterCurrents()
+//            ],
+//
+//            'sortedColumn' => $entitiesList->getSortedColumn(),
+//            'sortedDirection' => $entitiesList->getSortedDirection()
         ]);
     }
 
