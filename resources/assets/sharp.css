@@ -8453,9 +8453,6 @@ body.sharp-auth {
   background: #12dbe8;
   padding-right: 0;
 }
-#maincontent #contextbar.embedded {
-  background-color: #768384;
-}
 #maincontent #contextbar .navbar {
   margin-bottom: 0;
 }
@@ -8492,15 +8489,15 @@ body.sharp-auth {
 #maincontent #contextbar .navbar .navbar-nav .navbar-form {
   margin-right: 0;
 }
-#maincontent #contextbar .navbar .navbar-nav #search {
+#maincontent #contextbar .navbar .navbar-nav .search-field {
   max-width: 215px;
 }
-#maincontent #contextbar .navbar .navbar-nav #search input {
+#maincontent #contextbar .navbar .navbar-nav .search-field input {
   border: none;
   box-shadow: none;
   background: #fff;
 }
-#maincontent #contextbar .navbar .navbar-nav #search .btn {
+#maincontent #contextbar .navbar .navbar-nav .search-field .btn {
   color: #ccc;
   background: #fff;
 }
@@ -8670,65 +8667,6 @@ body.sharp-form #sharpdelete {
 body.sharp-form #sharpdelete button {
   margin: auto;
   display: block;
-}
-.advancedsearch-toggle {
-  display: block;
-  text-align: center;
-  background: #0eaeb9;
-  color: #eee;
-}
-#advsearch {
-  padding: 30px 0 20px 0;
-  background: #0eaeb9;
-  box-shadow: inset #0c98a1 0px 2px 2px;
-}
-#advsearch label {
-  text-align: right;
-  display: block;
-}
-.selectize-control.plugin-negation .item {
-  position: relative;
-  padding-left: 18px !important;
-}
-.selectize-control.plugin-negation .item .negate {
-  z-index: 1;
-  /* fixes ie bug (see #392) */
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 17px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 12px;
-  color: inherit;
-  text-decoration: none;
-  vertical-align: middle;
-  display: inline-block;
-  padding: 1px 0 0 0;
-  border-left: 1px solid rgba(0, 0, 0, 0);
-  -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-  border-radius: 0 2px 2px 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.selectize-control.plugin-negation .item .negate:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-.selectize-control.plugin-negation .item.active .negate {
-  border-left-color: rgba(0, 0, 0, 0);
-}
-.selectize-control.plugin-negation .disabled .item .negate:hover {
-  background: none;
-}
-.selectize-control.plugin-negation .disabled .item .negate {
-  border-left-color: rgba(77, 77, 77, 0);
-}
-.selectize-control.plugin-negation .item.negative {
-  color: red !important;
-  background: #ffffff !important;
 }
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;
@@ -9704,73 +9642,6 @@ body.sharp-form #sharpdelete button {
 }
 #sharpform .selectize-input {
   display: block !important;
-}
-.sharp-field-embed .updatable {
-  padding-top: 15px;
-}
-.sharp-field-embed .updatable .sharp-embed-update,
-.sharp-field-embed .updatable .sharp-embed-delete {
-  display: inline-block;
-}
-.sharp-field-embed .updatable .sharp-embed-create {
-  display: none;
-}
-.sharp-field-embed .creatable .sharp-embed-delete,
-.sharp-field-embed .creatable .sharp-embed-update {
-  display: none;
-}
-.sharp-field-embed .creatable .sharp-embed-create {
-  display: block;
-  color: #51a4aa;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  float: none;
-}
-.sharp-field-embed .creatable .sharp-embed-create:hover {
-  color: #12dbe8;
-}
-.sharp-field-embed .sharp-embed-update {
-  float: right;
-}
-.sharp-field-embed .sharp-embed-delete {
-  float: right;
-  color: #a38584;
-}
-.sharp-field-embed .sharp-embed-delete:hover {
-  color: #d9534f;
-}
-.sharp-field-embed .panel-embed {
-  border-color: #ccc;
-  box-shadow: none;
-  margin: 0;
-}
-.sharp-field-embed .panel-embed-body {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.sharp-field-embed .panel-footer {
-  background: #fff;
-  border: none;
-  padding: 4px;
-}
-.sharp-field-embed .panel-footer:before,
-.sharp-field-embed .panel-footer:after {
-  content: " ";
-  display: table;
-}
-.sharp-field-embed .panel-footer:after {
-  clear: both;
-}
-.sharp-field-embed .panel-footer:before,
-.sharp-field-embed .panel-footer:after {
-  content: " ";
-  display: table;
-}
-.sharp-field-embed .panel-footer:after {
-  clear: both;
-}
-.sharp-field-embed_list .sharp-embed-delete {
-  display: none !important;
 }
 .sharp-field-customSearch .panel-template {
   display: none;
