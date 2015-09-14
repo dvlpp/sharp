@@ -26,6 +26,7 @@ return [
     'form_updateBtn' => 'Update',
     'form_cancelBtn' => 'Cancel',
     'form_errors' => 'Your input contains some errors',
+    'form_errors_detail' => 'Please check details under each field',
 
     'form_listField_deleteItem' => 'Delete this item',
     'form_fileField_browseText' => 'Browse...',

@@ -334,13 +334,13 @@ class CmsController extends Controller
         $repo = app($entity->repository);
 
         try {
-            // First : validation
+            // First validation
             if ($entity->validator) {
                 $validator = app($entity->validator);
                 $validator->validate($data, $id);
             }
 
-            // Then : update (calling repo)
+            // Then update (calling repo)
             if ($creation) {
                 $repo->create($data);
             } else {
@@ -348,10 +348,12 @@ class CmsController extends Controller
             }
 
             // And redirect
-            return redirect()->route("cms.list", [$categoryName, $entityName]);
+            return response()->json([
+                "url"=>route("cms.list", [$categoryName, $entityName])
+            ], 200);
 
         } catch (ValidationException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getErrors());
+            return response()->json($e->getErrors(), 422);
         }
     }
 

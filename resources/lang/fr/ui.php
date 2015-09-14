@@ -26,6 +26,7 @@ return [
     'form_updateBtn' => 'Valider',
     'form_cancelBtn' => 'Annuler',
     'form_errors' => 'Le formulaire contient des erreurs',
+    'form_errors_detail' => 'Veuillez consulter le détail sous chaque champ concerné',
 
     'form_listField_deleteItem' => 'Supprimer cet item',
     'form_fileField_browseText' => 'Parcourir...',

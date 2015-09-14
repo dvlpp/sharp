@@ -2,7 +2,7 @@
 
   .mirrormark-toolbar {
     margin-bottom: 0;
-    border:1px solid #ccc;
+    border:1px solid @input-border;
     border-bottom-width: 0;
     padding: 0;
   }
@@ -12,6 +12,20 @@
     border-top-width: 0;
     padding:0 10px;
     font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  // Fix default styles
+  .cm-s-mirrormark .CodeMirror-scroll {
+    height: inherit !important;
+    overflow: auto !important;
+  }
+
+  &.has-error {
+    .mirrormark-toolbar,
+    .CodeMirror-wrap {
+      border-color: @state-danger-text;
+    }
   }
 
 }

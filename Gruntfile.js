@@ -12,18 +12,11 @@ module.exports = function(grunt) {
                     'resources/assets/bower_components/jquery/dist/jquery.js',
                     'resources/assets/bower_components/bootstrap/dist/js/bootstrap.js',
                     'resources/assets/vendor/jquery-ui-1.10.4.custom.min.js',
+                    'resources/assets/bower_components/sweetalert/dist/sweetalert.min.js',
                     'resources/assets/js/sharp.ui.js',
                     'resources/assets/js/sharp.conditional_display.js'
                 ],
                 dest: 'resources/assets/<%= pkg.name %>.ui.js'
-            },
-            advancedsearch: {
-                src: [
-                    'resources/assets/bower_components/selectize/dist/js/selectize.js',
-                    'resources/assets/js/advancedsearch/sharp.adv.js',
-                    'resources/assets/js/advancedsearch/sharp.adv.tags.js'
-                ],
-                dest: 'resources/assets/<%= pkg.name %>.advancedsearch.js'
             },
             form: {
                 src: [
@@ -64,7 +57,6 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'resources/assets/<%= pkg.name %>.ui.min.js': ['<%= concat.ui.dest %>'],
-                    'resources/assets/<%= pkg.name %>.advancedsearch.min.js': ['<%= concat.advancedsearch.dest %>'],
                     'resources/assets/<%= pkg.name %>.form.min.js': ['<%= concat.form.dest %>']
                 }
             }
@@ -88,6 +80,7 @@ module.exports = function(grunt) {
                 files: {
                     'resources/assets/sharp.min.css': [
                         'resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.css',
+                        'resources/assets/bower_components/sweetalert/dist/sweetalert.css',
                         'resources/assets/sharp.css'
                     ]
                 }
@@ -110,7 +103,6 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     '<%= concat.ui.src %>',
-                    '<%= concat.advancedsearch.src %>',
                     '<%= concat.form.src %>'
                 ],
                 tasks: ['concat', 'uglify']
