@@ -9,17 +9,6 @@
 
 @section('contextbar')
 
-    @if(isset($isEmbedded) && $isEmbedded)
-        <button type="submit" form="sharp_embedded_cancel" class="btn navbar-btn navbar-btn-trail">
-            @if($masterInstanceId)
-                {{ trans('sharp::ui.form_updateTitle', ["entity" => $masterEntityLabel]) }}
-            @else
-                {{ trans('sharp::ui.form_createTitle', ["entity" => $masterEntityLabel]) }}
-            @endif
-        </button>
-        <p class="navbar-text">/</p>
-    @endif
-
     <p class="navbar-text">
 
         @if($instance->{$entity->id_attribute})
@@ -38,18 +27,14 @@
 
     <button type="submit" form="sharpform" class="btn navbar-btn btn-ok navbar-right"><i class='fa fa-check'></i> {{ trans('sharp::ui.form_updateBtn') }}</button>
 
-    @if(isset($isEmbedded) && $isEmbedded)
-        <button type="submit" form="sharp_embedded_cancel" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</button>
-    @else
-        <a href="{{ route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
-    @endif
+    <a href="{{ route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right"><i class="fa fa-times"></i> {{ trans('sharp::ui.form_cancelBtn') }}</a>
 
 @endsection
 
 
 @section('content')
 
-    @if(Session::has("errors"))
+    @if(session()->has("errors"))
 
         <div class="alert alert-danger" role="alert">
             <h4>{{ trans('sharp::ui.form_errors') }}</h4>
@@ -62,27 +47,12 @@
 
     @endif
 
-    @if(isset($isEmbedded) && $isEmbedded)
-        {!! Form::open(["route"=>["cms.embedded.cancel", $masterCategoryKey, $masterEntityKey], "method"=>"POST", "id"=>"sharp_embedded_cancel"]) !!}
-            {!! Form::hidden('masterInstanceData', $masterInstanceData) !!}
-            {!! Form::hidden('masterInstanceId', $masterInstanceId) !!}
-        {!! Form::close() !!}
-    @endif
-
     {!! Form::model($instance, [
-            "route"=>(isset($isEmbedded) && $isEmbedded
-                ? get_embedded_entity_update_form_route($masterCategoryKey, $masterEntityKey, $masterFieldKey, $category, $entity, $instance)
-                : get_entity_update_form_route($category, $entity, $instance)),
+            "route"=>get_entity_update_form_route($category, $entity, $instance),
             "method"=>!$instance->__sharp_duplication && $instance->{$entity->id_attribute}?"put":"post",
             "id"=>"sharpform"]) !!}
 
         {!! Form::hidden($entity->id_attribute, ($instance->__sharp_duplication ? "" : $instance->{$entity->id_attribute})) !!}
-
-        @if(isset($isEmbedded) && $isEmbedded)
-            {!! Form::hidden('masterInstanceData', $masterInstanceData) !!}
-            {!! Form::hidden('masterInstanceId', $masterInstanceId) !!}
-            {!! Form::hidden('masterEntityLabel', $masterEntityLabel) !!}
-        @endif
 
         @if(count($entity->form_layout) > 1)
             {{-- There are tabs --}}

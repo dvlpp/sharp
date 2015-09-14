@@ -26,7 +26,6 @@
 
     {{-- Sublist --}}
     @include("sharp::cms.partials.list.contextbar.listfilters-button")
-    @include("sharp::cms.partials.list.contextbar.sublist-button")
 
     {{-- Quick search --}}
     @include("sharp::cms.partials.list.contextbar.quicksearch")
@@ -45,8 +44,6 @@
             {{ session("errorMessage") }}
         </div>
     @endif
-
-    @include("sharp::cms.partials.list.advancedsearch-form")
 
     <table class="table table-responsive table-striped" id="entity-list">
         <thead>
@@ -184,11 +181,4 @@
         {!! $pagination->appends(Input::except(['page']))->render() !!}
     @endif
 
-@endsection
-
-@section("scripts")
-    @parent
-    @if($entity->advanced_search->data)
-        <script src="/sharp/sharp.advancedsearch.min.js"></script>
-    @endif
 @endsection

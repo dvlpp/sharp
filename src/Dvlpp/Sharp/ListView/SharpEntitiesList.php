@@ -3,8 +3,8 @@
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
-use Dvlpp\Sharp\Repositories\SharpHasSublist;
 use Dvlpp\Sharp\Repositories\SharpHasListFilters;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -30,14 +30,14 @@ class SharpEntitiesList
     protected $currentSubListId;
 
     /**
-     * @var integer
+     * @var LengthAwarePaginator
      */
-    protected $count;
+    protected $paginator;
 
     /**
-     * @var Paginator
+     * @var int
      */
-    protected $pagination;
+    protected $count;
 
     /**
      * @var \Dvlpp\Sharp\Config\Entities\SharpEntity
@@ -80,7 +80,6 @@ class SharpEntitiesList
         $this->request = $request;
 
         $this->manageFilters();
-        $this->manageSublist();
     }
 
     /**
@@ -113,34 +112,6 @@ class SharpEntitiesList
         }
     }
 
-    /**
-     * Sublists are entities subsets. This method intents to grab all available sets
-     * from the functional repo, as well as the current one.
-     *
-     * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
-     * @deprecated
-     */
-    private function manageSublist()
-    {
-        // Manage sublist if set in the config file.
-        // Sublist is used to group entities. The project repository is responsible
-        // of giving the current sublist (with a default) and the available ones.
-        $subLists = null;
-
-        if ($this->entity->list_template->sublist) {
-            if (!$this->repo instanceof SharpHasSublist) {
-                throw new MandatoryClassNotFoundException("Repository ["
-                    . get_class($this->repo)
-                    . "] has to implement \\Dvlpp\\Sharp\\Repositories\\SharpHasSublist in order to manage sublists");
-            }
-
-            // Init current subset in repo
-            $this->repo->initCurrentSublistId($this->request->get("sub"));
-
-            $this->currentSubListId = $this->repo->getCurrentSublistId();
-            $this->subLists = $this->repo->getSublists();
-        }
-    }
 
     /**
      * Grab the actual instances.
@@ -155,11 +126,11 @@ class SharpEntitiesList
         // And finally grab the entities
         if ($this->entity->list_template->paginate) {
             // Pagination config is set: grab the current page
-            $this->pagination = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
+            $this->paginator = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
 
-            $this->count = $this->pagination->total();
+            $this->count = $this->paginator->total();
+            return $this->paginator->items();
 
-            return $this->pagination->items();
         } else {
             // Grab all entities of this kind from DB
             $instances = $this->repo->listAll($this->params);
@@ -178,29 +149,11 @@ class SharpEntitiesList
     }
 
     /**
-     * @return Paginator
+     * @return LengthAwarePaginator
      */
-    public function getPagination()
+    public function getPaginator()
     {
-        return $this->pagination;
-    }
-
-    /**
-     * @deprecated
-     * @return array
-     */
-    public function getSublists()
-    {
-        return $this->subLists;
-    }
-
-    /**
-     * @deprecated
-     * @return array
-     */
-    public function getCurrentSublistId()
-    {
-        return $this->currentSubListId;
+        return $this->paginator;
     }
 
     public function getListFilterCurrents()
@@ -215,64 +168,33 @@ class SharpEntitiesList
 
     public function getSortedColumn()
     {
-        return $this->params->getSortedColumn();
+        return $this->params->sortedColumn;
     }
 
     public function getSortedDirection()
     {
-        return $this->params->getSortedDirection();
+        return $this->params->sortedDirection;
     }
 
     public function createParams()
     {
         $this->params = new SharpEntitiesListParams();
 
-        if ($this->currentSubListId) {
-            $this->params->setCurrentSubListId($this->getCurrentSublistId());
-        }
-
         // Manage column sort: first determine which column is sorted
         list($sortCol, $sortDir) = $this->retrieveSorting();
 
         foreach ($this->entity->list_template->columns as $colKey => $col) {
             if ($col->sortable && (!$sortCol || $colKey == $sortCol)) {
-                $this->params->setSortedColumn($colKey);
-                $this->params->setSortedDirection($sortDir);
+                $this->params->sortedColumn = $colKey;
+                $this->params->sortedDirection = $sortDir;
                 break;
             }
         }
 
         // Manage search
-        $search = null;
         if ($this->entity->list_template->searchable && $this->request->has("search")) {
-            $search = urldecode($this->request->get("search"));
+            $this->params->search = urldecode($this->request->get("search"));
         }
-
-        // Manage advanced search
-        if (!$search && $this->entity->advanced_search->data && $this->request->has("adv")) {
-            $this->params->setAdvancedSearch(true);
-            $search = [];
-            foreach ($this->request->all() as $input => $value) {
-                if (!starts_with($input, "adv_")) {
-                    continue;
-                }
-                if ((is_array($value) && !sizeof($value))
-                    || !is_array($value) && !strlen(trim($value))
-                ) {
-                    continue;
-                }
-
-                if (is_array($value)) {
-                    foreach ($value as $v) {
-                        $search[substr($input, 4)][] = urldecode($v);
-                    }
-                } else {
-                    $search[substr($input, 4)] = urldecode($value);
-                }
-            }
-        }
-
-        $this->params->setSearch($search);
 
         return $this->params;
     }

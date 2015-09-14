@@ -5,8 +5,6 @@ use Dvlpp\Sharp\Form\Fields\CheckField;
 use Dvlpp\Sharp\Form\Fields\ChooseField;
 use Dvlpp\Sharp\Form\Fields\CustomSearchField;
 use Dvlpp\Sharp\Form\Fields\DateField;
-use Dvlpp\Sharp\Form\Fields\EmbedField;
-use Dvlpp\Sharp\Form\Fields\EmbedListField;
 use Dvlpp\Sharp\Form\Fields\FileField;
 use Dvlpp\Sharp\Form\Fields\HiddenField;
 use Dvlpp\Sharp\Form\Fields\JavascriptCode;
@@ -109,12 +107,6 @@ class SharpCmsField
 
             case 'customSearch':
                 return (new CustomSearchField($key, $listKey, $field, $attributes, $instance))->make();
-
-            case 'embed':
-                return (new EmbedField($key, $listKey, $field, $attributes, $instance))->make();
-
-            case 'embed_list':
-                return (new EmbedListField($key, $listKey, $field, $attributes, $instance))->make();
         }
 
         return null;

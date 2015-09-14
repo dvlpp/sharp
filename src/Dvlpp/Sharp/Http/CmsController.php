@@ -80,9 +80,7 @@ class CmsController extends Controller
             'entity' => $entity,
             'entityKey' => $entityName,
             'totalCount' => $entitiesList->getCount(),
-            'pagination' => $entitiesList->getPagination(),
-            'subLists' => $entitiesList->getSublists(),
-            'subList' => $entitiesList->getCurrentSublistId(),
+            'pagination' => $entitiesList->getPaginator(),
             'listFilters' => [
                 "contents" => $entitiesList->getListFilterContents(),
                 "currents" => $entitiesList->getListFilterCurrents()
@@ -227,8 +225,6 @@ class CmsController extends Controller
         $repo->delete($id);
 
         return redirect()->back();
-
-        //return redirect()->route("cms.list", [$categoryName, $entityName]);
     }
 
     /**
@@ -306,13 +302,6 @@ class CmsController extends Controller
         $instance = $creation ? $repo->newInstance() : $repo->find($id);
 
         if ($instance) {
-            if (session()->has('masterInstanceData')) {
-                // We are back from a embedded entity form.
-                // We have to repopulate the master form (this form) as it was before
-                $formOldDataStr = unserialize(Session::get('masterInstanceData'));
-                session()->flashInput($formOldDataStr);
-            }
-
             // Duplication management: we simply add an attribute here
             $instance->__sharp_duplication = $duplication;
 
@@ -331,7 +320,6 @@ class CmsController extends Controller
         }
 
         throw new InstanceNotFoundException("Instance of id [$id] and type [$categoryName.$entityName] can't be found");
-
     }
 
     /**
@@ -419,4 +407,4 @@ class CmsController extends Controller
             $request->only(['page', 'sort', 'dir', 'search', 'sub']));
     }
 
-} 
+}

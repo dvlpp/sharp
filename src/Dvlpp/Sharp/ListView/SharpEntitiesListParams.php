@@ -12,121 +12,16 @@ class SharpEntitiesListParams
     /**
      * @var string
      */
-    protected $sortedColumn;
+    public $sortedColumn;
 
     /**
      * @var string
      */
-    protected $sortedDirection;
+    public $sortedDirection;
 
     /**
      * @var string
      */
-    protected $search;
+    public $search;
 
-    /**
-     * @var boolean
-     */
-    protected $isAdvancedSearch = false;
-
-    /**
-     * @deprecated
-     * @var null
-     */
-    private $currentSublistId;
-
-    /**
-     * @return string
-     */
-    public function getSortedColumn()
-    {
-        return $this->sortedColumn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSortedDirection()
-    {
-        return $this->sortedDirection;
-    }
-
-    /**
-     * @return string|array
-     */
-    public function getSearch()
-    {
-        return $this->search;
-    }
-
-    /**
-     * @deprecated
-     * @return string
-     */
-    public function getCurrentSublistId()
-    {
-        return $this->currentSublistId;
-    }
-
-    public function isAdvancedSearch()
-    {
-        return $this->isAdvancedSearch;
-    }
-
-    /**
-     * @deprecated
-     * @param string $currentSublistId
-     */
-    public function setCurrentSublistId($currentSublistId)
-    {
-        $this->currentSublistId = $currentSublistId;
-    }
-
-    /**
-     * @param string $search
-     */
-    public function setSearch($search)
-    {
-        $this->search = $search;
-    }
-
-    /**
-     * @param string $sortedColumn
-     */
-    public function setSortedColumn($sortedColumn)
-    {
-        $this->sortedColumn = $sortedColumn;
-    }
-
-    /**
-     * @param string $sortedDirection
-     */
-    public function setSortedDirection($sortedDirection)
-    {
-        $this->sortedDirection = $sortedDirection;
-    }
-
-    public function setAdvancedSearch($isAdvanced)
-    {
-        $this->isAdvancedSearch = $isAdvanced;
-    }
-
-    public function getAdvancedSearchValue($field)
-    {
-        $value = null;
-
-        if ($this->isAdvancedSearch) {
-            $index = null;
-            if (strpos($field, ".") !== false) {
-                list($field, $index) = explode(".", $field);
-            }
-
-            if (array_key_exists($field, $this->search)) {
-                return $index === null ? $this->search[$field] : $this->search[$field][$index];
-            }
-        }
-
-        return $value;
-    }
-
-} 
+}

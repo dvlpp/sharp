@@ -1,6 +1,7 @@
 <?php namespace Dvlpp\Sharp\Repositories;
 
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 
 /**
@@ -30,7 +31,7 @@ interface SharpCmsRepository {
      *
      * @param $count
      * @param \Dvlpp\Sharp\ListView\SharpEntitiesListParams $params
-     * @return mixed
+     * @return LengthAwarePaginator
      */
     function paginate($count, SharpEntitiesListParams $params);
 

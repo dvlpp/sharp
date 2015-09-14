@@ -8,9 +8,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "laravel/framework": "5.*",
-        "laravelcollective/html": "5.0.*",
+        "php": ">=5.5.9",
+        "laravel/framework": "5.1.*",
+        "laravelcollective/html": "5.1.*",
         "intervention/image": "2.*",
         "erusev/parsedown": "~1.1",
         "mustache/mustache": "~2.6.0"
