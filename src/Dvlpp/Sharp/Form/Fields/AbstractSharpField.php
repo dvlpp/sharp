@@ -130,7 +130,7 @@ abstract class AbstractSharpField
      */
     protected function addData($name, $data)
     {
-        $this->attributes["data-$name"] = $data;
+        $this->attributes["data-$name"] = e($data);
     }
 
     /**
@@ -148,6 +148,9 @@ abstract class AbstractSharpField
         }
     }
 
+    /**
+     * @return FormBuilder
+     */
     protected function formBuilder()
     {
         if(!$this->formBuilder) {

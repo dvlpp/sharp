@@ -5,6 +5,7 @@
     "bootstrap": "~3.3.0",
     "datetimepicker": "git://github.com/xdan/datetimepicker.git#~2.4.0",
     "dragula.js": "dragula#~3.3.0",
+    "dropzone": "~4.0.1",
     "fontawesome": "~4.3.0",
     "imgareaselect": "git://github.com/odyniec/imgareaselect.git",
     "jquery": "~2.1.1",

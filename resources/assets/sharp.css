@@ -8939,192 +8939,66 @@ body.sharp-form #form-overlay {
   border-color: #a94442;
 }
 .sharp-field-file .sharp-file {
-  position: relative;
+  height: auto;
   min-height: 34px;
-  border: 1px solid #ddd;
-  padding: 6px;
-  background: #fff;
-}
-.sharp-field-file .sharp-file:before,
-.sharp-field-file .sharp-file:after {
-  content: " ";
-  display: table;
-}
-.sharp-field-file .sharp-file:after {
-  clear: both;
-}
-.sharp-field-file .sharp-file:before,
-.sharp-field-file .sharp-file:after {
-  content: " ";
-  display: table;
-}
-.sharp-field-file .sharp-file:after {
-  clear: both;
-}
-.sharp-field-file .sharp-file .sharp-file-progress {
-  position: absolute;
-  height: 100%;
-  background: #66707a;
-  left: 0;
-  top: 0;
-}
-.sharp-field-file .sharp-file .sharp-file-browse {
-  display: block;
-}
-.sharp-field-file .sharp-file .sharp-file-delete {
-  display: none;
-}
-.sharp-field-file .sharp-file .sharp-file-image {
   position: relative;
-  float: left;
-  overflow: hidden;
 }
-.sharp-field-file .sharp-file .sharp-file-thumbnail {
-  display: none;
+.sharp-field-file .sharp-file .add-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: none;
 }
-.sharp-field-file .sharp-file .sharp-file-label {
-  display: none;
+.sharp-field-file .dz-preview {
+  background: white;
+  position: relative;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-browse {
-  display: none;
+.sharp-field-file .dz-preview:before,
+.sharp-field-file .dz-preview:after {
+  content: " ";
+  display: table;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-delete {
-  display: inline-block;
+.sharp-field-file .dz-preview:after {
+  clear: both;
+}
+.sharp-field-file .dz-preview:before,
+.sharp-field-file .dz-preview:after {
+  content: " ";
+  display: table;
+}
+.sharp-field-file .dz-preview:after {
+  clear: both;
+}
+.sharp-field-file .dz-preview .close {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 2px 5px;
-  line-height: normal;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-thumbnail {
-  display: block;
-}
-.sharp-field-file .sharp-file.valuated .sharp-file-crop-mask {
+.sharp-field-file .dz-preview .dz-progress {
   position: absolute;
-  border: 1px solid #fff;
-  box-shadow: #000 0 0 5px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-label {
-  display: block;
-  line-height: normal;
-  float: left;
-  margin-left: 5px;
-}
-.sharp-field-file .sharp-file.valuated .sharp-file-label .name {
-  font-weight: bold;
-  display: block;
-}
-.sharp-field-file .sharp-file.valuated .sharp-file-label .mime {
-  margin-right: 4px;
-  color: #888;
-  font-size: 11px;
-}
-.sharp-field-file .sharp-file.valuated .sharp-file-label .size {
-  color: #888;
-  font-size: 11px;
+.sharp-field-file .dz-preview .dz-progress .dz-upload {
+  height: 20px;
+  line-height: 20px;
+  color: #333;
+  text-align: center;
+  background: #12dbe8;
   display: block;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-label .type {
-  position: relative;
-  float: left;
-  margin-right: 6px;
+.sharp-field-file .dz-preview .dz-details {
+  color: black;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-label .type .fa {
-  font-size: 40px;
+.sharp-field-file .dz-preview .dz-details .dz-size,
+.sharp-field-file .dz-preview .dz-details .dz-filename {
+  display: block;
 }
-.sharp-field-file .sharp-file.valuated .sharp-file-label .type span {
-  position: absolute;
-  left: 5px;
-  top: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 8px;
-}
-.sharp-field-file .sharp-file.valuated .sharp-file-label .dl {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  font-size: 11px;
-}
-.sharp-field-file .sharp-file.with-thumbnail .sharp-file-label .type {
+.sharp-field-file .dz-preview.dz-complete .dz-progress {
   display: none;
-}
-.sharp-field-file.has-error .sharp-file {
-  border-color: #f2dede !important;
-}
-.crop-img-glasspane {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  background: #000;
-  opacity: .6;
-  z-index: 9998;
-}
-.crop-img-wrapper {
-  display: none;
-  z-index: 9999;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 450px;
-  padding: 20px;
-  margin-left: -225px;
-  margin-top: -225px;
-  background: #fff;
-}
-.crop-img-wrapper img {
-  display: block;
-  margin: 20px auto;
-}
-.crop-img-wrapper a.btn {
-  float: right;
-}
-.crop-img-wrapper a.btn.btn-crop:hover {
-  color: #51a4aa;
-}
-.crop-img-wrapper a.btn.btn-cancel:hover {
-  color: red;
-}
-.crop-img-wrapper a.btn.btn-back:hover {
-  color: #000;
-}
-/*
- * imgAreaSelect default style
- */
-.imgareaselect-border1 {
-  background: url(border-v.gif) repeat-y left top;
-}
-.imgareaselect-border2 {
-  background: url(border-h.gif) repeat-x left top;
-}
-.imgareaselect-border3 {
-  background: url(border-v.gif) repeat-y right top;
-}
-.imgareaselect-border4 {
-  background: url(border-h.gif) repeat-x left bottom;
-}
-.imgareaselect-border1,
-.imgareaselect-border2,
-.imgareaselect-border3,
-.imgareaselect-border4 {
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-}
-.imgareaselect-handle {
-  background-color: #fff;
-  border: solid 1px #000;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-}
-.imgareaselect-outer {
-  background-color: #000;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
 }
 .sharp-field-list .sharp-list,
 .sharp-field-embed_list .sharp-list {

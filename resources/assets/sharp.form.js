@@ -27068,1680 +27068,1734 @@ CodeMirror.defineMIME("text/x-markdown", "markdown");
         return _.assign(Object.create(mirrorMarkProto), { element: element, options: defaults });
     }
 
-})(window.CodeMirror);;/*
- * jQuery Iframe Transport Plugin 1.8.2
- * https://github.com/blueimp/jQuery-File-Upload
+})(window.CodeMirror);;
+/*
  *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
+ * More info at [www.dropzonejs.com](http://www.dropzonejs.com)
  *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
+ * Copyright (c) 2012, Matias Meno
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
  */
 
-/* global define, window, document */
+(function() {
+  var Dropzone, Emitter, camelize, contentLoaded, detectVerticalSquash, drawImageIOSFix, noop, without,
+    __slice = [].slice,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-(function (factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        // Register as an anonymous AMD module:
-        define(['jquery'], factory);
-    } else {
-        // Browser globals:
-        factory(window.jQuery);
-    }
-}(function ($) {
-    'use strict';
+  noop = function() {};
 
-    // Helper variable to create unique names for the transport iframes:
-    var counter = 0;
+  Emitter = (function() {
+    function Emitter() {}
 
-    // The iframe transport accepts four additional options:
-    // options.fileInput: a jQuery collection of file input fields
-    // options.paramName: the parameter name for the file form data,
-    //  overrides the name property of the file input field(s),
-    //  can be a string or an array of strings.
-    // options.formData: an array of objects with name and value properties,
-    //  equivalent to the return data of .serializeArray(), e.g.:
-    //  [{name: 'a', value: 1}, {name: 'b', value: 2}]
-    // options.initialIframeSrc: the URL of the initial iframe src,
-    //  by default set to "javascript:false;"
-    $.ajaxTransport('iframe', function (options) {
-        if (options.async) {
-            // javascript:false as initial iframe src
-            // prevents warning popups on HTTPS in IE6:
-            /*jshint scripturl: true */
-            var initialIframeSrc = options.initialIframeSrc || 'javascript:false;',
-            /*jshint scripturl: false */
-                form,
-                iframe,
-                addParamChar;
-            return {
-                send: function (_, completeCallback) {
-                    form = $('<form style="display:none;"></form>');
-                    form.attr('accept-charset', options.formAcceptCharset);
-                    addParamChar = /\?/.test(options.url) ? '&' : '?';
-                    // XDomainRequest only supports GET and POST:
-                    if (options.type === 'DELETE') {
-                        options.url = options.url + addParamChar + '_method=DELETE';
-                        options.type = 'POST';
-                    } else if (options.type === 'PUT') {
-                        options.url = options.url + addParamChar + '_method=PUT';
-                        options.type = 'POST';
-                    } else if (options.type === 'PATCH') {
-                        options.url = options.url + addParamChar + '_method=PATCH';
-                        options.type = 'POST';
-                    }
-                    // IE versions below IE8 cannot set the name property of
-                    // elements that have already been added to the DOM,
-                    // so we set the name along with the iframe HTML markup:
-                    counter += 1;
-                    iframe = $(
-                        '<iframe src="' + initialIframeSrc +
-                            '" name="iframe-transport-' + counter + '"></iframe>'
-                    ).bind('load', function () {
-                        var fileInputClones,
-                            paramNames = $.isArray(options.paramName) ?
-                                    options.paramName : [options.paramName];
-                        iframe
-                            .unbind('load')
-                            .bind('load', function () {
-                                var response;
-                                // Wrap in a try/catch block to catch exceptions thrown
-                                // when trying to access cross-domain iframe contents:
-                                try {
-                                    response = iframe.contents();
-                                    // Google Chrome and Firefox do not throw an
-                                    // exception when calling iframe.contents() on
-                                    // cross-domain requests, so we unify the response:
-                                    if (!response.length || !response[0].firstChild) {
-                                        throw new Error();
-                                    }
-                                } catch (e) {
-                                    response = undefined;
-                                }
-                                // The complete callback returns the
-                                // iframe content document as response object:
-                                completeCallback(
-                                    200,
-                                    'success',
-                                    {'iframe': response}
-                                );
-                                // Fix for IE endless progress bar activity bug
-                                // (happens on form submits to iframe targets):
-                                $('<iframe src="' + initialIframeSrc + '"></iframe>')
-                                    .appendTo(form);
-                                window.setTimeout(function () {
-                                    // Removing the form in a setTimeout call
-                                    // allows Chrome's developer tools to display
-                                    // the response result
-                                    form.remove();
-                                }, 0);
-                            });
-                        form
-                            .prop('target', iframe.prop('name'))
-                            .prop('action', options.url)
-                            .prop('method', options.type);
-                        if (options.formData) {
-                            $.each(options.formData, function (index, field) {
-                                $('<input type="hidden"/>')
-                                    .prop('name', field.name)
-                                    .val(field.value)
-                                    .appendTo(form);
-                            });
-                        }
-                        if (options.fileInput && options.fileInput.length &&
-                                options.type === 'POST') {
-                            fileInputClones = options.fileInput.clone();
-                            // Insert a clone for each file input field:
-                            options.fileInput.after(function (index) {
-                                return fileInputClones[index];
-                            });
-                            if (options.paramName) {
-                                options.fileInput.each(function (index) {
-                                    $(this).prop(
-                                        'name',
-                                        paramNames[index] || options.paramName
-                                    );
-                                });
-                            }
-                            // Appending the file input fields to the hidden form
-                            // removes them from their original location:
-                            form
-                                .append(options.fileInput)
-                                .prop('enctype', 'multipart/form-data')
-                                // enctype must be set as encoding for IE:
-                                .prop('encoding', 'multipart/form-data');
-                            // Remove the HTML5 form attribute from the input(s):
-                            options.fileInput.removeAttr('form');
-                        }
-                        form.submit();
-                        // Insert the file input fields at their original location
-                        // by replacing the clones with the originals:
-                        if (fileInputClones && fileInputClones.length) {
-                            options.fileInput.each(function (index, input) {
-                                var clone = $(fileInputClones[index]);
-                                // Restore the original name and form properties:
-                                $(input)
-                                    .prop('name', clone.prop('name'))
-                                    .attr('form', clone.attr('form'));
-                                clone.replaceWith(input);
-                            });
-                        }
-                    });
-                    form.append(iframe).appendTo(document.body);
-                },
-                abort: function () {
-                    if (iframe) {
-                        // javascript:false as iframe src aborts the request
-                        // and prevents warning popups on HTTPS in IE6.
-                        // concat is used to avoid the "Script URL" JSLint error:
-                        iframe
-                            .unbind('load')
-                            .prop('src', initialIframeSrc);
-                    }
-                    if (form) {
-                        form.remove();
-                    }
-                }
-            };
+    Emitter.prototype.addEventListener = Emitter.prototype.on;
+
+    Emitter.prototype.on = function(event, fn) {
+      this._callbacks = this._callbacks || {};
+      if (!this._callbacks[event]) {
+        this._callbacks[event] = [];
+      }
+      this._callbacks[event].push(fn);
+      return this;
+    };
+
+    Emitter.prototype.emit = function() {
+      var args, callback, callbacks, event, _i, _len;
+      event = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      this._callbacks = this._callbacks || {};
+      callbacks = this._callbacks[event];
+      if (callbacks) {
+        for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
+          callback = callbacks[_i];
+          callback.apply(this, args);
         }
-    });
+      }
+      return this;
+    };
 
-    // The iframe transport returns the iframe content document as response.
-    // The following adds converters from iframe to text, json, html, xml
-    // and script.
-    // Please note that the Content-Type for JSON responses has to be text/plain
-    // or text/html, if the browser doesn't include application/json in the
-    // Accept header, else IE will show a download dialog.
-    // The Content-Type for XML responses on the other hand has to be always
-    // application/xml or text/xml, so IE properly parses the XML response.
-    // See also
-    // https://github.com/blueimp/jQuery-File-Upload/wiki/Setup#content-type-negotiation
-    $.ajaxSetup({
-        converters: {
-            'iframe text': function (iframe) {
-                return iframe && $(iframe[0].body).text();
-            },
-            'iframe json': function (iframe) {
-                return iframe && $.parseJSON($(iframe[0].body).text());
-            },
-            'iframe html': function (iframe) {
-                return iframe && $(iframe[0].body).html();
-            },
-            'iframe xml': function (iframe) {
-                var xmlDoc = iframe && iframe[0];
-                return xmlDoc && $.isXMLDoc(xmlDoc) ? xmlDoc :
-                        $.parseXML((xmlDoc.XMLDocument && xmlDoc.XMLDocument.xml) ||
-                            $(xmlDoc.body).html());
-            },
-            'iframe script': function (iframe) {
-                return iframe && $.globalEval($(iframe[0].body).text());
-            }
+    Emitter.prototype.removeListener = Emitter.prototype.off;
+
+    Emitter.prototype.removeAllListeners = Emitter.prototype.off;
+
+    Emitter.prototype.removeEventListener = Emitter.prototype.off;
+
+    Emitter.prototype.off = function(event, fn) {
+      var callback, callbacks, i, _i, _len;
+      if (!this._callbacks || arguments.length === 0) {
+        this._callbacks = {};
+        return this;
+      }
+      callbacks = this._callbacks[event];
+      if (!callbacks) {
+        return this;
+      }
+      if (arguments.length === 1) {
+        delete this._callbacks[event];
+        return this;
+      }
+      for (i = _i = 0, _len = callbacks.length; _i < _len; i = ++_i) {
+        callback = callbacks[i];
+        if (callback === fn) {
+          callbacks.splice(i, 1);
+          break;
         }
-    });
+      }
+      return this;
+    };
 
-}));
-;/*
- * jQuery File Upload Plugin 5.42.1
- * https://github.com/blueimp/jQuery-File-Upload
- *
- * Copyright 2010, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+    return Emitter;
 
-/* jshint nomen:false */
-/* global define, window, document, location, Blob, FormData */
+  })();
 
-(function (factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        // Register as an anonymous AMD module:
-        define([
-            'jquery',
-            'jquery.ui.widget'
-        ], factory);
-    } else {
-        // Browser globals:
-        factory(window.jQuery);
-    }
-}(function ($) {
-    'use strict';
+  Dropzone = (function(_super) {
+    var extend, resolveOption;
 
-    // Detect file input support, based on
-    // http://viljamis.com/blog/2012/file-upload-support-on-mobile/
-    $.support.fileInput = !(new RegExp(
-        // Handle devices which give false positives for the feature detection:
-        '(Android (1\\.[0156]|2\\.[01]))' +
-            '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
-            '|(w(eb)?OSBrowser)|(webOS)' +
-            '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
-    ).test(window.navigator.userAgent) ||
-        // Feature detection for all other devices:
-        $('<input type="file">').prop('disabled'));
+    __extends(Dropzone, _super);
 
-    // The FileReader API is not actually used, but works as feature detection,
-    // as some Safari versions (5?) support XHR file uploads via the FormData API,
-    // but not non-multipart XHR file uploads.
-    // window.XMLHttpRequestUpload is not available on IE10, so we check for
-    // window.ProgressEvent instead to detect XHR2 file upload capability:
-    $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
-    $.support.xhrFormDataFileUpload = !!window.FormData;
+    Dropzone.prototype.Emitter = Emitter;
 
-    // Detect support for Blob slicing (required for chunked uploads):
-    $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
-        Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
 
-    // Helper function to create drag handlers for dragover/dragenter/dragleave:
-    function getDragHandler(type) {
-        var isDragOver = type === 'dragover';
-        return function (e) {
-            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
-            var dataTransfer = e.dataTransfer;
-            if (dataTransfer && $.inArray('Files', dataTransfer.types) !== -1 &&
-                    this._trigger(
-                        type,
-                        $.Event(type, {delegatedEvent: e})
-                    ) !== false) {
-                e.preventDefault();
-                if (isDragOver) {
-                    dataTransfer.dropEffect = 'copy';
-                }
-            }
+    /*
+    This is a list of all available events you can register on a dropzone object.
+    
+    You can register an event handler like this:
+    
+        dropzone.on("dragEnter", function() { });
+     */
+
+    Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
+
+    Dropzone.prototype.defaultOptions = {
+      url: null,
+      method: "post",
+      withCredentials: false,
+      parallelUploads: 2,
+      uploadMultiple: false,
+      maxFilesize: 256,
+      paramName: "file",
+      createImageThumbnails: true,
+      maxThumbnailFilesize: 10,
+      thumbnailWidth: 120,
+      thumbnailHeight: 120,
+      filesizeBase: 1000,
+      maxFiles: null,
+      filesizeBase: 1000,
+      params: {},
+      clickable: true,
+      ignoreHiddenFiles: true,
+      acceptedFiles: null,
+      acceptedMimeTypes: null,
+      autoProcessQueue: true,
+      autoQueue: true,
+      addRemoveLinks: false,
+      previewsContainer: null,
+      capture: null,
+      dictDefaultMessage: "Drop files here to upload",
+      dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
+      dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+      dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+      dictInvalidFileType: "You can't upload files of this type.",
+      dictResponseError: "Server responded with {{statusCode}} code.",
+      dictCancelUpload: "Cancel upload",
+      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+      dictRemoveFile: "Remove file",
+      dictRemoveFileConfirmation: null,
+      dictMaxFilesExceeded: "You can not upload any more files.",
+      accept: function(file, done) {
+        return done();
+      },
+      init: function() {
+        return noop;
+      },
+      forceFallback: false,
+      fallback: function() {
+        var child, messageElement, span, _i, _len, _ref;
+        this.element.className = "" + this.element.className + " dz-browser-not-supported";
+        _ref = this.element.getElementsByTagName("div");
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          child = _ref[_i];
+          if (/(^| )dz-message($| )/.test(child.className)) {
+            messageElement = child;
+            child.className = "dz-message";
+            continue;
+          }
+        }
+        if (!messageElement) {
+          messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
+          this.element.appendChild(messageElement);
+        }
+        span = messageElement.getElementsByTagName("span")[0];
+        if (span) {
+          span.textContent = this.options.dictFallbackMessage;
+        }
+        return this.element.appendChild(this.getFallbackForm());
+      },
+      resize: function(file) {
+        var info, srcRatio, trgRatio;
+        info = {
+          srcX: 0,
+          srcY: 0,
+          srcWidth: file.width,
+          srcHeight: file.height
         };
+        srcRatio = file.width / file.height;
+        info.optWidth = this.options.thumbnailWidth;
+        info.optHeight = this.options.thumbnailHeight;
+        if ((info.optWidth == null) && (info.optHeight == null)) {
+          info.optWidth = info.srcWidth;
+          info.optHeight = info.srcHeight;
+        } else if (info.optWidth == null) {
+          info.optWidth = srcRatio * info.optHeight;
+        } else if (info.optHeight == null) {
+          info.optHeight = (1 / srcRatio) * info.optWidth;
+        }
+        trgRatio = info.optWidth / info.optHeight;
+        if (file.height < info.optHeight || file.width < info.optWidth) {
+          info.trgHeight = info.srcHeight;
+          info.trgWidth = info.srcWidth;
+        } else {
+          if (srcRatio > trgRatio) {
+            info.srcHeight = file.height;
+            info.srcWidth = info.srcHeight * trgRatio;
+          } else {
+            info.srcWidth = file.width;
+            info.srcHeight = info.srcWidth / trgRatio;
+          }
+        }
+        info.srcX = (file.width - info.srcWidth) / 2;
+        info.srcY = (file.height - info.srcHeight) / 2;
+        return info;
+      },
+
+      /*
+      Those functions register themselves to the events on init and handle all
+      the user interface specific stuff. Overwriting them won't break the upload
+      but can break the way it's displayed.
+      You can overwrite them if you don't like the default behavior. If you just
+      want to add an additional event handler, register it on the dropzone object
+      and don't overwrite those options.
+       */
+      drop: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragstart: noop,
+      dragend: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragenter: function(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragover: function(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragleave: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      paste: noop,
+      reset: function() {
+        return this.element.classList.remove("dz-started");
+      },
+      addedfile: function(file) {
+        var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
+        if (this.element === this.previewsContainer) {
+          this.element.classList.add("dz-started");
+        }
+        if (this.previewsContainer) {
+          file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+          file.previewTemplate = file.previewElement;
+          this.previewsContainer.appendChild(file.previewElement);
+          _ref = file.previewElement.querySelectorAll("[data-dz-name]");
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            node.textContent = file.name;
+          }
+          _ref1 = file.previewElement.querySelectorAll("[data-dz-size]");
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            node = _ref1[_j];
+            node.innerHTML = this.filesize(file.size);
+          }
+          if (this.options.addRemoveLinks) {
+            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+            file.previewElement.appendChild(file._removeLink);
+          }
+          removeFileEvent = (function(_this) {
+            return function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (file.status === Dropzone.UPLOADING) {
+                return Dropzone.confirm(_this.options.dictCancelUploadConfirmation, function() {
+                  return _this.removeFile(file);
+                });
+              } else {
+                if (_this.options.dictRemoveFileConfirmation) {
+                  return Dropzone.confirm(_this.options.dictRemoveFileConfirmation, function() {
+                    return _this.removeFile(file);
+                  });
+                } else {
+                  return _this.removeFile(file);
+                }
+              }
+            };
+          })(this);
+          _ref2 = file.previewElement.querySelectorAll("[data-dz-remove]");
+          _results = [];
+          for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+            removeLink = _ref2[_k];
+            _results.push(removeLink.addEventListener("click", removeFileEvent));
+          }
+          return _results;
+        }
+      },
+      removedfile: function(file) {
+        var _ref;
+        if (file.previewElement) {
+          if ((_ref = file.previewElement) != null) {
+            _ref.parentNode.removeChild(file.previewElement);
+          }
+        }
+        return this._updateMaxFilesReachedClass();
+      },
+      thumbnail: function(file, dataUrl) {
+        var thumbnailElement, _i, _len, _ref;
+        if (file.previewElement) {
+          file.previewElement.classList.remove("dz-file-preview");
+          _ref = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            thumbnailElement = _ref[_i];
+            thumbnailElement.alt = file.name;
+            thumbnailElement.src = dataUrl;
+          }
+          return setTimeout(((function(_this) {
+            return function() {
+              return file.previewElement.classList.add("dz-image-preview");
+            };
+          })(this)), 1);
+        }
+      },
+      error: function(file, message) {
+        var node, _i, _len, _ref, _results;
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-error");
+          if (typeof message !== "String" && message.error) {
+            message = message.error;
+          }
+          _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            _results.push(node.textContent = message);
+          }
+          return _results;
+        }
+      },
+      errormultiple: noop,
+      processing: function(file) {
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-processing");
+          if (file._removeLink) {
+            return file._removeLink.textContent = this.options.dictCancelUpload;
+          }
+        }
+      },
+      processingmultiple: noop,
+      uploadprogress: function(file, progress, bytesSent) {
+        var node, _i, _len, _ref, _results;
+        if (file.previewElement) {
+          _ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            if (node.nodeName === 'PROGRESS') {
+              _results.push(node.value = progress);
+            } else {
+              _results.push(node.style.width = "" + progress + "%");
+            }
+          }
+          return _results;
+        }
+      },
+      totaluploadprogress: noop,
+      sending: noop,
+      sendingmultiple: noop,
+      success: function(file) {
+        if (file.previewElement) {
+          return file.previewElement.classList.add("dz-success");
+        }
+      },
+      successmultiple: noop,
+      canceled: function(file) {
+        return this.emit("error", file, "Upload canceled.");
+      },
+      canceledmultiple: noop,
+      complete: function(file) {
+        if (file._removeLink) {
+          file._removeLink.textContent = this.options.dictRemoveFile;
+        }
+        if (file.previewElement) {
+          return file.previewElement.classList.add("dz-complete");
+        }
+      },
+      completemultiple: noop,
+      maxfilesexceeded: noop,
+      maxfilesreached: noop,
+      queuecomplete: noop,
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Check</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Error</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <g id=\"Check-+-Oval-2\" sketch:type=\"MSLayerGroup\" stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" sketch:type=\"MSShapeGroup\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>"
+    };
+
+    extend = function() {
+      var key, object, objects, target, val, _i, _len;
+      target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      for (_i = 0, _len = objects.length; _i < _len; _i++) {
+        object = objects[_i];
+        for (key in object) {
+          val = object[key];
+          target[key] = val;
+        }
+      }
+      return target;
+    };
+
+    function Dropzone(element, options) {
+      var elementOptions, fallback, _ref;
+      this.element = element;
+      this.version = Dropzone.version;
+      this.defaultOptions.previewTemplate = this.defaultOptions.previewTemplate.replace(/\n*/g, "");
+      this.clickableElements = [];
+      this.listeners = [];
+      this.files = [];
+      if (typeof this.element === "string") {
+        this.element = document.querySelector(this.element);
+      }
+      if (!(this.element && (this.element.nodeType != null))) {
+        throw new Error("Invalid dropzone element.");
+      }
+      if (this.element.dropzone) {
+        throw new Error("Dropzone already attached.");
+      }
+      Dropzone.instances.push(this);
+      this.element.dropzone = this;
+      elementOptions = (_ref = Dropzone.optionsForElement(this.element)) != null ? _ref : {};
+      this.options = extend({}, this.defaultOptions, elementOptions, options != null ? options : {});
+      if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
+        return this.options.fallback.call(this);
+      }
+      if (this.options.url == null) {
+        this.options.url = this.element.getAttribute("action");
+      }
+      if (!this.options.url) {
+        throw new Error("No URL provided.");
+      }
+      if (this.options.acceptedFiles && this.options.acceptedMimeTypes) {
+        throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+      }
+      if (this.options.acceptedMimeTypes) {
+        this.options.acceptedFiles = this.options.acceptedMimeTypes;
+        delete this.options.acceptedMimeTypes;
+      }
+      this.options.method = this.options.method.toUpperCase();
+      if ((fallback = this.getExistingFallback()) && fallback.parentNode) {
+        fallback.parentNode.removeChild(fallback);
+      }
+      if (this.options.previewsContainer !== false) {
+        if (this.options.previewsContainer) {
+          this.previewsContainer = Dropzone.getElement(this.options.previewsContainer, "previewsContainer");
+        } else {
+          this.previewsContainer = this.element;
+        }
+      }
+      if (this.options.clickable) {
+        if (this.options.clickable === true) {
+          this.clickableElements = [this.element];
+        } else {
+          this.clickableElements = Dropzone.getElements(this.options.clickable, "clickable");
+        }
+      }
+      this.init();
     }
 
-    // The fileupload widget listens for change events on file input fields defined
-    // via fileInput setting and paste or drop events of the given dropZone.
-    // In addition to the default jQuery Widget methods, the fileupload widget
-    // exposes the "add" and "send" methods, to add or directly send files using
-    // the fileupload API.
-    // By default, files added via file input selection, paste, drag & drop or
-    // "add" method are uploaded immediately, but it is possible to override
-    // the "add" callback option to queue file uploads.
-    $.widget('blueimp.fileupload', {
-
-        options: {
-            // The drop target element(s), by the default the complete document.
-            // Set to null to disable drag & drop support:
-            dropZone: $(document),
-            // The paste target element(s), by the default undefined.
-            // Set to a DOM node or jQuery object to enable file pasting:
-            pasteZone: undefined,
-            // The file input field(s), that are listened to for change events.
-            // If undefined, it is set to the file input fields inside
-            // of the widget element on plugin initialization.
-            // Set to null to disable the change listener.
-            fileInput: undefined,
-            // By default, the file input field is replaced with a clone after
-            // each input field change event. This is required for iframe transport
-            // queues and allows change events to be fired for the same file
-            // selection, but can be disabled by setting the following option to false:
-            replaceFileInput: true,
-            // The parameter name for the file form data (the request argument name).
-            // If undefined or empty, the name property of the file input field is
-            // used, or "files[]" if the file input name property is also empty,
-            // can be a string or an array of strings:
-            paramName: undefined,
-            // By default, each file of a selection is uploaded using an individual
-            // request for XHR type uploads. Set to false to upload file
-            // selections in one request each:
-            singleFileUploads: true,
-            // To limit the number of files uploaded with one XHR request,
-            // set the following option to an integer greater than 0:
-            limitMultiFileUploads: undefined,
-            // The following option limits the number of files uploaded with one
-            // XHR request to keep the request size under or equal to the defined
-            // limit in bytes:
-            limitMultiFileUploadSize: undefined,
-            // Multipart file uploads add a number of bytes to each uploaded file,
-            // therefore the following option adds an overhead for each file used
-            // in the limitMultiFileUploadSize configuration:
-            limitMultiFileUploadSizeOverhead: 512,
-            // Set the following option to true to issue all file upload requests
-            // in a sequential order:
-            sequentialUploads: false,
-            // To limit the number of concurrent uploads,
-            // set the following option to an integer greater than 0:
-            limitConcurrentUploads: undefined,
-            // Set the following option to true to force iframe transport uploads:
-            forceIframeTransport: false,
-            // Set the following option to the location of a redirect url on the
-            // origin server, for cross-domain iframe transport uploads:
-            redirect: undefined,
-            // The parameter name for the redirect url, sent as part of the form
-            // data and set to 'redirect' if this option is empty:
-            redirectParamName: undefined,
-            // Set the following option to the location of a postMessage window,
-            // to enable postMessage transport uploads:
-            postMessage: undefined,
-            // By default, XHR file uploads are sent as multipart/form-data.
-            // The iframe transport is always using multipart/form-data.
-            // Set to false to enable non-multipart XHR uploads:
-            multipart: true,
-            // To upload large files in smaller chunks, set the following option
-            // to a preferred maximum chunk size. If set to 0, null or undefined,
-            // or the browser does not support the required Blob API, files will
-            // be uploaded as a whole.
-            maxChunkSize: undefined,
-            // When a non-multipart upload or a chunked multipart upload has been
-            // aborted, this option can be used to resume the upload by setting
-            // it to the size of the already uploaded bytes. This option is most
-            // useful when modifying the options object inside of the "add" or
-            // "send" callbacks, as the options are cloned for each file upload.
-            uploadedBytes: undefined,
-            // By default, failed (abort or error) file uploads are removed from the
-            // global progress calculation. Set the following option to false to
-            // prevent recalculating the global progress data:
-            recalculateProgress: true,
-            // Interval in milliseconds to calculate and trigger progress events:
-            progressInterval: 100,
-            // Interval in milliseconds to calculate progress bitrate:
-            bitrateInterval: 500,
-            // By default, uploads are started automatically when adding files:
-            autoUpload: true,
-
-            // Error and info messages:
-            messages: {
-                uploadedBytes: 'Uploaded bytes exceed file size'
-            },
-
-            // Translation function, gets the message key to be translated
-            // and an object with context specific data as arguments:
-            i18n: function (message, context) {
-                message = this.messages[message] || message.toString();
-                if (context) {
-                    $.each(context, function (key, value) {
-                        message = message.replace('{' + key + '}', value);
-                    });
-                }
-                return message;
-            },
-
-            // Additional form data to be sent along with the file uploads can be set
-            // using this option, which accepts an array of objects with name and
-            // value properties, a function returning such an array, a FormData
-            // object (for XHR file uploads), or a simple object.
-            // The form of the first fileInput is given as parameter to the function:
-            formData: function (form) {
-                return form.serializeArray();
-            },
-
-            // The add callback is invoked as soon as files are added to the fileupload
-            // widget (via file input selection, drag & drop, paste or add API call).
-            // If the singleFileUploads option is enabled, this callback will be
-            // called once for each file in the selection for XHR file uploads, else
-            // once for each file selection.
-            //
-            // The upload starts when the submit method is invoked on the data parameter.
-            // The data object contains a files property holding the added files
-            // and allows you to override plugin options as well as define ajax settings.
-            //
-            // Listeners for this callback can also be bound the following way:
-            // .bind('fileuploadadd', func);
-            //
-            // data.submit() returns a Promise object and allows to attach additional
-            // handlers using jQuery's Deferred callbacks:
-            // data.submit().done(func).fail(func).always(func);
-            add: function (e, data) {
-                if (e.isDefaultPrevented()) {
-                    return false;
-                }
-                if (data.autoUpload || (data.autoUpload !== false &&
-                        $(this).fileupload('option', 'autoUpload'))) {
-                    data.process().done(function () {
-                        data.submit();
-                    });
-                }
-            },
-
-            // Other callbacks:
-
-            // Callback for the submit event of each file upload:
-            // submit: function (e, data) {}, // .bind('fileuploadsubmit', func);
-
-            // Callback for the start of each file upload request:
-            // send: function (e, data) {}, // .bind('fileuploadsend', func);
-
-            // Callback for successful uploads:
-            // done: function (e, data) {}, // .bind('fileuploaddone', func);
-
-            // Callback for failed (abort or error) uploads:
-            // fail: function (e, data) {}, // .bind('fileuploadfail', func);
-
-            // Callback for completed (success, abort or error) requests:
-            // always: function (e, data) {}, // .bind('fileuploadalways', func);
-
-            // Callback for upload progress events:
-            // progress: function (e, data) {}, // .bind('fileuploadprogress', func);
-
-            // Callback for global upload progress events:
-            // progressall: function (e, data) {}, // .bind('fileuploadprogressall', func);
-
-            // Callback for uploads start, equivalent to the global ajaxStart event:
-            // start: function (e) {}, // .bind('fileuploadstart', func);
-
-            // Callback for uploads stop, equivalent to the global ajaxStop event:
-            // stop: function (e) {}, // .bind('fileuploadstop', func);
-
-            // Callback for change events of the fileInput(s):
-            // change: function (e, data) {}, // .bind('fileuploadchange', func);
-
-            // Callback for paste events to the pasteZone(s):
-            // paste: function (e, data) {}, // .bind('fileuploadpaste', func);
-
-            // Callback for drop events of the dropZone(s):
-            // drop: function (e, data) {}, // .bind('fileuploaddrop', func);
-
-            // Callback for dragover events of the dropZone(s):
-            // dragover: function (e) {}, // .bind('fileuploaddragover', func);
-
-            // Callback for the start of each chunk upload request:
-            // chunksend: function (e, data) {}, // .bind('fileuploadchunksend', func);
-
-            // Callback for successful chunk uploads:
-            // chunkdone: function (e, data) {}, // .bind('fileuploadchunkdone', func);
-
-            // Callback for failed (abort or error) chunk uploads:
-            // chunkfail: function (e, data) {}, // .bind('fileuploadchunkfail', func);
-
-            // Callback for completed (success, abort or error) chunk upload requests:
-            // chunkalways: function (e, data) {}, // .bind('fileuploadchunkalways', func);
-
-            // The plugin options are used as settings object for the ajax calls.
-            // The following are jQuery ajax settings required for the file uploads:
-            processData: false,
-            contentType: false,
-            cache: false
-        },
-
-        // A list of options that require reinitializing event listeners and/or
-        // special initialization code:
-        _specialOptions: [
-            'fileInput',
-            'dropZone',
-            'pasteZone',
-            'multipart',
-            'forceIframeTransport'
-        ],
-
-        _blobSlice: $.support.blobSlice && function () {
-            var slice = this.slice || this.webkitSlice || this.mozSlice;
-            return slice.apply(this, arguments);
-        },
-
-        _BitrateTimer: function () {
-            this.timestamp = ((Date.now) ? Date.now() : (new Date()).getTime());
-            this.loaded = 0;
-            this.bitrate = 0;
-            this.getBitrate = function (now, loaded, interval) {
-                var timeDiff = now - this.timestamp;
-                if (!this.bitrate || !interval || timeDiff > interval) {
-                    this.bitrate = (loaded - this.loaded) * (1000 / timeDiff) * 8;
-                    this.loaded = loaded;
-                    this.timestamp = now;
-                }
-                return this.bitrate;
-            };
-        },
-
-        _isXHRUpload: function (options) {
-            return !options.forceIframeTransport &&
-                ((!options.multipart && $.support.xhrFileUpload) ||
-                $.support.xhrFormDataFileUpload);
-        },
-
-        _getFormData: function (options) {
-            var formData;
-            if ($.type(options.formData) === 'function') {
-                return options.formData(options.form);
-            }
-            if ($.isArray(options.formData)) {
-                return options.formData;
-            }
-            if ($.type(options.formData) === 'object') {
-                formData = [];
-                $.each(options.formData, function (name, value) {
-                    formData.push({name: name, value: value});
-                });
-                return formData;
-            }
-            return [];
-        },
-
-        _getTotal: function (files) {
-            var total = 0;
-            $.each(files, function (index, file) {
-                total += file.size || 1;
-            });
-            return total;
-        },
-
-        _initProgressObject: function (obj) {
-            var progress = {
-                loaded: 0,
-                total: 0,
-                bitrate: 0
-            };
-            if (obj._progress) {
-                $.extend(obj._progress, progress);
-            } else {
-                obj._progress = progress;
-            }
-        },
-
-        _initResponseObject: function (obj) {
-            var prop;
-            if (obj._response) {
-                for (prop in obj._response) {
-                    if (obj._response.hasOwnProperty(prop)) {
-                        delete obj._response[prop];
-                    }
-                }
-            } else {
-                obj._response = {};
-            }
-        },
-
-        _onProgress: function (e, data) {
-            if (e.lengthComputable) {
-                var now = ((Date.now) ? Date.now() : (new Date()).getTime()),
-                    loaded;
-                if (data._time && data.progressInterval &&
-                        (now - data._time < data.progressInterval) &&
-                        e.loaded !== e.total) {
-                    return;
-                }
-                data._time = now;
-                loaded = Math.floor(
-                    e.loaded / e.total * (data.chunkSize || data._progress.total)
-                ) + (data.uploadedBytes || 0);
-                // Add the difference from the previously loaded state
-                // to the global loaded counter:
-                this._progress.loaded += (loaded - data._progress.loaded);
-                this._progress.bitrate = this._bitrateTimer.getBitrate(
-                    now,
-                    this._progress.loaded,
-                    data.bitrateInterval
-                );
-                data._progress.loaded = data.loaded = loaded;
-                data._progress.bitrate = data.bitrate = data._bitrateTimer.getBitrate(
-                    now,
-                    loaded,
-                    data.bitrateInterval
-                );
-                // Trigger a custom progress event with a total data property set
-                // to the file size(s) of the current upload and a loaded data
-                // property calculated accordingly:
-                this._trigger(
-                    'progress',
-                    $.Event('progress', {delegatedEvent: e}),
-                    data
-                );
-                // Trigger a global progress event for all current file uploads,
-                // including ajax calls queued for sequential file uploads:
-                this._trigger(
-                    'progressall',
-                    $.Event('progressall', {delegatedEvent: e}),
-                    this._progress
-                );
-            }
-        },
-
-        _initProgressListener: function (options) {
-            var that = this,
-                xhr = options.xhr ? options.xhr() : $.ajaxSettings.xhr();
-            // Accesss to the native XHR object is required to add event listeners
-            // for the upload progress event:
-            if (xhr.upload) {
-                $(xhr.upload).bind('progress', function (e) {
-                    var oe = e.originalEvent;
-                    // Make sure the progress event properties get copied over:
-                    e.lengthComputable = oe.lengthComputable;
-                    e.loaded = oe.loaded;
-                    e.total = oe.total;
-                    that._onProgress(e, options);
-                });
-                options.xhr = function () {
-                    return xhr;
-                };
-            }
-        },
-
-        _isInstanceOf: function (type, obj) {
-            // Cross-frame instanceof check
-            return Object.prototype.toString.call(obj) === '[object ' + type + ']';
-        },
-
-        _initXHRData: function (options) {
-            var that = this,
-                formData,
-                file = options.files[0],
-                // Ignore non-multipart setting if not supported:
-                multipart = options.multipart || !$.support.xhrFileUpload,
-                paramName = $.type(options.paramName) === 'array' ?
-                    options.paramName[0] : options.paramName;
-            options.headers = $.extend({}, options.headers);
-            if (options.contentRange) {
-                options.headers['Content-Range'] = options.contentRange;
-            }
-            if (!multipart || options.blob || !this._isInstanceOf('File', file)) {
-                options.headers['Content-Disposition'] = 'attachment; filename="' +
-                    encodeURI(file.name) + '"';
-            }
-            if (!multipart) {
-                options.contentType = file.type || 'application/octet-stream';
-                options.data = options.blob || file;
-            } else if ($.support.xhrFormDataFileUpload) {
-                if (options.postMessage) {
-                    // window.postMessage does not allow sending FormData
-                    // objects, so we just add the File/Blob objects to
-                    // the formData array and let the postMessage window
-                    // create the FormData object out of this array:
-                    formData = this._getFormData(options);
-                    if (options.blob) {
-                        formData.push({
-                            name: paramName,
-                            value: options.blob
-                        });
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            formData.push({
-                                name: ($.type(options.paramName) === 'array' &&
-                                    options.paramName[index]) || paramName,
-                                value: file
-                            });
-                        });
-                    }
-                } else {
-                    if (that._isInstanceOf('FormData', options.formData)) {
-                        formData = options.formData;
-                    } else {
-                        formData = new FormData();
-                        $.each(this._getFormData(options), function (index, field) {
-                            formData.append(field.name, field.value);
-                        });
-                    }
-                    if (options.blob) {
-                        formData.append(paramName, options.blob, file.name);
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            // This check allows the tests to run with
-                            // dummy objects:
-                            if (that._isInstanceOf('File', file) ||
-                                    that._isInstanceOf('Blob', file)) {
-                                formData.append(
-                                    ($.type(options.paramName) === 'array' &&
-                                        options.paramName[index]) || paramName,
-                                    file,
-                                    file.uploadName || file.name
-                                );
-                            }
-                        });
-                    }
-                }
-                options.data = formData;
-            }
-            // Blob reference is not needed anymore, free memory:
-            options.blob = null;
-        },
-
-        _initIframeSettings: function (options) {
-            var targetHost = $('<a></a>').prop('href', options.url).prop('host');
-            // Setting the dataType to iframe enables the iframe transport:
-            options.dataType = 'iframe ' + (options.dataType || '');
-            // The iframe transport accepts a serialized array as form data:
-            options.formData = this._getFormData(options);
-            // Add redirect url to form data on cross-domain uploads:
-            if (options.redirect && targetHost && targetHost !== location.host) {
-                options.formData.push({
-                    name: options.redirectParamName || 'redirect',
-                    value: options.redirect
-                });
-            }
-        },
-
-        _initDataSettings: function (options) {
-            if (this._isXHRUpload(options)) {
-                if (!this._chunkedUpload(options, true)) {
-                    if (!options.data) {
-                        this._initXHRData(options);
-                    }
-                    this._initProgressListener(options);
-                }
-                if (options.postMessage) {
-                    // Setting the dataType to postmessage enables the
-                    // postMessage transport:
-                    options.dataType = 'postmessage ' + (options.dataType || '');
-                }
-            } else {
-                this._initIframeSettings(options);
-            }
-        },
-
-        _getParamName: function (options) {
-            var fileInput = $(options.fileInput),
-                paramName = options.paramName;
-            if (!paramName) {
-                paramName = [];
-                fileInput.each(function () {
-                    var input = $(this),
-                        name = input.prop('name') || 'files[]',
-                        i = (input.prop('files') || [1]).length;
-                    while (i) {
-                        paramName.push(name);
-                        i -= 1;
-                    }
-                });
-                if (!paramName.length) {
-                    paramName = [fileInput.prop('name') || 'files[]'];
-                }
-            } else if (!$.isArray(paramName)) {
-                paramName = [paramName];
-            }
-            return paramName;
-        },
-
-        _initFormSettings: function (options) {
-            // Retrieve missing options from the input field and the
-            // associated form, if available:
-            if (!options.form || !options.form.length) {
-                options.form = $(options.fileInput.prop('form'));
-                // If the given file input doesn't have an associated form,
-                // use the default widget file input's form:
-                if (!options.form.length) {
-                    options.form = $(this.options.fileInput.prop('form'));
-                }
-            }
-            options.paramName = this._getParamName(options);
-            if (!options.url) {
-                options.url = options.form.prop('action') || location.href;
-            }
-            // The HTTP request method must be "POST" or "PUT":
-            options.type = (options.type ||
-                ($.type(options.form.prop('method')) === 'string' &&
-                    options.form.prop('method')) || ''
-                ).toUpperCase();
-            if (options.type !== 'POST' && options.type !== 'PUT' &&
-                    options.type !== 'PATCH') {
-                options.type = 'POST';
-            }
-            if (!options.formAcceptCharset) {
-                options.formAcceptCharset = options.form.attr('accept-charset');
-            }
-        },
-
-        _getAJAXSettings: function (data) {
-            var options = $.extend({}, this.options, data);
-            this._initFormSettings(options);
-            this._initDataSettings(options);
-            return options;
-        },
-
-        // jQuery 1.6 doesn't provide .state(),
-        // while jQuery 1.8+ removed .isRejected() and .isResolved():
-        _getDeferredState: function (deferred) {
-            if (deferred.state) {
-                return deferred.state();
-            }
-            if (deferred.isResolved()) {
-                return 'resolved';
-            }
-            if (deferred.isRejected()) {
-                return 'rejected';
-            }
-            return 'pending';
-        },
-
-        // Maps jqXHR callbacks to the equivalent
-        // methods of the given Promise object:
-        _enhancePromise: function (promise) {
-            promise.success = promise.done;
-            promise.error = promise.fail;
-            promise.complete = promise.always;
-            return promise;
-        },
-
-        // Creates and returns a Promise object enhanced with
-        // the jqXHR methods abort, success, error and complete:
-        _getXHRPromise: function (resolveOrReject, context, args) {
-            var dfd = $.Deferred(),
-                promise = dfd.promise();
-            context = context || this.options.context || promise;
-            if (resolveOrReject === true) {
-                dfd.resolveWith(context, args);
-            } else if (resolveOrReject === false) {
-                dfd.rejectWith(context, args);
-            }
-            promise.abort = dfd.promise;
-            return this._enhancePromise(promise);
-        },
-
-        // Adds convenience methods to the data callback argument:
-        _addConvenienceMethods: function (e, data) {
-            var that = this,
-                getPromise = function (args) {
-                    return $.Deferred().resolveWith(that, args).promise();
-                };
-            data.process = function (resolveFunc, rejectFunc) {
-                if (resolveFunc || rejectFunc) {
-                    data._processQueue = this._processQueue =
-                        (this._processQueue || getPromise([this])).pipe(
-                            function () {
-                                if (data.errorThrown) {
-                                    return $.Deferred()
-                                        .rejectWith(that, [data]).promise();
-                                }
-                                return getPromise(arguments);
-                            }
-                        ).pipe(resolveFunc, rejectFunc);
-                }
-                return this._processQueue || getPromise([this]);
-            };
-            data.submit = function () {
-                if (this.state() !== 'pending') {
-                    data.jqXHR = this.jqXHR =
-                        (that._trigger(
-                            'submit',
-                            $.Event('submit', {delegatedEvent: e}),
-                            this
-                        ) !== false) && that._onSend(e, this);
-                }
-                return this.jqXHR || that._getXHRPromise();
-            };
-            data.abort = function () {
-                if (this.jqXHR) {
-                    return this.jqXHR.abort();
-                }
-                this.errorThrown = 'abort';
-                that._trigger('fail', null, this);
-                return that._getXHRPromise(false);
-            };
-            data.state = function () {
-                if (this.jqXHR) {
-                    return that._getDeferredState(this.jqXHR);
-                }
-                if (this._processQueue) {
-                    return that._getDeferredState(this._processQueue);
-                }
-            };
-            data.processing = function () {
-                return !this.jqXHR && this._processQueue && that
-                    ._getDeferredState(this._processQueue) === 'pending';
-            };
-            data.progress = function () {
-                return this._progress;
-            };
-            data.response = function () {
-                return this._response;
-            };
-        },
-
-        // Parses the Range header from the server response
-        // and returns the uploaded bytes:
-        _getUploadedBytes: function (jqXHR) {
-            var range = jqXHR.getResponseHeader('Range'),
-                parts = range && range.split('-'),
-                upperBytesPos = parts && parts.length > 1 &&
-                    parseInt(parts[1], 10);
-            return upperBytesPos && upperBytesPos + 1;
-        },
-
-        // Uploads a file in multiple, sequential requests
-        // by splitting the file up in multiple blob chunks.
-        // If the second parameter is true, only tests if the file
-        // should be uploaded in chunks, but does not invoke any
-        // upload requests:
-        _chunkedUpload: function (options, testOnly) {
-            options.uploadedBytes = options.uploadedBytes || 0;
-            var that = this,
-                file = options.files[0],
-                fs = file.size,
-                ub = options.uploadedBytes,
-                mcs = options.maxChunkSize || fs,
-                slice = this._blobSlice,
-                dfd = $.Deferred(),
-                promise = dfd.promise(),
-                jqXHR,
-                upload;
-            if (!(this._isXHRUpload(options) && slice && (ub || mcs < fs)) ||
-                    options.data) {
-                return false;
-            }
-            if (testOnly) {
-                return true;
-            }
-            if (ub >= fs) {
-                file.error = options.i18n('uploadedBytes');
-                return this._getXHRPromise(
-                    false,
-                    options.context,
-                    [null, 'error', file.error]
-                );
-            }
-            // The chunk upload method:
-            upload = function () {
-                // Clone the options object for each chunk upload:
-                var o = $.extend({}, options),
-                    currentLoaded = o._progress.loaded;
-                o.blob = slice.call(
-                    file,
-                    ub,
-                    ub + mcs,
-                    file.type
-                );
-                // Store the current chunk size, as the blob itself
-                // will be dereferenced after data processing:
-                o.chunkSize = o.blob.size;
-                // Expose the chunk bytes position range:
-                o.contentRange = 'bytes ' + ub + '-' +
-                    (ub + o.chunkSize - 1) + '/' + fs;
-                // Process the upload data (the blob and potential form data):
-                that._initXHRData(o);
-                // Add progress listeners for this chunk upload:
-                that._initProgressListener(o);
-                jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
-                        that._getXHRPromise(false, o.context))
-                    .done(function (result, textStatus, jqXHR) {
-                        ub = that._getUploadedBytes(jqXHR) ||
-                            (ub + o.chunkSize);
-                        // Create a progress event if no final progress event
-                        // with loaded equaling total has been triggered
-                        // for this chunk:
-                        if (currentLoaded + o.chunkSize - o._progress.loaded) {
-                            that._onProgress($.Event('progress', {
-                                lengthComputable: true,
-                                loaded: ub - o.uploadedBytes,
-                                total: ub - o.uploadedBytes
-                            }), o);
-                        }
-                        options.uploadedBytes = o.uploadedBytes = ub;
-                        o.result = result;
-                        o.textStatus = textStatus;
-                        o.jqXHR = jqXHR;
-                        that._trigger('chunkdone', null, o);
-                        that._trigger('chunkalways', null, o);
-                        if (ub < fs) {
-                            // File upload not yet complete,
-                            // continue with the next chunk:
-                            upload();
-                        } else {
-                            dfd.resolveWith(
-                                o.context,
-                                [result, textStatus, jqXHR]
-                            );
-                        }
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        o.jqXHR = jqXHR;
-                        o.textStatus = textStatus;
-                        o.errorThrown = errorThrown;
-                        that._trigger('chunkfail', null, o);
-                        that._trigger('chunkalways', null, o);
-                        dfd.rejectWith(
-                            o.context,
-                            [jqXHR, textStatus, errorThrown]
-                        );
-                    });
-            };
-            this._enhancePromise(promise);
-            promise.abort = function () {
-                return jqXHR.abort();
-            };
-            upload();
-            return promise;
-        },
-
-        _beforeSend: function (e, data) {
-            if (this._active === 0) {
-                // the start callback is triggered when an upload starts
-                // and no other uploads are currently running,
-                // equivalent to the global ajaxStart event:
-                this._trigger('start');
-                // Set timer for global bitrate progress calculation:
-                this._bitrateTimer = new this._BitrateTimer();
-                // Reset the global progress values:
-                this._progress.loaded = this._progress.total = 0;
-                this._progress.bitrate = 0;
-            }
-            // Make sure the container objects for the .response() and
-            // .progress() methods on the data object are available
-            // and reset to their initial state:
-            this._initResponseObject(data);
-            this._initProgressObject(data);
-            data._progress.loaded = data.loaded = data.uploadedBytes || 0;
-            data._progress.total = data.total = this._getTotal(data.files) || 1;
-            data._progress.bitrate = data.bitrate = 0;
-            this._active += 1;
-            // Initialize the global progress values:
-            this._progress.loaded += data.loaded;
-            this._progress.total += data.total;
-        },
-
-        _onDone: function (result, textStatus, jqXHR, options) {
-            var total = options._progress.total,
-                response = options._response;
-            if (options._progress.loaded < total) {
-                // Create a progress event if no final progress event
-                // with loaded equaling total has been triggered:
-                this._onProgress($.Event('progress', {
-                    lengthComputable: true,
-                    loaded: total,
-                    total: total
-                }), options);
-            }
-            response.result = options.result = result;
-            response.textStatus = options.textStatus = textStatus;
-            response.jqXHR = options.jqXHR = jqXHR;
-            this._trigger('done', null, options);
-        },
-
-        _onFail: function (jqXHR, textStatus, errorThrown, options) {
-            var response = options._response;
-            if (options.recalculateProgress) {
-                // Remove the failed (error or abort) file upload from
-                // the global progress calculation:
-                this._progress.loaded -= options._progress.loaded;
-                this._progress.total -= options._progress.total;
-            }
-            response.jqXHR = options.jqXHR = jqXHR;
-            response.textStatus = options.textStatus = textStatus;
-            response.errorThrown = options.errorThrown = errorThrown;
-            this._trigger('fail', null, options);
-        },
-
-        _onAlways: function (jqXHRorResult, textStatus, jqXHRorError, options) {
-            // jqXHRorResult, textStatus and jqXHRorError are added to the
-            // options object via done and fail callbacks
-            this._trigger('always', null, options);
-        },
-
-        _onSend: function (e, data) {
-            if (!data.submit) {
-                this._addConvenienceMethods(e, data);
-            }
-            var that = this,
-                jqXHR,
-                aborted,
-                slot,
-                pipe,
-                options = that._getAJAXSettings(data),
-                send = function () {
-                    that._sending += 1;
-                    // Set timer for bitrate progress calculation:
-                    options._bitrateTimer = new that._BitrateTimer();
-                    jqXHR = jqXHR || (
-                        ((aborted || that._trigger(
-                            'send',
-                            $.Event('send', {delegatedEvent: e}),
-                            options
-                        ) === false) &&
-                        that._getXHRPromise(false, options.context, aborted)) ||
-                        that._chunkedUpload(options) || $.ajax(options)
-                    ).done(function (result, textStatus, jqXHR) {
-                        that._onDone(result, textStatus, jqXHR, options);
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
-                        that._onFail(jqXHR, textStatus, errorThrown, options);
-                    }).always(function (jqXHRorResult, textStatus, jqXHRorError) {
-                        that._onAlways(
-                            jqXHRorResult,
-                            textStatus,
-                            jqXHRorError,
-                            options
-                        );
-                        that._sending -= 1;
-                        that._active -= 1;
-                        if (options.limitConcurrentUploads &&
-                                options.limitConcurrentUploads > that._sending) {
-                            // Start the next queued upload,
-                            // that has not been aborted:
-                            var nextSlot = that._slots.shift();
-                            while (nextSlot) {
-                                if (that._getDeferredState(nextSlot) === 'pending') {
-                                    nextSlot.resolve();
-                                    break;
-                                }
-                                nextSlot = that._slots.shift();
-                            }
-                        }
-                        if (that._active === 0) {
-                            // The stop callback is triggered when all uploads have
-                            // been completed, equivalent to the global ajaxStop event:
-                            that._trigger('stop');
-                        }
-                    });
-                    return jqXHR;
-                };
-            this._beforeSend(e, options);
-            if (this.options.sequentialUploads ||
-                    (this.options.limitConcurrentUploads &&
-                    this.options.limitConcurrentUploads <= this._sending)) {
-                if (this.options.limitConcurrentUploads > 1) {
-                    slot = $.Deferred();
-                    this._slots.push(slot);
-                    pipe = slot.pipe(send);
-                } else {
-                    this._sequence = this._sequence.pipe(send, send);
-                    pipe = this._sequence;
-                }
-                // Return the piped Promise object, enhanced with an abort method,
-                // which is delegated to the jqXHR object of the current upload,
-                // and jqXHR callbacks mapped to the equivalent Promise methods:
-                pipe.abort = function () {
-                    aborted = [undefined, 'abort', 'abort'];
-                    if (!jqXHR) {
-                        if (slot) {
-                            slot.rejectWith(options.context, aborted);
-                        }
-                        return send();
-                    }
-                    return jqXHR.abort();
-                };
-                return this._enhancePromise(pipe);
-            }
-            return send();
-        },
-
-        _onAdd: function (e, data) {
-            var that = this,
-                result = true,
-                options = $.extend({}, this.options, data),
-                files = data.files,
-                filesLength = files.length,
-                limit = options.limitMultiFileUploads,
-                limitSize = options.limitMultiFileUploadSize,
-                overhead = options.limitMultiFileUploadSizeOverhead,
-                batchSize = 0,
-                paramName = this._getParamName(options),
-                paramNameSet,
-                paramNameSlice,
-                fileSet,
-                i,
-                j = 0;
-            if (limitSize && (!filesLength || files[0].size === undefined)) {
-                limitSize = undefined;
-            }
-            if (!(options.singleFileUploads || limit || limitSize) ||
-                    !this._isXHRUpload(options)) {
-                fileSet = [files];
-                paramNameSet = [paramName];
-            } else if (!(options.singleFileUploads || limitSize) && limit) {
-                fileSet = [];
-                paramNameSet = [];
-                for (i = 0; i < filesLength; i += limit) {
-                    fileSet.push(files.slice(i, i + limit));
-                    paramNameSlice = paramName.slice(i, i + limit);
-                    if (!paramNameSlice.length) {
-                        paramNameSlice = paramName;
-                    }
-                    paramNameSet.push(paramNameSlice);
-                }
-            } else if (!options.singleFileUploads && limitSize) {
-                fileSet = [];
-                paramNameSet = [];
-                for (i = 0; i < filesLength; i = i + 1) {
-                    batchSize += files[i].size + overhead;
-                    if (i + 1 === filesLength ||
-                            ((batchSize + files[i + 1].size + overhead) > limitSize) ||
-                            (limit && i + 1 - j >= limit)) {
-                        fileSet.push(files.slice(j, i + 1));
-                        paramNameSlice = paramName.slice(j, i + 1);
-                        if (!paramNameSlice.length) {
-                            paramNameSlice = paramName;
-                        }
-                        paramNameSet.push(paramNameSlice);
-                        j = i + 1;
-                        batchSize = 0;
-                    }
-                }
-            } else {
-                paramNameSet = paramName;
-            }
-            data.originalFiles = files;
-            $.each(fileSet || files, function (index, element) {
-                var newData = $.extend({}, data);
-                newData.files = fileSet ? element : [element];
-                newData.paramName = paramNameSet[index];
-                that._initResponseObject(newData);
-                that._initProgressObject(newData);
-                that._addConvenienceMethods(e, newData);
-                result = that._trigger(
-                    'add',
-                    $.Event('add', {delegatedEvent: e}),
-                    newData
-                );
-                return result;
-            });
-            return result;
-        },
-
-        _replaceFileInput: function (data) {
-            var input = data.fileInput,
-                inputClone = input.clone(true);
-            // Add a reference for the new cloned file input to the data argument:
-            data.fileInputClone = inputClone;
-            $('<form></form>').append(inputClone)[0].reset();
-            // Detaching allows to insert the fileInput on another form
-            // without loosing the file input value:
-            input.after(inputClone).detach();
-            // Avoid memory leaks with the detached file input:
-            $.cleanData(input.unbind('remove'));
-            // Replace the original file input element in the fileInput
-            // elements set with the clone, which has been copied including
-            // event handlers:
-            this.options.fileInput = this.options.fileInput.map(function (i, el) {
-                if (el === input[0]) {
-                    return inputClone[0];
-                }
-                return el;
-            });
-            // If the widget has been initialized on the file input itself,
-            // override this.element with the file input clone:
-            if (input[0] === this.element[0]) {
-                this.element = inputClone;
-            }
-        },
-
-        _handleFileTreeEntry: function (entry, path) {
-            var that = this,
-                dfd = $.Deferred(),
-                errorHandler = function (e) {
-                    if (e && !e.entry) {
-                        e.entry = entry;
-                    }
-                    // Since $.when returns immediately if one
-                    // Deferred is rejected, we use resolve instead.
-                    // This allows valid files and invalid items
-                    // to be returned together in one set:
-                    dfd.resolve([e]);
-                },
-                successHandler = function (entries) {
-                    that._handleFileTreeEntries(
-                        entries,
-                        path + entry.name + '/'
-                    ).done(function (files) {
-                        dfd.resolve(files);
-                    }).fail(errorHandler);
-                },
-                readEntries = function () {
-                    dirReader.readEntries(function (results) {
-                        if (!results.length) {
-                            successHandler(entries);
-                        } else {
-                            entries = entries.concat(results);
-                            readEntries();
-                        }
-                    }, errorHandler);
-                },
-                dirReader, entries = [];
-            path = path || '';
-            if (entry.isFile) {
-                if (entry._file) {
-                    // Workaround for Chrome bug #149735
-                    entry._file.relativePath = path;
-                    dfd.resolve(entry._file);
-                } else {
-                    entry.file(function (file) {
-                        file.relativePath = path;
-                        dfd.resolve(file);
-                    }, errorHandler);
-                }
-            } else if (entry.isDirectory) {
-                dirReader = entry.createReader();
-                readEntries();
-            } else {
-                // Return an empy list for file system items
-                // other than files or directories:
-                dfd.resolve([]);
-            }
-            return dfd.promise();
-        },
-
-        _handleFileTreeEntries: function (entries, path) {
-            var that = this;
-            return $.when.apply(
-                $,
-                $.map(entries, function (entry) {
-                    return that._handleFileTreeEntry(entry, path);
-                })
-            ).pipe(function () {
-                return Array.prototype.concat.apply(
-                    [],
-                    arguments
-                );
-            });
-        },
-
-        _getDroppedFiles: function (dataTransfer) {
-            dataTransfer = dataTransfer || {};
-            var items = dataTransfer.items;
-            if (items && items.length && (items[0].webkitGetAsEntry ||
-                    items[0].getAsEntry)) {
-                return this._handleFileTreeEntries(
-                    $.map(items, function (item) {
-                        var entry;
-                        if (item.webkitGetAsEntry) {
-                            entry = item.webkitGetAsEntry();
-                            if (entry) {
-                                // Workaround for Chrome bug #149735:
-                                entry._file = item.getAsFile();
-                            }
-                            return entry;
-                        }
-                        return item.getAsEntry();
-                    })
-                );
-            }
-            return $.Deferred().resolve(
-                $.makeArray(dataTransfer.files)
-            ).promise();
-        },
-
-        _getSingleFileInputFiles: function (fileInput) {
-            fileInput = $(fileInput);
-            var entries = fileInput.prop('webkitEntries') ||
-                    fileInput.prop('entries'),
-                files,
-                value;
-            if (entries && entries.length) {
-                return this._handleFileTreeEntries(entries);
-            }
-            files = $.makeArray(fileInput.prop('files'));
-            if (!files.length) {
-                value = fileInput.prop('value');
-                if (!value) {
-                    return $.Deferred().resolve([]).promise();
-                }
-                // If the files property is not available, the browser does not
-                // support the File API and we add a pseudo File object with
-                // the input value as name with path information removed:
-                files = [{name: value.replace(/^.*\\/, '')}];
-            } else if (files[0].name === undefined && files[0].fileName) {
-                // File normalization for Safari 4 and Firefox 3:
-                $.each(files, function (index, file) {
-                    file.name = file.fileName;
-                    file.size = file.fileSize;
-                });
-            }
-            return $.Deferred().resolve(files).promise();
-        },
-
-        _getFileInputFiles: function (fileInput) {
-            if (!(fileInput instanceof $) || fileInput.length === 1) {
-                return this._getSingleFileInputFiles(fileInput);
-            }
-            return $.when.apply(
-                $,
-                $.map(fileInput, this._getSingleFileInputFiles)
-            ).pipe(function () {
-                return Array.prototype.concat.apply(
-                    [],
-                    arguments
-                );
-            });
-        },
-
-        _onChange: function (e) {
-            var that = this,
-                data = {
-                    fileInput: $(e.target),
-                    form: $(e.target.form)
-                };
-            this._getFileInputFiles(data.fileInput).always(function (files) {
-                data.files = files;
-                if (that.options.replaceFileInput) {
-                    that._replaceFileInput(data);
-                }
-                if (that._trigger(
-                        'change',
-                        $.Event('change', {delegatedEvent: e}),
-                        data
-                    ) !== false) {
-                    that._onAdd(e, data);
-                }
-            });
-        },
-
-        _onPaste: function (e) {
-            var items = e.originalEvent && e.originalEvent.clipboardData &&
-                    e.originalEvent.clipboardData.items,
-                data = {files: []};
-            if (items && items.length) {
-                $.each(items, function (index, item) {
-                    var file = item.getAsFile && item.getAsFile();
-                    if (file) {
-                        data.files.push(file);
-                    }
-                });
-                if (this._trigger(
-                        'paste',
-                        $.Event('paste', {delegatedEvent: e}),
-                        data
-                    ) !== false) {
-                    this._onAdd(e, data);
-                }
-            }
-        },
-
-        _onDrop: function (e) {
-            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
-            var that = this,
-                dataTransfer = e.dataTransfer,
-                data = {};
-            if (dataTransfer && dataTransfer.files && dataTransfer.files.length) {
-                e.preventDefault();
-                this._getDroppedFiles(dataTransfer).always(function (files) {
-                    data.files = files;
-                    if (that._trigger(
-                            'drop',
-                            $.Event('drop', {delegatedEvent: e}),
-                            data
-                        ) !== false) {
-                        that._onAdd(e, data);
-                    }
-                });
-            }
-        },
-
-        _onDragOver: getDragHandler('dragover'),
-
-        _onDragEnter: getDragHandler('dragenter'),
-
-        _onDragLeave: getDragHandler('dragleave'),
-
-        _initEventHandlers: function () {
-            if (this._isXHRUpload(this.options)) {
-                this._on(this.options.dropZone, {
-                    dragover: this._onDragOver,
-                    drop: this._onDrop,
-                    // event.preventDefault() on dragenter is required for IE10+:
-                    dragenter: this._onDragEnter,
-                    // dragleave is not required, but added for completeness:
-                    dragleave: this._onDragLeave
-                });
-                this._on(this.options.pasteZone, {
-                    paste: this._onPaste
-                });
-            }
-            if ($.support.fileInput) {
-                this._on(this.options.fileInput, {
-                    change: this._onChange
-                });
-            }
-        },
-
-        _destroyEventHandlers: function () {
-            this._off(this.options.dropZone, 'dragenter dragleave dragover drop');
-            this._off(this.options.pasteZone, 'paste');
-            this._off(this.options.fileInput, 'change');
-        },
-
-        _setOption: function (key, value) {
-            var reinit = $.inArray(key, this._specialOptions) !== -1;
-            if (reinit) {
-                this._destroyEventHandlers();
-            }
-            this._super(key, value);
-            if (reinit) {
-                this._initSpecialOptions();
-                this._initEventHandlers();
-            }
-        },
-
-        _initSpecialOptions: function () {
-            var options = this.options;
-            if (options.fileInput === undefined) {
-                options.fileInput = this.element.is('input[type="file"]') ?
-                        this.element : this.element.find('input[type="file"]');
-            } else if (!(options.fileInput instanceof $)) {
-                options.fileInput = $(options.fileInput);
-            }
-            if (!(options.dropZone instanceof $)) {
-                options.dropZone = $(options.dropZone);
-            }
-            if (!(options.pasteZone instanceof $)) {
-                options.pasteZone = $(options.pasteZone);
-            }
-        },
-
-        _getRegExp: function (str) {
-            var parts = str.split('/'),
-                modifiers = parts.pop();
-            parts.shift();
-            return new RegExp(parts.join('/'), modifiers);
-        },
-
-        _isRegExpOption: function (key, value) {
-            return key !== 'url' && $.type(value) === 'string' &&
-                /^\/.*\/[igm]{0,3}$/.test(value);
-        },
-
-        _initDataAttributes: function () {
-            var that = this,
-                options = this.options,
-                clone = $(this.element[0].cloneNode(false)),
-                data = clone.data();
-            // Avoid memory leaks:
-            clone.remove();
-            // Initialize options set via HTML5 data-attributes:
-            $.each(
-                data,
-                function (key, value) {
-                    var dataAttributeName = 'data-' +
-                        // Convert camelCase to hyphen-ated key:
-                        key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-                    if (clone.attr(dataAttributeName)) {
-                        if (that._isRegExpOption(key, value)) {
-                            value = that._getRegExp(value);
-                        }
-                        options[key] = value;
-                    }
-                }
-            );
-        },
-
-        _create: function () {
-            this._initDataAttributes();
-            this._initSpecialOptions();
-            this._slots = [];
-            this._sequence = this._getXHRPromise(true);
-            this._sending = this._active = 0;
-            this._initProgressObject(this);
-            this._initEventHandlers();
-        },
-
-        // This method is exposed to the widget API and allows to query
-        // the number of active uploads:
-        active: function () {
-            return this._active;
-        },
-
-        // This method is exposed to the widget API and allows to query
-        // the widget upload progress.
-        // It returns an object with loaded, total and bitrate properties
-        // for the running uploads:
-        progress: function () {
-            return this._progress;
-        },
-
-        // This method is exposed to the widget API and allows adding files
-        // using the fileupload API. The data parameter accepts an object which
-        // must have a files property and can contain additional options:
-        // .fileupload('add', {files: filesList});
-        add: function (data) {
-            var that = this;
-            if (!data || this.options.disabled) {
-                return;
-            }
-            if (data.fileInput && !data.files) {
-                this._getFileInputFiles(data.fileInput).always(function (files) {
-                    data.files = files;
-                    that._onAdd(null, data);
-                });
-            } else {
-                data.files = $.makeArray(data.files);
-                this._onAdd(null, data);
-            }
-        },
-
-        // This method is exposed to the widget API and allows sending files
-        // using the fileupload API. The data parameter accepts an object which
-        // must have a files or fileInput property and can contain additional options:
-        // .fileupload('send', {files: filesList});
-        // The method returns a Promise object for the file upload call.
-        send: function (data) {
-            if (data && !this.options.disabled) {
-                if (data.fileInput && !data.files) {
-                    var that = this,
-                        dfd = $.Deferred(),
-                        promise = dfd.promise(),
-                        jqXHR,
-                        aborted;
-                    promise.abort = function () {
-                        aborted = true;
-                        if (jqXHR) {
-                            return jqXHR.abort();
-                        }
-                        dfd.reject(null, 'abort', 'abort');
-                        return promise;
-                    };
-                    this._getFileInputFiles(data.fileInput).always(
-                        function (files) {
-                            if (aborted) {
-                                return;
-                            }
-                            if (!files.length) {
-                                dfd.reject();
-                                return;
-                            }
-                            data.files = files;
-                            jqXHR = that._onSend(null, data);
-                            jqXHR.then(
-                                function (result, textStatus, jqXHR) {
-                                    dfd.resolve(result, textStatus, jqXHR);
-                                },
-                                function (jqXHR, textStatus, errorThrown) {
-                                    dfd.reject(jqXHR, textStatus, errorThrown);
-                                }
-                            );
-                        }
-                    );
-                    return this._enhancePromise(promise);
-                }
-                data.files = $.makeArray(data.files);
-                if (data.files.length) {
-                    return this._onSend(null, data);
-                }
-            }
-            return this._getXHRPromise(false, data && data.context);
+    Dropzone.prototype.getAcceptedFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.accepted) {
+          _results.push(file);
         }
+      }
+      return _results;
+    };
 
+    Dropzone.prototype.getRejectedFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (!file.accepted) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.getFilesWithStatus = function(status) {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status === status) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.getQueuedFiles = function() {
+      return this.getFilesWithStatus(Dropzone.QUEUED);
+    };
+
+    Dropzone.prototype.getUploadingFiles = function() {
+      return this.getFilesWithStatus(Dropzone.UPLOADING);
+    };
+
+    Dropzone.prototype.getActiveFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.init = function() {
+      var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
+      if (this.element.tagName === "form") {
+        this.element.setAttribute("enctype", "multipart/form-data");
+      }
+      if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
+        this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
+      }
+      if (this.clickableElements.length) {
+        setupHiddenFileInput = (function(_this) {
+          return function() {
+            if (_this.hiddenFileInput) {
+              document.body.removeChild(_this.hiddenFileInput);
+            }
+            _this.hiddenFileInput = document.createElement("input");
+            _this.hiddenFileInput.setAttribute("type", "file");
+            if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
+              _this.hiddenFileInput.setAttribute("multiple", "multiple");
+            }
+            _this.hiddenFileInput.className = "dz-hidden-input";
+            if (_this.options.acceptedFiles != null) {
+              _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
+            }
+            if (_this.options.capture != null) {
+              _this.hiddenFileInput.setAttribute("capture", _this.options.capture);
+            }
+            _this.hiddenFileInput.style.visibility = "hidden";
+            _this.hiddenFileInput.style.position = "absolute";
+            _this.hiddenFileInput.style.top = "0";
+            _this.hiddenFileInput.style.left = "0";
+            _this.hiddenFileInput.style.height = "0";
+            _this.hiddenFileInput.style.width = "0";
+            document.body.appendChild(_this.hiddenFileInput);
+            return _this.hiddenFileInput.addEventListener("change", function() {
+              var file, files, _i, _len;
+              files = _this.hiddenFileInput.files;
+              if (files.length) {
+                for (_i = 0, _len = files.length; _i < _len; _i++) {
+                  file = files[_i];
+                  _this.addFile(file);
+                }
+              }
+              return setupHiddenFileInput();
+            });
+          };
+        })(this);
+        setupHiddenFileInput();
+      }
+      this.URL = (_ref = window.URL) != null ? _ref : window.webkitURL;
+      _ref1 = this.events;
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        eventName = _ref1[_i];
+        this.on(eventName, this.options[eventName]);
+      }
+      this.on("uploadprogress", (function(_this) {
+        return function() {
+          return _this.updateTotalUploadProgress();
+        };
+      })(this));
+      this.on("removedfile", (function(_this) {
+        return function() {
+          return _this.updateTotalUploadProgress();
+        };
+      })(this));
+      this.on("canceled", (function(_this) {
+        return function(file) {
+          return _this.emit("complete", file);
+        };
+      })(this));
+      this.on("complete", (function(_this) {
+        return function(file) {
+          if (_this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
+            return setTimeout((function() {
+              return _this.emit("queuecomplete");
+            }), 0);
+          }
+        };
+      })(this));
+      noPropagation = function(e) {
+        e.stopPropagation();
+        if (e.preventDefault) {
+          return e.preventDefault();
+        } else {
+          return e.returnValue = false;
+        }
+      };
+      this.listeners = [
+        {
+          element: this.element,
+          events: {
+            "dragstart": (function(_this) {
+              return function(e) {
+                return _this.emit("dragstart", e);
+              };
+            })(this),
+            "dragenter": (function(_this) {
+              return function(e) {
+                noPropagation(e);
+                return _this.emit("dragenter", e);
+              };
+            })(this),
+            "dragover": (function(_this) {
+              return function(e) {
+                var efct;
+                try {
+                  efct = e.dataTransfer.effectAllowed;
+                } catch (_error) {}
+                e.dataTransfer.dropEffect = 'move' === efct || 'linkMove' === efct ? 'move' : 'copy';
+                noPropagation(e);
+                return _this.emit("dragover", e);
+              };
+            })(this),
+            "dragleave": (function(_this) {
+              return function(e) {
+                return _this.emit("dragleave", e);
+              };
+            })(this),
+            "drop": (function(_this) {
+              return function(e) {
+                noPropagation(e);
+                return _this.drop(e);
+              };
+            })(this),
+            "dragend": (function(_this) {
+              return function(e) {
+                return _this.emit("dragend", e);
+              };
+            })(this)
+          }
+        }
+      ];
+      this.clickableElements.forEach((function(_this) {
+        return function(clickableElement) {
+          return _this.listeners.push({
+            element: clickableElement,
+            events: {
+              "click": function(evt) {
+                if ((clickableElement !== _this.element) || (evt.target === _this.element || Dropzone.elementInside(evt.target, _this.element.querySelector(".dz-message")))) {
+                  return _this.hiddenFileInput.click();
+                }
+              }
+            }
+          });
+        };
+      })(this));
+      this.enable();
+      return this.options.init.call(this);
+    };
+
+    Dropzone.prototype.destroy = function() {
+      var _ref;
+      this.disable();
+      this.removeAllFiles(true);
+      if ((_ref = this.hiddenFileInput) != null ? _ref.parentNode : void 0) {
+        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        this.hiddenFileInput = null;
+      }
+      delete this.element.dropzone;
+      return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
+    };
+
+    Dropzone.prototype.updateTotalUploadProgress = function() {
+      var activeFiles, file, totalBytes, totalBytesSent, totalUploadProgress, _i, _len, _ref;
+      totalBytesSent = 0;
+      totalBytes = 0;
+      activeFiles = this.getActiveFiles();
+      if (activeFiles.length) {
+        _ref = this.getActiveFiles();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          file = _ref[_i];
+          totalBytesSent += file.upload.bytesSent;
+          totalBytes += file.upload.total;
+        }
+        totalUploadProgress = 100 * totalBytesSent / totalBytes;
+      } else {
+        totalUploadProgress = 100;
+      }
+      return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
+    };
+
+    Dropzone.prototype._getParamName = function(n) {
+      if (typeof this.options.paramName === "function") {
+        return this.options.paramName(n);
+      } else {
+        return "" + this.options.paramName + (this.options.uploadMultiple ? "[" + n + "]" : "");
+      }
+    };
+
+    Dropzone.prototype.getFallbackForm = function() {
+      var existingFallback, fields, fieldsString, form;
+      if (existingFallback = this.getExistingFallback()) {
+        return existingFallback;
+      }
+      fieldsString = "<div class=\"dz-fallback\">";
+      if (this.options.dictFallbackText) {
+        fieldsString += "<p>" + this.options.dictFallbackText + "</p>";
+      }
+      fieldsString += "<input type=\"file\" name=\"" + (this._getParamName(0)) + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
+      fields = Dropzone.createElement(fieldsString);
+      if (this.element.tagName !== "FORM") {
+        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
+        form.appendChild(fields);
+      } else {
+        this.element.setAttribute("enctype", "multipart/form-data");
+        this.element.setAttribute("method", this.options.method);
+      }
+      return form != null ? form : fields;
+    };
+
+    Dropzone.prototype.getExistingFallback = function() {
+      var fallback, getFallback, tagName, _i, _len, _ref;
+      getFallback = function(elements) {
+        var el, _i, _len;
+        for (_i = 0, _len = elements.length; _i < _len; _i++) {
+          el = elements[_i];
+          if (/(^| )fallback($| )/.test(el.className)) {
+            return el;
+          }
+        }
+      };
+      _ref = ["div", "form"];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        tagName = _ref[_i];
+        if (fallback = getFallback(this.element.getElementsByTagName(tagName))) {
+          return fallback;
+        }
+      }
+    };
+
+    Dropzone.prototype.setupEventListeners = function() {
+      var elementListeners, event, listener, _i, _len, _ref, _results;
+      _ref = this.listeners;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        elementListeners = _ref[_i];
+        _results.push((function() {
+          var _ref1, _results1;
+          _ref1 = elementListeners.events;
+          _results1 = [];
+          for (event in _ref1) {
+            listener = _ref1[event];
+            _results1.push(elementListeners.element.addEventListener(event, listener, false));
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.removeEventListeners = function() {
+      var elementListeners, event, listener, _i, _len, _ref, _results;
+      _ref = this.listeners;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        elementListeners = _ref[_i];
+        _results.push((function() {
+          var _ref1, _results1;
+          _ref1 = elementListeners.events;
+          _results1 = [];
+          for (event in _ref1) {
+            listener = _ref1[event];
+            _results1.push(elementListeners.element.removeEventListener(event, listener, false));
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.disable = function() {
+      var file, _i, _len, _ref, _results;
+      this.clickableElements.forEach(function(element) {
+        return element.classList.remove("dz-clickable");
+      });
+      this.removeEventListeners();
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        _results.push(this.cancelUpload(file));
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.enable = function() {
+      this.clickableElements.forEach(function(element) {
+        return element.classList.add("dz-clickable");
+      });
+      return this.setupEventListeners();
+    };
+
+    Dropzone.prototype.filesize = function(size) {
+      var cutoff, i, selectedSize, selectedUnit, unit, units, _i, _len;
+      units = ['TB', 'GB', 'MB', 'KB', 'b'];
+      selectedSize = selectedUnit = null;
+      for (i = _i = 0, _len = units.length; _i < _len; i = ++_i) {
+        unit = units[i];
+        cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
+        if (size >= cutoff) {
+          selectedSize = size / Math.pow(this.options.filesizeBase, 4 - i);
+          selectedUnit = unit;
+          break;
+        }
+      }
+      selectedSize = Math.round(10 * selectedSize) / 10;
+      return "<strong>" + selectedSize + "</strong> " + selectedUnit;
+    };
+
+    Dropzone.prototype._updateMaxFilesReachedClass = function() {
+      if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        if (this.getAcceptedFiles().length === this.options.maxFiles) {
+          this.emit('maxfilesreached', this.files);
+        }
+        return this.element.classList.add("dz-max-files-reached");
+      } else {
+        return this.element.classList.remove("dz-max-files-reached");
+      }
+    };
+
+    Dropzone.prototype.drop = function(e) {
+      var files, items;
+      if (!e.dataTransfer) {
+        return;
+      }
+      this.emit("drop", e);
+      files = e.dataTransfer.files;
+      if (files.length) {
+        items = e.dataTransfer.items;
+        if (items && items.length && (items[0].webkitGetAsEntry != null)) {
+          this._addFilesFromItems(items);
+        } else {
+          this.handleFiles(files);
+        }
+      }
+    };
+
+    Dropzone.prototype.paste = function(e) {
+      var items, _ref;
+      if ((e != null ? (_ref = e.clipboardData) != null ? _ref.items : void 0 : void 0) == null) {
+        return;
+      }
+      this.emit("paste", e);
+      items = e.clipboardData.items;
+      if (items.length) {
+        return this._addFilesFromItems(items);
+      }
+    };
+
+    Dropzone.prototype.handleFiles = function(files) {
+      var file, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        _results.push(this.addFile(file));
+      }
+      return _results;
+    };
+
+    Dropzone.prototype._addFilesFromItems = function(items) {
+      var entry, item, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = items.length; _i < _len; _i++) {
+        item = items[_i];
+        if ((item.webkitGetAsEntry != null) && (entry = item.webkitGetAsEntry())) {
+          if (entry.isFile) {
+            _results.push(this.addFile(item.getAsFile()));
+          } else if (entry.isDirectory) {
+            _results.push(this._addFilesFromDirectory(entry, entry.name));
+          } else {
+            _results.push(void 0);
+          }
+        } else if (item.getAsFile != null) {
+          if ((item.kind == null) || item.kind === "file") {
+            _results.push(this.addFile(item.getAsFile()));
+          } else {
+            _results.push(void 0);
+          }
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype._addFilesFromDirectory = function(directory, path) {
+      var dirReader, entriesReader;
+      dirReader = directory.createReader();
+      entriesReader = (function(_this) {
+        return function(entries) {
+          var entry, _i, _len;
+          for (_i = 0, _len = entries.length; _i < _len; _i++) {
+            entry = entries[_i];
+            if (entry.isFile) {
+              entry.file(function(file) {
+                if (_this.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
+                  return;
+                }
+                file.fullPath = "" + path + "/" + file.name;
+                return _this.addFile(file);
+              });
+            } else if (entry.isDirectory) {
+              _this._addFilesFromDirectory(entry, "" + path + "/" + entry.name);
+            }
+          }
+        };
+      })(this);
+      return dirReader.readEntries(entriesReader, function(error) {
+        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
+      });
+    };
+
+    Dropzone.prototype.accept = function(file, done) {
+      if (file.size > this.options.maxFilesize * 1024 * 1024) {
+        return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
+      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+        return done(this.options.dictInvalidFileType);
+      } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
+        return this.emit("maxfilesexceeded", file);
+      } else {
+        return this.options.accept.call(this, file, done);
+      }
+    };
+
+    Dropzone.prototype.addFile = function(file) {
+      file.upload = {
+        progress: 0,
+        total: file.size,
+        bytesSent: 0
+      };
+      this.files.push(file);
+      file.status = Dropzone.ADDED;
+      this.emit("addedfile", file);
+      this._enqueueThumbnail(file);
+      return this.accept(file, (function(_this) {
+        return function(error) {
+          if (error) {
+            file.accepted = false;
+            _this._errorProcessing([file], error);
+          } else {
+            file.accepted = true;
+            if (_this.options.autoQueue) {
+              _this.enqueueFile(file);
+            }
+          }
+          return _this._updateMaxFilesReachedClass();
+        };
+      })(this));
+    };
+
+    Dropzone.prototype.enqueueFiles = function(files) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        this.enqueueFile(file);
+      }
+      return null;
+    };
+
+    Dropzone.prototype.enqueueFile = function(file) {
+      if (file.status === Dropzone.ADDED && file.accepted === true) {
+        file.status = Dropzone.QUEUED;
+        if (this.options.autoProcessQueue) {
+          return setTimeout(((function(_this) {
+            return function() {
+              return _this.processQueue();
+            };
+          })(this)), 0);
+        }
+      } else {
+        throw new Error("This file can't be queued because it has already been processed or was rejected.");
+      }
+    };
+
+    Dropzone.prototype._thumbnailQueue = [];
+
+    Dropzone.prototype._processingThumbnail = false;
+
+    Dropzone.prototype._enqueueThumbnail = function(file) {
+      if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1024 * 1024) {
+        this._thumbnailQueue.push(file);
+        return setTimeout(((function(_this) {
+          return function() {
+            return _this._processThumbnailQueue();
+          };
+        })(this)), 0);
+      }
+    };
+
+    Dropzone.prototype._processThumbnailQueue = function() {
+      if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
+        return;
+      }
+      this._processingThumbnail = true;
+      return this.createThumbnail(this._thumbnailQueue.shift(), (function(_this) {
+        return function() {
+          _this._processingThumbnail = false;
+          return _this._processThumbnailQueue();
+        };
+      })(this));
+    };
+
+    Dropzone.prototype.removeFile = function(file) {
+      if (file.status === Dropzone.UPLOADING) {
+        this.cancelUpload(file);
+      }
+      this.files = without(this.files, file);
+      this.emit("removedfile", file);
+      if (this.files.length === 0) {
+        return this.emit("reset");
+      }
+    };
+
+    Dropzone.prototype.removeAllFiles = function(cancelIfNecessary) {
+      var file, _i, _len, _ref;
+      if (cancelIfNecessary == null) {
+        cancelIfNecessary = false;
+      }
+      _ref = this.files.slice();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+          this.removeFile(file);
+        }
+      }
+      return null;
+    };
+
+    Dropzone.prototype.createThumbnail = function(file, callback) {
+      var fileReader;
+      fileReader = new FileReader;
+      fileReader.onload = (function(_this) {
+        return function() {
+          if (file.type === "image/svg+xml") {
+            _this.emit("thumbnail", file, fileReader.result);
+            if (callback != null) {
+              callback();
+            }
+            return;
+          }
+          return _this.createThumbnailFromUrl(file, fileReader.result, callback);
+        };
+      })(this);
+      return fileReader.readAsDataURL(file);
+    };
+
+    Dropzone.prototype.createThumbnailFromUrl = function(file, imageUrl, callback) {
+      var img;
+      img = document.createElement("img");
+      img.onload = (function(_this) {
+        return function() {
+          var canvas, ctx, resizeInfo, thumbnail, _ref, _ref1, _ref2, _ref3;
+          file.width = img.width;
+          file.height = img.height;
+          resizeInfo = _this.options.resize.call(_this, file);
+          if (resizeInfo.trgWidth == null) {
+            resizeInfo.trgWidth = resizeInfo.optWidth;
+          }
+          if (resizeInfo.trgHeight == null) {
+            resizeInfo.trgHeight = resizeInfo.optHeight;
+          }
+          canvas = document.createElement("canvas");
+          ctx = canvas.getContext("2d");
+          canvas.width = resizeInfo.trgWidth;
+          canvas.height = resizeInfo.trgHeight;
+          drawImageIOSFix(ctx, img, (_ref = resizeInfo.srcX) != null ? _ref : 0, (_ref1 = resizeInfo.srcY) != null ? _ref1 : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, (_ref2 = resizeInfo.trgX) != null ? _ref2 : 0, (_ref3 = resizeInfo.trgY) != null ? _ref3 : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
+          thumbnail = canvas.toDataURL("image/png");
+          _this.emit("thumbnail", file, thumbnail);
+          if (callback != null) {
+            return callback();
+          }
+        };
+      })(this);
+      if (callback != null) {
+        img.onerror = callback;
+      }
+      return img.src = imageUrl;
+    };
+
+    Dropzone.prototype.processQueue = function() {
+      var i, parallelUploads, processingLength, queuedFiles;
+      parallelUploads = this.options.parallelUploads;
+      processingLength = this.getUploadingFiles().length;
+      i = processingLength;
+      if (processingLength >= parallelUploads) {
+        return;
+      }
+      queuedFiles = this.getQueuedFiles();
+      if (!(queuedFiles.length > 0)) {
+        return;
+      }
+      if (this.options.uploadMultiple) {
+        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
+      } else {
+        while (i < parallelUploads) {
+          if (!queuedFiles.length) {
+            return;
+          }
+          this.processFile(queuedFiles.shift());
+          i++;
+        }
+      }
+    };
+
+    Dropzone.prototype.processFile = function(file) {
+      return this.processFiles([file]);
+    };
+
+    Dropzone.prototype.processFiles = function(files) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.processing = true;
+        file.status = Dropzone.UPLOADING;
+        this.emit("processing", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("processingmultiple", files);
+      }
+      return this.uploadFiles(files);
+    };
+
+    Dropzone.prototype._getFilesWithXhr = function(xhr) {
+      var file, files;
+      return files = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.files;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          file = _ref[_i];
+          if (file.xhr === xhr) {
+            _results.push(file);
+          }
+        }
+        return _results;
+      }).call(this);
+    };
+
+    Dropzone.prototype.cancelUpload = function(file) {
+      var groupedFile, groupedFiles, _i, _j, _len, _len1, _ref;
+      if (file.status === Dropzone.UPLOADING) {
+        groupedFiles = this._getFilesWithXhr(file.xhr);
+        for (_i = 0, _len = groupedFiles.length; _i < _len; _i++) {
+          groupedFile = groupedFiles[_i];
+          groupedFile.status = Dropzone.CANCELED;
+        }
+        file.xhr.abort();
+        for (_j = 0, _len1 = groupedFiles.length; _j < _len1; _j++) {
+          groupedFile = groupedFiles[_j];
+          this.emit("canceled", groupedFile);
+        }
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", groupedFiles);
+        }
+      } else if ((_ref = file.status) === Dropzone.ADDED || _ref === Dropzone.QUEUED) {
+        file.status = Dropzone.CANCELED;
+        this.emit("canceled", file);
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", [file]);
+        }
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    resolveOption = function() {
+      var args, option;
+      option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      if (typeof option === 'function') {
+        return option.apply(this, args);
+      }
+      return option;
+    };
+
+    Dropzone.prototype.uploadFile = function(file) {
+      return this.uploadFiles([file]);
+    };
+
+    Dropzone.prototype.uploadFiles = function(files) {
+      var file, formData, handleError, headerName, headerValue, headers, i, input, inputName, inputType, key, method, option, progressObj, response, updateProgress, url, value, xhr, _i, _j, _k, _l, _len, _len1, _len2, _len3, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      xhr = new XMLHttpRequest();
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.xhr = xhr;
+      }
+      method = resolveOption(this.options.method, files);
+      url = resolveOption(this.options.url, files);
+      xhr.open(method, url, true);
+      xhr.withCredentials = !!this.options.withCredentials;
+      response = null;
+      handleError = (function(_this) {
+        return function() {
+          var _j, _len1, _results;
+          _results = [];
+          for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+            file = files[_j];
+            _results.push(_this._errorProcessing(files, response || _this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr));
+          }
+          return _results;
+        };
+      })(this);
+      updateProgress = (function(_this) {
+        return function(e) {
+          var allFilesFinished, progress, _j, _k, _l, _len1, _len2, _len3, _results;
+          if (e != null) {
+            progress = 100 * e.loaded / e.total;
+            for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+              file = files[_j];
+              file.upload = {
+                progress: progress,
+                total: e.total,
+                bytesSent: e.loaded
+              };
+            }
+          } else {
+            allFilesFinished = true;
+            progress = 100;
+            for (_k = 0, _len2 = files.length; _k < _len2; _k++) {
+              file = files[_k];
+              if (!(file.upload.progress === 100 && file.upload.bytesSent === file.upload.total)) {
+                allFilesFinished = false;
+              }
+              file.upload.progress = progress;
+              file.upload.bytesSent = file.upload.total;
+            }
+            if (allFilesFinished) {
+              return;
+            }
+          }
+          _results = [];
+          for (_l = 0, _len3 = files.length; _l < _len3; _l++) {
+            file = files[_l];
+            _results.push(_this.emit("uploadprogress", file, progress, file.upload.bytesSent));
+          }
+          return _results;
+        };
+      })(this);
+      xhr.onload = (function(_this) {
+        return function(e) {
+          var _ref;
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          if (xhr.readyState !== 4) {
+            return;
+          }
+          response = xhr.responseText;
+          if (xhr.getResponseHeader("content-type") && ~xhr.getResponseHeader("content-type").indexOf("application/json")) {
+            try {
+              response = JSON.parse(response);
+            } catch (_error) {
+              e = _error;
+              response = "Invalid JSON response from server.";
+            }
+          }
+          updateProgress();
+          if (!((200 <= (_ref = xhr.status) && _ref < 300))) {
+            return handleError();
+          } else {
+            return _this._finished(files, response, e);
+          }
+        };
+      })(this);
+      xhr.onerror = (function(_this) {
+        return function() {
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          return handleError();
+        };
+      })(this);
+      progressObj = (_ref = xhr.upload) != null ? _ref : xhr;
+      progressObj.onprogress = updateProgress;
+      headers = {
+        "Accept": "application/json",
+        "Cache-Control": "no-cache",
+        "X-Requested-With": "XMLHttpRequest"
+      };
+      if (this.options.headers) {
+        extend(headers, this.options.headers);
+      }
+      for (headerName in headers) {
+        headerValue = headers[headerName];
+        xhr.setRequestHeader(headerName, headerValue);
+      }
+      formData = new FormData();
+      if (this.options.params) {
+        _ref1 = this.options.params;
+        for (key in _ref1) {
+          value = _ref1[key];
+          formData.append(key, value);
+        }
+      }
+      for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+        file = files[_j];
+        this.emit("sending", file, xhr, formData);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("sendingmultiple", files, xhr, formData);
+      }
+      if (this.element.tagName === "FORM") {
+        _ref2 = this.element.querySelectorAll("input, textarea, select, button");
+        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+          input = _ref2[_k];
+          inputName = input.getAttribute("name");
+          inputType = input.getAttribute("type");
+          if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
+            _ref3 = input.options;
+            for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
+              option = _ref3[_l];
+              if (option.selected) {
+                formData.append(inputName, option.value);
+              }
+            }
+          } else if (!inputType || ((_ref4 = inputType.toLowerCase()) !== "checkbox" && _ref4 !== "radio") || input.checked) {
+            formData.append(inputName, input.value);
+          }
+        }
+      }
+      for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
+        formData.append(this._getParamName(i), files[i], files[i].name);
+      }
+      return xhr.send(formData);
+    };
+
+    Dropzone.prototype._finished = function(files, responseText, e) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.status = Dropzone.SUCCESS;
+        this.emit("success", file, responseText, e);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("successmultiple", files, responseText, e);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    Dropzone.prototype._errorProcessing = function(files, message, xhr) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.status = Dropzone.ERROR;
+        this.emit("error", file, message, xhr);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("errormultiple", files, message, xhr);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    return Dropzone;
+
+  })(Emitter);
+
+  Dropzone.version = "4.0.1";
+
+  Dropzone.options = {};
+
+  Dropzone.optionsForElement = function(element) {
+    if (element.getAttribute("id")) {
+      return Dropzone.options[camelize(element.getAttribute("id"))];
+    } else {
+      return void 0;
+    }
+  };
+
+  Dropzone.instances = [];
+
+  Dropzone.forElement = function(element) {
+    if (typeof element === "string") {
+      element = document.querySelector(element);
+    }
+    if ((element != null ? element.dropzone : void 0) == null) {
+      throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");
+    }
+    return element.dropzone;
+  };
+
+  Dropzone.autoDiscover = true;
+
+  Dropzone.discover = function() {
+    var checkElements, dropzone, dropzones, _i, _len, _results;
+    if (document.querySelectorAll) {
+      dropzones = document.querySelectorAll(".dropzone");
+    } else {
+      dropzones = [];
+      checkElements = function(elements) {
+        var el, _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = elements.length; _i < _len; _i++) {
+          el = elements[_i];
+          if (/(^| )dropzone($| )/.test(el.className)) {
+            _results.push(dropzones.push(el));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      };
+      checkElements(document.getElementsByTagName("div"));
+      checkElements(document.getElementsByTagName("form"));
+    }
+    _results = [];
+    for (_i = 0, _len = dropzones.length; _i < _len; _i++) {
+      dropzone = dropzones[_i];
+      if (Dropzone.optionsForElement(dropzone) !== false) {
+        _results.push(new Dropzone(dropzone));
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
+  Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
+
+  Dropzone.isBrowserSupported = function() {
+    var capableBrowser, regex, _i, _len, _ref;
+    capableBrowser = true;
+    if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
+      if (!("classList" in document.createElement("a"))) {
+        capableBrowser = false;
+      } else {
+        _ref = Dropzone.blacklistedBrowsers;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          regex = _ref[_i];
+          if (regex.test(navigator.userAgent)) {
+            capableBrowser = false;
+            continue;
+          }
+        }
+      }
+    } else {
+      capableBrowser = false;
+    }
+    return capableBrowser;
+  };
+
+  without = function(list, rejectedItem) {
+    var item, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = list.length; _i < _len; _i++) {
+      item = list[_i];
+      if (item !== rejectedItem) {
+        _results.push(item);
+      }
+    }
+    return _results;
+  };
+
+  camelize = function(str) {
+    return str.replace(/[\-_](\w)/g, function(match) {
+      return match.charAt(1).toUpperCase();
     });
+  };
 
-}));
+  Dropzone.createElement = function(string) {
+    var div;
+    div = document.createElement("div");
+    div.innerHTML = string;
+    return div.childNodes[0];
+  };
+
+  Dropzone.elementInside = function(element, container) {
+    if (element === container) {
+      return true;
+    }
+    while (element = element.parentNode) {
+      if (element === container) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  Dropzone.getElement = function(el, name) {
+    var element;
+    if (typeof el === "string") {
+      element = document.querySelector(el);
+    } else if (el.nodeType != null) {
+      element = el;
+    }
+    if (element == null) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector or a plain HTML element.");
+    }
+    return element;
+  };
+
+  Dropzone.getElements = function(els, name) {
+    var e, el, elements, _i, _j, _len, _len1, _ref;
+    if (els instanceof Array) {
+      elements = [];
+      try {
+        for (_i = 0, _len = els.length; _i < _len; _i++) {
+          el = els[_i];
+          elements.push(this.getElement(el, name));
+        }
+      } catch (_error) {
+        e = _error;
+        elements = null;
+      }
+    } else if (typeof els === "string") {
+      elements = [];
+      _ref = document.querySelectorAll(els);
+      for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+        el = _ref[_j];
+        elements.push(el);
+      }
+    } else if (els.nodeType != null) {
+      elements = [els];
+    }
+    if (!((elements != null) && elements.length)) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");
+    }
+    return elements;
+  };
+
+  Dropzone.confirm = function(question, accepted, rejected) {
+    if (window.confirm(question)) {
+      return accepted();
+    } else if (rejected != null) {
+      return rejected();
+    }
+  };
+
+  Dropzone.isValidFile = function(file, acceptedFiles) {
+    var baseMimeType, mimeType, validType, _i, _len;
+    if (!acceptedFiles) {
+      return true;
+    }
+    acceptedFiles = acceptedFiles.split(",");
+    mimeType = file.type;
+    baseMimeType = mimeType.replace(/\/.*$/, "");
+    for (_i = 0, _len = acceptedFiles.length; _i < _len; _i++) {
+      validType = acceptedFiles[_i];
+      validType = validType.trim();
+      if (validType.charAt(0) === ".") {
+        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
+          return true;
+        }
+      } else if (/\/\*$/.test(validType)) {
+        if (baseMimeType === validType.replace(/\/.*$/, "")) {
+          return true;
+        }
+      } else {
+        if (mimeType === validType) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    jQuery.fn.dropzone = function(options) {
+      return this.each(function() {
+        return new Dropzone(this, options);
+      });
+    };
+  }
+
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = Dropzone;
+  } else {
+    window.Dropzone = Dropzone;
+  }
+
+  Dropzone.ADDED = "added";
+
+  Dropzone.QUEUED = "queued";
+
+  Dropzone.ACCEPTED = Dropzone.QUEUED;
+
+  Dropzone.UPLOADING = "uploading";
+
+  Dropzone.PROCESSING = Dropzone.UPLOADING;
+
+  Dropzone.CANCELED = "canceled";
+
+  Dropzone.ERROR = "error";
+
+  Dropzone.SUCCESS = "success";
+
+
+  /*
+  
+  Bugfix for iOS 6 and 7
+  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+  based on the work of https://github.com/stomita/ios-imagefile-megapixel
+   */
+
+  detectVerticalSquash = function(img) {
+    var alpha, canvas, ctx, data, ey, ih, iw, py, ratio, sy;
+    iw = img.naturalWidth;
+    ih = img.naturalHeight;
+    canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = ih;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    data = ctx.getImageData(0, 0, 1, ih).data;
+    sy = 0;
+    ey = ih;
+    py = ih;
+    while (py > sy) {
+      alpha = data[(py - 1) * 4 + 3];
+      if (alpha === 0) {
+        ey = py;
+      } else {
+        sy = py;
+      }
+      py = (ey + sy) >> 1;
+    }
+    ratio = py / ih;
+    if (ratio === 0) {
+      return 1;
+    } else {
+      return ratio;
+    }
+  };
+
+  drawImageIOSFix = function(ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
+    var vertSquashRatio;
+    vertSquashRatio = detectVerticalSquash(img);
+    return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
+  };
+
+
+  /*
+   * contentloaded.js
+   *
+   * Author: Diego Perini (diego.perini at gmail.com)
+   * Summary: cross-browser wrapper for DOMContentLoaded
+   * Updated: 20101020
+   * License: MIT
+   * Version: 1.2
+   *
+   * URL:
+   * http://javascript.nwbox.com/ContentLoaded/
+   * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+   */
+
+  contentLoaded = function(win, fn) {
+    var add, doc, done, init, poll, pre, rem, root, top;
+    done = false;
+    top = true;
+    doc = win.document;
+    root = doc.documentElement;
+    add = (doc.addEventListener ? "addEventListener" : "attachEvent");
+    rem = (doc.addEventListener ? "removeEventListener" : "detachEvent");
+    pre = (doc.addEventListener ? "" : "on");
+    init = function(e) {
+      if (e.type === "readystatechange" && doc.readyState !== "complete") {
+        return;
+      }
+      (e.type === "load" ? win : doc)[rem](pre + e.type, init, false);
+      if (!done && (done = true)) {
+        return fn.call(win, e.type || e);
+      }
+    };
+    poll = function() {
+      var e;
+      try {
+        root.doScroll("left");
+      } catch (_error) {
+        e = _error;
+        setTimeout(poll, 50);
+        return;
+      }
+      return init("poll");
+    };
+    if (doc.readyState !== "complete") {
+      if (doc.createEventObject && root.doScroll) {
+        try {
+          top = !win.frameElement;
+        } catch (_error) {}
+        if (top) {
+          poll();
+        }
+      }
+      doc[add](pre + "DOMContentLoaded", init, false);
+      doc[add](pre + "readystatechange", init, false);
+      return win[add](pre + "load", init, false);
+    }
+  };
+
+  Dropzone._autoDiscoverFunction = function() {
+    if (Dropzone.autoDiscover) {
+      return Dropzone.discover();
+    }
+  };
+
+  contentLoaded(window, Dropzone._autoDiscoverFunction);
+
+}).call(this);
 ;/*
  * imgAreaSelect jQuery plugin
  * version 0.9.10
@@ -30295,254 +30349,140 @@ function createSharpRefSublistItem($el) {
 
 function escapeFieldId(id) {
     return id.replace(/(:|\.|\[|\]|\~|,)/g, "\\$1");
-};(function($)
-{
-    $.fn.sharp_file=function(options)
-    {
-        var defauts=
-        {
-            image: false,
-            progress: false,
-            url: null,
-            thumbnail: false,
-            browseButton: {
-                text: 'browse',
-                className: 'btn'
+};(function($) {
+    $.fn.sharp_file = function(options) {
+
+        var defauts = {
+            maxFilesize: 6, // MB
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr("content")
             },
-            deleteButton: {
-                text: '&times; remove',
-                className: 'btn'
-            },
+            maxFiles: 1,
             file_filter: '',
             file_filter_alert: '',
-            file_label_pattern: '<div class="type"><i class="fa fa-file-o"></i><span>%type%</span></div><span class="mime">(%mime%)</span><span class="size">%size%</span>',
-            done: function(d) { return true; },
-            submit: function(d) { return true; }
+            previewTemplate: document.querySelector('#dz-template').innerHTML,
+            dictInvalidFileType: '',
+            dictFileTooBig: 'Fichier non pris en compte : trop lourd ({{maxFilesize}} Mo maximum).',
+            dictResponseError: 'Fichier non pris en compte : erreur technique.',
+            dictMaxFilesExceeded: 'Fichier non pris en compte : vous ne pouvez envoyer qu’1 fichier.',
+            dictCancelUploadConfirmation: 'Êtes-vous sûr(e) de vouloir annuler cet envoi ?'
         };
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
-            // Generate DOM
+        return this.each(function() {
 
-            var $wrapper = $(this);
+            // Create DOM
+            var $addBtn = $("<a>")
+                    .addClass("btn btn-default btn-block dz-message add-btn")
+                    .html(params.browseText)
+                    .prepend('<i class="fa fa-upload"></i> ');
 
-            // Create input file
-            var idInput = '_' + Math.random().toString(36).substr(2, 9);
-            var $input = $('<input/>').attr("type", "file").attr("name", "file").attr("id", idInput);
-            $input.css({ display: 'block', visibility: 'hidden', width: '0', height: '0' });
-            $(this).append($input);
+            var $errorLabel = $("<span>").addClass("hidden validation-error");
+            var $dz = $("<div>").addClass("dropzone-upload")
+                .append($addBtn)
+                .append($errorLabel);
 
-            // Create button (triggers browse)
-            var $btn = $('<a/>').addClass(params.browseButton.className).addClass("sharp-file-browse").html(params.browseButton.text);
-            $(this).append($btn);
+            $(this).append($dz);
 
-            // Create progress bar
-            var $progress = null;
-            if(params.progress) {
-                $progress = $('<div/>').addClass("sharp-file-progress").css({ width:'0' });
-                $(this).prepend($progress);
-            }
+            var $hiddenField = $(this).find('.sharp-file-id');
 
-            // Create OR INIT IF EXISTS thumbnail image
-            var $imgThumbnail = null;
-            if(params.thumbnail) {
-                $imgThumbnail = $(this).find(".sharp-file-thumbnail");
-                if($imgThumbnail.length == 0) {
-                    var $divThumbnail = $('<div/>').addClass('sharp-file-image');
-                    $imgThumbnail = $('<img/>').addClass("sharp-file-thumbnail");
-                    $divThumbnail.append($imgThumbnail);
-                    $(this).prepend($divThumbnail);
-                }
-            }
+            var dropzone = null;
 
-            // Create OR INIT IF EXISTS file label
-            var $fileLabel = $(this).find(".sharp-file-label");
-            if($fileLabel.length == 0) {
-                $fileLabel = $('<div/>').addClass("sharp-file-label");
-                // TODO gérer création btn sharp-crop ??
-                $(this).append($fileLabel);
-            }
+            $dz.dropzone($.extend(params, {
+                init: function () {
+                    dropzone = this;
 
-            // Get hidden field containing file name
-            var $hiddenFileId = $(this).find(".sharp-file-id");
+                    this.on("addedfile", function () {
+                        $addBtn.addClass("hidden");
+                        $errorLabel.html("").addClass("hidden");
+                    });
 
-            // Get hidden field containing file full path (needed for repopulation)
-            var $hiddenFilePath = $(this).find(".sharp-file-path");
+                    this.on("removedfile", function () {
+                        $addBtn.removeClass("hidden");
+                        $hiddenField.val("");
+                    });
 
-            // Create delete file link
-            var $deleteLink = $('<a/>').addClass(params.deleteButton.className).addClass("sharp-file-delete").html(params.deleteButton.text);
-            $(this).append($deleteLink);
+                    this.on("success", function (file, response) {
+                        $hiddenField.val(response.file.name);
+                    });
 
-            // Init fileupload
-            $input.fileupload({
-                dataType: 'json',
-                url: params.url,
-
-                add: function(e, data) {
-                    if(params.file_filter)
-                    {
-                        var acceptFileTypes = new RegExp("(\\.|\\/)(" + params.file_filter.replace(/,/g, '|') + ")$", "i");
-                        if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
-                            alert(params.file_filter_alert ? params.file_filter_alert : params.file_filter);
-                            return false;
-                        }
-                    }
-                    data.submit();
-                },
-
-                submit: function(e, data) {
-                    $btn.css("visibility", "hidden");
-                    return params.submit(data);
-                },
-
-                done: function (e, data) {
-
-                    // Hide progress
-                    if(params.progress) $progress.css('width', '0%');
-                    $btn.css("visibility", "visible");
-
-                    // Call user callback
-                    if(params.done(data)) {
-
-                        // Add valuated class
-                        $wrapper.addClass("valuated");
-
-                        // Legend / file title
-                        var pattern = params.file_label_pattern.replace(/%type%/i, data.originalFiles[0]['name'].split('.').pop());
-                        pattern = pattern.replace(/%mime%/i, data.originalFiles[0]['type']);
-                        pattern = pattern.replace(/%size%/i, getReadableFileSizeString(data.originalFiles[0]['size']));
-                        $fileLabel.html(pattern);
-
-                        // Manage thumbnail
-                        if(params.thumbnail && data.result.file.thumbnail)
-                        {
-                            $imgThumbnail.attr("src", data.result.file.thumbnail).show();
-                            $wrapper.addClass("with_thumbnail");
-                        }
-                        else
-                        {
-                            $wrapper.removeClass("with_thumbnail");
-                        }
-
-                        // Set sharp-file-id
-                        $hiddenFileId.val(data.result.file.name);
-                        $hiddenFilePath.val(data.result.file.path);
-                    }
-                },
-
-                progressall: function (e, data) {
-                    if(params.progress) {
-                        var p = parseInt(data.loaded / data.total * 100, 10);
-                        $progress.css('width', p + '%');
-                    }
-                }
-            });
-
-            // Click upload button
-            $btn.on("click", function() {
-                // We use a "dynamic" way to retrieve $input, otherwise the link is lost in case of 2nd upload
-                // (for an unknown reason, maybe a plugin bug)
-                $("#"+idInput).click();
-            });
-
-            // Click on delete button
-            $deleteLink.on("click", function() {
-
-                // Remove valuated class
-                $wrapper.removeClass("valuated");
-
-                // Unset sharp-file-id
-                $hiddenFileId.val('');
-            });
-
-            // Add upload options
-            $(this).bind('fileuploadsubmit', function (e, data) {
-                var postParams = {};
-                if(params.thumbnail) {
-                    $.each(params.thumbnail, function( k, v ) {
-                        var attrKey = 'thumbnail_'+k;
-                        postParams[attrKey] = v;
+                    this.on("error", function (file, errorMessage, xhr) {
+                        $errorLabel.html(errorMessage).removeClass("hidden");
+                        $addBtn.removeClass("hidden");
+                        this.removeFile(file);
                     });
                 }
 
-                // Laravel token
-                var $token = $("#sharpform").find("input[name=_token]");
-                if($token.length)
-                {
-                    postParams["_token"] = $token.val();
-                }
+            }));
 
-                data.formData = postParams;
-            });
+            if(params.populatedFile) {
+                dropzone.emit("addedfile", params.populatedFile);
+                if(params.thumb) {
+                    dropzone.emit("thumbnail", params.populatedFile, params.thumb);
+                }
+                dropzone.emit("complete", params.populatedFile);
+
+                $(this).find(".dz-dl").prop("href", params.dl_url).removeClass("hidden");
+            }
         });
     };
 })(jQuery);
 
 $(window).load(function() {
 
-    $('.sharp-file').each(function()
-    {
+    $('.sharp-file').each(function() {
         createSharpFile($(this));
     });
 
 });
 
-function createSharpFile($el)
-{
-    var thumbnail = null;
-    var dataThumbnail = $el.data("thumbnail");
-    if(dataThumbnail)
-    {
-        var tab = dataThumbnail.split('x');
-        if(tab.length == 2)
-        {
-            thumbnail = {
-                width: tab[0],
-                height: tab[1]
-            };
+function createSharpFile($el) {
+    var params = {};
+
+    if($el.data("thumbnail")) {
+        var tab = $el.data("thumbnail").split('x');
+        if(tab.length == 2) {
+            params.thumbnailWidth = tab[0]!=0 ? tab[0] : null;
+            params.thumbnailHeight = tab[1]!=0 ? tab[1] : null;
         }
     }
 
-    var fileFilter = $el.data("file_filter");
-    var fileFilterAlert = $el.data("file_filter_alert");
+    params.url = ($el.data("thumbnail") ? '/admin/uploadWithThumbnail' : '/admin/upload');
 
-    $el.sharp_file({
-        url:thumbnail ? '/admin/uploadWithThumbnail' : '/admin/upload',
-        thumbnail:thumbnail,
-        progress:true,
-        file_filter:fileFilter,
-        file_filter_alert: fileFilterAlert,
-        done: function(data) {
-            if(data.result.err) {
-                alert(data.result.err);
-                return false;
-            }
-            return true;
-        },
-        browseButton:{
-            text:'<i class="fa fa-upload"></i> ' + $el.data("browse_text"),
-            className:'btn'
-        },
-        deleteButton:{
-            text:'<i class="fa fa-times"></i>',
-            className:'btn'
+    if($el.data("file_filter")) {
+        params.acceptedFiles = $el.data("file_filter");
+        if($el.data("file_filter_alert")) {
+            params.dictInvalidFileType = $el.data("file_filter_alert");
         }
-    });
+    }
+
+    if($el.data("max_file_size")) {
+        params.maxFilesize = $el.data("max_file_size");
+    }
+
+    params.browseText = $el.data("browse_text");
+
+    if($el.data("name")) {
+        // File is valuated
+        params.populatedFile = {
+            name: $el.data("name"),
+            size: $el.data("size")
+        };
+
+        if($el.data("thumbnail")) {
+            params.thumb = $el.data("thumbnail")
+        }
+    }
+
+    if($el.data("dl_link")) {
+        // There's a DL link
+        params.dl_url = $el.data("dl_link");
+    }
+
+    $el.sharp_file(params);
 }
-
-function getReadableFileSizeString(fileSizeInBytes)
-{
-    var i = -1;
-    var byteUnits = [' Ko', ' Mo', ' Go', ' To', 'Po', 'Eo', 'Zo', 'Yo'];
-    do {
-        fileSizeInBytes = fileSizeInBytes / 1024;
-        i++;
-    } while (fileSizeInBytes > 1024);
-
-    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
-};;(function($)
+;(function($)
 {
     $.fn.sharp_fileCrop = function (options)
     {

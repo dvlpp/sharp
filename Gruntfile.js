@@ -30,14 +30,14 @@ module.exports = function(grunt) {
                     // Markdown
                     'resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js',
                     // Upload
-                    'resources/assets/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
-                    'resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload.js',
+                    //'resources/assets/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
+                    //'resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload.js',
+                    'resources/assets/bower_components/dropzone/dist/dropzone.js',
                     // Image crop
                     'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
                     // Sharp
                     'resources/assets/js/sharp.form.js',
                     'resources/assets/js/sharp.date.js',
-                    'resources/assets/js/sharp.embed.js',
                     'resources/assets/js/sharp.markdown.js',
                     'resources/assets/js/sharp.tags.js',
                     'resources/assets/js/sharp.ref.js',

@@ -1,5 +1,9 @@
 @extends('sharp::cms/cmslayout')
 
+@section("meta")
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('viewname') sharp-form @stop
 
 @section('navcol')
@@ -109,6 +113,8 @@
         </div>
 
     {!! Form::close() !!}
+
+    @include('sharp::cms.partials.fields.filefield_dztemplate')
 
 @endsection
 

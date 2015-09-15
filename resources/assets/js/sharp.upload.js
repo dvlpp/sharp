@@ -1,248 +1,133 @@
-(function($)
-{
-    $.fn.sharp_file=function(options)
-    {
-        var defauts=
-        {
-            image: false,
-            progress: false,
-            url: null,
-            thumbnail: false,
-            browseButton: {
-                text: 'browse',
-                className: 'btn'
+(function($) {
+    $.fn.sharp_file = function(options) {
+
+        var defauts = {
+            maxFilesize: 6, // MB
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr("content")
             },
-            deleteButton: {
-                text: '&times; remove',
-                className: 'btn'
-            },
+            maxFiles: 1,
             file_filter: '',
             file_filter_alert: '',
-            file_label_pattern: '<div class="type"><i class="fa fa-file-o"></i><span>%type%</span></div><span class="mime">(%mime%)</span><span class="size">%size%</span>',
-            done: function(d) { return true; },
-            submit: function(d) { return true; }
+            previewTemplate: document.querySelector('#dz-template').innerHTML,
+            dictInvalidFileType: '',
+            dictFileTooBig: 'Fichier non pris en compte : trop lourd ({{maxFilesize}} Mo maximum).',
+            dictResponseError: 'Fichier non pris en compte : erreur technique.',
+            dictMaxFilesExceeded: 'Fichier non pris en compte : vous ne pouvez envoyer qu’1 fichier.',
+            dictCancelUploadConfirmation: 'Êtes-vous sûr(e) de vouloir annuler cet envoi ?'
         };
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
-            // Generate DOM
+        return this.each(function() {
 
-            var $wrapper = $(this);
+            // Create DOM
+            var $addBtn = $("<a>")
+                    .addClass("btn btn-default btn-block dz-message add-btn")
+                    .html(params.browseText)
+                    .prepend('<i class="fa fa-upload"></i> ');
 
-            // Create input file
-            var idInput = '_' + Math.random().toString(36).substr(2, 9);
-            var $input = $('<input/>').attr("type", "file").attr("name", "file").attr("id", idInput);
-            $input.css({ display: 'block', visibility: 'hidden', width: '0', height: '0' });
-            $(this).append($input);
+            var $errorLabel = $("<span>").addClass("hidden validation-error");
+            var $dz = $("<div>").addClass("dropzone-upload")
+                .append($addBtn)
+                .append($errorLabel);
 
-            // Create button (triggers browse)
-            var $btn = $('<a/>').addClass(params.browseButton.className).addClass("sharp-file-browse").html(params.browseButton.text);
-            $(this).append($btn);
+            $(this).append($dz);
 
-            // Create progress bar
-            var $progress = null;
-            if(params.progress) {
-                $progress = $('<div/>').addClass("sharp-file-progress").css({ width:'0' });
-                $(this).prepend($progress);
-            }
+            var $hiddenField = $(this).find('.sharp-file-id');
 
-            // Create OR INIT IF EXISTS thumbnail image
-            var $imgThumbnail = null;
-            if(params.thumbnail) {
-                $imgThumbnail = $(this).find(".sharp-file-thumbnail");
-                if($imgThumbnail.length == 0) {
-                    var $divThumbnail = $('<div/>').addClass('sharp-file-image');
-                    $imgThumbnail = $('<img/>').addClass("sharp-file-thumbnail");
-                    $divThumbnail.append($imgThumbnail);
-                    $(this).prepend($divThumbnail);
-                }
-            }
+            var dropzone = null;
 
-            // Create OR INIT IF EXISTS file label
-            var $fileLabel = $(this).find(".sharp-file-label");
-            if($fileLabel.length == 0) {
-                $fileLabel = $('<div/>').addClass("sharp-file-label");
-                // TODO gérer création btn sharp-crop ??
-                $(this).append($fileLabel);
-            }
+            $dz.dropzone($.extend(params, {
+                init: function () {
+                    dropzone = this;
 
-            // Get hidden field containing file name
-            var $hiddenFileId = $(this).find(".sharp-file-id");
+                    this.on("addedfile", function () {
+                        $addBtn.addClass("hidden");
+                        $errorLabel.html("").addClass("hidden");
+                    });
 
-            // Get hidden field containing file full path (needed for repopulation)
-            var $hiddenFilePath = $(this).find(".sharp-file-path");
+                    this.on("removedfile", function () {
+                        $addBtn.removeClass("hidden");
+                        $hiddenField.val("");
+                    });
 
-            // Create delete file link
-            var $deleteLink = $('<a/>').addClass(params.deleteButton.className).addClass("sharp-file-delete").html(params.deleteButton.text);
-            $(this).append($deleteLink);
+                    this.on("success", function (file, response) {
+                        $hiddenField.val(response.file.name);
+                    });
 
-            // Init fileupload
-            $input.fileupload({
-                dataType: 'json',
-                url: params.url,
-
-                add: function(e, data) {
-                    if(params.file_filter)
-                    {
-                        var acceptFileTypes = new RegExp("(\\.|\\/)(" + params.file_filter.replace(/,/g, '|') + ")$", "i");
-                        if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
-                            alert(params.file_filter_alert ? params.file_filter_alert : params.file_filter);
-                            return false;
-                        }
-                    }
-                    data.submit();
-                },
-
-                submit: function(e, data) {
-                    $btn.css("visibility", "hidden");
-                    return params.submit(data);
-                },
-
-                done: function (e, data) {
-
-                    // Hide progress
-                    if(params.progress) $progress.css('width', '0%');
-                    $btn.css("visibility", "visible");
-
-                    // Call user callback
-                    if(params.done(data)) {
-
-                        // Add valuated class
-                        $wrapper.addClass("valuated");
-
-                        // Legend / file title
-                        var pattern = params.file_label_pattern.replace(/%type%/i, data.originalFiles[0]['name'].split('.').pop());
-                        pattern = pattern.replace(/%mime%/i, data.originalFiles[0]['type']);
-                        pattern = pattern.replace(/%size%/i, getReadableFileSizeString(data.originalFiles[0]['size']));
-                        $fileLabel.html(pattern);
-
-                        // Manage thumbnail
-                        if(params.thumbnail && data.result.file.thumbnail)
-                        {
-                            $imgThumbnail.attr("src", data.result.file.thumbnail).show();
-                            $wrapper.addClass("with_thumbnail");
-                        }
-                        else
-                        {
-                            $wrapper.removeClass("with_thumbnail");
-                        }
-
-                        // Set sharp-file-id
-                        $hiddenFileId.val(data.result.file.name);
-                        $hiddenFilePath.val(data.result.file.path);
-                    }
-                },
-
-                progressall: function (e, data) {
-                    if(params.progress) {
-                        var p = parseInt(data.loaded / data.total * 100, 10);
-                        $progress.css('width', p + '%');
-                    }
-                }
-            });
-
-            // Click upload button
-            $btn.on("click", function() {
-                // We use a "dynamic" way to retrieve $input, otherwise the link is lost in case of 2nd upload
-                // (for an unknown reason, maybe a plugin bug)
-                $("#"+idInput).click();
-            });
-
-            // Click on delete button
-            $deleteLink.on("click", function() {
-
-                // Remove valuated class
-                $wrapper.removeClass("valuated");
-
-                // Unset sharp-file-id
-                $hiddenFileId.val('');
-            });
-
-            // Add upload options
-            $(this).bind('fileuploadsubmit', function (e, data) {
-                var postParams = {};
-                if(params.thumbnail) {
-                    $.each(params.thumbnail, function( k, v ) {
-                        var attrKey = 'thumbnail_'+k;
-                        postParams[attrKey] = v;
+                    this.on("error", function (file, errorMessage, xhr) {
+                        $errorLabel.html(errorMessage).removeClass("hidden");
+                        $addBtn.removeClass("hidden");
+                        this.removeFile(file);
                     });
                 }
 
-                // Laravel token
-                var $token = $("#sharpform").find("input[name=_token]");
-                if($token.length)
-                {
-                    postParams["_token"] = $token.val();
-                }
+            }));
 
-                data.formData = postParams;
-            });
+            if(params.populatedFile) {
+                dropzone.emit("addedfile", params.populatedFile);
+                if(params.thumb) {
+                    dropzone.emit("thumbnail", params.populatedFile, params.thumb);
+                }
+                dropzone.emit("complete", params.populatedFile);
+
+                $(this).find(".dz-dl").prop("href", params.dl_url).removeClass("hidden");
+            }
         });
     };
 })(jQuery);
 
 $(window).load(function() {
 
-    $('.sharp-file').each(function()
-    {
+    $('.sharp-file').each(function() {
         createSharpFile($(this));
     });
 
 });
 
-function createSharpFile($el)
-{
-    var thumbnail = null;
-    var dataThumbnail = $el.data("thumbnail");
-    if(dataThumbnail)
-    {
-        var tab = dataThumbnail.split('x');
-        if(tab.length == 2)
-        {
-            thumbnail = {
-                width: tab[0],
-                height: tab[1]
-            };
+function createSharpFile($el) {
+    var params = {};
+
+    if($el.data("thumbnail")) {
+        var tab = $el.data("thumbnail").split('x');
+        if(tab.length == 2) {
+            params.thumbnailWidth = tab[0]!=0 ? tab[0] : null;
+            params.thumbnailHeight = tab[1]!=0 ? tab[1] : null;
         }
     }
 
-    var fileFilter = $el.data("file_filter");
-    var fileFilterAlert = $el.data("file_filter_alert");
+    params.url = ($el.data("thumbnail") ? '/admin/uploadWithThumbnail' : '/admin/upload');
 
-    $el.sharp_file({
-        url:thumbnail ? '/admin/uploadWithThumbnail' : '/admin/upload',
-        thumbnail:thumbnail,
-        progress:true,
-        file_filter:fileFilter,
-        file_filter_alert: fileFilterAlert,
-        done: function(data) {
-            if(data.result.err) {
-                alert(data.result.err);
-                return false;
-            }
-            return true;
-        },
-        browseButton:{
-            text:'<i class="fa fa-upload"></i> ' + $el.data("browse_text"),
-            className:'btn'
-        },
-        deleteButton:{
-            text:'<i class="fa fa-times"></i>',
-            className:'btn'
+    if($el.data("file_filter")) {
+        params.acceptedFiles = $el.data("file_filter");
+        if($el.data("file_filter_alert")) {
+            params.dictInvalidFileType = $el.data("file_filter_alert");
         }
-    });
+    }
+
+    if($el.data("max_file_size")) {
+        params.maxFilesize = $el.data("max_file_size");
+    }
+
+    params.browseText = $el.data("browse_text");
+
+    if($el.data("name")) {
+        // File is valuated
+        params.populatedFile = {
+            name: $el.data("name"),
+            size: $el.data("size")
+        };
+
+        if($el.data("thumbnail")) {
+            params.thumb = $el.data("thumbnail")
+        }
+    }
+
+    if($el.data("dl_link")) {
+        // There's a DL link
+        params.dl_url = $el.data("dl_link");
+    }
+
+    $el.sharp_file(params);
 }
-
-function getReadableFileSizeString(fileSizeInBytes)
-{
-    var i = -1;
-    var byteUnits = [' Ko', ' Mo', ' Go', ' To', 'Po', 'Eo', 'Zo', 'Yo'];
-    do {
-        fileSizeInBytes = fileSizeInBytes / 1024;
-        i++;
-    } while (fileSizeInBytes > 1024);
-
-    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
-};
