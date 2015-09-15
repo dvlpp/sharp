@@ -1,5 +1,9 @@
 @extends('sharp::cms/cmslayout')
 
+@section("meta")
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('viewname') sharp-list @stop
 
 @section('navcol')
@@ -24,7 +28,7 @@
     {{-- Reorder --}}
     @include("sharp::cms.partials.list.contextbar.reorder-button")
 
-    {{-- Sublist --}}
+    {{-- List filters --}}
     @include("sharp::cms.partials.list.contextbar.listfilters-button")
 
     {{-- Quick search --}}
@@ -33,10 +37,6 @@
 @endsection
 
 @section('content')
-
-    <form id="formToken">
-        {!! Form::token() !!}
-    </form>
 
     @if(session()->has("errorMessage"))
         <div class="alert alert-danger" role="alert">

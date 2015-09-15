@@ -37,7 +37,7 @@
                 @foreach($cmsCategories as $catKey => $cat)
 
                     @if(sharp_granted("category", "view", $catKey))
-                        <li class="{{ !isset($masterCategoryKey) && isset($category) && $catKey == $category->key ? 'active' : '' }}">
+                        <li class="{{ isset($category) && $catKey == $category->key ? 'active' : '' }}">
                             <a class="category" href="{{ route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
                         </li>
                     @endif
@@ -94,7 +94,7 @@
 
             <div class="row" id="maincontent">
 
-                <div class="col-sm-12 {{ isset($isEmbedded) && $isEmbedded ? "embedded" : "" }}" id="contextbar">
+                <div class="col-sm-12" id="contextbar">
 
                     <nav class="navbar" role="navigation">
                         <ul class="nav navbar-nav">

@@ -12448,21 +12448,6 @@ module.exports = eventmap;
             },
             mirrorContainer: document.querySelector("#entity-list tbody")
         });
-
-        //$("table#entity-list tbody").sortable({
-        //    items: '.entity-row',
-        //    handle: ".reorder-handle",
-        //    axis: "y",
-        //    helper: function (e, tr) {
-        //        var $originals = tr.children();
-        //        var $helper = tr.clone();
-        //        $helper.children().each(function (index) {
-        //            // Set helper cell sizes to match the original sizes
-        //            $(this).width($originals.eq(index).outerWidth());
-        //        });
-        //        return $helper;
-        //    }
-        //});
     });
 
     // ---
@@ -12481,14 +12466,20 @@ module.exports = eventmap;
             tabIds.push($(this).data("entity_id"));
         });
 
-        $.post(url, {
-            entities: tabIds,
-            _token: getPostToken()
-        }, function (data) {
-            if (data.err) {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr("content")
+            },
+            dataType: 'json',
+            data: {
+                entities: tabIds
+            },
+            error: function (jqXhr, json, errorThrown) {
 
             }
-        }, "json");
+        });
     });
 
     // ---
@@ -12510,6 +12501,7 @@ module.exports = eventmap;
     // ---
     // Manage ajax calls for .ajax links
     // ---
+    // @todo supprimer ceci ? Utilisé par activate / deactivate
     $("body#sharp .ajax").click(function (e) {
         e.preventDefault();
 
@@ -12554,10 +12546,6 @@ function activate($source, jsonData) {
 
 function deactivate($source, jsonData) {
     $source.parents(".state").removeClass("state-active").addClass("state-inactive");
-}
-
-function getPostToken() {
-    return $("#formToken input[name=_token]").val();
 };$(window).load(function() {
 
     $("#sharpform .sharp-field[data-conditional_display]").each(function() {
