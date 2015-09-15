@@ -70,31 +70,39 @@
             @foreach($entity->form_layout as $k => $keytab)
 
             <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k++ }}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
 
-                        @foreach($entity->form_layout->$keytab->col1->data as $key)
+                @if($entity->form_layout->$keytab->template)
 
-                            @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
+                    @include($entity->form_layout->$keytab->template, ["fields" => $entity->form_fields])
 
-                        @endforeach
+                @else
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
 
+                                @foreach($entity->form_layout->$keytab->col1->data as $key)
+
+                                    @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
+
+                                @endforeach
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+
+                                @foreach($entity->form_layout->$keytab->col2->data as $key)
+
+                                    @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
+
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
+                @endif
 
-                    <div class="col-md-6">
-                        <div class="row">
-
-                        @foreach($entity->form_layout->$keytab->col2->data as $key)
-
-                            @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
-
-                        @endforeach
-
-                        </div>
-                    </div>
-                </div>
             </div>
 
             @endforeach
