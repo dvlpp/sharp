@@ -30017,10 +30017,8 @@ $(function() {
     });
 });;(function($)
 {
-    $.fn.sharp_date=function(options)
-    {
-        var defauts=
-        {
+    $.fn.sharp_date=function(options) {
+        var defauts= {
             timepicker: false,
             datepicker:true,
             scrollInput: false,
@@ -30034,8 +30032,7 @@ $(function() {
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             var $hiddenTSField = $(this).prev(".sharp-date-timestamp");
 
             params.onChangeDateTime = function(dp,$input) {
@@ -30050,15 +30047,13 @@ $(function() {
 
 $(window).load(function() {
 
-    $('.sharp-date').each(function()
-    {
+    $('.sharp-date').each(function() {
         createSharpDate($(this));
     });
 
 });
 
-function createSharpDate($el)
-{
+function createSharpDate($el) {
     var options = {};
     if($el.data("lang")) options.lang= $el.data("lang");
     if($el.data("has_date")) options.datepicker= $el.data("has_date");
@@ -30114,12 +30109,9 @@ function createSharpMarkdown($el) {
         // We can only modify height AFTER the creation
         $el.parents(".sharp-field-markdown").find(".CodeMirror").css("height", $el.data("height"));
     }
-};(function($)
-{
-    $.fn.sharp_tags=function(options)
-    {
-        var defauts=
-        {
+};(function($) {
+    $.fn.sharp_tags=function(options) {
+        var defauts = {
             create: false,
             selectOnTab: false,
             persist: false,
@@ -30129,8 +30121,7 @@ function createSharpMarkdown($el) {
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             $(this).selectize(params);
         });
     }
@@ -30139,8 +30130,7 @@ function createSharpMarkdown($el) {
 
 $(window).load(function() {
 
-    $('.sharp-tags').each(function()
-    {
+    $('.sharp-tags').each(function() {
         createSharpTags($(this));
     });
 
@@ -30155,10 +30145,8 @@ function createSharpTags($el)
             }
         }
     };
-    if($el.data("addable"))
-    {
-        options.create = function(input, callback)
-        {
+    if($el.data("addable")) {
+        options.create = function(input, callback) {
             callback({
                 value: "#"+input,
                 text: input
@@ -30169,20 +30157,17 @@ function createSharpTags($el)
     $el.sharp_tags(options);
 
     // Deal with to_add data: some options to add and select
-    if($el.data("to_add"))
-    {
-        var tab = $el.data("to_add").split(',');
-        for (k=0; k<tab.length; k++) {
-            $el[0].selectize.addOption({value:tab[k],text:tab[k]});
-            $el[0].selectize.addItem(tab[k]);
-        }
-    }
-};(function($)
-{
-    $.fn.sharp_ref=function(options)
-    {
-        var defauts=
-        {
+    //if($el.data("to_add"))
+    //{
+    //    var tab = $el.data("to_add").split(',');
+    //    for (k=0; k<tab.length; k++) {
+    //        $el[0].selectize.addOption({value:tab[k],text:tab[k]});
+    //        $el[0].selectize.addItem(tab[k]);
+    //    }
+    //}
+};(function($) {
+    $.fn.sharp_ref=function(options) {
+        var defauts = {
             create: false,
             selectOnTab: true,
             delimiter: ';',
@@ -30195,8 +30180,7 @@ function createSharpTags($el)
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             $(this).selectize(params);
         });
     }
@@ -30205,27 +30189,24 @@ function createSharpTags($el)
 
 $(window).load(function() {
 
-    $('.sharp-ref').each(function()
-    {
+    $('.sharp-ref').each(function() {
         createSharpRef($(this));
     });
 
 });
 
-function createSharpRef($el)
-{
+function createSharpRef($el) {
     var options = {};
     if($el.data("create")) options.create = $el.data("create");
 
     $el.sharp_ref(options);
 
     // Deal with to_add data: add an option and select it.
-    if($el.data("to_add"))
-    {
-        var data = $el.data("to_add");
-        $el[0].selectize.addOption({value:data,text:data});
-        $el[0].selectize.addItem(data);
-    }
+    //if($el.data("to_add")) {
+    //    var data = $el.data("to_add");
+    //    $el[0].selectize.addOption({value:data,text:data});
+    //    $el[0].selectize.addItem(data);
+    //}
 };(function ($) {
     $.fn.sharp_refSublistItem = function (options) {
         var defauts = {};
@@ -30824,12 +30805,9 @@ function createCustomSearchResultPanelFromTemplate($template, data) {
     });
 
     return $(html).removeClass("panel-template").addClass("panel-valuated");
-};(function($)
-{
-    $.fn.sharp_list=function(options)
-    {
-        var defauts=
-        {
+};(function($) {
+    $.fn.sharp_list=function(options) {
+        var defauts = {
             "sortable": false,
             "addable": false,
             "removable": false,
@@ -30846,12 +30824,10 @@ function createCustomSearchResultPanelFromTemplate($template, data) {
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             var list = $(this);
 
-            if(params.addable)
-            {
+            if(params.addable) {
                 // Retrieve template
                 var template = $(this).find(".sharp-list-item.template");
 
@@ -30887,8 +30863,7 @@ function createCustomSearchResultPanelFromTemplate($template, data) {
                 });
             }
 
-            if(params.removable)
-            {
+            if(params.removable) {
                 // Remove an item
                 $(this).on("click", ".sharp-list-remove", function(e) {
                     e.preventDefault();
@@ -30903,25 +30878,21 @@ function createCustomSearchResultPanelFromTemplate($template, data) {
             }
 
             // Sort items (uses jquery-ui sortable plugin)
-            if(params.sortable)
-            {
+            if(params.sortable) {
                 $(this).sortable({
                     items: params.sortableItems,
                     axis: "y",
                     handle: '.sort-handle',
-                    helper: function(e, tr)
-                    {
+                    helper: function(e, tr) {
                         var $originals = tr.children();
                         var $helper = tr.clone();
-                        $helper.children().each(function(index)
-                        {
+                        $helper.children().each(function(index) {
                             // Set helper cell sizes to match the original sizes
                             $(this).width($originals.eq(index).width());
                         });
                         return $helper;
                     },
-                    update: function( event, ui )
-                    {
+                    update: function( event, ui ) {
                         params.itemsSorted(list);
                     }
                 });
@@ -30953,10 +30924,6 @@ $(window).load(function() {
                     item.find('.sharp-file-template').each(function() {
                         $(this).removeClass('sharp-file-template').addClass('sharp-file');
                         createSharpFile($(this));
-
-                        //$(this).find(".sharp-file-crop").each(function() {
-                        //    createSharpFileCrop($(this));
-                        //});
                     });
 
                     // Manage sharp-markdown in the item
@@ -30993,21 +30960,6 @@ $(window).load(function() {
                     item.find('.sharp-customSearch-template').each(function() {
                         $(this).removeClass('sharp-customSearch-template').addClass('sharp-customSearch');
                         createSharpCustomSearch($(this));
-                    });
-
-                    // Manage sharp-field-embed in the item
-                    item.find('.sharp-field-embed').each(function() {
-                        key = item.find(".sharp-list-item-id").val();
-                        $(this).find(".sharp-embed-update").each(function() {
-                            href = $(this).prop("href");
-                            href = href.replace(/(--N--)/i, key);
-                            $(this).prop("href", href);
-                        });
-                        $(this).find(".sharp-embed-delete").each(function() {
-                            fieldname = $(this).data("fieldname");
-                            fieldname = fieldname.replace(/(--N--)/i, key);
-                            $(this).data("fieldname", fieldname);
-                        });
                     });
 
                     // Manage conditional display in the item

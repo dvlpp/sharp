@@ -1,9 +1,6 @@
-(function($)
-{
-    $.fn.sharp_list=function(options)
-    {
-        var defauts=
-        {
+(function($) {
+    $.fn.sharp_list=function(options) {
+        var defauts = {
             "sortable": false,
             "addable": false,
             "removable": false,
@@ -20,12 +17,10 @@
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             var list = $(this);
 
-            if(params.addable)
-            {
+            if(params.addable) {
                 // Retrieve template
                 var template = $(this).find(".sharp-list-item.template");
 
@@ -61,8 +56,7 @@
                 });
             }
 
-            if(params.removable)
-            {
+            if(params.removable) {
                 // Remove an item
                 $(this).on("click", ".sharp-list-remove", function(e) {
                     e.preventDefault();
@@ -77,25 +71,21 @@
             }
 
             // Sort items (uses jquery-ui sortable plugin)
-            if(params.sortable)
-            {
+            if(params.sortable) {
                 $(this).sortable({
                     items: params.sortableItems,
                     axis: "y",
                     handle: '.sort-handle',
-                    helper: function(e, tr)
-                    {
+                    helper: function(e, tr) {
                         var $originals = tr.children();
                         var $helper = tr.clone();
-                        $helper.children().each(function(index)
-                        {
+                        $helper.children().each(function(index) {
                             // Set helper cell sizes to match the original sizes
                             $(this).width($originals.eq(index).width());
                         });
                         return $helper;
                     },
-                    update: function( event, ui )
-                    {
+                    update: function( event, ui ) {
                         params.itemsSorted(list);
                     }
                 });
@@ -127,10 +117,6 @@ $(window).load(function() {
                     item.find('.sharp-file-template').each(function() {
                         $(this).removeClass('sharp-file-template').addClass('sharp-file');
                         createSharpFile($(this));
-
-                        //$(this).find(".sharp-file-crop").each(function() {
-                        //    createSharpFileCrop($(this));
-                        //});
                     });
 
                     // Manage sharp-markdown in the item
@@ -167,21 +153,6 @@ $(window).load(function() {
                     item.find('.sharp-customSearch-template').each(function() {
                         $(this).removeClass('sharp-customSearch-template').addClass('sharp-customSearch');
                         createSharpCustomSearch($(this));
-                    });
-
-                    // Manage sharp-field-embed in the item
-                    item.find('.sharp-field-embed').each(function() {
-                        key = item.find(".sharp-list-item-id").val();
-                        $(this).find(".sharp-embed-update").each(function() {
-                            href = $(this).prop("href");
-                            href = href.replace(/(--N--)/i, key);
-                            $(this).prop("href", href);
-                        });
-                        $(this).find(".sharp-embed-delete").each(function() {
-                            fieldname = $(this).data("fieldname");
-                            fieldname = fieldname.replace(/(--N--)/i, key);
-                            $(this).data("fieldname", fieldname);
-                        });
                     });
 
                     // Manage conditional display in the item

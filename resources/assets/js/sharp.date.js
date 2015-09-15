@@ -1,9 +1,7 @@
 (function($)
 {
-    $.fn.sharp_date=function(options)
-    {
-        var defauts=
-        {
+    $.fn.sharp_date=function(options) {
+        var defauts= {
             timepicker: false,
             datepicker:true,
             scrollInput: false,
@@ -17,8 +15,7 @@
 
         var params = $.extend(defauts, options);
 
-        return this.each(function()
-        {
+        return this.each(function() {
             var $hiddenTSField = $(this).prev(".sharp-date-timestamp");
 
             params.onChangeDateTime = function(dp,$input) {
@@ -33,15 +30,13 @@
 
 $(window).load(function() {
 
-    $('.sharp-date').each(function()
-    {
+    $('.sharp-date').each(function() {
         createSharpDate($(this));
     });
 
 });
 
-function createSharpDate($el)
-{
+function createSharpDate($el) {
     var options = {};
     if($el.data("lang")) options.lang= $el.data("lang");
     if($el.data("has_date")) options.datepicker= $el.data("has_date");
