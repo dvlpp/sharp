@@ -213,7 +213,11 @@ class CmsController extends Controller
         // Instantiate the entity repository
         $repo = app($entity->repository);
 
+        $this->fireEvent($entity, "beforeDelete", compact('id'));
+
         $repo->delete($id);
+
+        $this->fireEvent($entity, "afterDelete", compact('id'));
 
         return redirect()->back();
     }
