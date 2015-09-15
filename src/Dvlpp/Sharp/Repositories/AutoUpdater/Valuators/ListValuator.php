@@ -2,14 +2,14 @@
 
 use Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 /**
  * Class ListValuator
  * @package Dvlpp\Sharp\Repositories\AutoUpdater\Valuators
  */
-class ListValuator implements Valuator {
+class ListValuator implements Valuator
+{
 
     /**
      * @var
@@ -49,8 +49,14 @@ class ListValuator implements Valuator {
      * @param $sharpRepository
      * @param \Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService $autoUpdater
      */
-    function __construct($instance, $listKey, $itemsForm, $listFieldConfig, $sharpRepository, SharpEloquentAutoUpdaterService $autoUpdater)
-    {
+    function __construct(
+        $instance,
+        $listKey,
+        $itemsForm,
+        $listFieldConfig,
+        $sharpRepository,
+        SharpEloquentAutoUpdaterService $autoUpdater
+    ) {
         $this->instance = $instance;
         $this->listKey = $listKey;
         $this->itemsForm = $itemsForm;
@@ -65,33 +71,29 @@ class ListValuator implements Valuator {
     public function valuate()
     {
         // First save the entity if new and transient (pivot creation would be impossible if entity has no ID)
-        if(!$this->instance->getKey()) $this->instance->save();
+        if (!$this->instance->getKey()) {
+            $this->instance->save();
+        }
 
         $order = 0;
         $saved = [];
 
-        if(is_array($this->itemsForm))
-        {
+        if (is_array($this->itemsForm)) {
             $itemIdAttribute = $this->listFieldConfig->item_id_attribute ?: "id";
 
             // Iterate items posted
-            foreach($this->itemsForm as $itemForm)
-            {
+            foreach ($this->itemsForm as $itemForm) {
                 $item = null;
                 $itemId = $itemForm[$itemIdAttribute];
 
-                if(Str::startsWith($itemId, "N_"))
-                {
+                if (starts_with($itemId, "N_")) {
                     // First test if there is a special hook method on the controller
                     // that takes the precedence. Method name should be "create[$listKey]ListItem"
-                    $methodName = "create" . ucFirst(Str::camel($this->listKey)) . "ListItem";
+                    $methodName = "create" . ucFirst(camel_case($this->listKey)) . "ListItem";
 
-                    if(method_exists($this->sharpRepository, $methodName))
-                    {
+                    if (method_exists($this->sharpRepository, $methodName)) {
                         $item = $this->sharpRepository->$methodName($this->instance);
-                    }
-                    else
-                    {
+                    } else {
                         // Have to create this item : we can't use $entity->$listKey()->create([]), because
                         // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
                         $item = $this->instance->{$this->listKey}()->getRelated()->newInstance([]);
@@ -99,13 +101,9 @@ class ListValuator implements Valuator {
                             $this->instance->{$this->listKey}()->getPlainForeignKey(),
                             $this->instance->{$this->listKey}()->getParentKey());
                     }
-                }
-                else
-                {
-                    foreach($this->instance->{$this->listKey} as $itemDb)
-                    {
-                        if($itemDb->$itemIdAttribute == $itemId)
-                        {
+                } else {
+                    foreach ($this->instance->{$this->listKey} as $itemDb) {
+                        if ($itemDb->$itemIdAttribute == $itemId) {
                             // DB item found
                             $item = $itemDb;
                             break;
@@ -113,55 +111,44 @@ class ListValuator implements Valuator {
                     }
                 }
 
-                if(!$item)
-                {
+                if (!$item) {
                     // Item can't be found and isn't new. It's an error.
                     throw new InvalidArgumentException("Item [$itemId] can't be found.");
                 }
 
                 // Update item
-                $methodName = "update" . ucFirst(Str::camel($this->listKey)) . "ListItem";
+                $methodName = "update" . ucFirst(camel_case($this->listKey)) . "ListItem";
 
-                if(method_exists($this->sharpRepository, $methodName))
-                {
+                if (method_exists($this->sharpRepository, $methodName)) {
                     $item = $this->sharpRepository->$methodName($this->instance, $item, $itemForm);
-                }
-                else
-                {
-                    foreach ($itemForm as $attr => $value)
-                    {
-                        if ($attr == $itemIdAttribute)
-                        {
+                } else {
+                    foreach ($itemForm as $attr => $value) {
+                        if ($attr == $itemIdAttribute) {
                             // Id is not updatable
                             continue;
                         }
 
                         // For other attributes:
-                        foreach ($this->listFieldConfig->item as $configListItemKey)
-                        {
-                            if ($configListItemKey == $attr)
-                            {
+                        foreach ($this->listFieldConfig->item as $configListItemKey) {
+                            if ($configListItemKey == $attr) {
                                 $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
 
                                 // Call the auto-updater updateField method
-                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr, $configListItemKey, $this->listKey);
+                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr,
+                                    $configListItemKey, $this->listKey);
                             }
                         }
                     }
                 }
 
                 // Manage order
-                if ($this->listFieldConfig->order_attribute)
-                {
-                    if (Str::contains($this->listFieldConfig->order_attribute, "~"))
-                    {
+                if ($this->listFieldConfig->order_attribute) {
+                    if (str_contains($this->listFieldConfig->order_attribute, "~")) {
                         list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
                         $itemRelation = $item->{$relation};
                         $itemRelation->{$orderAttr} = $order;
                         $itemRelation->save();
-                    }
-                    else
-                    {
+                    } else {
                         $item->{$this->listFieldConfig->order_attribute} = $order;
                     }
                     $order++;
@@ -175,20 +162,15 @@ class ListValuator implements Valuator {
             }
 
             // Manage deletions of the non-present items
-            foreach($this->instance->{$this->listKey} as $itemDb)
-            {
-                if(!in_array($itemDb->$itemIdAttribute, $saved))
-                {
+            foreach ($this->instance->{$this->listKey} as $itemDb) {
+                if (!in_array($itemDb->$itemIdAttribute, $saved)) {
                     $this->deleteItem($itemDb);
                 }
             }
-        }
 
-        else
-        {
+        } else {
             // No item sent.
-            foreach($this->instance->{$this->listKey} as $itemDb)
-            {
+            foreach ($this->instance->{$this->listKey} as $itemDb) {
                 $this->deleteItem($itemDb);
             }
         }
@@ -196,11 +178,11 @@ class ListValuator implements Valuator {
 
     private function deleteItem($itemDb)
     {
-        $methodName = "delete" . ucFirst(Str::camel($this->listKey)) . "ListItem";
+        $methodName = "delete" . ucFirst(camel_case($this->listKey)) . "ListItem";
 
-        if(method_exists($this->sharpRepository, $methodName)
-            && ! $this->sharpRepository->$methodName($this->instance, $itemDb))
-        {
+        if (method_exists($this->sharpRepository, $methodName)
+            && !$this->sharpRepository->$methodName($this->instance, $itemDb)
+        ) {
             // Deletion managed in the repository
             return;
         }

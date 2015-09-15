@@ -7,7 +7,8 @@ use Validator;
  * Class SharpValidator
  * @package Dvlpp\Sharp\Validation
  */
-abstract class SharpValidator {
+abstract class SharpValidator
+{
     /**
      * Shared rules
      * @var array
@@ -42,7 +43,7 @@ abstract class SharpValidator {
      * @return bool
      * @throws \Dvlpp\Sharp\Exceptions\ValidationException
      */
-    public function validate($input, $instanceId=null)
+    public function validate($input, $instanceId = null)
     {
         $this->instanceId = $instanceId;
 
@@ -54,8 +55,7 @@ abstract class SharpValidator {
         // and validate
         $validation = Validator::make($input, $rules, $this->getMessages());
 
-        if($validation->fails())
-        {
+        if ($validation->fails()) {
             throw new ValidationException($validation->messages());
         }
 

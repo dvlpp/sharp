@@ -9,7 +9,8 @@ use Intervention\Image\ImageManager;
  * Class FileValuator
  * @package Dvlpp\Sharp\Repositories\AutoUpdater\Valuators
  */
-class FileValuator implements Valuator {
+class FileValuator implements Valuator
+{
 
     /**
      * @var
@@ -57,36 +58,28 @@ class FileValuator implements Valuator {
      */
     public function valuate()
     {
-        if(!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithUploads)
-        {
+        if (!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithUploads) {
             throw new MandatoryClassNotFoundException(
-                get_class($this->sharpRepository).' must implement'
+                get_class($this->sharpRepository) . ' must implement'
                 . ' Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads'
                 . ' to manage auto update of file uploads');
         }
 
-        if(!$this->fileData && $this->instance->{$this->attr})
-        {
+        if (!$this->fileData && $this->instance->{$this->attr}) {
             // Delete
             $this->sharpRepository->deleteFileUpload($this->instance, $this->attr);
-        }
 
-        elseif($this->fileData && $this->fileData != ":DUPL:")
-        {
-            if($this->fileData != $this->instance->{$this->attr})
-            {
+        } elseif ($this->fileData && $this->fileData != ":DUPL:") {
+            if ($this->fileData != $this->instance->{$this->attr}) {
                 // Update (or create)
                 $this->sharpRepository->updateFileUpload($this->instance, $this->attr, $this->fileData);
-            }
 
-            elseif(trim($this->cropValues))
-            {
+            } elseif (trim($this->cropValues)) {
                 // Upload is an image, and there's a crop request
 
-                if(!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithImageAlteration)
-                {
+                if (!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithImageAlteration) {
                     throw new MandatoryClassNotFoundException(
-                        get_class($this->sharpRepository).' must implement'
+                        get_class($this->sharpRepository) . ' must implement'
                         . ' Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithImageAlteration'
                         . ' to manage auto alteration (crop) of image uploads');
                 }
@@ -94,15 +87,17 @@ class FileValuator implements Valuator {
                 $file = $this->instance->getSharpFilePathFor($this->attr);
 
                 $cropVals = explode(",", $this->cropValues);
-                if(sizeof($cropVals) != 4) return;
+                if (sizeof($cropVals) != 4) {
+                    return;
+                }
 
                 $manager = new ImageManager;
                 $img = $manager->make($file);
 
-                $w = (int) ($img->width() - $cropVals[0]*$img->width() - ($img->width() - $cropVals[2]*$img->width()));
-                $h = (int) ($img->height() - $cropVals[1]*$img->height() - ($img->height() - $cropVals[3]*$img->height()));
-                $x = (int) ($cropVals[0]*$img->width());
-                $y = (int) ($cropVals[1]*$img->height());
+                $w = (int)($img->width() - $cropVals[0] * $img->width() - ($img->width() - $cropVals[2] * $img->width()));
+                $h = (int)($img->height() - $cropVals[1] * $img->height() - ($img->height() - $cropVals[3] * $img->height()));
+                $x = (int)($cropVals[0] * $img->width());
+                $y = (int)($cropVals[1] * $img->height());
 
                 $img->crop($w, $h, $x, $y);
 

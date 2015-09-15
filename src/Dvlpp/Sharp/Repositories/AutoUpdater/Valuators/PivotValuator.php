@@ -1,12 +1,13 @@
 <?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
+
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
-use Illuminate\Support\Str;
 
 /**
- * Class PivotTagValuator
+ * Class PivotValuator
  * @package Dvlpp\Sharp\Repositories\AutoUpdater\Valuators
  */
-class PivotTagValuator implements Valuator {
+class PivotValuator implements Valuator
+{
 
     /**
      * @var
@@ -54,7 +55,9 @@ class PivotTagValuator implements Valuator {
     public function valuate()
     {
         // First save the entity if new and transient (pivot creation would be impossible if entity has no ID)
-        if(!$this->instance->getKey()) $this->instance->save();
+        if (!$this->instance->getKey()) {
+            $this->instance->save();
+        }
 
         $isCreatable = $this->pivotConfig->addable ?: false;
         $createAttribute = $isCreatable ? $this->pivotConfig->create_attribute : null;
@@ -64,24 +67,16 @@ class PivotTagValuator implements Valuator {
         $existingPivots = [];
         $newPivots = [];
         $order = 1;
-        if(is_array($this->dataPivot))
-        {
-            foreach ($this->dataPivot as $d)
-            {
-                if (!starts_with($d, '#'))
-                {
+        if (is_array($this->dataPivot)) {
+            foreach ($this->dataPivot as $d) {
+                if (!starts_with($d, '#')) {
                     // Existing tag
-                    if ($hasOrder)
-                    {
+                    if ($hasOrder) {
                         $existingPivots[$d] = [$orderAttribute => $order++];
-                    }
-                    else
-                    {
+                    } else {
                         $existingPivots[] = $d;
                     }
-                }
-                elseif ($isCreatable)
-                {
+                } elseif ($isCreatable) {
                     // Create a new tag
                     $newPivots[$order++] = substr($d, 1);
                 }
@@ -92,20 +87,17 @@ class PivotTagValuator implements Valuator {
         $this->instance->{$this->pivotKey}()->sync($existingPivots);
 
         // Create new
-        $methodName = "create" . ucFirst(Str::camel($this->pivotKey)) . "PivotTag";
+        $methodName = "create" . ucFirst(camel_case($this->pivotKey)) . "PivotTag";
 
-        foreach($newPivots as $order => $newPivot)
-        {
+        foreach ($newPivots as $order => $newPivot) {
             $joiningArray = $orderAttribute ? [$orderAttribute => $order] : [];
 
-            if(method_exists($this->sharpRepository, $methodName))
-            {
+            if (method_exists($this->sharpRepository, $methodName)) {
                 // There's a special method for that in the repo
                 $tag = $this->sharpRepository->$methodName($newPivot);
                 $this->instance->{$this->pivotKey}()->attach($tag, $joiningArray);
-            }
-            else
-            {
+
+            } else {
                 // We have to create this ourselves
                 $this->instance->{$this->pivotKey}()->create([$createAttribute => $newPivot], $joiningArray);
             }

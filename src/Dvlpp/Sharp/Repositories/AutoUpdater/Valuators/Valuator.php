@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
 
 
-interface Valuator {
+interface Valuator
+{
 
     /**
      * Valuate the field

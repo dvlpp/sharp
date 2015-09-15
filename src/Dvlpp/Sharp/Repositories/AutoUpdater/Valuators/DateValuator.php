@@ -4,7 +4,8 @@
  * Class DateValuator
  * @package Dvlpp\Sharp\Repositories\AutoUpdater\Valuators
  */
-class DateValuator implements Valuator {
+class DateValuator implements Valuator
+{
 
     /**
      * @var

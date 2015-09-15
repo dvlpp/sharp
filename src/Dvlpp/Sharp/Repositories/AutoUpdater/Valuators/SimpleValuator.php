@@ -4,7 +4,8 @@
  * Class SimpleValuator
  * @package Dvlpp\Sharp\Repositories\AutoUpdater\Valuators
  */
-class SimpleValuator implements Valuator {
+class SimpleValuator implements Valuator
+{
 
     /**
      * @var
