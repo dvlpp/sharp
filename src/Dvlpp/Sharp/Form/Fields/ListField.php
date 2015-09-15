@@ -97,7 +97,7 @@ class ListField extends AbstractSharpField
             $strItem .= '<div class="row"><div class="col-md-12">';
 
             if ($this->field->sortable) {
-                $strItem .= '<a class="sort-handle btn btn-sm"><i class="fa fa-sort"></i></a>';
+                $strItem .= '<a class="btn btn-sm"><i class="reorder-handle fa fa-sort"></i></a>';
             }
 
             if ($this->field->removable) {

@@ -30877,25 +30877,34 @@ function createCustomSearchResultPanelFromTemplate($template, data) {
                 });
             }
 
-            // Sort items (uses jquery-ui sortable plugin)
+            // Sort items
             if(params.sortable) {
-                $(this).sortable({
-                    items: params.sortableItems,
-                    axis: "y",
-                    handle: '.sort-handle',
-                    helper: function(e, tr) {
-                        var $originals = tr.children();
-                        var $helper = tr.clone();
-                        $helper.children().each(function(index) {
-                            // Set helper cell sizes to match the original sizes
-                            $(this).width($originals.eq(index).width());
-                        });
-                        return $helper;
+
+                dragula([$(this)[0]], {
+                    moves: function (el, source, handle, sibling) {
+                        return el.classList.contains(params.sortableItems.substring(1))
+                            && handle.classList.contains('reorder-handle');
                     },
-                    update: function( event, ui ) {
-                        params.itemsSorted(list);
-                    }
+                    mirrorContainer: $(this)[0]
                 });
+
+                //$(this).sortable({
+                //    items: params.sortableItems,
+                //    axis: "y",
+                //    handle: '.sort-handle',
+                //    helper: function(e, tr) {
+                //        var $originals = tr.children();
+                //        var $helper = tr.clone();
+                //        $helper.children().each(function(index) {
+                //            // Set helper cell sizes to match the original sizes
+                //            $(this).width($originals.eq(index).width());
+                //        });
+                //        return $helper;
+                //    },
+                //    update: function( event, ui ) {
+                //        params.itemsSorted(list);
+                //    }
+                //});
             }
         });
     };

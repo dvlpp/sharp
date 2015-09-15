@@ -167,7 +167,7 @@
 
                     @if(sharp_granted('entity', 'update', $entity->key) && $entity->list_template->reorderable)
                         <div class="reorder-mode">
-                            <a href="#" class="btn reorder-handle"><i class="fa fa-sort"></i></a>
+                            <a href="#" class="btn"><i class="reorder-handle fa fa-sort"></i></a>
                         </div>
                     @endif
 

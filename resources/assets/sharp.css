@@ -8839,6 +8839,13 @@ body.sharp-list.reorder #maincontent #page .table#entity-list .entity-row td.act
 body.sharp-list.reorder #maincontent #page .table#entity-list .entity-row td.actions .normal-mode {
   display: none;
 }
+body.sharp-list .gu-mirror {
+  display: none;
+}
+body.sharp-list .gu-transit {
+  opacity: 1;
+  background-color: #d1c91f !important;
+}
 body.sharp-form #maincontent #page {
   margin-top: 10px;
 }

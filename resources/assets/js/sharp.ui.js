@@ -21,20 +21,28 @@ $(window).load(function () {
     $("body.sharp-list #sharp-reorder").click(function () {
         $("body").addClass("reorder");
 
-        $("table#entity-list tbody").sortable({
-            items: '.entity-row',
-            handle: ".reorder-handle",
-            axis: "y",
-            helper: function (e, tr) {
-                var $originals = tr.children();
-                var $helper = tr.clone();
-                $helper.children().each(function (index) {
-                    // Set helper cell sizes to match the original sizes
-                    $(this).width($originals.eq(index).outerWidth());
-                });
-                return $helper;
-            }
+        dragula([document.querySelector("#entity-list tbody")], {
+            moves: function (el, source, handle, sibling) {
+                return el.classList.contains('entity-row')
+                    && handle.classList.contains('reorder-handle');
+            },
+            mirrorContainer: document.querySelector("#entity-list tbody")
         });
+
+        //$("table#entity-list tbody").sortable({
+        //    items: '.entity-row',
+        //    handle: ".reorder-handle",
+        //    axis: "y",
+        //    helper: function (e, tr) {
+        //        var $originals = tr.children();
+        //        var $helper = tr.clone();
+        //        $helper.children().each(function (index) {
+        //            // Set helper cell sizes to match the original sizes
+        //            $(this).width($originals.eq(index).outerWidth());
+        //        });
+        //        return $helper;
+        //    }
+        //});
     });
 
     // ---

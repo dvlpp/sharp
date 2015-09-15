@@ -11,7 +11,8 @@ module.exports = function(grunt) {
                 src: [
                     'resources/assets/bower_components/jquery/dist/jquery.js',
                     'resources/assets/bower_components/bootstrap/dist/js/bootstrap.js',
-                    'resources/assets/vendor/jquery-ui-1.10.4.custom.min.js',
+                    //'resources/assets/vendor/jquery-ui-1.10.4.custom.min.js',
+                    'resources/assets/bower_components/dragula.js/dist/dragula.js',
                     'resources/assets/bower_components/sweetalert/dist/sweetalert.min.js',
                     'resources/assets/js/sharp.ui.js',
                     'resources/assets/js/sharp.conditional_display.js'
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
                     'resources/assets/sharp.min.css': [
                         'resources/assets/bower_components/mirrormark/dist/css/mirrormark.package.css',
                         'resources/assets/bower_components/sweetalert/dist/sweetalert.css',
+                        'resources/assets/bower_components/dragula.js/dist/dragula.css',
                         'resources/assets/sharp.css'
                     ]
                 }
