@@ -1,6 +1,7 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
-class SharpEntityCommands extends HasProperties {
+class SharpEntityCommands extends HasProperties
+{
 
     protected $structProperties = [
         "list" => 'Dvlpp\Sharp\Config\Entities\SharpEntityCommandsList',
@@ -9,7 +10,8 @@ class SharpEntityCommands extends HasProperties {
 
 }
 
-class SharpEntityCommandsList extends HasProperties implements \Iterator {
+class SharpEntityCommandsList extends HasProperties implements \Iterator
+{
 
     use IsIterable;
 
@@ -19,7 +21,8 @@ class SharpEntityCommandsList extends HasProperties implements \Iterator {
 
 }
 
-class SharpEntityCommandsListCommand extends HasProperties {
+class SharpEntityCommandsListCommand extends HasProperties
+{
 
     protected $mandatoryProperties = ["type", "text", "handler"];
 

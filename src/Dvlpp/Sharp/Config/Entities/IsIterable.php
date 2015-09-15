@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-trait IsIterable {
+trait IsIterable
+{
     private $__iteratorPosition = 0;
 
     function rewind()

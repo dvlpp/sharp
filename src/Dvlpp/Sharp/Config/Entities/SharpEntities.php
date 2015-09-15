@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-class SharpEntities extends HasProperties implements \Iterator {
+class SharpEntities extends HasProperties implements \Iterator
+{
 
     use IsIterable;
 

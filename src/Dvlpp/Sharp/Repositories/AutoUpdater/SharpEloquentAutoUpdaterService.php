@@ -61,15 +61,13 @@ class SharpEloquentAutoUpdaterService
      * @param $entityConfig
      * @param $instance
      * @param array $data
-     * @param null $callbackBeforeSave
      * @return mixed
      */
     function updateEntityWithConfig(
         SharpCmsRepository $sharpRepository,
         $entityConfig,
         $instance,
-        Array $data,
-        $callbackBeforeSave = null
+        Array $data
     ) {
         $this->sharpRepository = $sharpRepository;
         $this->entityConfig = $entityConfig;
@@ -95,11 +93,6 @@ class SharpEloquentAutoUpdaterService
             $lk = $instance->$relationKey()->getForeignKey();
             $fk = $instance->$relationKey()->getOtherKey();
             $instance->$lk = $singleRelationBelongsTo->$fk;
-        }
-
-        if ($callbackBeforeSave) {
-            // A "before save" callback was registered
-            call_user_func($callbackBeforeSave, $instance);
         }
 
         // Then save the actual instance
@@ -298,4 +291,5 @@ class SharpEloquentAutoUpdaterService
 
         return null;
     }
-} 
+
+}

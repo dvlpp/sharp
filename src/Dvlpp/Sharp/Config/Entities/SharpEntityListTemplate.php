@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-class SharpEntityListTemplate extends HasProperties {
+class SharpEntityListTemplate extends HasProperties
+{
 
     protected $mandatoryProperties = ["columns"];
 
@@ -19,19 +20,20 @@ class SharpEntityListTemplate extends HasProperties {
 
 }
 
-class SharpEntityListTemplateColumns extends HasProperties {
+class SharpEntityListTemplateColumns extends HasProperties
+{
 
     public function __construct(Array $data)
     {
         parent::__construct($data, $this->parent);
-        foreach($data as $key => $field)
-        {
+        foreach ($data as $key => $field) {
             $this->$key = new SharpEntityListTemplateColumn($field, $this->parent);
         }
     }
 }
 
-class SharpEntityListTemplateColumn extends HasProperties {
+class SharpEntityListTemplateColumn extends HasProperties
+{
 
     protected $mandatoryProperties = [];
 

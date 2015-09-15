@@ -1,7 +1,5 @@
 <?php namespace Dvlpp\Sharp\Config;
 
-use Config;
-use App;
 use Dvlpp\Sharp\Auth\SharpAuth;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 
@@ -9,10 +7,10 @@ use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
  * Class SharpSiteConfig
  * @package Dvlpp\Sharp\Config
  *
- * Access to sharp "site" config file, which contains general options
+ * Access to sharp "site" config, which contains general options
  */
-class SharpSiteConfig {
-
+class SharpSiteConfig
+{
     /**
      * @var
      */
@@ -23,12 +21,12 @@ class SharpSiteConfig {
      */
     public static function getName()
     {
-        return Config::get('sharp.name');
+        return config('sharp.name');
     }
 
     public static function getLanguages()
     {
-        return Config::get('sharp.languages');
+        return config('sharp.languages');
     }
 
     /**
@@ -37,27 +35,22 @@ class SharpSiteConfig {
      */
     public static function getAuthService()
     {
-        if(self::$authService === null)
-        {
-            $authService = Config::get('sharp.auth_service');
-            if($authService)
-            {
-                if(class_exists($authService))
-                {
-                    self::$authService = App::make($authService);
-                    if(!self::$authService instanceof SharpAuth)
-                    {
+        if (self::$authService === null) {
+            $authService = config('sharp.auth_service');
+
+            if ($authService) {
+                if (class_exists($authService)) {
+                    self::$authService = app($authService);
+                    if (!self::$authService instanceof SharpAuth) {
                         self::$authService = null;
                         throw new MandatoryClassNotFoundException("Class [$authService] declared in sharp site config must implements Dvlpp\\Sharp\\Auth\\SharpAuth");
                     }
-                }
-                else
-                {
+
+                } else {
                     throw new MandatoryClassNotFoundException("Class [$authService] declared in sharp site config can't be found");
                 }
-            }
-            else
-            {
+
+            } else {
                 self::$authService = false;
             }
         }

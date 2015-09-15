@@ -334,6 +334,8 @@ class CmsController extends Controller
         $repo = app($entity->repository);
 
         try {
+            $this->fireEvent($entity, "beforeValidate", compact('id', 'data'));
+
             // First validation
             if ($entity->validator) {
                 $validator = app($entity->validator);
@@ -342,10 +344,15 @@ class CmsController extends Controller
 
             // Then update (calling repo)
             if ($creation) {
-                $repo->create($data);
+                $this->fireEvent($entity, "beforeCreate", compact('data'));
+                $instance = $repo->create($data);
+
             } else {
-                $repo->update($id, $data);
+                $this->fireEvent($entity, "beforeUpdate", compact('id', 'data'));
+                $instance = $repo->update($id, $data);
             }
+
+            $this->fireEvent($entity, "afterUpdate", compact('instance'));
 
             // And redirect
             return response()->json([
@@ -398,6 +405,13 @@ class CmsController extends Controller
     {
         session()->put("listViewInput_{$categoryName}_{$entityName}",
             $request->only(['page', 'sort', 'dir', 'search', 'sub']));
+    }
+
+    private function fireEvent($entityConfig, $eventName, $params)
+    {
+        if($entityConfig->events && $entityConfig->events->$eventName) {
+            event(new $entityConfig->events->$eventName($params));
+        }
     }
 
 }

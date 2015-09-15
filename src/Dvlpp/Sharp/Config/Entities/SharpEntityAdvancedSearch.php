@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-class SharpEntityAdvancedSearch extends HasProperties {
+class SharpEntityAdvancedSearch extends HasProperties
+{
 
     protected $structProperties = [
         "rows" => 'Dvlpp\Sharp\Config\Entities\SharpEntityAdvancedSearchRows'
@@ -10,7 +11,8 @@ class SharpEntityAdvancedSearch extends HasProperties {
 }
 
 
-class SharpEntityAdvancedSearchRows extends HasProperties implements \Iterator {
+class SharpEntityAdvancedSearchRows extends HasProperties implements \Iterator
+{
 
     use IsIterable;
 
@@ -21,7 +23,8 @@ class SharpEntityAdvancedSearchRows extends HasProperties implements \Iterator {
 }
 
 
-class SharpEntityAdvancedSearchRow extends HasProperties {
+class SharpEntityAdvancedSearchRow extends HasProperties
+{
 
     protected $structProperties = [
         "fields" => 'Dvlpp\Sharp\Config\Entities\SharpEntityAdvancedSearchFields'
@@ -30,7 +33,8 @@ class SharpEntityAdvancedSearchRow extends HasProperties {
 }
 
 
-class SharpEntityAdvancedSearchFields extends HasProperties implements \Iterator {
+class SharpEntityAdvancedSearchFields extends HasProperties implements \Iterator
+{
 
     use IsIterable;
 
@@ -40,7 +44,8 @@ class SharpEntityAdvancedSearchFields extends HasProperties implements \Iterator
 
 }
 
-class SharpEntityAdvancedSearchField extends HasProperties {
+class SharpEntityAdvancedSearchField extends HasProperties
+{
 
     protected $mandatoryProperties = ["type"];
 

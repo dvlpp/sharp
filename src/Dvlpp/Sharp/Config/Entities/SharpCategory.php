@@ -1,7 +1,8 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-class SharpCategory extends HasProperties {
+class SharpCategory extends HasProperties
+{
 
     protected $mandatoryProperties = ["label", "entities"];
 
