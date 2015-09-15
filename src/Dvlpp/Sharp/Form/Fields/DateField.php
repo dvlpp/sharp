@@ -1,7 +1,5 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-use Form;
-
 /**
  * A date/time input element, JS-built with http://xdsoft.net/jqplugins/datetimepicker/.
  *
@@ -31,8 +29,7 @@ class DateField extends AbstractSharpField {
         }
 
         $format = $this->field->format;
-        if(!$format)
-        {
+        if(!$format) {
             $format = "";
             $format .= $this->field->has_date!==false ? trans('sharp::format.date_inputFormat') : "";
             $format .= $this->field->has_time ? ((strlen($format)?" ":"") . trans('sharp::format.time_inputFormat')) : "";
@@ -44,36 +41,19 @@ class DateField extends AbstractSharpField {
 
         // Valuate field (date formatting according to declared format)
         $fieldValue = null;
-        if($this->fieldValue)
-        {
-            $d = strtotime($this->fieldValue);
-            if($d)
-            {
-                $fieldValue = date($format, $d);
-            }
+        if($this->fieldValue && ($d = strtotime($this->fieldValue))) {
+            $fieldValue = date($format, $d);
         }
 
-        if(!$this->instance && $this->isListItem)
-        {
-            // No instance and part of a list item : this field is meant to be in the template item.
-            // In this case, we don't set the "sharp-date" class which will trigger the JS code for
-            // the date component creation
-            $this->addClass("sharp-date-template");
-        }
-        else
-        {
-            // Regular case
-            $this->addClass("sharp-date");
-        }
+        $this->addClass("sharp-date", true);
 
         // Auto-populate the real sent field
-        $str = Form::hidden($this->fieldName, $this->fieldValue, ["class"=>"sharp-date-timestamp", "autocomplete"=>"off"]);
+        $str = $this->formBuilder()->hidden($this->fieldName, $this->fieldValue, ["class"=>"sharp-date-timestamp", "autocomplete"=>"off"]);
 
         // And populate with formatted date the visible input field
-        $str .= Form::text("__date__".$this->fieldName, $fieldValue, $this->attributes);
+        $str .= $this->formBuilder()->text("__date__".$this->fieldName, $fieldValue, $this->attributes);
 
         return $str;
     }
-
 
 }

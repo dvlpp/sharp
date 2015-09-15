@@ -1,5 +1,6 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
+use Collective\Html\FormBuilder;
 use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use stdClass;
@@ -54,6 +55,11 @@ abstract class AbstractSharpField
     protected $relationKey;
 
     /**
+     * FormBuilder
+     */
+    private $formBuilder;
+
+    /**
      * Construct the field.
      *
      * @param $key
@@ -92,7 +98,7 @@ abstract class AbstractSharpField
 
         } else {
             // Value is instance->key, except for null key: in this case, value IS the instance
-            $this->fieldValue = $key && $key != "__embed_data" ? ($instance ? $instance->$key : null) : $instance;
+            $this->fieldValue = $key ? ($instance ? $instance->$key : null) : $instance;
         }
     }
 
@@ -100,11 +106,20 @@ abstract class AbstractSharpField
      * Add a class name to the class attribute.
      *
      * @param $className
+     * @param bool $handleTemplateCase
      */
-    protected function addClass($className)
+    protected function addClass($className, $handleTemplateCase=false)
     {
-        $this->attributes["class"] = $className . (array_key_exists("class",
-                $this->attributes) ? " " . $this->attributes["class"] : "");
+        if($handleTemplateCase && !$this->instance && $this->isListItem) {
+            // No instance and part of a list item : this field is meant to be in the template item.
+            // In this case, we don't set the "sharp-date" class which will trigger the JS code for
+            // the date component creation
+            $this->addClass("$className-template");
+
+        } else {
+            $this->attributes["class"] = $className . (array_key_exists("class",
+                    $this->attributes) ? " " . $this->attributes["class"] : "");
+        }
     }
 
     /**
@@ -133,39 +148,13 @@ abstract class AbstractSharpField
         }
     }
 
-    /**
-     * Retrieve the old value (Input::old) if it exists.
-     *
-     * @return null
-     */
-    protected function getOldValue()
+    protected function formBuilder()
     {
-        // If no instance (template for example), no need to go further
-        if (!$this->instance) {
-            return null;
+        if(!$this->formBuilder) {
+            $this->formBuilder = app(FormBuilder::class);
         }
 
-        if ($this->isListItem) {
-            // If is list item, have to look inside list array
-            $list = old($this->listKey);
-
-            if (!is_array($list)) {
-                return [];
-            }
-
-            $item = $list[$this->instance->id];
-
-            return $item[$this->key];
-
-        } else {
-            return old($this->key);
-        }
-    }
-
-    protected function isRepopulated()
-    {
-        $oldValue = $this->getOldValue();
-        return $oldValue && (!is_array($oldValue) || sizeof($oldValue));
+        return $this->formBuilder;
     }
 
     /**

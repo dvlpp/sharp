@@ -1,7 +1,5 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-use Form;
-
 /**
  * A password input field.
  *
@@ -17,7 +15,7 @@ class PasswordField extends AbstractSharpField {
      */
     function make()
     {
-        return Form::password($this->fieldName, $this->attributes);
+        return $this->formBuilder()->password($this->fieldName, $this->attributes);
     }
 
 } 

@@ -1,7 +1,5 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-use Form;
-
 /**
  * A simple textarea input element.
  *
@@ -17,7 +15,7 @@ class TextareaField extends AbstractSharpField {
      */
     function make()
     {
-        return Form::textarea($this->fieldName, $this->fieldValue, $this->attributes);
+        return $this->formBuilder()->textarea($this->fieldName, $this->fieldValue, $this->attributes);
     }
 
 } 

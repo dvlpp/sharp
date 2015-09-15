@@ -35,34 +35,22 @@ class FileField extends AbstractSharpField
         // Gets the file possibly valuated
         $instanceFile = null;
         $className = "sharp-file";
-        $repopulation = false;
 
-        // Field name
-        if ($this->isListItem) {
-            // List item case: have to format the fieldName from [list][item][field] to list.item.field
-            $fieldName = str_replace("[", ".", $this->fieldName);
-            $fieldName = str_replace("]", "", $fieldName);
-        } else {
-            $fieldName = $this->fieldName;
-        }
+//        // Field name
+//        if ($this->isListItem) {
+//            // List item case: have to format the fieldName from [list][item][field] to list.item.field
+//            $fieldName = str_replace("[", ".", $this->fieldName);
+//            $fieldName = str_replace("]", "", $fieldName);
+//        } else {
+//            $fieldName = $this->fieldName;
+//        }
 
-        // Field Value
-        if (old($fieldName) !== null) {
-            $fieldValue = old($fieldName);
-        } else {
-            $fieldValue = $this->fieldValue;
-        }
-
-        if ($fieldValue) {
+        if ($this->fieldValue) {
             // File valued: have to grab the full file path
-            if (old("__file__" . $fieldName)) {
-                // Repopulate
-                $instanceFile = old("__file__" . $fieldName);
-                $repopulation = true;
 
-            } elseif (is_string($fieldValue) && starts_with($fieldValue, ":DUPL:")) {
+            if (is_string($this->fieldValue) && starts_with($this->fieldValue, ":DUPL:")) {
                 // Duplication case: file path is in the value
-                $instanceFile = substr($fieldValue, strlen(":DUPL:"));
+                $instanceFile = substr($this->fieldValue, strlen(":DUPL:"));
 
             } else {
                 // Populate from "normal" data (field): we get the file path from the model
@@ -78,10 +66,10 @@ class FileField extends AbstractSharpField
                 if (method_exists($ownerInstance, "getSharpFilePathFor")) {
                     $instanceFile = $ownerInstance->getSharpFilePathFor($key);
 
-                } elseif (is_object($fieldValue) && method_exists($fieldValue, "getSharpFilePath")) {
+                } elseif (is_object($this->fieldValue) && method_exists($this->fieldValue, "getSharpFilePath")) {
                     // Optional second method: call getSharpField on the File object itself (if it's an object).
                     // Useful when files are stored in separate table
-                    $instanceFile = $fieldValue->getSharpFilePath();
+                    $instanceFile = $this->fieldValue->getSharpFilePath();
                 }
             }
 
@@ -98,7 +86,7 @@ class FileField extends AbstractSharpField
 
         // Here we have to manually manage the field valuation (and it's a pain)
         if ($instanceFile) {
-            // This file is populated (or repopulated after a validation failure)
+            // This file is populated
 
             if ($this->field->thumbnail) {
                 // There's a thumbnail to display
@@ -116,15 +104,13 @@ class FileField extends AbstractSharpField
                 . '<span class="size">' . (file_exists($instanceFile) ? $this->humanFileSize(filesize($instanceFile)) : "") . '</span>';
 
             // Add download link
-            if (!$repopulation) {
-                $fileShortPath = substr($instanceFile, strlen(config("sharp.upload_storage_base_path")) + 1);
+            $fileShortPath = substr($instanceFile, strlen(config("sharp.upload_storage_base_path")) + 1);
 
-                $strField .= '<a href="'
-                    . route("download", [$fileShortPath])
-                    . '" class="dl" target="_blank"><i class="fa fa-download"></i> '
-                    . trans('sharp::ui.form_fileField_dlBtn')
-                    . '</a>';
-            }
+            $strField .= '<a href="'
+                . route("download", [$fileShortPath])
+                . '" class="dl" target="_blank"><i class="fa fa-download"></i> '
+                . trans('sharp::ui.form_fileField_dlBtn')
+                . '</a>';
 
             if ($this->field->crop && !$this->isListItem) {
                 $strField .= '<a class="sharp-file-crop" href="'
@@ -137,17 +123,12 @@ class FileField extends AbstractSharpField
             $strField .= '</div>';
         }
 
-        // Valuation of the Form::hidden: first one is the value...
-        $strField .= Form::hidden($this->fieldName,
+        // Valuation of the Form::hidden (value)
+        $strField .= $this->formBuilder()->hidden($this->fieldName,
             $this->instance && isset($this->instance->__sharp_duplication) && $this->instance->__sharp_duplication
                 ? ":DUPL:" . $instanceFile // Duplication case: we provide the full original file path
-                : $fieldValue, // Regular case: value is the field value
+                : $this->fieldValue, // Regular case: value is the field value
             ["class" => "sharp-file-id", "autocomplete" => "off"]);
-
-        // ... second one is to manage "repopulation": we store the file path...
-        $strField .= Form::hidden("__file__" . $this->fieldName,
-            $instanceFile,
-            ["class" => "sharp-file-path", "autocomplete" => "off"]);
 
         if ($this->field->crop) {
             // ... and finally, crop
@@ -155,7 +136,7 @@ class FileField extends AbstractSharpField
             // In single relation case (~), we use the relationKey for name only
             $fileName = $this->relation ? $this->relationKey : $this->fieldName;
 
-            $strField .= Form::hidden("__filecrop__$fileName",
+            $strField .= $this->formBuilder()->hidden("__filecrop__$fileName",
                 "",
                 ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
         }

@@ -1,7 +1,6 @@
 <?php  namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
-use Form;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Mustache_Engine;
@@ -22,34 +21,25 @@ class LabelField extends AbstractSharpField {
      */
     function make()
     {
-        if($this->field->format === null)
-        {
+        if($this->field->format === null) {
             throw new MandatoryEntityAttributeNotFoundException("LabelField : Mandatory attribute format can't be found");
         }
 
-        if($this->getOldValue() === null || (is_array($this->getOldValue()) && !sizeof($this->getOldValue())))
-        {
-            $baseEntity = $this->instance;
-            if ($baseEntity instanceof Model)
-            {
-                // Eloquent Model case: in order to have properties to work with Mustache, we
-                // have to cheat a little, adding a MustacheModelHelper Decorator to force
-                // Mustache to take properties even if method exists (relation case)
-                $baseEntity = new MustacheModelHelper($baseEntity);
-            }
-
-            $val = $this->_format($baseEntity, $this->field->format);
+        // Valuate field with Mustache templating
+        $baseEntity = $this->instance;
+        if ($baseEntity instanceof Model) {
+            // Eloquent Model case: in order to have properties to work with Mustache, we
+            // have to cheat a little, adding a MustacheModelHelper Decorator to force
+            // Mustache to take properties even if method exists (relation case)
+            $baseEntity = new MustacheModelHelper($baseEntity);
         }
-        else
-        {
-            $val = $this->getOldValue();
-        }
+        $val = $this->_format($baseEntity, $this->field->format);
 
         $attributes = $this->field->attributes || [];
         $attributes["class"] = "control-label";
 
         $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
-            . Form::label("", $val, $attributes);
+            . $this->formBuilder()->label("", $val, $attributes);
 
         return $str;
     }
@@ -86,12 +76,10 @@ class MustacheModelHelper
 
     public function __get($key)
     {
-        if (method_exists($this->model, $key))
-        {
+        if (method_exists($this->model, $key)) {
             // It's either a Relation method or a standard one
             $ret = $this->model->$key();
-            if($ret instanceof Relation)
-            {
+            if($ret instanceof Relation) {
                 // It's a Relation: return the attribute in order
                 // to make Eloquent relation work
                 return $this->model->$key;
@@ -99,24 +87,20 @@ class MustacheModelHelper
 
             // Standard method
             return $this->model->$key();
-        }
 
-        elseif(isset($this->model->$key))
-        {
+        } elseif(isset($this->model->$key)) {
             return $this->model->$key;
         }
+
+        return null;
     }
 
     public function __isset($key)
     {
-        if (isset($this->model->$key))
-        {
+        if (isset($this->model->$key) || method_exists($this->model, $key)) {
             return true;
         }
-        elseif (method_exists($this->model, $key))
-        {
-            return true;
-        }
+
         return false;
     }
 }

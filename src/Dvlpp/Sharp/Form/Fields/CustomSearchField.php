@@ -5,7 +5,6 @@ namespace Dvlpp\Sharp\Form\Fields;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpHasCustomSearch;
-use Form;
 
 class CustomSearchField extends AbstractSharpField
 {
@@ -34,21 +33,13 @@ class CustomSearchField extends AbstractSharpField
             $this->fieldName
         ]));
 
-        if (!$this->instance && $this->isListItem) {
-            // No data and part of a list item: this field is meant to be in the template item.
-            // In this case, we don't set the "sharp-file" class which will trigger the JS code for
-            // the file upload component creation
-            $this->addClass('sharp-customSearch-template');
-
-        } else {
-            $this->addClass('sharp-customSearch');
-        }
+        $this->addClass("sharp-customSearch", true);
 
         // Render the valuated view
         $valuated = false;
         $strValuatedView = "";
 
-        if($this->fieldValue || $this->isRepopulated()) {
+        if($this->fieldValue) {
             // Instantiate entity repository
             $entity = SharpCmsConfig::findEntity($this->field->getCategoryKey(), $this->field->getEntityKey());
             $repo = app($entity->repository);
@@ -59,7 +50,7 @@ class CustomSearchField extends AbstractSharpField
                     ." interface");
             }
 
-            $value = $this->fieldValue ?: $this->getOldValue();
+            $value = $this->fieldValue;
 
             $result = $repo->getCustomSearchResult($value);
             $strValuatedView = $this->wrapIntoPanel(view($this->field->result_template, $result)->render());
@@ -74,8 +65,10 @@ class CustomSearchField extends AbstractSharpField
             "title" => $modalTitle
         ])->render();
 
-        return '<div class="search '.($valuated?"hidden":"").'">' . Form::text("__customSearchBox__".$this->fieldName, "", $this->attributes) . '</div>'
-                . Form::hidden($this->fieldName, $this->fieldValue, ["autocomplete" => "off"])
+        return '<div class="search '.($valuated?"hidden":"").'">'
+                . $this->formBuilder()->text("__customSearchBox__".$this->fieldName, "", $this->attributes)
+                . '</div>'
+                . $this->formBuilder()->hidden($this->fieldName, $this->fieldValue, ["autocomplete" => "off"])
                 . $strValuatedView
                 . $strTemplateView
                 . $strModal;

@@ -2,7 +2,6 @@
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
-use Form;
 
 /**
  * A reference picker field.
@@ -28,54 +27,22 @@ class RefField extends AbstractSharpField
         if (class_exists($reflistRepoName) || interface_exists($reflistRepoName)) {
             $reflistRepo = app($reflistRepoName);
 
-            /*$ui = $this->field->ui;
-            if(!$ui)
-            {
-                $ui = "list";
-            }
-            elseif(!in_array($ui, ["list", "autocomplete"]))
-            {
-                throw new InvalidArgumentException("Attribute ui of ref field has to in 'list' or 'autocomplete'");
+            if ($this->field->create !== null) {
+                $this->addData("create", $this->field->create);
             }
 
-            $this->addData("ui", $ui);*/
-
-            $create = $this->field->create;
-            if ($create !== null) {
-                $this->addData("create", $create);
-            }
-
-            if (!$this->instance && $this->isListItem) {
-                // No instance and part of a list item : this field is meant to be in the template item.
-                // In this case, we don't set the "sharp-ref" class which will trigger the JS code for
-                // the selectize component creation
-                $this->addClass("sharp-ref-template");
-            } else {
-                // Regular case
-                $this->addClass("sharp-ref");
-            }
+            $this->addClass("sharp-ref", true);
 
             if (method_exists($reflistRepo, "formList")) {
                 $values = $reflistRepo->formList($this->instance);
 
-                // Initial value *could be* tricky...
-                $value = $this->fieldValue;
-                if ($this->getOldValue() && !is_numeric($this->getOldValue())) {
-                    // Repopulate after validation error for a ref which was created by user before.
-                    // Have to tell selectize.js to add this non existent option
-                    $value = $this->getOldValue();
-                    $this->addData("to_add", $value);
-                }
-
-                return Form::select($this->fieldName, $values, $value, $this->attributes);
+                return $this->formBuilder()->select($this->fieldName, $values, $this->fieldValue, $this->attributes);
             }
 
             throw new MandatoryMethodNotFoundException("Method formList(askingInstance) not found in the [$reflistRepoName] class");
-
-        } else {
-            throw new MandatoryClassNotFoundException("Class [$reflistRepoName] not found");
         }
 
+        throw new MandatoryClassNotFoundException("Class [$reflistRepoName] not found");
     }
 
 

@@ -1,14 +1,13 @@
 <?php namespace Dvlpp\Sharp\Form\Fields;
 
-use Form;
-
 /**
  * A markdown textarea input element, JS-built with lepture/editor.
  *
  * Class MarkdownField
  * @package Dvlpp\Sharp\Form\Fields
  */
-class MarkdownField extends AbstractSharpField {
+class MarkdownField extends AbstractSharpField
+{
 
     /**
      * The actual HTML creation of the field.
@@ -17,24 +16,18 @@ class MarkdownField extends AbstractSharpField {
      */
     function make()
     {
-        if($this->field->toolbar) $this->addData("toolbar", $this->field->toolbar);
-        if($this->field->height) $this->addData("height", $this->field->height);
+        if ($this->field->toolbar) {
+            $this->addData("toolbar", $this->field->toolbar);
+        }
 
-        if(!$this->instance && $this->isListItem)
-        {
-            // No instance and part of a list item : this field is meant to be in the template item.
-            // In this case, we don't set the "sharp-markdown" class which will trigger the JS code for
-            // the markdown component creation
-            $this->addClass("sharp-markdown-template");
+        if ($this->field->height) {
+            $this->addData("height", $this->field->height);
         }
-        else
-        {
-            // Regular case
-            $this->addClass("sharp-markdown");
-        }
+
+        $this->addClass("sharp-markdown", true);
 
         // No need to populate the field, since we use a regular Form::textarea and a Form::model
-        return (string) Form::textarea($this->fieldName, $this->fieldValue, $this->attributes);
+        return $this->formBuilder()->textarea($this->fieldName, $this->fieldValue, $this->attributes);
     }
 
 
