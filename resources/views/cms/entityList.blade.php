@@ -38,13 +38,6 @@
 
 @section('content')
 
-    @if(session()->has("errorMessage"))
-        <div class="alert alert-danger" role="alert">
-            <h4>{{ trans('sharp::ui.command_params_validation_error') }}</h4>
-            {{ session("errorMessage") }}
-        </div>
-    @endif
-
     <table class="table table-responsive table-striped" id="entity-list">
         <thead>
             <tr>
