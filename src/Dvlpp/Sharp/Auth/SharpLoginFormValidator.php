@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Auth;
+<?php
 
+namespace Dvlpp\Sharp\Auth;
 
 use Dvlpp\Sharp\Validation\SharpValidator;
 

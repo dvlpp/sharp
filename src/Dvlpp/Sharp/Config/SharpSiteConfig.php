@@ -30,7 +30,7 @@ class SharpSiteConfig
     }
 
     /**
-     * @return bool|null
+     * @return bool|SharpAuth
      * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
      */
     public static function getAuthService()
