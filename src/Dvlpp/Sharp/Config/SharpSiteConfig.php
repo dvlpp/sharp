@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config;
+<?php
+
+namespace Dvlpp\Sharp\Config;
 
 use Dvlpp\Sharp\Auth\SharpAuth;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
