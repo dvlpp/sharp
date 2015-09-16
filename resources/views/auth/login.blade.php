@@ -10,10 +10,10 @@
             {{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}
         </h1>
 
-        @if(Session::has("flashMessage"))
+        @if(session()->has("flashMessage"))
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ Session::get("flashMessage") }}
+                {{ session()->get("flashMessage") }}
             </div>
         @endif
 

@@ -3,7 +3,8 @@
 
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 
-class SharpAccessManager {
+class SharpAccessManager
+{
 
     /**
      * Return true if current user is authorized for the action.
@@ -18,13 +19,12 @@ class SharpAccessManager {
     {
         $authService = SharpSiteConfig::getAuthService();
 
-        if( ! $authService)
-        {
+        if (!$authService) {
             // No access management
             return true;
         }
 
-        return $authService->checkAccess(\Session::get("sharp_user"), $type, $action, $key);
+        return $authService->checkAccess(session("sharp_user"), $type, $action, $key);
     }
 
 } 
