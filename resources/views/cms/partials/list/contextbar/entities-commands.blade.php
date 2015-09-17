@@ -7,7 +7,7 @@
         <ul class="dropdown-menu pull-right">
             @foreach($entity->commands->list as $command)
 
-                @if(sharp_granted('entity', $entity->commands->list->$command->auth ?: "update", $entity->key))
+                @if(check_ability($entity->commands->list->$command->auth ?: "update", $category->key, $entity->key))
                     <li>
                         <a href="{{ route('cms.listCommand', array_merge([$category->key, $entity->key, $command], Input::all())) }}"
                                 {!! $entity->commands->list->$command->confirm ? 'data-confirm="'.e($entity->commands->list->$command->confirm).'"' : '' !!}

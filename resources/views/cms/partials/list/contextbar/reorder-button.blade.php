@@ -1,5 +1,5 @@
 @if($entity->list_template->reorderable
-            && sharp_granted('entity', 'update', $entity->key)
+            && check_ability('reorder', $category->key, $entity->key)
             && (!$entity->list_template->searchable || !Input::get('search')))
 
     <a id="sharp-reorder" class="btn navbar-btn navbar-right normal-mode">

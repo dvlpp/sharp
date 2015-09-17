@@ -2,7 +2,7 @@
 
     @foreach($category->entities as $eKey)
 
-        @if( ! $category->entities->$eKey->embedded && sharp_granted('entity', 'list', $eKey))
+        @if(check_ability('list', $category->key, $eKey))
 
             <li class="{{ $entity->key == $eKey ? 'active' : '' }}">
                 <a href="{{ route('cms.list', [$category->key, $eKey]) }}">

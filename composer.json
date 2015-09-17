@@ -1,12 +1,10 @@
 {
     "name": "dvlpp/sharp",
     "description": "A kind of CMS for developers who hate CMS",
-    "authors": [
-        {
-            "name": "Philippe Lonchampt",
-            "email": "philippelonchampt@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "Philippe Lonchampt",
+        "email": "philippelonchampt@gmail.com"
+    }],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",

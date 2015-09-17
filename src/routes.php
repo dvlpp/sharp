@@ -4,17 +4,10 @@ use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Config\SharpSiteConfig;
 
 Route::get('/admin', function () {
-
-    $authService = SharpSiteConfig::getAuthService();
-
-    if ($authService && !$authService->checkAdmin()) {
-        return redirect()->guest("admin/login");
-    }
-
     return redirect()->route("cms");
 });
 
-Route::group(['before' => 'sharp_auth'], function () {
+Route::group(['middleware' => 'sharp_auth'], function () {
 
     // CMS Home
     Route::get('/admin/cms', [
@@ -32,42 +25,34 @@ Route::group(['before' => 'sharp_auth'], function () {
     Route::get('/admin/cms/{category}', [
         "as" => "cms.category",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@category',
-        "before" => "sharp_access_granted:category view *category"
     ]);
     Route::get('/admin/cms/{category}/{entity}', [
         "as" => "cms.list",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@listEntities',
-        "before" => "sharp_access_granted:entity list *entity"
     ]);
     Route::get('/admin/cms/{category}/{entity}/create', [
         "as" => "cms.create",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@createEntity',
-        "before" => "sharp_access_granted:entity create *entity"
     ]);
     Route::get('/admin/cms/{category}/{entity}/{id}/edit', [
         "as" => "cms.edit",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@editEntity',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
     Route::get('/admin/cms/{category}/{entity}/{id}/duplicate/{lang?}', [
         "as" => "cms.duplicate",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@duplicateEntity',
-        "before" => "sharp_access_granted:entity create *entity"
     ]);
     Route::put('/admin/cms/{category}/{entity}/{id}', [
         "as" => "cms.update",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@updateEntity',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
     Route::post('/admin/cms/{category}/{entity}', [
         "as" => "cms.store",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@storeEntity',
-        "before" => "sharp_access_granted:entity create *entity"
     ]);
     Route::delete('/admin/cms/{category}/{entity}/{id}', [
         "as" => "cms.destroy",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@destroyEntity',
-        "before" => "sharp_access_granted:entity delete *entity"
     ]);
 
     Route::match(['POST', 'GET'], '/admin/cms/{category}/{entity}/command/{action}/{id}', [
@@ -82,24 +67,20 @@ Route::group(['before' => 'sharp_auth'], function () {
     Route::post('/admin/cms/{category}/{entity}/{id}/activate', [
         "as" => "cms.activate",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_activateEntity',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
     Route::post('/admin/cms/{category}/{entity}/{id}/deactivate', [
         "as" => "cms.deactivate",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_deactivateEntity',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/reorder', [
         "as" => "cms.reorder",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_reorderEntities',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/{field}/customSearchField', [
         "as" => "cms.customSearchField",
         "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_customSearchField',
-        "before" => "sharp_access_granted:entity update *entity"
     ]);
 
     Route::post('/admin/upload', [
@@ -122,7 +103,7 @@ Route::group(['before' => 'sharp_auth'], function () {
 });
 
 
-Route::group(['before' => 'sharp_guest'], function () {
+Route::group(['middleware' => 'sharp_guest'], function () {
 
     Route::get('/admin/login', '\Dvlpp\Sharp\Http\AuthController@index');
     Route::post('/admin/login', [
@@ -151,33 +132,4 @@ View::composer(['sharp::cms.cmslayout'], function ($view) {
 
     // Get sharp version
     $view->with('sharpVersion', File::get(__DIR__ . "/../version.txt"));
-});
-
-
-Route::filter('sharp_auth', function () {
-    $authService = SharpSiteConfig::getAuthService();
-
-    if ($authService && !$authService->checkAdmin()) {
-        return redirect()->guest("admin/login");
-    }
-});
-
-Route::filter('sharp_guest', function () {
-    $authService = SharpSiteConfig::getAuthService();
-
-    if (!$authService || $authService->checkAdmin()) {
-        return redirect()->to("/admin/cms");
-    }
-});
-
-Route::filter('sharp_access_granted', function ($route, $request, $value) {
-    list($type, $action, $key) = explode(" ", $value);
-
-    if (starts_with($key, "*")) {
-        $key = $route->getParameter(substr($key, 1));
-    }
-
-    if (!sharp_granted($type, $action, $key)) {
-        return redirect()->to("/admin/cms");
-    }
 });

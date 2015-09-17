@@ -70,7 +70,7 @@
             <tr class="entity-row" data-entity_id="{{ $instance->id }}">
                 @foreach($entity->list_template->columns as $colKey => $col)
                     <td class="entity-data"
-                        data-link="{{ sharp_granted('entity', 'update', $entity->key) ? route('cms.edit', [$category->key, $entity->key, $instance->id]) : '' }}">
+                        data-link="{{ check_ability('update', $category->key, $entity->key, $instance->id) ? route('cms.edit', [$category->key, $entity->key, $instance->id]) : '' }}">
                         @if($col->renderer)
                             {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($col, $colKey, $instance) !!}
                         @else
@@ -92,7 +92,7 @@
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
 
-                                @if(sharp_granted('entity', 'delete', $entity->key))
+                                @if(check_ability('delete', $category->key, $entity->key, $instance->id))
                                     <li>
                                         {!! Form::open(["route"=>["cms.destroy", $category->key, $entity->key, $instance->id], "method"=>"DELETE", "id"=>"sharpdelete".$instance->id]) !!}
                                         {!! Form::close() !!}
@@ -103,7 +103,7 @@
                                     </li>
                                 @endif
 
-                                @if($entity->duplicable && sharp_granted('entity', 'update', $entity->key))
+                                @if($entity->duplicable && check_ability('duplicate', $category->key, $entity->key, $instance->id))
 
                                     @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages())
 
@@ -131,8 +131,8 @@
 
                                 @if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data))
 
-                                    @if(sharp_granted('entity', 'delete', $entity->key)
-                                        || ($entity->duplicable && sharp_granted('entity', 'update', $entity->key)))
+                                    @if(check_ability('delete', $category->key, $entity->key, $instance->id)
+                                        || ($entity->duplicable && check_ability('update', $category->key, $entity->key, $instance->id)))
 
                                         <li class="divider"></li>
 
@@ -140,7 +140,7 @@
 
                                     @foreach($entity->commands->entity as $command)
 
-                                        @if(sharp_granted('entity', $entity->commands->entity->$command->auth ?: "update", $entity->key))
+                                        @if(check_ability($entity->commands->entity->$command->auth ?: "update", $category->key, $entity->key, $instance->id))
                                             <li>
                                                 <a href="{{ route('cms.entityCommand', array_merge([$category->key, $entity->key, $command, $instance->id], Input::all())) }}"
                                                         class="sharp-command {{ $entity->commands->entity->$command->form ? 'with-form' : '' }}"
@@ -158,7 +158,7 @@
 
                     </div>
 
-                    @if(sharp_granted('entity', 'update', $entity->key) && $entity->list_template->reorderable)
+                    @if(check_ability('reorder', $category->key, $entity->key) && $entity->list_template->reorderable)
                         <div class="reorder-mode">
                             <a href="#" class="btn"><i class="reorder-handle fa fa-sort"></i></a>
                         </div>

@@ -1,59 +1,50 @@
 <?php
 
-if ( ! function_exists('get_entity_update_form_route'))
+/**
+ * Generate the entity update form action attribute.
+ *
+ * @param $category
+ * @param $entity
+ * @param $instance
+ * @return array
+ */
+function get_entity_update_form_route($category, $entity, $instance)
 {
-    /**
-     * Generate the entity update form action attribute.
-     *
-     * @param $category
-     * @param $entity
-     * @param $instance
-     * @return array
-     */
-    function get_entity_update_form_route($category, $entity, $instance)
-    {
-        if($instance->{$entity->id_attribute} && !$instance->__sharp_duplication)
-        {
-            return ["cms.update", $category->key, $entity->key, $instance->{$entity->id_attribute}];
-        }
-        else
-        {
-            return ["cms.store", $category->key, $entity->key];
-        }
+    if ($instance->{$entity->id_attribute} && !$instance->__sharp_duplication) {
+        return ["cms.update", $category->key, $entity->key, $instance->{$entity->id_attribute}];
+    } else {
+        return ["cms.store", $category->key, $entity->key];
     }
 }
 
-if ( ! function_exists('append_counter_to_filename'))
+/**
+ * Appends an incremental counter to a file name.
+ *
+ * @param $file
+ * @return string
+ */
+function append_counter_to_filename($file)
 {
-    /**
-     * Appends an incremental counter to a file name.
-     *
-     * @param $file
-     * @return string
-     */
-    function append_counter_to_filename($file)
-    {
-        if( ! File::exists($file)) return $file;
-
-        $filename = basename($file);
-        $ext = File::extension($file);
-        if($ext)
-        {
-            $ext = ".$ext";
-            $filename = substr($filename, 0, strlen($filename) - strlen($ext));
-        }
-
-        $increment = 1;
-
-        if(preg_match('/(.)+_\d+/', $filename))
-        {
-            $pos = strrpos($file, "_");
-            $filename = substr($filename, 0, $pos);
-            $increment = intval(substr($filename, $pos+1)) +1;
-        }
-
-        return $filename . "_" . $increment . $ext;
+    if (!File::exists($file)) {
+        return $file;
     }
+
+    $filename = basename($file);
+    $ext = File::extension($file);
+    if ($ext) {
+        $ext = ".$ext";
+        $filename = substr($filename, 0, strlen($filename) - strlen($ext));
+    }
+
+    $increment = 1;
+
+    if (preg_match('/(.)+_\d+/', $filename)) {
+        $pos = strrpos($file, "_");
+        $filename = substr($filename, 0, $pos);
+        $increment = intval(substr($filename, $pos + 1)) + 1;
+    }
+
+    return $filename . "_" . $increment . $ext;
 }
 
 /**
@@ -65,8 +56,7 @@ if ( ! function_exists('append_counter_to_filename'))
  */
 function get_entity_attribute_value($instance, $attributeName)
 {
-    if(strpos($attributeName, "~"))
-    {
+    if (strpos($attributeName, "~")) {
         // If there's a "~" in the field $key, this means we are in a single relation case
         // (One-To-One or Belongs To). The ~ separate the relation name and the value.
         // For instance : boss~name indicate that the instance as a single "boss" relation,
@@ -74,27 +64,78 @@ function get_entity_attribute_value($instance, $attributeName)
         list($relation, $attributeName) = explode("~", $attributeName);
 
         return $instance->{$relation}->{$attributeName};
-    }
-    else
-    {
+    } else {
         return $instance->{$attributeName};
     }
 }
 
-
-if ( ! function_exists('sharp_granted'))
+/**
+ * Returns true if the authenticated user is a Sharp user.
+ *
+ * @return bool
+ */
+function is_sharp_user()
 {
-
-    /**
-     * Helper for \Dvlpp\Sharp\Auth\SharpAccessManager::granted
-     *
-     * @param $type
-     * @param $action
-     * @param $key
-     * @return bool
-     */
-    function sharp_granted($type, $action, $key)
-    {
-        return \Dvlpp\Sharp\Auth\SharpAccessManager::granted($type, $action, $key);
+    $user = auth()->user();
+    if (!$user) {
+        return false;
     }
+
+    return !method_exists($user, 'isSharpUser') || auth()->user()->isSharpUser();
+}
+
+/**
+ * Returns the name of the login field of the user.
+ *
+ * @return string
+ */
+function get_user_login_field_name()
+{
+    $class = config('auth.model');
+
+    return method_exists($class, "sharpLoginField")
+        ? $class::sharpLoginField()
+        : "login";
+}
+
+/**
+ * Returns the authenticated user login
+ *
+ * @return string
+ */
+function get_user_login()
+{
+    if (!is_sharp_user()) {
+        return null;
+    }
+
+    return auth()->user()->{get_user_login_field_name()};
+}
+
+/**
+ * Check ability with Laravel 5.1 ACL.
+ *
+ * @param $name
+ * @param $categoryKey
+ * @param null $entityKey
+ * @param null $entityId
+ * @param array $params
+ * @return bool
+ */
+function check_ability($name, $categoryKey, $entityKey=null, $entityId=null, array $params = [])
+{
+    $ability = "sharp::$name.{$categoryKey}";
+
+    if($entityKey) {
+        $ability .= ".{$entityKey}";
+    }
+
+    // If ability isn't defined, then it's all good
+    if(!Gate::has($ability)) return true;
+
+    if($entityId) {
+        $params = ["id" => $entityId] + $params;
+    }
+
+    return Gate::check($ability, $params);
 }

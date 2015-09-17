@@ -7,7 +7,9 @@ use Dvlpp\Sharp\Config\SharpSiteConfig;
 use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\Form\Fields\CustomSearchField;
+use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -16,6 +18,21 @@ use Illuminate\Routing\Controller;
  */
 class CmsController extends Controller
 {
+    use CheckAbilityTrait;
+
+    /**
+     * @var Gate
+     */
+    private $gate;
+
+    /**
+     * CmsController constructor.
+     * @param Gate $gate
+     */
+    public function __construct(Gate $gate)
+    {
+        $this->gate = $gate;
+    }
 
     /**
      * @return mixed
@@ -38,6 +55,16 @@ class CmsController extends Controller
 
         $entityName = $category->entities->current();
 
+        // Find the first entity for which we are abilited
+        while(!check_ability("list", $categoryName, $entityName)) {
+            $category->entities->next();
+            $entityName = $category->entities->valid() ? $category->entities->current() : null;
+        }
+
+        if(!$entityName) {
+            abort(403);
+        }
+
         return redirect()->route("cms.list", [$categoryName, $entityName]);
     }
 
@@ -52,6 +79,8 @@ class CmsController extends Controller
      */
     public function listEntities($categoryName, $entityName, Request $request)
     {
+        $this->checkAbility('list-entities', $categoryName, $entityName);
+
         if ($qs = $this->restoreQuerystringForListEntities($categoryName, $entityName, $request)) {
             // We saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
@@ -91,6 +120,8 @@ class CmsController extends Controller
      */
     public function editEntity($categoryName, $entityName, $id)
     {
+        $this->checkAbility('update', $categoryName, $entityName, $id);
+
         return $this->form($categoryName, $entityName, $id);
     }
 
@@ -103,6 +134,8 @@ class CmsController extends Controller
      */
     public function createEntity($categoryName, $entityName)
     {
+        $this->checkAbility('create', $categoryName, $entityName);
+
         return $this->form($categoryName, $entityName, null);
     }
 
@@ -118,6 +151,8 @@ class CmsController extends Controller
      */
     public function duplicateEntity($categoryName, $entityName, $id, $lang = null)
     {
+        $this->checkAbility('duplicate', $categoryName, $entityName, $id);
+
         if ($lang) {
             // We have to first change the language
             // (duplication is useful for i18n copy)
@@ -138,6 +173,8 @@ class CmsController extends Controller
      */
     public function updateEntity($categoryName, $entityName, $id, Request $request)
     {
+        $this->checkAbility('update', $categoryName, $entityName, $id);
+
         return $this->save($categoryName, $entityName, $request, $id);
     }
 
@@ -151,6 +188,8 @@ class CmsController extends Controller
      */
     public function storeEntity($categoryName, $entityName, Request $request)
     {
+        $this->checkAbility('create', $categoryName, $entityName);
+
         return $this->save($categoryName, $entityName, $request, null);
     }
 
@@ -162,6 +201,8 @@ class CmsController extends Controller
      */
     public function ax_activateEntity($categoryName, $entityName, $id)
     {
+        $this->checkAbility('activate', $categoryName, $entityName, $id);
+
         return $this->activateDeactivateEntity($categoryName, $entityName, $id, true);
     }
 
@@ -173,6 +214,8 @@ class CmsController extends Controller
      */
     public function ax_deactivateEntity($categoryName, $entityName, $id)
     {
+        $this->checkAbility('deactivate', $categoryName, $entityName, $id);
+
         return $this->activateDeactivateEntity($categoryName, $entityName, $id, false);
     }
 
@@ -185,6 +228,8 @@ class CmsController extends Controller
      */
     public function ax_reorderEntities($categoryName, $entityName, Request $request)
     {
+        $this->checkAbility('reorder', $categoryName, $entityName);
+
         $entities = $request->get("entities");
 
         // Find Entity config (from sharp CMS config file)
@@ -207,6 +252,8 @@ class CmsController extends Controller
      */
     public function destroyEntity($categoryName, $entityName, $id)
     {
+        $this->checkAbility('delete', $categoryName, $entityName, $id);
+
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
 

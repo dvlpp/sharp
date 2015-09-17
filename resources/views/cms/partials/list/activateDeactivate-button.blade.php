@@ -1,4 +1,4 @@
-@if($entity->active_state_field && sharp_granted('entity', 'update', $entity->key))
+@if($entity->active_state_field && check_ability('activate', $category->key, $entity->key, $instance->id))
 
     <span class="state {{ get_entity_attribute_value($instance, $entity->active_state_field)?'state-active':'state-inactive' }}">
 
