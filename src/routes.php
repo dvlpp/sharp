@@ -55,11 +55,11 @@ Route::group(['middleware' => 'sharp_auth'], function () {
         "uses" => '\Dvlpp\Sharp\Http\CmsController@destroyEntity',
     ]);
 
-    Route::match(['POST', 'GET'], '/admin/cms/{category}/{entity}/command/{action}/{id}', [
+    Route::post('/admin/cms/{category}/{entity}/command/{action}/{id}', [
         "as" => "cms.entityCommand",
         "uses" => '\Dvlpp\Sharp\Http\CmsCommandsController@entityCommand'
     ]);
-    Route::get('/admin/cms/{category}/{entity}/command/{action}', [
+    Route::post('/admin/cms/{category}/{entity}/command/{action}', [
         "as" => "cms.listCommand",
         "uses" => '\Dvlpp\Sharp\Http\CmsCommandsController@entitiesListCommand'
     ]);

@@ -8675,7 +8675,6 @@ body.sharp-auth {
 }
 #maincontent #contextbar {
   background: #12dbe8;
-  padding-right: 0;
 }
 #maincontent #contextbar .navbar {
   margin-bottom: 0;
@@ -8694,7 +8693,8 @@ body.sharp-auth {
   font-size: 18px;
   line-height: normal;
   color: #fff;
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   padding-top: 14px;
   padding-bottom: 14px;
   border-left: 1px solid #fff;

@@ -24,6 +24,6 @@ class SharpEntityCommandsList extends HasProperties implements \Iterator
 class SharpEntityCommandsListCommand extends HasProperties
 {
 
-    protected $mandatoryProperties = ["type", "text", "handler"];
+    protected $mandatoryProperties = ["text", "handler"];
 
 }

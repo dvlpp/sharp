@@ -63,13 +63,6 @@ $(window).load(function () {
     });
 
     // ---
-    // Show confirm on commands
-    // ---
-    $("a[data-confirm]").click(function() {
-        return confirm($(this).data("confirm"));
-    });
-
-    // ---
     // Show confirm on delete entity click (with form post)
     // ---
     $("body.sharp-list .sharp-delete").click(function () {
@@ -100,22 +93,6 @@ $(window).load(function () {
                 window[success](link, data);
             }
         }, "json");
-    });
-
-    // ---
-    // Manage form creation for commands with form
-    // ---
-    $("body.sharp-list .sharp-command.with-form").click(function (e) {
-        e.preventDefault();
-
-        var url = $(this).attr("href");
-
-        $.get(url, function(formData) {
-            var $modal = $(formData);
-            $("#contenu").append($modal);
-            $modal.modal({}).show();
-        });
-
     });
 
 });

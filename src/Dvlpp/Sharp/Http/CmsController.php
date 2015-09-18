@@ -103,7 +103,7 @@ class CmsController extends Controller
         $entitiesList = (new SharpEntitiesList($entity, $repo, $request))->execute();
 
         // And return the View
-        return view('sharp::cms.entityList', [
+        return view('sharp::cms.entitiesList', [
             'category' => SharpCmsConfig::findCategory($categoryName),
             'entity' => $entity,
             'list' => $entitiesList

@@ -1,22 +1,24 @@
-<?php namespace Dvlpp\Sharp\Commands;
+<?php
 
+namespace Dvlpp\Sharp\Commands;
+
+use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 
 /**
- * Interface SharpEntitiesListCommand
+ * Class SharpEntitiesListCommand
  * @package Dvlpp\Sharp\Commands
  */
-interface SharpEntitiesListCommand {
+abstract class SharpEntitiesListCommand {
+
+    use SharpCommandReturnTrait;
 
     /**
-     * Execute the entities list command, and return
-     * a file name (if command type is "download"),
-     * an array of data for a view (case "view"),
-     * or nothing.
+     * Execute the command.
      *
      * @param \Dvlpp\Sharp\ListView\SharpEntitiesListParams $entitiesListParams
-     * @return mixed
+     * @return SharpCommandReturn
      */
-    function execute(SharpEntitiesListParams $entitiesListParams);
+    abstract function execute(SharpEntitiesListParams $entitiesListParams);
 
 } 

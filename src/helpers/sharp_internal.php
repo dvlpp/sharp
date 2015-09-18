@@ -139,3 +139,40 @@ function check_ability($name, $categoryKey, $entityKey=null, $entityId=null, arr
 
     return Gate::check($ability, $params);
 }
+
+function get_abilited_entities_list_commands($category, $entity)
+{
+    $tabCommands = [];
+
+    if(sizeof($entity->commands->data) && sizeof($entity->commands->list->data)) {
+
+        foreach($entity->commands->list as $command) {
+            if (check_ability($entity->commands->list->$command->auth ?: "list",
+                $category->key,
+                $entity->key)) {
+                $tabCommands[$command] = $entity->commands->list->$command;
+            }
+        }
+    }
+
+    return $tabCommands;
+}
+
+function get_abilited_entities_entity_commands($category, $entity, $instanceId)
+{
+    $tabCommands = [];
+
+    if(sizeof($entity->commands->data) && sizeof($entity->commands->entity->data)) {
+
+        foreach($entity->commands->entity as $command) {
+            if (check_ability($entity->commands->entity->$command->auth ?: "update",
+                $category->key,
+                $entity->key,
+                $instanceId)) {
+                $tabCommands[$command] = $entity->commands->entity->$command;
+            }
+        }
+    }
+
+    return $tabCommands;
+}

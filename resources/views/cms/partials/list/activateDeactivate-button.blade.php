@@ -1,6 +1,6 @@
 @if($entity->active_state_field && check_ability('activate', $category->key, $entity->key, $instance->id))
 
-    <span class="state {{ get_entity_attribute_value($instance, $entity->active_state_field)?'state-active':'state-inactive' }}">
+    <span class="btn state {{ get_entity_attribute_value($instance, $entity->active_state_field)?'state-active':'state-inactive' }}">
 
         <a href="{{ route('cms.deactivate', [$category->key, $entity->key, $instance->id]) }}"
            class="btn btn-state-active ajax"

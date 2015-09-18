@@ -11,10 +11,10 @@ module.exports = function(grunt) {
                 src: [
                     'resources/assets/bower_components/jquery/dist/jquery.js',
                     'resources/assets/bower_components/bootstrap/dist/js/bootstrap.js',
-                    //'resources/assets/vendor/jquery-ui-1.10.4.custom.min.js',
                     'resources/assets/bower_components/dragula.js/dist/dragula.js',
                     'resources/assets/bower_components/sweetalert/dist/sweetalert.min.js',
                     'resources/assets/js/sharp.ui.js',
+                    'resources/assets/js/sharp.commands.js',
                     'resources/assets/js/sharp.conditional_display.js'
                 ],
                 dest: 'resources/assets/<%= pkg.name %>.ui.js'
@@ -30,8 +30,6 @@ module.exports = function(grunt) {
                     // Markdown
                     'resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js',
                     // Upload
-                    //'resources/assets/bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
-                    //'resources/assets/bower_components/jquery-file-upload/js/jquery.fileupload.js',
                     'resources/assets/bower_components/dropzone/dist/dropzone.js',
                     // Image crop
                     'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',

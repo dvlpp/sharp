@@ -1,15 +1,15 @@
-@if(sizeof($commands = get_abilited_entities_list_commands($category, $entity)))
+@if(sizeof($commands = get_abilited_entities_entity_commands($category, $entity, $instance->id)))
 
-    <div class="dropdown navbar-right normal-mode">
+    <div class="btn dropdown">
 
-        <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
+        <a data-toggle="dropdown" data-target="#">
             <i class="fa fa-ellipsis-h"></i>
         </a>
 
         <ul class="dropdown-menu pull-right">
             @foreach($commands as $commandKey => $command)
                 <li>
-                    <a class="command" href="{{ route('cms.listCommand', array_merge([$category->key, $entity->key, $commandKey], Input::all())) }}"
+                    <a class="command" href="{{ route('cms.entityCommand', [$category->key, $entity->key, $commandKey, $instance->id]) }}"
                             {!! $command->confirm ? 'data-confirm="'.e($command->confirm).'"' : '' !!}>
                         @if($command->icon)
                             <i class="fa fa-{{ $command->icon }}"></i>
