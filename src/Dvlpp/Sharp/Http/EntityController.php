@@ -29,6 +29,7 @@ class EntityController extends Controller
      */
     public function __construct(Gate $gate)
     {
+        parent::__construct();
         $this->gate = $gate;
     }
 

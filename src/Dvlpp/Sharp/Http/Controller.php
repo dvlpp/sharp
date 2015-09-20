@@ -31,6 +31,6 @@ class Controller extends BaseController
         view()->share('language', $language);
 
         // Get sharp version
-        view()->share('sharpVersion', file_get_contents(__DIR__ . "/../version.txt"));
+        view()->share('sharpVersion', file_get_contents(__DIR__ . "/../../../../version.txt"));
     }
 }
