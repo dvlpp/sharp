@@ -2,21 +2,19 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
-use Dvlpp\Sharp\Config\SharpSiteConfig;
-use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
-use Dvlpp\Sharp\Exceptions\ValidationException;
-use Dvlpp\Sharp\Form\Fields\CustomSearchField;
-use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
-use Dvlpp\Sharp\ListView\SharpEntitiesList;
-use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Illuminate\Contracts\Auth\Access\Gate;
+use Dvlpp\Sharp\ListView\SharpEntitiesList;
+use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
+use Dvlpp\Sharp\Form\Fields\CustomSearchField;
+use Dvlpp\Sharp\Exceptions\ValidationException;
+use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 
 /**
  * Class CmsController
  */
-class CmsController extends Controller
+class EntityController extends Controller
 {
     use CheckAbilityTrait;
 
@@ -35,40 +33,6 @@ class CmsController extends Controller
     }
 
     /**
-     * @return mixed
-     */
-    public function index()
-    {
-        return view('sharp::cms.index');
-    }
-
-    /**
-     * Redirects to list of first entity of the selected category.
-     *
-     * @param $categoryName
-     * @return mixed
-     */
-    public function category($categoryName)
-    {
-        // Find Category config (from sharp CMS config file)
-        $category = SharpCmsConfig::findCategory($categoryName);
-
-        $entityName = $category->entities->current();
-
-        // Find the first entity for which we are abilited
-        while(!check_ability("list", $categoryName, $entityName)) {
-            $category->entities->next();
-            $entityName = $category->entities->valid() ? $category->entities->current() : null;
-        }
-
-        if(!$entityName) {
-            abort(403);
-        }
-
-        return redirect()->route("cms.list", [$categoryName, $entityName]);
-    }
-
-    /**
      * List all entities of a given category/entity with pagination, search, and sorting.
      *
      * @param $categoryName
@@ -77,7 +41,7 @@ class CmsController extends Controller
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function listEntities($categoryName, $entityName, Request $request)
+    public function index($categoryName, $entityName, Request $request)
     {
         $this->checkAbility('list-entities', $categoryName, $entityName);
 
@@ -118,7 +82,7 @@ class CmsController extends Controller
      * @param $id
      * @return mixed
      */
-    public function editEntity($categoryName, $entityName, $id)
+    public function edit($categoryName, $entityName, $id)
     {
         $this->checkAbility('update', $categoryName, $entityName, $id);
 
@@ -132,7 +96,7 @@ class CmsController extends Controller
      * @param $entityName
      * @return mixed
      */
-    public function createEntity($categoryName, $entityName)
+    public function create($categoryName, $entityName)
     {
         $this->checkAbility('create', $categoryName, $entityName);
 
@@ -145,19 +109,12 @@ class CmsController extends Controller
      * @param $categoryName
      * @param $entityName
      * @param $id
-     * @param null $lang
      * @throws InstanceNotFoundException
      * @return mixed
      */
-    public function duplicateEntity($categoryName, $entityName, $id, $lang = null)
+    public function duplicate($categoryName, $entityName, $id)
     {
         $this->checkAbility('duplicate', $categoryName, $entityName, $id);
-
-        if ($lang) {
-            // We have to first change the language
-            // (duplication is useful for i18n copy)
-            $this->changeLang($lang);
-        }
 
         return $this->form($categoryName, $entityName, $id, true);
     }
@@ -171,7 +128,7 @@ class CmsController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function updateEntity($categoryName, $entityName, $id, Request $request)
+    public function update($categoryName, $entityName, $id, Request $request)
     {
         $this->checkAbility('update', $categoryName, $entityName, $id);
 
@@ -186,7 +143,7 @@ class CmsController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function storeEntity($categoryName, $entityName, Request $request)
+    public function store($categoryName, $entityName, Request $request)
     {
         $this->checkAbility('create', $categoryName, $entityName);
 
@@ -199,7 +156,7 @@ class CmsController extends Controller
      * @param $id
      * @return mixed
      */
-    public function ax_activateEntity($categoryName, $entityName, $id)
+    public function activate($categoryName, $entityName, $id)
     {
         $this->checkAbility('activate', $categoryName, $entityName, $id);
 
@@ -212,7 +169,7 @@ class CmsController extends Controller
      * @param $id
      * @return mixed
      */
-    public function ax_deactivateEntity($categoryName, $entityName, $id)
+    public function deactivate($categoryName, $entityName, $id)
     {
         $this->checkAbility('deactivate', $categoryName, $entityName, $id);
 
@@ -226,7 +183,7 @@ class CmsController extends Controller
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function ax_reorderEntities($categoryName, $entityName, Request $request)
+    public function reorder($categoryName, $entityName, Request $request)
     {
         $this->checkAbility('reorder', $categoryName, $entityName);
 
@@ -250,7 +207,7 @@ class CmsController extends Controller
      * @param $id
      * @return mixed
      */
-    public function destroyEntity($categoryName, $entityName, $id)
+    public function destroy($categoryName, $entityName, $id)
     {
         $this->checkAbility('delete', $categoryName, $entityName, $id);
 
@@ -265,19 +222,6 @@ class CmsController extends Controller
         $repo->delete($id);
 
         $this->fireEvent($entity, "afterDelete", compact('id'));
-
-        return redirect()->back();
-    }
-
-    /**
-     * Switch current language, and redirects back
-     *
-     * @param $lang
-     * @return mixed
-     */
-    public function lang($lang)
-    {
-        $this->changeLang($lang);
 
         return redirect()->back();
     }
@@ -412,19 +356,6 @@ class CmsController extends Controller
 
         } catch (ValidationException $e) {
             return response()->json($e->getErrors(), 422);
-        }
-    }
-
-    private function changeLang($lang)
-    {
-        $languages = SharpSiteConfig::getLanguages();
-
-        if ($languages) {
-            if (!$lang || !array_key_exists($lang, $languages)) {
-                $lang = array_values($languages)[0];
-            }
-
-            session()->put("sharp_lang", $lang);
         }
     }
 

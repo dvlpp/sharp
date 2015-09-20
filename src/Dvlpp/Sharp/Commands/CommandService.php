@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  * Class SharpCommandsManager
  * @package Dvlpp\Sharp\Commands
  */
-class SharpCommandsManager
+class CommandService
 {
 
     /**

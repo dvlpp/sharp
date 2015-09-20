@@ -11,7 +11,7 @@ use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
  */
 abstract class SharpEntitiesListCommand {
 
-    use SharpCommandReturnTrait;
+    use CommandReturnTrait;
 
     /**
      * Execute the command.

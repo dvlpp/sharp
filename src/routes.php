@@ -12,75 +12,75 @@ Route::group(['middleware' => 'sharp_auth'], function () {
     // CMS Home
     Route::get('/admin/cms', [
         "as" => "cms",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@index'
+        "uses" => '\Dvlpp\Sharp\Http\CategoryController@index'
     ]);
 
     // Language management
     Route::get('/admin/cms/lang/{lang}', [
         "as" => "cms.lang",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@lang'
+        "uses" => '\Dvlpp\Sharp\Http\LocalizationController@change'
     ]);
 
     // Entity
     Route::get('/admin/cms/{category}', [
         "as" => "cms.category",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@category',
+        "uses" => '\Dvlpp\Sharp\Http\CategoryController@show',
     ]);
     Route::get('/admin/cms/{category}/{entity}', [
         "as" => "cms.list",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@listEntities',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@index',
     ]);
     Route::get('/admin/cms/{category}/{entity}/create', [
         "as" => "cms.create",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@createEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@create',
     ]);
     Route::get('/admin/cms/{category}/{entity}/{id}/edit', [
         "as" => "cms.edit",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@editEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@edit',
     ]);
-    Route::get('/admin/cms/{category}/{entity}/{id}/duplicate/{lang?}', [
+    Route::get('/admin/cms/{category}/{entity}/{id}/duplicate', [
         "as" => "cms.duplicate",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@duplicateEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@duplicate',
     ]);
     Route::put('/admin/cms/{category}/{entity}/{id}', [
         "as" => "cms.update",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@updateEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@update',
     ]);
     Route::post('/admin/cms/{category}/{entity}', [
         "as" => "cms.store",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@storeEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@store',
     ]);
     Route::delete('/admin/cms/{category}/{entity}/{id}', [
         "as" => "cms.destroy",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@destroyEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@destroy',
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/command/{action}/{id}', [
         "as" => "cms.entityCommand",
-        "uses" => '\Dvlpp\Sharp\Http\CmsCommandsController@entityCommand'
+        "uses" => '\Dvlpp\Sharp\Http\CommandController@entityCommand'
     ]);
     Route::post('/admin/cms/{category}/{entity}/command/{action}', [
         "as" => "cms.listCommand",
-        "uses" => '\Dvlpp\Sharp\Http\CmsCommandsController@entitiesListCommand'
+        "uses" => '\Dvlpp\Sharp\Http\CommandController@entitiesListCommand'
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/{id}/activate', [
         "as" => "cms.activate",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_activateEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@activate',
     ]);
     Route::post('/admin/cms/{category}/{entity}/{id}/deactivate', [
         "as" => "cms.deactivate",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_deactivateEntity',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@deactivate',
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/reorder', [
         "as" => "cms.reorder",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_reorderEntities',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@reorder',
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/{field}/customSearchField', [
         "as" => "cms.customSearchField",
-        "uses" => '\Dvlpp\Sharp\Http\CmsController@ax_customSearchField',
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@ax_customSearchField',
     ]);
 
     Route::post('/admin/upload', [
@@ -110,26 +110,4 @@ Route::group(['middleware' => 'sharp_guest'], function () {
         "as" => "login",
         "uses" => '\Dvlpp\Sharp\Http\AuthController@login'
     ]);
-});
-
-
-View::composer(['sharp::cms.cmslayout'], function ($view) {
-    // Load categories
-    $categories = SharpCmsConfig::listCategories();
-    $view->with('cmsCategories', $categories);
-
-    // Get current language
-    $language = session("sharp_lang");
-    $languages = SharpSiteConfig::getLanguages();
-    if ($languages) {
-        if (!$language || !array_key_exists($language, $languages)) {
-            $language = array_values($languages)[0];
-        } else {
-            $language = $languages[$language];
-        }
-    }
-    $view->with('language', $language);
-
-    // Get sharp version
-    $view->with('sharpVersion', File::get(__DIR__ . "/../version.txt"));
 });

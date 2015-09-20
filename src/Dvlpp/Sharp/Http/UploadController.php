@@ -2,9 +2,8 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class UploadController extends Controller
 {

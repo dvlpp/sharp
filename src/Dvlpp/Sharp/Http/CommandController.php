@@ -2,29 +2,27 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
-use Dvlpp\Sharp\Commands\SharpCommandsManager;
-use Dvlpp\Sharp\Config\SharpCmsConfig;
-use Dvlpp\Sharp\Exceptions\CommandValidationException;
-use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Commands\CommandService;
+use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
+use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
 
 /**
  * Controller which manages project specific commands on entities list or on entity.
  *
  * Class CmsCommandsController
  */
-class CmsCommandsController extends Controller
+class CommandController extends Controller
 {
     use CheckAbilityTrait;
 
     /**
-     * @var \Dvlpp\Sharp\Commands\SharpCommandsManager
+     * @var \Dvlpp\Sharp\Commands\CommandService
      */
     private $commandsManager;
 
-    function __construct(SharpCommandsManager $commandsManager)
+    function __construct(CommandService $commandsManager)
     {
         $this->commandsManager = $commandsManager;
     }

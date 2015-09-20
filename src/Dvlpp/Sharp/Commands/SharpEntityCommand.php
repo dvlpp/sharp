@@ -8,7 +8,7 @@ use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
  */
 abstract class SharpEntityCommand {
 
-    use SharpCommandReturnTrait;
+    use CommandReturnTrait;
 
     /**
      * Execute the entity command.
