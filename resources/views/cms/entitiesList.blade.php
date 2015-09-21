@@ -90,7 +90,7 @@
 
                         <div class="btn dropdown">
 
-                            <a class="btn" data-toggle="dropdown" data-target="#">
+                            <a class="" data-toggle="dropdown" data-target="#">
                                 <i class="fa fa-asterisk"></i>
                             </a>
 
