@@ -12523,6 +12523,21 @@ function activate($source, jsonData) {
 
 function deactivate($source, jsonData) {
     $source.parents(".state").removeClass("state-active").addClass("state-inactive");
+}
+
+var $pageOverlay = null;
+function showPageOverlay() {
+    if(!$pageOverlay) {
+        $pageOverlay = $("<div>").addClass("sharp-page-overlay hidden");
+        $("body").append($pageOverlay);
+    }
+    $pageOverlay.removeClass("hidden");
+}
+
+function hidePageOverlay() {
+    if($pageOverlay) {
+        $pageOverlay.addClass("hidden");
+    }
 };$(window).load(function () {
 
     // ---
@@ -12538,6 +12553,8 @@ function deactivate($source, jsonData) {
     $("body.sharp-list a.command").click(function (e) {
         e.preventDefault();
 
+        showPageOverlay();
+
         var url = $(this).attr("href");
 
         $.ajax({
@@ -12548,10 +12565,11 @@ function deactivate($source, jsonData) {
             },
             dataType: 'json',
             success: function(data) {
+                hidePageOverlay();
                 window["handleCommandReturn_"+data.type](data);
             },
             error: function (jqXhr, json, errorThrown) {
-
+                hidePageOverlay();
             }
         });
     });

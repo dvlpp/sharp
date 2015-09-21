@@ -30026,7 +30026,6 @@ $(function(){
 // ---
 $(function() {
 
-    var $formOverlay = $("#form-overlay");
     var $form = $("#sharpform");
 
     var method = $form.find("input[name=_method]").val();
@@ -30039,7 +30038,7 @@ $(function() {
     $form.submit(function (e) {
         e.preventDefault();
 
-        $formOverlay.removeClass("hidden");
+        showPageOverlay();
 
         $form.find(".validation-error").remove();
         $form.find(".has-error").removeClass("has-error");
@@ -30053,7 +30052,7 @@ $(function() {
                 document.location = data.url;
             },
             error: function (jqXhr, json, errorThrown) {
-                $formOverlay.addClass("hidden");
+                hidePageOverlay();
 
                 if (jqXhr.status == 422) {
                     var errors = jqXhr.responseJSON;

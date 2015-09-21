@@ -8603,6 +8603,17 @@ footer {
 body.sharp-auth {
   background: #2f353b;
 }
+.sharp-page-overlay {
+  background-color: #000;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  position: fixed;
+}
 #sharp header {
   background-color: #2f353b;
   padding: 10px 0;
@@ -8905,17 +8916,6 @@ body.sharp-form #sharpdelete {
 body.sharp-form #sharpdelete button {
   margin: auto;
   display: block;
-}
-body.sharp-form #form-overlay {
-  background-color: #000;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-  background-color: rgba(0, 0, 0, 0.4);
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 9999;
-  position: fixed;
 }
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;

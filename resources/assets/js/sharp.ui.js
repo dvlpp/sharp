@@ -104,3 +104,18 @@ function activate($source, jsonData) {
 function deactivate($source, jsonData) {
     $source.parents(".state").removeClass("state-active").addClass("state-inactive");
 }
+
+var $pageOverlay = null;
+function showPageOverlay() {
+    if(!$pageOverlay) {
+        $pageOverlay = $("<div>").addClass("sharp-page-overlay hidden");
+        $("body").append($pageOverlay);
+    }
+    $pageOverlay.removeClass("hidden");
+}
+
+function hidePageOverlay() {
+    if($pageOverlay) {
+        $pageOverlay.addClass("hidden");
+    }
+}

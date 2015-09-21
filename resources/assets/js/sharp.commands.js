@@ -13,6 +13,8 @@ $(window).load(function () {
     $("body.sharp-list a.command").click(function (e) {
         e.preventDefault();
 
+        showPageOverlay();
+
         var url = $(this).attr("href");
 
         $.ajax({
@@ -23,10 +25,11 @@ $(window).load(function () {
             },
             dataType: 'json',
             success: function(data) {
+                hidePageOverlay();
                 window["handleCommandReturn_"+data.type](data);
             },
             error: function (jqXhr, json, errorThrown) {
-
+                hidePageOverlay();
             }
         });
     });
