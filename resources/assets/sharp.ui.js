@@ -12487,6 +12487,7 @@ module.exports = eventmap;
     // ---
     $("body.sharp-list .sharp-delete").click(function () {
         if (confirm($(this).data("confirmdelete"))) {
+            showPageOverlay();
             $("form#" + $(this).data("form")).submit();
         }
     });
@@ -12565,7 +12566,7 @@ function hidePageOverlay() {
             $form.find(".validation-error").remove();
             $form.find(".has-error").removeClass("has-error");
             $form[0].reset();
-            
+
             // Show modal form
             $modal.show();
             return;

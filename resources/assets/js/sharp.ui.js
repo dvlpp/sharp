@@ -67,6 +67,7 @@ $(window).load(function () {
     // ---
     $("body.sharp-list .sharp-delete").click(function () {
         if (confirm($(this).data("confirmdelete"))) {
+            showPageOverlay();
             $("form#" + $(this).data("form")).submit();
         }
     });
