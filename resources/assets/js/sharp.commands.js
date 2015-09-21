@@ -17,8 +17,16 @@ $(window).load(function () {
         var $form = $(".form-command-" + $(this).data("command"));
 
         if($form.length) {
+            // There's a form attach to this command.
             var $modal = $form.modal({});
+
+            // Form init
             $modal.find('form').prop("action", url);
+            $form.find(".validation-error").remove();
+            $form.find(".has-error").removeClass("has-error");
+            $form[0].reset();
+
+            // Show modal form
             $modal.show();
             return;
         }
@@ -32,15 +40,36 @@ $(window).load(function () {
     $("body.sharp-list .form-command").submit(function (e) {
         e.preventDefault();
 
-        $(this).parents(".modal").modal('hide');
+        var $form = $(this);
+        var $modal = $(this).parents(".modal");
 
-        sendCommand($(this).attr("action"), $(this).serialize());
+        $form.find(".validation-error").remove();
+        $form.find(".has-error").removeClass("has-error");
 
-        $(this)[0].reset();
+        sendCommand(
+            $(this).attr("action"),
+            $(this).serialize(),
+            function(data) {
+                $modal.modal('hide');
+                return true;
+
+            }, function(jqXhr, json, errorThrown) {
+                if (jqXhr.status == 422) {
+                    var errors = jqXhr.responseJSON;
+
+                    $.each(errors, function (key, value) {
+                        var $field = $form.find(".sf-" + key);
+                        $field.addClass("has-error");
+                        $field.append('<span class="validation-error">' + value[0] + '</span>');
+                    });
+                }
+                return true;
+
+            });
     });
 });
 
-function sendCommand(url, params) {
+function sendCommand(url, params, successCallback, errorCallback) {
 
     showPageOverlay();
 
@@ -54,11 +83,15 @@ function sendCommand(url, params) {
         dataType: 'json',
 
         success: function(data) {
-            hidePageOverlay();
-            window["handleCommandReturn_"+data.type](data);
+            if(!successCallback || successCallback(data)) {
+                hidePageOverlay();
+                window["handleCommandReturn_" + data.type](data);
+            }
         },
         error: function (jqXhr, json, errorThrown) {
-            hidePageOverlay();
+            if(!errorCallback || errorCallback(jqXhr, json, errorThrown)) {
+                hidePageOverlay();
+            }
         }
     });
 }

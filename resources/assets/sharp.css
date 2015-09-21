@@ -8873,49 +8873,42 @@ body.sharp-form #maincontent #page .nav-pills li.active a {
   background: #12dbe8;
   border: none;
 }
-body.sharp-form form:before,
-body.sharp-form form:after {
+form:before,
+form:after {
   content: " ";
   display: table;
 }
-body.sharp-form form:after {
+form:after {
   clear: both;
 }
-body.sharp-form form:before,
-body.sharp-form form:after {
+form:before,
+form:after {
   content: " ";
   display: table;
 }
-body.sharp-form form:after {
+form:after {
   clear: both;
 }
-body.sharp-form form label.control-label {
+form label.control-label {
   font-weight: normal;
   font-size: 14px;
   text-transform: uppercase;
   color: #666666;
 }
-body.sharp-form form .form-group:not(.has-error) .help-block {
+form .form-group:not(.has-error) .help-block {
   color: #ACB2B7;
   font-style: italic;
 }
-body.sharp-form form textarea {
+form textarea {
   overflow: auto;
   resize: none;
 }
-body.sharp-form form .validation-error {
+form .validation-error {
   background-color: #d9534f;
   color: #fff;
   display: inline-block;
   margin-top: 5px;
   padding: 1px 7px;
-}
-body.sharp-form #sharpdelete {
-  margin-top: 60px;
-}
-body.sharp-form #sharpdelete button {
-  margin: auto;
-  display: block;
 }
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;

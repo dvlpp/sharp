@@ -10,6 +10,8 @@ abstract class SharpEntityCommand {
 
     use CommandReturnTrait;
 
+    use CommandValidateTrait;
+
     /**
      * Execute the entity command.
      *

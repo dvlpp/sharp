@@ -5,6 +5,7 @@ namespace Dvlpp\Sharp\Commands;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
+use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
 use Illuminate\Http\Request;
 
@@ -27,10 +28,13 @@ class CommandService
      * @param Request $request
      * @return SharpCommandReturn
      * @throws MandatoryClassNotFoundException
+     * @throws ValidationException
      */
     public function executeEntityCommand(SharpEntity $entity, $commandKey, $instanceId, Request $request)
     {
         $commandHandler = $this->commandHandler($entity->commands->entity->$commandKey, $commandKey, true);
+
+        $commandHandler->validate($request);
 
         return $commandHandler->execute($instanceId, $this->commandFormParams($entity->commands->entity->$commandKey, $request));
     }
@@ -43,6 +47,7 @@ class CommandService
      * @param Request $request
      * @return SharpCommandReturn
      * @throws MandatoryClassNotFoundException
+     * @throws ValidationException
      */
     public function executeEntitiesListCommand(SharpEntity $entity, $commandKey, Request $request)
     {
@@ -53,6 +58,8 @@ class CommandService
         $entitiesListParams = (new SharpEntitiesList($entity, $repo, $request))->createParams();
 
         $commandHandler = $this->commandHandler($entity->commands->list->$commandKey, $commandKey);
+
+        $commandHandler->validate($request);
 
         return $commandHandler->execute($entitiesListParams, $this->commandFormParams($entity->commands->list->$commandKey, $request));
     }

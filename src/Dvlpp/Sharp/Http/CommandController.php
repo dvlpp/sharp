@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Dvlpp\Sharp\Config\SharpCmsConfig;
 use Dvlpp\Sharp\Commands\CommandService;
 use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
+use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
 
 /**
@@ -76,15 +77,25 @@ class CommandController extends Controller
             $instanceId
         );
 
-        $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId, $request);
+        try {
+            $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId, $request);
+            return $this->handleCommandReturn($commandReturn);
 
-        return $this->handleCommandReturn($commandReturn);
+        } catch(ValidationException $ex) {
+            return $this->handleCommandValidationError($ex);
+        }
+
     }
 
 
     private function handleCommandReturn(SharpCommandReturn $commandReturn)
     {
         return response()->json($commandReturn->get());
+    }
+
+    private function handleCommandValidationError(ValidationException $ex)
+    {
+        return response()->json($ex->getErrors(), 422);
     }
 
 } 

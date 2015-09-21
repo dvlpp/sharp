@@ -1,7 +1,7 @@
 <?php namespace Dvlpp\Sharp\Validation;
 
-use Dvlpp\Sharp\Exceptions\ValidationException;
 use Validator;
+use Dvlpp\Sharp\Exceptions\ValidationException;
 
 /**
  * Class SharpValidator

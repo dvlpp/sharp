@@ -13,6 +13,8 @@ abstract class SharpEntitiesListCommand {
 
     use CommandReturnTrait;
 
+    use CommandValidateTrait;
+
     /**
      * Execute the command.
      *
