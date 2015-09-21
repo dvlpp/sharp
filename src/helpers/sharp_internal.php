@@ -176,3 +176,40 @@ function get_abilited_entities_entity_commands($category, $entity, $instanceId)
 
     return $tabCommands;
 }
+
+function get_command_forms($category, $entity)
+{
+    $forms = [];
+
+    foreach(["list", "entity"] as $commandType) {
+        foreach($entity->commands->$commandType as $command) {
+            $form = $entity->commands->$commandType->$command->form;
+
+            if(!$form) {
+                continue;
+            }
+
+            $formFields = [];
+            foreach($form as $fieldKey => $fieldConfig) {
+                $fieldConfigObject = (object)$fieldConfig;
+                add_attributes_if_missing($fieldConfigObject,
+                    ["label", "attributes", "conditional_display", "field_width", "help"]);
+
+                $formFields[$fieldKey] = $fieldConfigObject;
+            }
+
+            $forms[$command] = $formFields;
+        }
+    }
+
+    return $forms;
+}
+
+function add_attributes_if_missing($object, array $attributes)
+{
+    foreach ($attributes as $attr) {
+        if (!isset($object->$attr)) {
+            $object->$attr = null;
+        }
+    }
+}

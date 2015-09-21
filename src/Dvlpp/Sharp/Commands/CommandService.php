@@ -24,39 +24,16 @@ class CommandService
      * @param SharpEntity $entity
      * @param $commandKey
      * @param $instanceId
+     * @param Request $request
      * @return SharpCommandReturn
      * @throws MandatoryClassNotFoundException
      */
-    public function executeEntityCommand(SharpEntity $entity, $commandKey, $instanceId)
+    public function executeEntityCommand(SharpEntity $entity, $commandKey, $instanceId, Request $request)
     {
-        $commandHandler = $this->getCommandHandler($entity->commands->entity->$commandKey, $commandKey, true);
+        $commandHandler = $this->commandHandler($entity->commands->entity->$commandKey, $commandKey, true);
 
-        return $commandHandler->execute($instanceId);
+        return $commandHandler->execute($instanceId, $this->commandFormParams($entity->commands->entity->$commandKey, $request));
     }
-
-    /**
-     * @param SharpEntity $entity
-     * @param $commandKey
-     * @return array|null
-     */
-//    public function getEntityCommandForm(SharpEntity $entity, $commandKey)
-//    {
-//        if (!$entity->commands->entity->$commandKey->form) {
-//            return null;
-//        }
-//
-//        $formFields = [];
-//
-//        foreach ($entity->commands->entity->$commandKey->form as $fieldKey => $fieldConfig) {
-//            $fieldConfigObject = (object)$fieldConfig;
-//            $this->addAttributesIfMissing($fieldConfigObject,
-//                ["label", "attributes", "conditional_display", "field_width", "help"]);
-//
-//            $formFields[$fieldKey] = $fieldConfigObject;
-//        }
-//
-//        return $formFields;
-//    }
 
     /**
      * Execute the entities list command code identified by $entity and $commandKey
@@ -75,11 +52,10 @@ class CommandService
         // Grab request params (input is managed there, for search, pagination, ...)
         $entitiesListParams = (new SharpEntitiesList($entity, $repo, $request))->createParams();
 
-        $commandHandler = $this->getCommandHandler($entity->commands->list->$commandKey, $commandKey);
+        $commandHandler = $this->commandHandler($entity->commands->list->$commandKey, $commandKey);
 
-        return $commandHandler->execute($entitiesListParams);
+        return $commandHandler->execute($entitiesListParams, $this->commandFormParams($entity->commands->list->$commandKey, $request));
     }
-
 
     /**
      * Find the command handler class.
@@ -87,10 +63,10 @@ class CommandService
      * @param $commandConfig
      * @param $commandKey
      * @param bool $isForEntity
-     * @return SharpCommandReturn
+     * @return SharpEntityCommand|SharpEntitiesListCommand
      * @throws MandatoryClassNotFoundException
      */
-    private function getCommandHandler($commandConfig, $commandKey, $isForEntity = false)
+    private function commandHandler($commandConfig, $commandKey, $isForEntity = false)
     {
         if (!$commandConfig->data) {
             throw new MandatoryClassNotFoundException("Command config for [$commandKey] not found.");
@@ -117,13 +93,28 @@ class CommandService
         return $commandHandler;
     }
 
-//    private function addAttributesIfMissing(&$fieldConfigObject, $attributes)
-//    {
-//        foreach ($attributes as $attr) {
-//            if (!isset($fieldConfigObject->$attr)) {
-//                $fieldConfigObject->$attr = null;
-//            }
-//        }
-//    }
+    /**
+     * Return posted params for this command.
+     *
+     * @param $commandConfig
+     * @param Request $request
+     * @return array
+     */
+    private function commandFormParams($commandConfig, Request $request)
+    {
+        $params = [];
 
-} 
+        if(!$commandConfig->form) {
+            return $params;
+        }
+
+        foreach($commandConfig->form as $paramName => $field) {
+            if($request->has($paramName)) {
+                $params[$paramName] = $request->get($paramName);
+            }
+        }
+
+        return $params;
+    }
+
+}

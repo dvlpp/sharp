@@ -14,8 +14,9 @@ abstract class SharpEntityCommand {
      * Execute the entity command.
      *
      * @param $instanceId
+     * @param array $params
      * @return SharpCommandReturn
      */
-    abstract function execute($instanceId);
+    abstract function execute($instanceId, array $params=[]);
 
 } 

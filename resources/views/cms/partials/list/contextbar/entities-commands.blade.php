@@ -9,7 +9,8 @@
         <ul class="dropdown-menu pull-right">
             @foreach($commands as $commandKey => $command)
                 <li>
-                    <a class="command" href="{{ route('cms.listCommand', array_merge([$category->key, $entity->key, $commandKey], Input::all())) }}"
+                    <a class="command" data-command="{{ $commandKey }}"
+                            href="{{ route('cms.listCommand', array_merge([$category->key, $entity->key, $commandKey], Input::all())) }}"
                             {!! $command->confirm ? 'data-confirm="'.e($command->confirm).'"' : '' !!}>
                         @if($command->icon)
                             <i class="fa fa-{{ $command->icon }}"></i>

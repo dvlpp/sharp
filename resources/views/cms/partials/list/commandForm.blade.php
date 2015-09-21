@@ -1,9 +1,7 @@
-<div class="modal fade">
+<div class="modal fade form-command-{{$commandKey}}">
     <div class="modal-dialog">
 
-        {!! Form::open(["url" => $url]) !!}
-
-        {!! Form::hidden("sharp_form_valued", true) !!}
+        {!! Form::open(["class"=>"form-command"]) !!}
 
         <div class="modal-content">
             <div class="modal-header">

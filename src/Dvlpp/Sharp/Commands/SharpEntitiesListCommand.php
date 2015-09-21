@@ -17,8 +17,9 @@ abstract class SharpEntitiesListCommand {
      * Execute the command.
      *
      * @param \Dvlpp\Sharp\ListView\SharpEntitiesListParams $entitiesListParams
+     * @param array $params
      * @return SharpCommandReturn
      */
-    abstract function execute(SharpEntitiesListParams $entitiesListParams);
+    abstract function execute(SharpEntitiesListParams $entitiesListParams, array $params=[]);
 
 } 

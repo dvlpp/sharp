@@ -35,7 +35,7 @@ class CommandController extends Controller
      * @param $entityName
      * @param $commandKey
      * @param Request $request
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
     public function entitiesListCommand($categoryName, $entityName, $commandKey, Request $request)
@@ -55,7 +55,16 @@ class CommandController extends Controller
     }
 
 
-    public function entityCommand($categoryName, $entityName, $commandKey, $instanceId)
+    /**
+     * @param $categoryName
+     * @param $entityName
+     * @param $commandKey
+     * @param $instanceId
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
+     */
+    public function entityCommand($categoryName, $entityName, $commandKey, $instanceId, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
         $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
@@ -67,53 +76,9 @@ class CommandController extends Controller
             $instanceId
         );
 
-        $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
+        $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId, $request);
 
         return $this->handleCommandReturn($commandReturn);
-
-//        $commandForm = $this->commandsManager->getEntityCommandForm($entity, $commandKey);
-//        $error = false;
-//
-//        if ($commandForm) {
-//            // There's a form attached to the command:
-//
-//            if (!$request->has("sharp_form_valued")) {
-//                // Return the view of the form
-//                // to make the user fill parameters before send the command
-//                return view("sharp::cms.partials.list.commandForm", [
-//                    'fields' => $commandForm,
-//                    'url' => route('cms.entityCommand',
-//                        array_merge([$categoryName, $entityName, $commandKey, $instanceId], $request->all()))
-//                ]);
-//            }
-//
-//            // Form posted: call the command with the values of the form
-//            try {
-//                $commandReturn = $this->commandsManager->executeEntityCommand(
-//                    $entity, $commandKey, $instanceId, $request->only(array_keys($commandForm))
-//                );
-//            } catch (CommandValidationException $ex) {
-//                $commandReturn = $ex->getMessage();
-//                $error = true;
-//            }
-//
-//        } else {
-//            $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId);
-//        }
-//
-//        return $this->handleCommandReturn(
-//            $entity->commands->entity->$commandKey,
-//            $commandReturn,
-//            $categoryName,
-//            $entityName,
-//            $request->except(
-//                array_merge(
-//                    ["_token", "sharp_form_valued"],
-//                    ($commandForm ? array_keys($commandForm) : [])
-//                )
-//            ),
-//            $error
-//        );
     }
 
 
