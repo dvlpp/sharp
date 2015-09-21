@@ -8796,11 +8796,8 @@ body.sharp-list #maincontent #page .table#entity-list .entity-row:not(.inactive)
 body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions {
   text-align: right;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions li {
-  text-align: left;
-}
 body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .btn {
-  padding: 0 5px;
+  padding: 0 2px;
   font-size: 22px;
   background: transparent;
   color: gray;

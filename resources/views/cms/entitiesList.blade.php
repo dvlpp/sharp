@@ -88,11 +88,23 @@
 
                         @include("sharp::cms.partials.list.activateDeactivate-button")
 
-                        @include("sharp::cms.partials.list.delete-button")
+                        <div class="btn dropdown">
 
-                        @include("sharp::cms.partials.list.duplicate-button")
+                            <a class="btn" data-toggle="dropdown" data-target="#">
+                                <i class="fa fa-asterisk"></i>
+                            </a>
 
-                        @include("sharp::cms.partials.list.entity-commands")
+                            <ul class="dropdown-menu pull-right">
+
+                                @include("sharp::cms.partials.list.delete-button")
+
+                                @include("sharp::cms.partials.list.duplicate-button")
+
+                                @include("sharp::cms.partials.list.entity-commands")
+
+                            </ul>
+
+                        </div>
 
                     </div>
 

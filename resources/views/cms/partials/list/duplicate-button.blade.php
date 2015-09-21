@@ -1,9 +1,8 @@
 @if($entity->duplicable && check_ability('duplicate', $category->key, $entity->key, $instance->id))
-
-    <span class="btn action">
+    <li>
         <a href="{{ route('cms.duplicate', [$category->key, $entity->key, $instance->id]) }}">
             <i class="fa fa-copy"></i>
+            {{ trans("sharp::ui.list_entityDuplicateAction") }}
         </a>
-    </span>
-
+    </li>
 @endif

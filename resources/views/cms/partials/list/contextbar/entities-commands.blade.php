@@ -3,7 +3,7 @@
     <div class="dropdown navbar-right normal-mode">
 
         <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
-            <i class="fa fa-ellipsis-h"></i>
+            <i class="fa fa-asterisk"></i>
         </a>
 
         <ul class="dropdown-menu pull-right">

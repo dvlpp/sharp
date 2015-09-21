@@ -73,6 +73,15 @@ $(window).load(function () {
     });
 
     // ---
+    // Hide empty command list
+    // ---
+    $("body.sharp-list .actions .dropdown").each(function () {
+        if($(this).find(".dropdown-menu").children().length == 0) {
+            $(this).remove();
+        }
+    });
+
+    // ---
     // Manage ajax calls for .ajax links
     // ---
     // @todo supprimer ceci ? Utilisé par activate / deactivate
