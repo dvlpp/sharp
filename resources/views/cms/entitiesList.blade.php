@@ -38,7 +38,7 @@
 
 @section('content')
 
-    {{-- Link with HTML5's donwload property used by Donwload commands --}}
+    {{-- Link with HTML5's donwload property used by Download commands --}}
     <a href="" download="" class="hidden" id="sharp_command_download_link"></a>
 
     <table class="table table-responsive table-striped" id="entity-list">
