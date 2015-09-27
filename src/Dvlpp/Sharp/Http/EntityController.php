@@ -2,6 +2,8 @@
 
 namespace Dvlpp\Sharp\Http;
 
+use Dvlpp\Sharp\Exceptions\InvalidStateException;
+use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Http\Request;
 use Dvlpp\Sharp\Config\SharpConfig;
 use Illuminate\Contracts\Auth\Access\Gate;
@@ -154,27 +156,29 @@ class EntityController extends Controller
     /**
      * @param $categoryName
      * @param $entityName
-     * @param $id
+     * @param Request $request
      * @return mixed
      */
-    public function activate($categoryName, $entityName, $id)
+    public function changeState($categoryName, $entityName, Request $request)
     {
-        $this->checkAbility('activate', $categoryName, $entityName, $id);
+        $state = $request->get("state");
+        $instanceId = $request->get("instance");
+        if(!$state || !$instanceId) abort(403);
 
-        return $this->activateDeactivateEntity($categoryName, $entityName, $id, true);
-    }
+        $this->checkAbility("changeState-$state", $categoryName, $entityName, $instanceId);
 
-    /**
-     * @param $categoryName
-     * @param $entityName
-     * @param $id
-     * @return mixed
-     */
-    public function deactivate($categoryName, $entityName, $id)
-    {
-        $this->checkAbility('deactivate', $categoryName, $entityName, $id);
+        try {
+            $state = $this->entityRepository($categoryName, $entityName)
+                ->changeState($instanceId, $state);
 
-        return $this->activateDeactivateEntity($categoryName, $entityName, $id, false);
+            return response()->json(["state" => $state], 200);
+
+        } catch(InvalidStateException $e) {
+            return response()->json([
+                "error" => trans("sharp::ui.list_entityChangeStateError"),
+                "message" => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -190,14 +194,8 @@ class EntityController extends Controller
 
         $entities = $request->get("entities");
 
-        // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
-
-        // Instantiate the entity repository
-        $repo = app($entity->repository);
-
         // Reorder
-        $repo->reorder($entities);
+        $this->entityRepository($categoryName, $entityName)->reorder($entities);
 
         return response()->json(["ok" => true]);
     }
@@ -237,34 +235,24 @@ class EntityController extends Controller
      */
     public function ax_customSearchField($categoryName, $entityName, $fieldName, Request $request)
     {
-        // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
-
-        // Instantiate the entity repository
-        $repo = app($entity->repository);
-
-        return response()->json(CustomSearchField::renderCustomSearch($fieldName, $repo, $request));
+        return response()->json(CustomSearchField::renderCustomSearch(
+            $fieldName,
+            $this->entityRepository($categoryName, $entityName),
+            $request)
+        );
     }
 
     /**
      * @param $categoryName
      * @param $entityName
-     * @param $id
-     * @param $activate
-     * @return mixed
+     * @return SharpCmsRepository
+     * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    private function activateDeactivateEntity($categoryName, $entityName, $id, $activate)
+    private function entityRepository($categoryName, $entityName)
     {
-        // Find Entity config (from sharp CMS config file)
         $entity = SharpConfig::findEntity($categoryName, $entityName);
 
-        // Instantiate the entity repository
-        $repo = app($entity->repository);
-
-        // Activate / deactivate
-        $activate ? $repo->activate($id) : $repo->deactivate($id);
-
-        return response()->json(["ok" => true]);
+        return app($entity->repository);
     }
 
     /**

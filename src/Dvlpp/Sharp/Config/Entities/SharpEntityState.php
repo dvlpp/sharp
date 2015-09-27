@@ -2,7 +2,7 @@
 
 namespace Dvlpp\Sharp\Config\Entities;
 
-class SharpEntitySate extends HasProperties
+class SharpEntityState extends HasProperties
 {
     protected $mandatoryProperties = ["property"];
 

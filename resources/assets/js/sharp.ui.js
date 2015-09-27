@@ -82,27 +82,40 @@ $(window).load(function () {
     });
 
     // ---
-    // Manage ajax calls for .ajax links
+    // Ajax change state call
     // ---
-    // @todo supprimer ceci ? Utilisé par activate / deactivate
-    $("body#sharp .ajax").click(function (e) {
+    $("body.sharp-list .change-entity-state").click(function (e) {
+
         e.preventDefault();
+        var $stateLink = $(this);
 
-        var link = $(this);
-        var url = link.attr("href");
-        var success = link.data("success");
-        var failure = link.data("failure");
+        showPageOverlay();
 
-        $.post(url, {
-            _token: getPostToken()
-
-        }, function (data) {
-            if (data.err) {
-
-            } else {
-                window[success](link, data);
+        $.ajax({
+            url: $stateLink.prop("href"),
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr("content")
+            },
+            dataType: 'json',
+            data: {
+                instance: $stateLink.data("instance"),
+                state: $stateLink.data("state")
+            },
+            success: function(data) {
+                hidePageOverlay();
+                $stateLink.parents(".dropdown")
+                    .find(".entity-state")
+                    .css('color', $stateLink.data("color"))
+                    .prop("title", $stateLink.data("title"));
+            },
+            error: function (jqXhr, json, errorThrown) {
+                hidePageOverlay();
+                if (jqXhr.status == 500) {
+                    sweetAlert(jqXhr.responseJSON.error, jqXhr.responseJSON.message, "error");
+                }
             }
-        }, "json");
+        });
     });
 
 });

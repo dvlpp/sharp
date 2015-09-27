@@ -1,6 +1,8 @@
-<?php namespace Dvlpp\Sharp\Exceptions;
+<?php
 
+namespace Dvlpp\Sharp\Exceptions;
 
-class MandatoryClassNotFoundException extends \Exception {
+class MandatoryClassNotFoundException extends \Exception
+{
 
 } 

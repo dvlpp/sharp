@@ -86,7 +86,7 @@
 
                     <div class="btn-group normal-mode">
 
-                        @include("sharp::cms.partials.list.activateDeactivate-button")
+                        @include("sharp::cms.partials.list.state-button")
 
                         <div class="btn dropdown">
 

@@ -1,8 +1,9 @@
-<?php namespace Dvlpp\Sharp\Exceptions;
+<?php
 
+namespace Dvlpp\Sharp\Exceptions;
 
-class ValidationException extends \Exception {
-
+class ValidationException extends \Exception
+{
     /**
      * @var string
      */

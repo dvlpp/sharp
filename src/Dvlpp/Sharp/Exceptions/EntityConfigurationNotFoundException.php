@@ -1,6 +1,8 @@
-<?php namespace Dvlpp\Sharp\Exceptions;
+<?php
 
+namespace Dvlpp\Sharp\Exceptions;
 
-class EntityConfigurationNotFoundException extends \Exception {
+class EntityConfigurationNotFoundException extends \Exception
+{
 
 } 

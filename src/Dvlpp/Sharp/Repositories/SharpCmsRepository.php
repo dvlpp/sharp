@@ -1,8 +1,9 @@
-<?php namespace Dvlpp\Sharp\Repositories;
+<?php
+
+namespace Dvlpp\Sharp\Repositories;
 
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-
 
 /**
  * Interface SharpCmsRepository

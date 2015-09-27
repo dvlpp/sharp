@@ -1,6 +1,8 @@
-<?php namespace Dvlpp\Sharp\Exceptions;
+<?php
 
+namespace Dvlpp\Sharp\Exceptions;
 
-class MandatoryEntityAttributeNotFoundException extends \Exception {
+class MandatoryEntityAttributeNotFoundException extends \Exception
+{
 
 } 

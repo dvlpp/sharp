@@ -17,7 +17,7 @@ return [
     'list_advancedSearchBtn' => 'Rechercher',
     'list_entityDeleteAction' => 'Supprimer',
     'list_entityDuplicateAction' => 'Dupliquer',
-//    'list_entityDuplicateActionLocalized' => 'Dupliquer en :lang',
+    'list_entityChangeStateError' => "Une erreur est survenue",
 
     'form_updateTitle' => 'Mise à jour :entity',
     'form_createTitle' => 'Création :entity',

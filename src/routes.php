@@ -62,13 +62,9 @@ Route::group(['middleware' => 'sharp_auth'], function () {
         "uses" => '\Dvlpp\Sharp\Http\CommandController@entitiesListCommand'
     ]);
 
-    Route::post('/admin/cms/{category}/{entity}/{id}/activate', [
-        "as" => "cms.activate",
-        "uses" => '\Dvlpp\Sharp\Http\EntityController@activate',
-    ]);
-    Route::post('/admin/cms/{category}/{entity}/{id}/deactivate', [
-        "as" => "cms.deactivate",
-        "uses" => '\Dvlpp\Sharp\Http\EntityController@deactivate',
+    Route::post('/admin/cms/{category}/{entity}/changeState', [
+        "as" => "cms.changeState",
+        "uses" => '\Dvlpp\Sharp\Http\EntityController@changeState',
     ]);
 
     Route::post('/admin/cms/{category}/{entity}/reorder', [
