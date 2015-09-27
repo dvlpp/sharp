@@ -8745,6 +8745,13 @@ body.sharp-auth {
   border-right-color: transparent;
   border-bottom-color: transparent;
 }
+#maincontent #contextbar .navbar .navbar-nav .dropdown.open .btn-sublist {
+  background: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  color: #fff;
+}
 #maincontent #contextbar .navbar .navbar-nav .dropdown.open .dropdown-menu {
   max-height: 400px;
   overflow: auto;
