@@ -8738,12 +8738,12 @@ body.sharp-auth {
   color: #ccc;
   background: #fff;
 }
-#maincontent #contextbar .navbar .navbar-nav .dropdown.open .btn-sublist {
-  background: none;
+#maincontent #contextbar .navbar .navbar-nav .open > a,
+#maincontent #contextbar .navbar .navbar-nav .open > a:focus,
+#maincontent #contextbar .navbar .navbar-nav .open > a:hover {
   border-top-color: transparent;
-  border-bottom-color: transparent;
   border-right-color: transparent;
-  color: #fff;
+  border-bottom-color: transparent;
 }
 #maincontent #contextbar .navbar .navbar-nav .dropdown.open .dropdown-menu {
   max-height: 400px;
@@ -8763,96 +8763,96 @@ body.sharp-auth {
   font-size: 48px;
   margin-bottom: 20px;
 }
-body.sharp-list #maincontent #contextbar .reorder-mode {
+body.sharp-list #contextbar .reorder-mode {
   display: none;
 }
-body.sharp-list #maincontent #page {
+body.sharp-list #page {
   padding: 0;
 }
-body.sharp-list #maincontent #page .table#entity-list th,
-body.sharp-list #maincontent #page .table#entity-list td {
+body.sharp-list #page .table#entity-list th,
+body.sharp-list #page .table#entity-list td {
   padding-left: 10px;
   padding-right: 10px;
   vertical-align: middle;
 }
-body.sharp-list #maincontent #page .table#entity-list th {
+body.sharp-list #page .table#entity-list th {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 15px;
   color: #666;
 }
-body.sharp-list #maincontent #page .table#entity-list th .sort i {
+body.sharp-list #page .table#entity-list th .sort i {
   color: #aaa;
 }
-body.sharp-list #maincontent #page .table#entity-list th .sort:hover {
+body.sharp-list #page .table#entity-list th .sort:hover {
   text-decoration: none;
 }
-body.sharp-list #maincontent #page .table#entity-list th .sort.current i {
+body.sharp-list #page .table#entity-list th .sort.current i {
   color: #12dbe8;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row:not(.inactive):hover {
+body.sharp-list #page .table#entity-list .entity-row:not(.inactive):hover {
   color: #12dbe8;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row:not(.inactive) td.entity-data {
+body.sharp-list #page .table#entity-list .entity-row:not(.inactive) td.entity-data {
   cursor: pointer;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions {
+body.sharp-list #page .table#entity-list .entity-row td.actions {
   text-align: right;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .btn {
+body.sharp-list #page .table#entity-list .entity-row td.actions .btn {
   padding: 0 2px;
   font-size: 22px;
   background: transparent;
   color: gray;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .state.state-active .btn {
+body.sharp-list #page .table#entity-list .entity-row td.actions .state.state-active .btn {
   color: #12dbe8;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .state.state-active .btn-state-inactive {
+body.sharp-list #page .table#entity-list .entity-row td.actions .state.state-active .btn-state-inactive {
   display: none;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .state.state-inactive .btn {
+body.sharp-list #page .table#entity-list .entity-row td.actions .state.state-inactive .btn {
   color: gray;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .state.state-inactive .btn-state-active {
+body.sharp-list #page .table#entity-list .entity-row td.actions .state.state-inactive .btn-state-active {
   display: none;
 }
-body.sharp-list #maincontent #page .table#entity-list .entity-row td.actions .reorder-mode {
+body.sharp-list #page .table#entity-list .entity-row td.actions .reorder-mode {
   display: none;
 }
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer {
+body.sharp-list #page .table#entity-list .markdown-limit-renderer {
   font-size: 12px;
 }
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h1,
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h2,
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h3,
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h4 {
+body.sharp-list #page .table#entity-list .markdown-limit-renderer h1,
+body.sharp-list #page .table#entity-list .markdown-limit-renderer h2,
+body.sharp-list #page .table#entity-list .markdown-limit-renderer h3,
+body.sharp-list #page .table#entity-list .markdown-limit-renderer h4 {
   font-weight: bold;
   margin: 3px 0;
   font-size: 13px;
 }
-body.sharp-list #maincontent #page .table#entity-list .markdown-limit-renderer h1 {
+body.sharp-list #page .table#entity-list .markdown-limit-renderer h1 {
   font-size: 15px;
 }
-body.sharp-list #maincontent #page .pagination {
+body.sharp-list #page .pagination {
   margin-left: 10px;
   margin-right: 10px;
 }
-body.sharp-list.reorder #maincontent #contextbar .reorder-mode {
+.reorder #maincontent #contextbar .reorder-mode {
   display: block;
 }
-body.sharp-list.reorder #maincontent #contextbar .normal-mode {
+.reorder #maincontent #contextbar .normal-mode {
   display: none;
 }
-body.sharp-list.reorder #maincontent #page .table#entity-list .entity-row td.actions .reorder-mode {
+.reorder #maincontent #page .table#entity-list .entity-row td.actions .reorder-mode {
   display: block;
 }
-body.sharp-list.reorder #maincontent #page .table#entity-list .entity-row td.actions .normal-mode {
+.reorder #maincontent #page .table#entity-list .entity-row td.actions .normal-mode {
   display: none;
 }
-body.sharp-list .gu-mirror {
+.reorder #maincontent .gu-mirror {
   display: none;
 }
-body.sharp-list .gu-transit {
+.reorder #maincontent .gu-transit {
   opacity: 1;
   background-color: #b3f5f9 !important;
 }
