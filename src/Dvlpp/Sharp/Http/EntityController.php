@@ -3,7 +3,7 @@
 namespace Dvlpp\Sharp\Http;
 
 use Illuminate\Http\Request;
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
 use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
@@ -59,7 +59,7 @@ class EntityController extends Controller
         }
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -69,7 +69,7 @@ class EntityController extends Controller
 
         // And return the View
         return view('sharp::cms.entitiesList', [
-            'category' => SharpCmsConfig::findCategory($categoryName),
+            'category' => SharpConfig::findCategory($categoryName),
             'entity' => $entity,
             'list' => $entitiesList
         ]);
@@ -191,7 +191,7 @@ class EntityController extends Controller
         $entities = $request->get("entities");
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -213,7 +213,7 @@ class EntityController extends Controller
         $this->checkAbility('delete', $categoryName, $entityName, $id);
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -238,7 +238,7 @@ class EntityController extends Controller
     public function ax_customSearchField($categoryName, $entityName, $fieldName, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -256,7 +256,7 @@ class EntityController extends Controller
     private function activateDeactivateEntity($categoryName, $entityName, $id, $activate)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -280,7 +280,7 @@ class EntityController extends Controller
         $creation = ($id === null);
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);
@@ -302,7 +302,7 @@ class EntityController extends Controller
             return view('sharp::cms.entityForm', [
                 'instance' => $instance,
                 'entity' => $entity,
-                'category' => SharpCmsConfig::findCategory($categoryName)
+                'category' => SharpConfig::findCategory($categoryName)
             ]);
         }
 
@@ -324,7 +324,7 @@ class EntityController extends Controller
         $data = $request->all();
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         // Instantiate the entity repository
         $repo = app($entity->repository);

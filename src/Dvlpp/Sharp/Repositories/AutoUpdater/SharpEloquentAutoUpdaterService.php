@@ -1,6 +1,6 @@
 <?php namespace Dvlpp\Sharp\Repositories\AutoUpdater;
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\DateValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\FileValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\ListValuator;
@@ -49,7 +49,7 @@ class SharpEloquentAutoUpdaterService
      */
     function updateEntity(SharpCmsRepository $sharpRepository, $categoryName, $entityName, $instance, Array $data)
     {
-        $entityConfig = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entityConfig = SharpConfig::findEntity($categoryName, $entityName);
 
         return $this->updateEntityWithConfig($sharpRepository, $entityConfig, $instance, $data);
     }

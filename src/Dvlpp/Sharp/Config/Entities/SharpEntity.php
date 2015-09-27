@@ -1,7 +1,7 @@
 <?php namespace Dvlpp\Sharp\Config\Entities;
 
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException;
 
 class SharpEntity extends HasProperties
@@ -31,7 +31,7 @@ class SharpEntity extends HasProperties
         if (isset($this->data['extends']) && $this->data['extends']) {
             // This Entity is configured to extend another entity config
             list($cat, $ent) = explode(".", $this->data['extends']);
-            $extendedEntity = SharpCmsConfig::findEntity($cat, $ent, false);
+            $extendedEntity = SharpConfig::findEntity($cat, $ent, false);
             if (!$extendedEntity) {
                 throw new EntityConfigurationNotFoundException("Extended entity [" . $this->data['extends'] . "] configuration not found");
             }

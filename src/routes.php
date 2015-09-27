@@ -1,7 +1,5 @@
 <?php
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
-use Dvlpp\Sharp\Config\SharpSiteConfig;
 
 Route::get('/admin', function () {
     return redirect()->route("cms");

@@ -2,7 +2,7 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 
 class CategoryController extends Controller
 {
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function show($categoryName)
     {
         // Find Category config (from sharp CMS config file)
-        $category = SharpCmsConfig::findCategory($categoryName);
+        $category = SharpConfig::findCategory($categoryName);
 
         $entityName = $category->entities->current();
 

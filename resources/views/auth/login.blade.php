@@ -29,9 +29,7 @@
 
                 <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3" id="login-form">
 
-                    <h1>
-                        {{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}
-                    </h1>
+                    <h1>{{ sharp_site_name() }}</h1>
 
                     @if (count($errors))
                         <div class="alert alert-danger">

@@ -32,7 +32,7 @@
 
             <ul class="nav navbar-nav">
 
-                <li class="site"><a href="{{ route('cms') }}">{{ \Dvlpp\Sharp\Config\SharpSiteConfig::getName() }}</a></li>
+                <li class="site"><a href="{{ route('cms') }}">{{ sharp_site_name() }}</a></li>
 
                 @foreach($cmsCategories as $catKey => $cat)
 
@@ -55,14 +55,14 @@
                 </a>
             </div>
 
-            @if(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages())
+            @if(\Dvlpp\Sharp\Config\SharpConfig::getLanguages())
 
                 <div class="dropdown navbar-right languages">
                     <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
                         {{ $language }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        @foreach(\Dvlpp\Sharp\Config\SharpSiteConfig::getLanguages() as $languageCode => $languageName)
+                        @foreach(\Dvlpp\Sharp\Config\SharpConfig::getLanguages() as $languageCode => $languageName)
                             <li>
                                 <a href="{{ route("cms.lang", [$languageCode]) }}">
                                     {{ $languageName }}

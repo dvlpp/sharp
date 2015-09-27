@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config;
+<?php
+
+namespace Dvlpp\Sharp\Config;
 
 use Dvlpp\Sharp\Config\Entities\SharpCategory;
 use Dvlpp\Sharp\Config\Entities\SharpEntity;
@@ -10,13 +12,33 @@ use Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException;
  *
  * Access to sharp "cms" config, which contains all CMS data (list columns, form fields, ...)
  */
-class SharpCmsConfig
+class SharpConfig
 {
 
     /**
      * @var array
      */
     protected static $categories = [];
+
+    /**
+     * Return site name from config.
+     *
+     * @return string
+     */
+    public static function getName()
+    {
+        return config('sharp.name');
+    }
+
+    /**
+     * Return site languages from config, or null.
+     *
+     * @return array|null
+     */
+    public static function getLanguages()
+    {
+        return config('sharp.languages');
+    }
 
     /**
      * @param $categoryKey
@@ -49,7 +71,7 @@ class SharpCmsConfig
      */
     public static function findCategory($categoryName, $withCache = true)
     {
-        if (!$withCache || !array_key_exists($categoryName, SharpCmsConfig::$categories)) {
+        if (!$withCache || !array_key_exists($categoryName, SharpConfig::$categories)) {
             $categoryConfig = config('sharp.cms.' . $categoryName);
             if (!$categoryConfig) {
                 throw new EntityConfigurationNotFoundException("Category configuration for [$categoryConfig] can't be found");
@@ -61,10 +83,10 @@ class SharpCmsConfig
                 return $sharpCategorie;
             }
 
-            SharpCmsConfig::$categories[$categoryName] = $sharpCategorie;
+            SharpConfig::$categories[$categoryName] = $sharpCategorie;
         }
 
-        return SharpCmsConfig::$categories[$categoryName];
+        return SharpConfig::$categories[$categoryName];
     }
 
     /**
@@ -75,10 +97,10 @@ class SharpCmsConfig
         $config = config('sharp.cms');
         $tab = [];
         foreach ($config as $key => $values) {
-            if (!array_key_exists($key, SharpCmsConfig::$categories)) {
-                SharpCmsConfig::$categories[$key] = new SharpCategory($key, $values);
+            if (!array_key_exists($key, SharpConfig::$categories)) {
+                SharpConfig::$categories[$key] = new SharpCategory($key, $values);
             }
-            $tab[$key] = SharpCmsConfig::$categories[$key];
+            $tab[$key] = SharpConfig::$categories[$key];
         }
 
         return $tab;

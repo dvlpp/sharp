@@ -3,7 +3,7 @@
 namespace Dvlpp\Sharp\Http;
 
 use Illuminate\Http\Request;
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Commands\CommandService;
 use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
 use Dvlpp\Sharp\Exceptions\ValidationException;
@@ -42,7 +42,7 @@ class CommandController extends Controller
     public function entitiesListCommand($categoryName, $entityName, $commandKey, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         $this->checkAbility(
             $entity->commands->list->$commandKey->auth ?: "list",
@@ -68,7 +68,7 @@ class CommandController extends Controller
     public function entityCommand($categoryName, $entityName, $commandKey, $instanceId, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpCmsConfig::findEntity($categoryName, $entityName);
+        $entity = SharpConfig::findEntity($categoryName, $entityName);
 
         $this->checkAbility(
             $entity->commands->entity->$commandKey->auth ?: "update",

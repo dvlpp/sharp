@@ -2,7 +2,7 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Dvlpp\Sharp\Config\SharpSiteConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 
 class LocalizationController extends Controller
 {
@@ -16,7 +16,9 @@ class LocalizationController extends Controller
      */
     public function __construct()
     {
-        $this->languages = SharpSiteConfig::getLanguages();
+        parent::__construct();
+
+        $this->languages = SharpConfig::getLanguages();
     }
 
 

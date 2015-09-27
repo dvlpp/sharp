@@ -1,12 +1,14 @@
-<?php namespace Dvlpp\Sharp\Lang;
+<?php
 
-use Dvlpp\Sharp\Config\SharpSiteConfig;
+namespace Dvlpp\Sharp\Lang;
+
+use Dvlpp\Sharp\Config\SharpConfig;
 
 class SharpLanguage {
 
     function current()
     {
-        $languages = SharpSiteConfig::getLanguages();
+        $languages = SharpConfig::getLanguages();
 
         if($languages) {
             $lang = session("sharp_lang");

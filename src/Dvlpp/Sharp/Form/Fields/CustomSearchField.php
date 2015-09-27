@@ -2,7 +2,7 @@
 
 namespace Dvlpp\Sharp\Form\Fields;
 
-use Dvlpp\Sharp\Config\SharpCmsConfig;
+use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpHasCustomSearch;
 
@@ -41,7 +41,7 @@ class CustomSearchField extends AbstractSharpField
 
         if($this->fieldValue) {
             // Instantiate entity repository
-            $entity = SharpCmsConfig::findEntity($this->field->getCategoryKey(), $this->field->getEntityKey());
+            $entity = SharpConfig::findEntity($this->field->getCategoryKey(), $this->field->getEntityKey());
             $repo = app($entity->repository);
 
             if(!$repo instanceof SharpHasCustomSearch) {

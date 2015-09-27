@@ -1,5 +1,10 @@
 <?php
 
+function sharp_site_name()
+{
+    return \Dvlpp\Sharp\Config\SharpConfig::getName();
+}
+
 /**
  * Generate the entity update form action attribute.
  *
