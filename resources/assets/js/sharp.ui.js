@@ -107,7 +107,7 @@ $(window).load(function () {
                 $stateLink.parents(".dropdown")
                     .find(".entity-state")
                     .css('color', $stateLink.data("color"))
-                    .prop("title", $stateLink.data("title"));
+                    .prop("title", $stateLink.data("label"));
             },
             error: function (jqXhr, json, errorThrown) {
                 hidePageOverlay();
