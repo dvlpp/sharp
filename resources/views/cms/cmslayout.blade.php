@@ -26,7 +26,6 @@
 <body class="sharp-cms @yield('viewname')" id="sharp">
 
 <header>
-
     <nav class="navbar" role="navigation">
         <div class="container-fluid">
 
@@ -76,45 +75,33 @@
 
         </div>
     </nav>
-
 </header>
 
-<div id="contenu">
-    <div class="container-fluid" id="mainrow">
+<div class="container-fluid" id="container">
 
-            <div id="navcol">
+    <div id="navcol">
+        @yield('navcol')
+    </div>
 
-                @yield('navcol')
+    <div id="maincontent">
 
-            </div>
+        <div id="contextbar">
+            <nav class="navbar" role="navigation">
+                <ul class="nav navbar-nav">
+                    @yield('contextbar')
+                </ul>
+            </nav>
+        </div>
 
-            <div class="row" id="maincontent">
+        <div id="page">
+            @yield('content')
+        </div>
 
-                <div class="col-sm-12" id="contextbar">
-
-                    <nav class="navbar" role="navigation">
-                        <ul class="nav navbar-nav">
-
-                            @yield('contextbar')
-
-                        </ul>
-                    </nav>
-
-                </div>
-
-                <div class="col-sm-12" id="page">
-
-                    @yield('content')
-
-                </div>
-            </div>
     </div>
 </div>
 
 <footer>
-
     <p class="credits">Sharp {{ $sharpVersion }} — Développlan.</p>
-
 </footer>
 
 @section("scripts")

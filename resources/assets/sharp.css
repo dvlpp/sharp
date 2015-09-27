@@ -8579,26 +8579,31 @@ body#sharp .btn:focus {
   box-shadow: none;
 }
 body.sharp-cms {
-  background: -moz-linear-gradient(left, #acb2b7 160px, #eeeeee 160px);
-  background: -webkit-linear-gradient(left, #acb2b7 160px, #eeeeee 160px);
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
-body.sharp-cms #mainrow #navcol {
+body.sharp-cms #container {
+  display: flex;
+  min-height: 100vh;
+  padding: 0;
+}
+body.sharp-cms #container #navcol {
   width: 140px;
-  float: left;
+  background: #acb2b7;
+  padding-top: 10px;
+  padding-bottom: 50px;
 }
-body.sharp-cms #mainrow #maincontent {
-  width: calc(100% - 160px + 10px*2);
-  float: right;
-}
-body.sharp-cms #maincontent {
+body.sharp-cms #container #maincontent {
+  width: calc(100% - 140px);
+  background: #eee;
   padding-bottom: 50px;
 }
 footer {
-  margin: 40px 0 20px 0;
+  padding: 40px 0 20px 0;
+  margin-top: 10px;
   text-align: center;
   font-size: 9px;
   color: #aaa;
+  background: #eee;
 }
 body.sharp-auth {
   background: #2f353b;
@@ -8662,29 +8667,26 @@ body.sharp-auth {
 #sharp header .navbar .user .fa-power-off:hover {
   color: #12dbe8;
 }
-#mainrow #navcol {
-  margin-top: 10px;
-  padding-bottom: 50px;
-}
-#mainrow #navcol .nav-pills {
+#navcol .nav-pills {
   font-weight: normal;
 }
-#mainrow #navcol .nav-pills li {
+#navcol .nav-pills li {
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
-#mainrow #navcol .nav-pills li i {
-  font-size: 40px;
+#navcol .nav-pills li i {
+  font-size: 25px;
   display: block;
   margin-bottom: 6px;
 }
-#mainrow #navcol .nav-pills li a:hover,
-#mainrow #navcol .nav-pills li.active a,
-#mainrow #navcol .nav-pills li a:focus {
+#navcol .nav-pills li a:hover,
+#navcol .nav-pills li.active a,
+#navcol .nav-pills li a:focus {
   background: none;
 }
 #maincontent #contextbar {
+  padding: 0 10px;
   background: #12dbe8;
 }
 #maincontent #contextbar .navbar {
@@ -8854,17 +8856,17 @@ body.sharp-list .gu-transit {
   opacity: 1;
   background-color: #b3f5f9 !important;
 }
-body.sharp-form #maincontent #page {
-  margin-top: 10px;
+body.sharp-form #page {
+  margin: 10px;
 }
-body.sharp-form #maincontent #page .nav-pills {
+body.sharp-form #page .nav-pills {
   margin-bottom: 20px;
 }
-body.sharp-form #maincontent #page .nav-pills li a {
+body.sharp-form #page .nav-pills li a {
   background: #ddd;
   color: #999;
 }
-body.sharp-form #maincontent #page .nav-pills li.active a {
+body.sharp-form #page .nav-pills li.active a {
   border-bottom-color: #12dbe8;
   color: #fff;
   background: #12dbe8;

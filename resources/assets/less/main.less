@@ -13,32 +13,35 @@ body#sharp {
 }
 
 body.sharp-cms {
-  background: -moz-linear-gradient(left, @sharp-navcol-bg 160px, #eee 160px);
-  background: -webkit-linear-gradient(left, @sharp-navcol-bg 160px, #eee 160px);
-
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 
-  #mainrow {
+  #container {
+    display: flex;
+    min-height: 100vh;
+    padding:0;
+
     #navcol {
       width: 140px;
-      float: left;
+      background: @sharp-navcol-bg;
+      padding-top:@grid-gutter-width/2;
+      padding-bottom: 50px;
     }
-    #maincontent {
-      width: ~"calc(100% - 160px + 10px*2)";
-      float: right;
-    }
-  }
 
-  #maincontent {
-    padding-bottom: 50px;
+    #maincontent {
+      width: ~"calc(100% - 140px)";
+      background: #eee;
+      padding-bottom: 50px;
+    }
   }
 }
 
 footer {
-  margin: 40px 0 20px 0;
+  padding: 40px 0 20px 0;
+  margin-top: @grid-gutter-width/2;
   text-align: center;
   font-size: 9px;
   color: #aaa;
+  background: #eee;
 }
 
 body.sharp-auth {
