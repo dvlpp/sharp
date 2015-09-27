@@ -1,12 +1,13 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
+
+namespace Dvlpp\Sharp\Config\Entities;
 
 class SharpEntityFormLayout extends HasProperties implements \Iterator, \Countable
 {
-
     use IsIterable;
 
     protected $structProperties = [
-        "__ALL__" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormLayoutTab'
+        "__ALL__" => SharpEntityFormLayoutTab::class
     ];
 
     /**
@@ -26,17 +27,13 @@ class SharpEntityFormLayout extends HasProperties implements \Iterator, \Countab
 
 class SharpEntityFormLayoutTab extends HasProperties
 {
-
     protected $structProperties = [
-        "col1" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormLayoutColumn',
-        "col2" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormLayoutColumn'
+        "col1" => SharpEntityFormLayoutColumn::class,
+        "col2" => SharpEntityFormLayoutColumn::class
     ];
 }
 
 class SharpEntityFormLayoutColumn extends HasProperties implements \Iterator
 {
-
     use IsIterable;
-
 }
-

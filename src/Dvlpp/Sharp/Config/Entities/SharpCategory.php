@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 class SharpCategory extends HasProperties
 {
@@ -7,7 +8,7 @@ class SharpCategory extends HasProperties
     protected $mandatoryProperties = ["label", "entities"];
 
     protected $structProperties = [
-        "entities" => 'Dvlpp\Sharp\Config\Entities\SharpEntities'
+        "entities" => SharpEntities::class
     ];
 
     public function __construct($key, Array $data)

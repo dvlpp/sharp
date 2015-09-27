@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 trait IsIterable
 {

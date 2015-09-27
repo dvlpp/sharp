@@ -1,9 +1,9 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 class SharpEntityListTemplate extends HasProperties
 {
-
     protected $mandatoryProperties = ["columns"];
 
     protected $defaultPropertiesValues = [
@@ -15,7 +15,7 @@ class SharpEntityListTemplate extends HasProperties
     ];
 
     protected $structProperties = [
-        "columns" => 'Dvlpp\Sharp\Config\Entities\SharpEntityListTemplateColumns'
+        "columns" => SharpEntityListTemplateColumns::class
     ];
 
 }
@@ -34,7 +34,6 @@ class SharpEntityListTemplateColumns extends HasProperties
 
 class SharpEntityListTemplateColumn extends HasProperties
 {
-
     protected $mandatoryProperties = [];
 
     protected $defaultPropertiesValues = [

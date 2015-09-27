@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException;
@@ -11,16 +12,17 @@ class SharpEntity extends HasProperties
 
     protected $defaultPropertiesValues = [
         "id_attribute" => "id",
-        "duplicable" => false
+        "duplicable" => false,
+        "state" => false
     ];
 
     protected $structProperties = [
-        "commands" => 'Dvlpp\Sharp\Config\Entities\SharpEntityCommands',
-        "advanced_search" => 'Dvlpp\Sharp\Config\Entities\SharpEntityAdvancedSearch',
-        "list_template" => 'Dvlpp\Sharp\Config\Entities\SharpEntityListTemplate',
-        "form_fields" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormFields',
-        "form_layout" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormLayout',
-        "events" => 'Dvlpp\Sharp\Config\Entities\SharpEntityEvents',
+        "commands" => SharpEntityCommands::class,
+        "list_template" => SharpEntityListTemplate::class,
+        "form_fields" => SharpEntityFormFields::class,
+        "form_layout" => SharpEntityFormLayout::class,
+        "events" => SharpEntityEvents::class,
+        "state" => SharpEntityState::class,
     ];
 
 

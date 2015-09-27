@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 
@@ -53,7 +54,7 @@ abstract class HasProperties
         if (!is_array($data) && starts_with($data, "file:")) {
             // Case $data is a simple string: it refers to an external Config file
             // We load it and gets its data
-            $data = \Config::get(substr($data, strlen("file:")));
+            $data = config()->get(substr($data, strlen("file:")));
         }
 
         $this->data = $data;
@@ -76,6 +77,7 @@ abstract class HasProperties
                     $this->structProperties) ? "__ALL__" : $attribute];
                 $struct = new $className(isset($this->data[$attribute]) ? $this->data[$attribute] : [], $this);
                 $this->$attribute = $struct;
+
             } else {
                 $this->$attribute = $this->getEntitySimpleProperty(
                     $attribute,
@@ -130,6 +132,7 @@ abstract class HasProperties
     public function getCategoryKey()
     {
         $parent = $this->parent;
+
         while ($parent && !$parent instanceof SharpCategory) {
             $parent = $parent->parent;
         }

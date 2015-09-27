@@ -1,33 +1,29 @@
-<?php namespace Dvlpp\Sharp\Config\Entities;
+<?php
 
+namespace Dvlpp\Sharp\Config\Entities;
 
 class SharpEntityFormFields extends HasProperties implements \Iterator
 {
-
     use IsIterable;
 
     protected $structProperties = [
-        "__ALL__" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormField'
+        "__ALL__" => SharpEntityFormField::class
     ];
 }
 
 
 class SharpEntityFormField extends HasProperties
 {
-
     protected $structProperties = [
-        "item" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormFieldListItem'
+        "item" => SharpEntityFormFieldListItem::class
     ];
-
 }
 
 class SharpEntityFormFieldListItem extends HasProperties implements \Iterator
 {
-
     use IsIterable;
 
     protected $structProperties = [
-        "__ALL__" => 'Dvlpp\Sharp\Config\Entities\SharpEntityFormField'
+        "__ALL__" => SharpEntityFormField::class
     ];
-
 }
