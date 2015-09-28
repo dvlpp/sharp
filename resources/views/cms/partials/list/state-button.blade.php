@@ -11,7 +11,7 @@
         <ul class="dropdown-menu pull-right">
             @foreach($entity->state->values as $stateId => $state)
                 @if(check_ability("state-$stateId", $category->key, $entity->key, $instance->id))
-                    <li class="{{ get_entity_attribute_value($instance, $entity->state->property)==$stateId ? "disabled" : "" }}">
+                    <li class="item {{ get_entity_attribute_value($instance, $entity->state->property)==$stateId ? "disabled" : "" }}">
                         <a href="{{ route('cms.changeState', [$category->key, $entity->key]) }}" class="change-entity-state"
                            data-state="{{ $stateId }}"
                            data-instance="{{ $instance->id }}"

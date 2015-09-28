@@ -88,6 +88,9 @@ $(window).load(function () {
 
         e.preventDefault();
         var $stateLink = $(this);
+        var $dropdownWrapper = $stateLink.parents(".dropdown");
+        var $entityState = $dropdownWrapper.find(".entity-state");
+        var stateLinkItems = $dropdownWrapper.find(".item");
 
         showPageOverlay();
 
@@ -104,10 +107,11 @@ $(window).load(function () {
             },
             success: function(data) {
                 hidePageOverlay();
-                $stateLink.parents(".dropdown")
-                    .find(".entity-state")
-                    .css('color', $stateLink.data("color"))
+                $stateLink = $dropdownWrapper.find(".change-entity-state[data-state="+data.state+"]");
+                $entityState.css('color', $stateLink.data("color"))
                     .prop("title", $stateLink.data("label"));
+                stateLinkItems.removeClass("disabled");
+                $stateLink.parents(".item").addClass("disabled");
             },
             error: function (jqXhr, json, errorThrown) {
                 hidePageOverlay();
