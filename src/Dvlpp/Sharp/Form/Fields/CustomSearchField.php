@@ -85,26 +85,21 @@ class CustomSearchField extends AbstractSharpField
      */
     public static function renderCustomSearch($fieldName, SharpHasCustomSearch $repository, $request)
     {
-        try {
-            // Call repo method
-            $results = $repository->performCustomSearch($fieldName, $request->get("q"));
+        // Call repo method
+        $results = $repository->performCustomSearch($fieldName, $request->get("q"));
 
-            $renderedResults = [];
-            foreach ($results as $result) {
-                $result = (array)$result;
+        $renderedResults = [];
+        foreach ($results as $result) {
+            $result = (array)$result;
 
-                $renderedResults[] = [
-                    "__id" => $result[$request->get("idattr")],
-                    "html" => view($request->get("template"), $result)->render(),
-                    "object" => $result
-                ];
-            }
-
-            return $renderedResults;
-
-        } catch(\Exception $e) {
-            return null;
+            $renderedResults[] = [
+                "__id" => $result[$request->get("idattr")],
+                "html" => view($request->get("template"), $result)->render(),
+                "object" => $result
+            ];
         }
+
+        return $renderedResults;
     }
 
     private function wrapIntoPanel($view, $isTemplate=false)
