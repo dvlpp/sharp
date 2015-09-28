@@ -133,16 +133,19 @@ function deactivate($source, jsonData) {
 }
 
 var $pageOverlay = null;
+var $body = $("body");
 function showPageOverlay() {
     if(!$pageOverlay) {
         $pageOverlay = $("<div>").addClass("sharp-page-overlay hidden");
-        $("body").append($pageOverlay);
+        $body.append($pageOverlay);
     }
     $pageOverlay.removeClass("hidden");
+    $body.css("overflow", "hidden");
 }
 
 function hidePageOverlay() {
     if($pageOverlay) {
         $pageOverlay.addClass("hidden");
     }
+    $body.css("overflow", "auto");
 }

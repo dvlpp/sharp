@@ -32,8 +32,11 @@ class SharpCommandReturnView implements SharpCommandReturn
      */
     public function get()
     {
+        $html = view($this->viewName, $this->params)->render();
+
         return [
-            "type" => "VIEW"
+            "type" => "VIEW",
+            "html" => $html
         ];
     }
 }

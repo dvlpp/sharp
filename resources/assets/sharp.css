@@ -8616,7 +8616,7 @@ body.sharp-auth {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 9998;
   position: fixed;
 }
 #sharp header {
@@ -8862,6 +8862,17 @@ body.sharp-list #page .pagination {
 .reorder #maincontent .gu-transit {
   opacity: 1;
   background-color: #b3f5f9 !important;
+}
+#command_view_panel {
+  background: #fff;
+  height: 100vh;
+  width: 98vw;
+  position: fixed;
+  left: 110vw;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 0 0 10px #333;
+  overflow: auto;
 }
 body.sharp-form #page {
   margin: 10px;

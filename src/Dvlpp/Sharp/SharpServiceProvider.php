@@ -28,7 +28,6 @@ class SharpServiceProvider extends ServiceProvider {
 
 			__DIR__.'/../../../resources/assets/sharp.ui.min.js' => public_path('sharp/sharp.ui.min.js'),
 			__DIR__.'/../../../resources/assets/sharp.form.min.js' => public_path('sharp/sharp.form.min.js'),
-			__DIR__.'/../../../resources/assets/sharp.advancedsearch.min.js' => public_path('sharp/sharp.advancedsearch.min.js'),
 
 			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.eot' => public_path('sharp/fonts/fontawesome-webfont.eot'),
 			__DIR__.'/../../../resources/assets/fonts/fontawesome-webfont.svg' => public_path('sharp/fonts/fontawesome-webfont.svg'),

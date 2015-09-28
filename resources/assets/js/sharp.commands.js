@@ -100,6 +100,48 @@ function handleCommandReturn_ALERT(data) {
     sweetAlert(data.title, data.message, data.level);
 }
 
+function handleCommandReturn_VIEW(data) {
+    showPageOverlay();
+
+    var $body = $("body");
+
+    var $cmdViewPanel = $("#command_view_panel");
+    if(!$cmdViewPanel.length) {
+        $cmdViewPanel = $('<div id="command_view_panel"/>');
+        $body.append($cmdViewPanel);
+    }
+
+    $cmdViewPanel.html(data.html);
+
+    $cmdViewPanel.animate({
+        left:'2vw'
+    });
+
+    var $overlay = $(".sharp-page-overlay");
+
+    var handler = function(event) {
+
+        // If keydown event, only handle ESC
+        if(event.type == "keydown" && event.which != 27) {
+            return true;
+        }
+
+        // Hide panel
+        $cmdViewPanel.animate({
+            left:'110vw'
+        }, 'fast');
+
+        // Unbind event
+        $overlay.unbind("click", handler);
+        $body.unbind("keydown", handler);
+
+        hidePageOverlay();
+    };
+
+    $overlay.bind("click", handler);
+    $body.bind("keydown", handler);
+}
+
 function handleCommandReturn_RELOAD() {
     window.location.reload();
 }

@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                     // Upload
                     'resources/assets/bower_components/dropzone/dist/dropzone.js',
                     // Image crop
-                    'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
+                    //'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
                     // Sharp
                     'resources/assets/js/sharp.form.js',
                     'resources/assets/js/sharp.date.js',
