@@ -163,7 +163,7 @@ class EntityController extends Controller
     {
         $state = $request->get("state");
         $instanceId = $request->get("instance");
-        if(!$state || !$instanceId) abort(403);
+        if($state === null || $instanceId === null) abort(403);
 
         $this->checkAbility("changeState-$state", $categoryName, $entityName, $instanceId);
 
