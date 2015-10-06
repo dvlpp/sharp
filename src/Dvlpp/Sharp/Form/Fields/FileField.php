@@ -1,9 +1,9 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
 
-use Illuminate\Support\Collection;
+namespace Dvlpp\Sharp\Form\Fields;
 
 /**
- * A field upload input element, using https://github.com/blueimp.
+ * A field upload input element
  *
  * Class FileField
  * @package Dvlpp\Sharp\Form\Fields
@@ -89,16 +89,16 @@ class FileField extends AbstractSharpField
                 : $this->fieldValue, // Regular case: value is the field value
             ["class" => "sharp-file-id", "autocomplete" => "off"]);
 
-        if ($this->field->crop) {
-            // ... and finally, crop
-
-            // In single relation case (~), we use the relationKey for name only
-            $fileName = $this->relation ? $this->relationKey : $this->fieldName;
-
-            $strField .= $this->formBuilder()->hidden("__filecrop__$fileName",
-                "",
-                ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
-        }
+//        if ($this->field->crop) {
+//            // ... and finally, crop
+//
+//            // In single relation case (~), we use the relationKey for name only
+//            $fileName = $this->relation ? $this->relationKey : $this->fieldName;
+//
+//            $strField .= $this->formBuilder()->hidden("__filecrop__$fileName",
+//                "",
+//                ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
+//        }
 
         return $strField . '</div>';
     }
@@ -118,17 +118,11 @@ class FileField extends AbstractSharpField
 
         // Manage label
         $this->addData('name', basename($instanceFile));
-        $this->addData('size', file_exists($instanceFile) ? filesize($instanceFile) : "");
+
+        $this->addData('size', \Storage::disk(config("sharp.upload_storage_disk"))->size($relativeFilePath));
 
         // Add download link
-        $this->addData('dl_link', route("download", substr($instanceFile, strlen(config("sharp.upload_storage_base_path")) + 1)));
-
-//        $strField .= '<a href="'
-//            . route("download", [$fileShortPath])
-//            . '" class="dl" target="_blank"><i class="fa fa-download"></i> '
-//            . trans('sharp::ui.form_fileField_dlBtn')
-//            . '</a>';
-
+        $this->addData('dl_link', route("download", $instanceFile));
     }
 
     private function getDataValues()

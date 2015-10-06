@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 
 if (!function_exists('sharp_thumbnail')) {
@@ -15,65 +14,59 @@ if (!function_exists('sharp_thumbnail')) {
      */
     function sharp_thumbnail($source, $w, $h, $params = [])
     {
-        if (file_exists($source)) {
-            $uploadStoragePath = Config::get("sharp.upload_storage_base_path") ?: storage_path();
-            $thumbnailPath = Config::get("sharp.thumbnail_relative_path") ?: "sharp/thumbnails";
+        $relativeFolder = dirname($source);
 
-            $folder = dirname($source);
-            if (Str::startsWith($folder, $uploadStoragePath)) {
-                $folder = substr($folder, strlen($uploadStoragePath) + 1);
-            }
+        // Find out full path of the source file
+        $source = config("sharp.upload_storage_base_path") . "/" . $source;
 
-            $sizeMin = isset($params["size_min"]) && $params["size_min"];
+        $thumbnailPath = config("sharp.thumbnail_relative_path");
 
-            if ($w == 0) {
-                $w = null;
-            }
-            if ($h == 0) {
-                $h = null;
-            }
-
-            $thumbName = "$thumbnailPath/$folder/$w-$h" . ($sizeMin ? "_min" : "") . "/" . basename($source);
-            $thumbFile = public_path($thumbName);
-
-            if (!file_exists($thumbFile)) {
-                // Create thumbnail directories if needed
-                if (!file_exists(dirname($thumbFile))) {
-                    mkdir(dirname($thumbFile), 0777, true);
-                }
-
-                try {
-
-                    $manager = new ImageManager;
-                    $sourceImg = $manager->make($source);
-
-                    if ($sizeMin && $w && $h) {
-                        // This param means $w and $h are minimums. We find which dimension of the original image is the most distant
-                        // from the wanted size, and we keep this one as constraint
-                        $dw = $sourceImg->width() / $w;
-                        $dh = $sourceImg->height() / $h;
-                        if ($dw > $dh) {
-                            $w = null;
-                        } else {
-                            $h = null;
-                        }
-                    }
-
-                    // Create thumbnail
-                    $sourceImg->resize($w, $h, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($thumbFile, isset($params["quality"]) ? $params["quality"] : null);
-
-                } catch (\Exception $e) {
-                    return null;
-                }
-            }
-
-            return url($thumbName);
+        $sizeMin = isset($params["size_min"]) && $params["size_min"];
+        if ($w == 0) {
+            $w = null;
+        }
+        if ($h == 0) {
+            $h = null;
         }
 
-        // The source doesn't exist
-        return null;
+        $thumbName = "$thumbnailPath/$relativeFolder/$w-$h" . ($sizeMin ? "_min" : "") . "/" . basename($source);
+        $thumbFile = public_path($thumbName);
+
+        if (!file_exists($thumbFile)) {
+
+            // Create thumbnail directories if needed
+            if (!file_exists(dirname($thumbFile))) {
+                mkdir(dirname($thumbFile), 0777, true);
+            }
+
+            try {
+                $manager = new ImageManager;
+                $sourceImg = $manager->make(Storage::disk(config("sharp.upload_storage_disk") ?: "local")
+                    ->get($source));
+
+                if ($sizeMin && $w && $h) {
+                    // This param means $w and $h are minimums. We find which dimension of the original image is the most distant
+                    // from the wanted size, and we keep this one as constraint
+                    $dw = $sourceImg->width() / $w;
+                    $dh = $sourceImg->height() / $h;
+                    if ($dw > $dh) {
+                        $w = null;
+                    } else {
+                        $h = null;
+                    }
+                }
+
+                // Create thumbnail
+                $sourceImg->resize($w, $h, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($thumbFile, isset($params["quality"]) ? $params["quality"] : null);
+
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+
+        return url($thumbName);
     }
 }
 
@@ -128,27 +121,5 @@ if (!function_exists('explode_search_words')) {
         }
 
         return $terms;
-    }
-}
-
-if (!function_exists('sharp_encode_embedded_entity_data')) {
-    /**
-     * @param $data
-     * @return string
-     */
-    function sharp_encode_embedded_entity_data($data)
-    {
-        return base64_encode(serialize($data));
-    }
-}
-
-if (!function_exists('sharp_decode_embedded_entity_data')) {
-    /**
-     * @param $data
-     * @return array
-     */
-    function sharp_decode_embedded_entity_data($data)
-    {
-        return unserialize(base64_decode($data));
     }
 }

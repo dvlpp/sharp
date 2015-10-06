@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
+<?php
+
+namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithImageAlteration;
@@ -74,39 +76,39 @@ class FileValuator implements Valuator
                 // Update (or create)
                 $this->sharpRepository->updateFileUpload($this->instance, $this->attr, $this->fileData);
 
-            } elseif (trim($this->cropValues)) {
-                // Upload is an image, and there's a crop request
-
-                if (!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithImageAlteration) {
-                    throw new MandatoryClassNotFoundException(
-                        get_class($this->sharpRepository) . ' must implement'
-                        . ' Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithImageAlteration'
-                        . ' to manage auto alteration (crop) of image uploads');
-                }
-
-                $file = $this->instance->getSharpFilePathFor($this->attr);
-
-                $cropVals = explode(",", $this->cropValues);
-                if (sizeof($cropVals) != 4) {
-                    return;
-                }
-
-                $manager = new ImageManager;
-                $img = $manager->make($file);
-
-                $w = (int)($img->width() - $cropVals[0] * $img->width() - ($img->width() - $cropVals[2] * $img->width()));
-                $h = (int)($img->height() - $cropVals[1] * $img->height() - ($img->height() - $cropVals[3] * $img->height()));
-                $x = (int)($cropVals[0] * $img->width());
-                $y = (int)($cropVals[1] * $img->height());
-
-                $img->crop($w, $h, $x, $y);
-
-                $folder = dirname($file);
-                $filename = append_counter_to_filename($file);
-
-                $img->save("$folder/$filename");
-
-                $this->sharpRepository->imageUploadedUpdated($this->instance, $this->attr, $filename);
+//            } elseif (trim($this->cropValues)) {
+//                // Upload is an image, and there's a crop request
+//
+//                if (!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithImageAlteration) {
+//                    throw new MandatoryClassNotFoundException(
+//                        get_class($this->sharpRepository) . ' must implement'
+//                        . ' Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithImageAlteration'
+//                        . ' to manage auto alteration (crop) of image uploads');
+//                }
+//
+//                $file = $this->instance->getSharpFilePathFor($this->attr);
+//
+//                $cropVals = explode(",", $this->cropValues);
+//                if (sizeof($cropVals) != 4) {
+//                    return;
+//                }
+//
+//                $manager = new ImageManager;
+//                $img = $manager->make($file);
+//
+//                $w = (int)($img->width() - $cropVals[0] * $img->width() - ($img->width() - $cropVals[2] * $img->width()));
+//                $h = (int)($img->height() - $cropVals[1] * $img->height() - ($img->height() - $cropVals[3] * $img->height()));
+//                $x = (int)($cropVals[0] * $img->width());
+//                $y = (int)($cropVals[1] * $img->height());
+//
+//                $img->crop($w, $h, $x, $y);
+//
+//                $folder = dirname($file);
+//                $filename = append_counter_to_filename($file);
+//
+//                $img->save("$folder/$filename");
+//
+//                $this->sharpRepository->imageUploadedUpdated($this->instance, $this->attr, $filename);
             }
         }
     }

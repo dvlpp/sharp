@@ -26,16 +26,17 @@ function get_entity_update_form_route($category, $entity, $instance)
  * Appends an incremental counter to a file name.
  *
  * @param $file
+ * @param string $disk
  * @return string
- */
-function append_counter_to_filename($file)
+ *
+function append_counter_to_filename($file, $disk='local')
 {
-    if (!File::exists($file)) {
+    if (!Storage::disk($disk)->exists($file)) {
         return $file;
     }
 
     $filename = basename($file);
-    $ext = File::extension($file);
+    $ext = Storage::disk($disk)->extension($file);
     if ($ext) {
         $ext = ".$ext";
         $filename = substr($filename, 0, strlen($filename) - strlen($ext));
@@ -44,13 +45,13 @@ function append_counter_to_filename($file)
     $increment = 1;
 
     if (preg_match('/(.)+_\d+/', $filename)) {
-        $pos = strrpos($file, "_");
+        $pos = strrpos($filename, "_");
         $filename = substr($filename, 0, $pos);
         $increment = intval(substr($filename, $pos + 1)) + 1;
     }
 
     return $filename . "_" . $increment . $ext;
-}
+}*/
 
 /**
  * Returns the value of a given attribute for an entity.
@@ -217,4 +218,11 @@ function add_attributes_if_missing($object, array $attributes)
             $object->$attr = null;
         }
     }
+}
+
+function get_file_path($relativePath, $disk='local')
+{
+    $storagePath  = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
+
+    return $storagePath . $relativePath;
 }
