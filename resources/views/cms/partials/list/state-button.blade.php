@@ -1,4 +1,4 @@
-@if($entity->state)
+@if($entity->state->data)
 
     <div class="btn dropdown">
 
