@@ -51,24 +51,6 @@ class SharpEloquentAutoUpdaterService
     {
         $entityConfig = SharpConfig::findEntity($categoryName, $entityName);
 
-        return $this->updateEntityWithConfig($sharpRepository, $entityConfig, $instance, $data);
-    }
-
-    /**
-     * Updates an entity with the posted data.
-     *
-     * @param SharpCmsRepository $sharpRepository
-     * @param $entityConfig
-     * @param $instance
-     * @param array $data
-     * @return mixed
-     */
-    function updateEntityWithConfig(
-        SharpCmsRepository $sharpRepository,
-        $entityConfig,
-        $instance,
-        Array $data
-    ) {
         $this->sharpRepository = $sharpRepository;
         $this->entityConfig = $entityConfig;
 
@@ -221,8 +203,8 @@ class SharpEloquentAutoUpdaterService
                 break;
 
             case "file":
-                $cropValues = isset($data["__filecrop__" . $dataAttribute]) ? $data["__filecrop__" . $dataAttribute] : null;
-                $valuator = new FileValuator($instance, $dataAttribute, $value, $this->sharpRepository, $cropValues);
+//                $cropValues = isset($data["__filecrop__" . $dataAttribute]) ? $data["__filecrop__" . $dataAttribute] : null;
+                $valuator = new FileValuator($instance, $dataAttribute, $value, $this->sharpRepository);
                 break;
 
             case "list":
