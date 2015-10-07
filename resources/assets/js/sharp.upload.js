@@ -67,6 +67,9 @@
 
             if(params.populatedFile) {
                 dropzone.emit("addedfile", params.populatedFile);
+                if(!params.populatedFile.size) {
+                    $(this).find(".dz-size").addClass("hidden");
+                }
                 if(params.thumb) {
                     dropzone.emit("thumbnail", params.populatedFile, params.thumb);
                 }
