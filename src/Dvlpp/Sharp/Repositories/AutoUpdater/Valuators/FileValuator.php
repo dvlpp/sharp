@@ -3,8 +3,10 @@
 namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
+use Dvlpp\Sharp\Jobs\CopyFileInStorage;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads;
 use Illuminate\Contracts\Filesystem\Factory;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class FileValuator
@@ -12,6 +14,9 @@ use Illuminate\Contracts\Filesystem\Factory;
  */
 class FileValuator implements Valuator
 {
+
+    use DispatchesJobs;
+
     /**
      * @var Factory
      */
@@ -127,11 +132,6 @@ class FileValuator implements Valuator
             // Find an available name for the file
             $fileName = $this->findAvailableFileName($relativeDestDir, $fileName, $storageDisk);
 
-            // And finally, copy
-            $this->fileSystemManager->disk($storageDisk)->put(
-                "$relativeDestDir/$fileName",
-                $this->fileSystemManager->disk($srcFileDisk)->get($relativeSrcFile));
-
             // Get mime and size from the $srcFileDisk: if the storage is in cloud,
             // it will be faster this way.
             $mime = $this->fileSystemManager->disk($srcFileDisk)->mimeType($relativeSrcFile);
@@ -148,6 +148,10 @@ class FileValuator implements Valuator
                     $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->sharpRepository->getStorageDirPath($this->instance));
                 }
             }
+
+            // And finally, copy. We do this in a Job to authorize queue
+            // on configured environments
+            $this->dispatch(new CopyFileInStorage($relativeSrcFile, "$relativeDestDir/$fileName", $srcFileDisk, $storageDisk));
 
             if(!$duplication) {
                 $this->fileSystemManager->disk($srcFileDisk)->delete($relativeSrcFile);
