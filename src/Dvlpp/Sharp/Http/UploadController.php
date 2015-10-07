@@ -22,21 +22,22 @@ class UploadController extends Controller
 
     public function uploadWithThumbnail(Request $request)
     {
-        try {
-            $tab = $this->uploadFile($request);
-
-            // Manage thumbnail creation
-            $tab["thumbnail"] = sharp_thumbnail(
-                $tab["path"],
-                $request->get("thumbnail_height"),
-                $request->get("thumbnail_width")
-            );
-
-            return response()->json(["file" => $tab]);
-
-        } catch (\Exception $e) {
-            return response()->json(["err" => $e->getMessage()]);
-        }
+        return $this->upload($request);
+//        try {
+//            $tab = $this->uploadFile($request);
+//
+//            // Manage thumbnail creation
+//            $tab["thumbnail"] = sharp_thumbnail(
+//                $tab["path"],
+//                $request->get("thumbnail_height"),
+//                $request->get("thumbnail_width")
+//            );
+//
+//            return response()->json(["file" => $tab]);
+//
+//        } catch (\Exception $e) {
+//            return response()->json(["err" => $e->getMessage()]);
+//        }
 
     }
 

@@ -89,17 +89,6 @@ class FileField extends AbstractSharpField
                 : $this->fieldValue, // Regular case: value is the field value
             ["class" => "sharp-file-id", "autocomplete" => "off"]);
 
-//        if ($this->field->crop) {
-//            // ... and finally, crop
-//
-//            // In single relation case (~), we use the relationKey for name only
-//            $fileName = $this->relation ? $this->relationKey : $this->fieldName;
-//
-//            $strField .= $this->formBuilder()->hidden("__filecrop__$fileName",
-//                "",
-//                ["class" => "sharp-file-crop-values", "autocomplete" => "off"]);
-//        }
-
         return $strField . '</div>';
     }
 

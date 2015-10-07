@@ -10,18 +10,25 @@ if (!function_exists('sharp_thumbnail')) {
      * @param $w
      * @param $h
      * @param array $params
+     * @param string|null $relativeFolder
+     * @param bool $isTmp
      * @return null|string
      */
-    function sharp_thumbnail($source, $w, $h, $params = [])
+    function sharp_thumbnail($source, $w, $h, $params = [], $relativeFolder=null, $isTmp=false)
     {
-        $relativeFolder = dirname($source);
+        if(!$relativeFolder) {
+            $relativeFolder = dirname($source);
+        }
 
-        // Find out full path of the source file
-        $source = config("sharp.upload_storage_base_path") . "/" . $source;
+        if(!$isTmp) {
+            // Find out full path of the source file
+            $source = config("sharp.upload_storage_base_path") . "/" . $source;
+        }
 
         $thumbnailPath = config("sharp.thumbnail_relative_path");
 
         $sizeMin = isset($params["size_min"]) && $params["size_min"];
+
         if ($w == 0) {
             $w = null;
         }
@@ -40,9 +47,10 @@ if (!function_exists('sharp_thumbnail')) {
             }
 
             try {
+                $disk = $isTmp ? "local" : (config("sharp.upload_storage_disk") ?: "local");
+
                 $manager = new ImageManager;
-                $sourceImg = $manager->make(Storage::disk(config("sharp.upload_storage_disk") ?: "local")
-                    ->get($source));
+                $sourceImg = $manager->make(Storage::disk($disk)->get($source));
 
                 if ($sizeMin && $w && $h) {
                     // This param means $w and $h are minimums. We find which dimension of the original image is the most distant

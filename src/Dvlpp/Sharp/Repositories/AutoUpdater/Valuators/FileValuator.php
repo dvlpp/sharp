@@ -138,9 +138,14 @@ class FileValuator implements Valuator
             $size = $this->fileSystemManager->disk($srcFileDisk)->size($relativeSrcFile);
 
             // If there's thumbs to generate, now is the time
+            if($this->fileConfig->thumbnail) {
+                // Generate Sharp's form thumbnail
+                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnail, $this->sharpRepository->getStorageDirPath($this->instance));
+            }
             if($this->fileConfig->generate_thumbs) {
+                // Generate other thumbnails if asked.
                 foreach($this->fileConfig->generate_thumbs as $thumbConfig) {
-                    $this->generateThumbnail($this->fileData, $thumbConfig);
+                    $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->sharpRepository->getStorageDirPath($this->instance));
                 }
             }
 
@@ -182,9 +187,21 @@ class FileValuator implements Valuator
         return $fileName;
     }
 
-    private function generateThumbnail($fileData, $thumbConfig)
+    /**
+     * Generate a thumbnail with given constraints.
+     *
+     * @param string $tmpFilePath
+     * @param string $thumbConfig
+     * @param string $relativeThumbFolder
+     */
+    private function generateThumbnail($tmpFilePath, $thumbConfig, $relativeThumbFolder)
     {
+        if (!str_contains($thumbConfig, "x")) {
+            return;
+        }
 
+        list($w, $h) = explode("x", $thumbConfig);
+        sharp_thumbnail($tmpFilePath, $w, $h, [], $relativeThumbFolder, true);
     }
 
 } 

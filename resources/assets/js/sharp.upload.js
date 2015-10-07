@@ -87,17 +87,10 @@ $(window).load(function() {
 });
 
 function createSharpFile($el) {
-    var params = {};
-
-    if($el.data("thumbnail")) {
-        var tab = $el.data("thumbnail").split('x');
-        if(tab.length == 2) {
-            params.thumbnailWidth = tab[0]!=0 ? tab[0] : null;
-            params.thumbnailHeight = tab[1]!=0 ? tab[1] : null;
-        }
-    }
-
-    params.url = ($el.data("thumbnail") ? '/admin/uploadWithThumbnail' : '/admin/upload');
+    var params = {
+        url: '/admin/upload',
+        browseText: $el.data("browse_text")
+    };
 
     if($el.data("file_filter")) {
         params.acceptedFiles = $el.data("file_filter");
@@ -109,8 +102,6 @@ function createSharpFile($el) {
     if($el.data("max_file_size")) {
         params.maxFilesize = $el.data("max_file_size");
     }
-
-    params.browseText = $el.data("browse_text");
 
     if($el.data("name")) {
         // File is valuated

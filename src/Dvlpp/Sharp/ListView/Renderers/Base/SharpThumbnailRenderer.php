@@ -1,7 +1,8 @@
-<?php namespace Dvlpp\Sharp\ListView\Renderers\Base;
+<?php
+
+namespace Dvlpp\Sharp\ListView\Renderers\Base;
 
 use Dvlpp\Sharp\ListView\Renderers\SharpRenderer;
-use Illuminate\Support\Str;
 use HTML;
 
 class SharpThumbnailRenderer implements SharpRenderer
@@ -12,7 +13,7 @@ class SharpThumbnailRenderer implements SharpRenderer
         if ($instance->$key) {
             $w = $h = 100;
 
-            if (Str::contains($options, "x")) {
+            if (str_contains($options, "x")) {
                 list($w, $h) = explode("x", $options);
             }
 
