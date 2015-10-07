@@ -8618,6 +8618,12 @@ body.sharp-auth {
   bottom: 0;
   z-index: 9998;
   position: fixed;
+  text-align: center;
+}
+.sharp-page-overlay i {
+  color: #fff;
+  margin-top: 30%;
+  font-size: 140px;
 }
 #sharp header {
   background-color: #2f353b;

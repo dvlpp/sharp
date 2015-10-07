@@ -44,7 +44,6 @@
 
 @section('content')
 
-    <div id="form-overlay" class="hidden"></div>
     <div id="form-validation-error-message" class="hidden">
         <h1>{{ trans('sharp::ui.form_errors') }}</h1>
         <h2>{{ trans('sharp::ui.form_errors_detail') }}</h2>

@@ -12544,19 +12544,14 @@ module.exports = eventmap;
 
 });
 
-function activate($source, jsonData) {
-    $source.parents(".state").removeClass("state-inactive").addClass("state-active");
-}
-
-function deactivate($source, jsonData) {
-    $source.parents(".state").removeClass("state-active").addClass("state-inactive");
-}
-
-var $pageOverlay = null;
 var $body = $("body");
+var $pageOverlay = null;
+
 function showPageOverlay() {
     if(!$pageOverlay) {
-        $pageOverlay = $("<div>").addClass("sharp-page-overlay hidden");
+        $pageOverlay = $("<div>")
+            .addClass("sharp-page-overlay hidden")
+            .append('<i class="fa fa-cog fa-spin"></i>');
         $body.append($pageOverlay);
     }
     $pageOverlay.removeClass("hidden");

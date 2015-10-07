@@ -31,8 +31,6 @@ module.exports = function(grunt) {
                     'resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js',
                     // Upload
                     'resources/assets/bower_components/dropzone/dist/dropzone.js',
-                    // Image crop
-                    //'resources/assets/bower_components/imgareaselect/jquery.imgareaselect.dev.js',
                     // Sharp
                     'resources/assets/js/sharp.form.js',
                     'resources/assets/js/sharp.date.js',
@@ -41,7 +39,6 @@ module.exports = function(grunt) {
                     'resources/assets/js/sharp.ref.js',
                     'resources/assets/js/sharp.refSublistItem.js',
                     'resources/assets/js/sharp.upload.js',
-                    'resources/assets/js/sharp.imagecrop.js',
                     'resources/assets/js/sharp.customSearch.js',
                     'resources/assets/js/sharp.list.js'
                 ],
