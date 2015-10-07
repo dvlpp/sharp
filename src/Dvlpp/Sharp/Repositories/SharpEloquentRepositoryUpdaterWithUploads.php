@@ -1,5 +1,6 @@
-<?php namespace Dvlpp\Sharp\Repositories;
+<?php
 
+namespace Dvlpp\Sharp\Repositories;
 
 /**
  * Controller which implements this can use SharpEloquentRepositoryUpdaterTrait
@@ -15,10 +16,10 @@ interface SharpEloquentRepositoryUpdaterWithUploads {
      *
      * @param $instance
      * @param $attr
-     * @param $file
+     * @param array $fileInfo
      * @return mixed
      */
-    function updateFileUpload($instance, $attr, $file);
+    function updateFileUpload($instance, $attr, $fileInfo);
 
     /**
      * Delete the upload on the database, depending on implementation.
@@ -28,4 +29,12 @@ interface SharpEloquentRepositoryUpdaterWithUploads {
      * @return mixed
      */
     function deleteFileUpload($instance, $attr);
+
+    /**
+     * Return the relative storage dir path for this instance.
+     *
+     * @param $instance
+     * @return string
+     */
+    function getStorageDirPath($instance);
 } 

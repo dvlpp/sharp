@@ -203,8 +203,10 @@ class SharpEloquentAutoUpdaterService
                 break;
 
             case "file":
-//                $cropValues = isset($data["__filecrop__" . $dataAttribute]) ? $data["__filecrop__" . $dataAttribute] : null;
-                $valuator = new FileValuator($instance, $dataAttribute, $value, $this->sharpRepository);
+                // Find file config
+                $fileConfig = $this->findFieldConfig($baseAttribute ?: $dataAttribute, $listKey);
+                $valuator = new FileValuator($instance, $dataAttribute, $value, $fileConfig,
+                    $this->sharpRepository);
                 break;
 
             case "list":
@@ -216,7 +218,7 @@ class SharpEloquentAutoUpdaterService
 
             case "pivot":
                 // Find pivot config
-                $pivotConfig = $this->findPivotConfig($baseAttribute ?: $dataAttribute, $listKey);
+                $pivotConfig = $this->findFieldConfig($baseAttribute ?: $dataAttribute, $listKey);
                 $valuator = new PivotValuator($instance, $dataAttribute, $value, $pivotConfig,
                     $this->sharpRepository);
                 break;
@@ -255,7 +257,7 @@ class SharpEloquentAutoUpdaterService
      * @param $listKey
      * @return null
      */
-    private function findPivotConfig($dataAttribute, $listKey)
+    private function findFieldConfig($dataAttribute, $listKey)
     {
         if ($listKey) {
             // It's in a list item
