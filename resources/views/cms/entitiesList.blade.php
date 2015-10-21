@@ -124,6 +124,11 @@
         {!! $list->paginator()->appends(Input::except(['page']))->render() !!}
     @endif
 
+@endsection
+
+@section("scripts")
+    @parent
+
     @foreach(get_command_forms($category, $entity) as $commandKey => $commandFields)
         @include("sharp::cms.partials.list.commandForm", ["commandKey"=>$commandKey, "fields"=>$commandFields])
     @endforeach
