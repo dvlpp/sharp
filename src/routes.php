@@ -81,10 +81,6 @@ Route::group(['middleware' => 'sharp_auth'], function () {
         "as" => "upload",
         "uses" => '\Dvlpp\Sharp\Http\UploadController@upload'
     ]);
-    Route::post('/admin/uploadWithThumbnail', [
-        "as" => "uploadWithThumbnail",
-        "uses" => '\Dvlpp\Sharp\Http\UploadController@uploadWithThumbnail'
-    ]);
     Route::get('/admin/download/{file?}', [
         "as" => "download",
         "uses" => '\Dvlpp\Sharp\Http\UploadController@download'

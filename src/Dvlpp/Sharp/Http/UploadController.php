@@ -2,12 +2,17 @@
 
 namespace Dvlpp\Sharp\Http;
 
+use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class UploadController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function upload(Request $request)
     {
         try {
@@ -20,32 +25,23 @@ class UploadController extends Controller
         }
     }
 
-    public function uploadWithThumbnail(Request $request)
-    {
-        return $this->upload($request);
-//        try {
-//            $tab = $this->uploadFile($request);
-//
-//            // Manage thumbnail creation
-//            $tab["thumbnail"] = sharp_thumbnail(
-//                $tab["path"],
-//                $request->get("thumbnail_height"),
-//                $request->get("thumbnail_width")
-//            );
-//
-//            return response()->json(["file" => $tab]);
-//
-//        } catch (\Exception $e) {
-//            return response()->json(["err" => $e->getMessage()]);
-//        }
-
-    }
-
+    /**
+     * @param $fileShortPath
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function download($fileShortPath)
     {
-        $relativeFilePath = config("sharp.upload_storage_base_path") . '/' . $fileShortPath;
+        if(strstr($fileShortPath, ":")) {
+            list($disk, $path) = explode(":", $fileShortPath);
+        } else {
+            $disk = config("sharp.upload_storage_disk");
+            $path = $fileShortPath;
+        }
 
-        return response()->download(get_file_path($relativeFilePath), basename($relativeFilePath));
+        return response()->download(
+            get_file_path($path, $disk),
+            basename($path)
+        );
     }
 
     private function uploadFile(Request $request)

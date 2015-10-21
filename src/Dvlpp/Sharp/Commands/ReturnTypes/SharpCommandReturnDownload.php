@@ -4,18 +4,18 @@ namespace Dvlpp\Sharp\Commands\ReturnTypes;
 
 class SharpCommandReturnDownload implements SharpCommandReturn
 {
-    private $fileName;
-    private $filePath;
+    /**
+     * @var string
+     */
+    private $relativeFilePath;
 
     /**
      * SharpCommandReturnDownload constructor.
-     * @param $fileName
-     * @param $filePath
+     * @param $relativeFilePath
      */
-    public function __construct($fileName, $filePath)
+    public function __construct($relativeFilePath)
     {
-        $this->fileName = $fileName;
-        $this->filePath = $filePath;
+        $this->relativeFilePath = $relativeFilePath;
     }
 
     /**
@@ -27,8 +27,7 @@ class SharpCommandReturnDownload implements SharpCommandReturn
     {
         return [
             "type" => "DOWNLOAD",
-            "file_name" => $this->fileName,
-            "file_path" => $this->filePath
+            "file_path" => $this->relativeFilePath
         ];
     }
 }

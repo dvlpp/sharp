@@ -41,13 +41,12 @@ trait CommandReturnTrait
     /**
      * Download a file.
      *
-     * @param $fileName
-     * @param $filePath
+     * @param $relativeFilePath
      * @return SharpCommandReturnDownload
      */
-    public function download($fileName, $filePath)
+    public function download($relativeFilePath)
     {
-        return new SharpCommandReturnDownload($fileName, $filePath);
+        return new SharpCommandReturnDownload($relativeFilePath);
     }
 
     /**

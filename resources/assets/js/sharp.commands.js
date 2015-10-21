@@ -149,7 +149,6 @@ function handleCommandReturn_RELOAD() {
 function handleCommandReturn_DOWNLOAD(data) {
     var $dllink = $("#sharp_command_download_link");
 
-    $dllink.prop("href", data.file_path)
-        .prop("download", data.file_name);
+    $dllink.prop("href", $dllink.data("base") + "/" + data.file_path);
     $dllink[0].click();
 }
