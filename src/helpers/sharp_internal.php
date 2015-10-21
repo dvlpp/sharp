@@ -134,6 +134,11 @@ function check_ability($name, $categoryKey, $entityKey=null, $entityId=null, arr
 
     if($entityKey) {
         $ability .= ".{$entityKey}";
+
+        if(!check_ability("category", $categoryKey)) {
+            // The whole category was forbidden...
+            return false;
+        }
     }
 
     // If ability isn't defined, then it's all good
