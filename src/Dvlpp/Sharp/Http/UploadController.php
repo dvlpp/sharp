@@ -5,6 +5,8 @@ namespace Dvlpp\Sharp\Http;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
@@ -38,10 +40,12 @@ class UploadController extends Controller
             $path = $fileShortPath;
         }
 
-        return response()->download(
-            get_file_path($path, $disk),
-            basename($path)
-        );
+        $fullpath = config("sharp.upload_storage_base_path") . "/" . $path;
+
+        return (new Response(
+            Storage::disk($disk)->get($fullpath), 200
+        ))->header('Content-Type', Storage::disk($disk)->mimeType($fullpath))
+            ->header("Content-Disposition", "attachment");
     }
 
     private function uploadFile(Request $request)
