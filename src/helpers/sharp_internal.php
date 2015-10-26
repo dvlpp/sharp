@@ -31,26 +31,26 @@ function get_entity_update_form_route($category, $entity, $instance)
  *
 function append_counter_to_filename($file, $disk='local')
 {
-    if (!Storage::disk($disk)->exists($file)) {
-        return $file;
-    }
+if (!Storage::disk($disk)->exists($file)) {
+return $file;
+}
 
-    $filename = basename($file);
-    $ext = Storage::disk($disk)->extension($file);
-    if ($ext) {
-        $ext = ".$ext";
-        $filename = substr($filename, 0, strlen($filename) - strlen($ext));
-    }
+$filename = basename($file);
+$ext = Storage::disk($disk)->extension($file);
+if ($ext) {
+$ext = ".$ext";
+$filename = substr($filename, 0, strlen($filename) - strlen($ext));
+}
 
-    $increment = 1;
+$increment = 1;
 
-    if (preg_match('/(.)+_\d+/', $filename)) {
-        $pos = strrpos($filename, "_");
-        $filename = substr($filename, 0, $pos);
-        $increment = intval(substr($filename, $pos + 1)) + 1;
-    }
+if (preg_match('/(.)+_\d+/', $filename)) {
+$pos = strrpos($filename, "_");
+$filename = substr($filename, 0, $pos);
+$increment = intval(substr($filename, $pos + 1)) + 1;
+}
 
-    return $filename . "_" . $increment . $ext;
+return $filename . "_" . $increment . $ext;
 }*/
 
 /**
@@ -137,6 +137,11 @@ function check_ability($name, $categoryKey, $entityKey=null, $entityId=null, arr
 
         if(!check_ability("category", $categoryKey)) {
             // The whole category was forbidden...
+            return false;
+        }
+
+        if($name != "entity" && !check_ability("entity", $categoryKey, $entityKey)) {
+            // The whole entity was forbidden...
             return false;
         }
     }
