@@ -64,6 +64,8 @@ class SharpEntitiesList
     /**
      * @param SharpEntity $entity
      * @param SharpCmsRepository $repo
+     * @param Request $request
+     * @throws MandatoryClassNotFoundException
      */
     public function __construct(SharpEntity $entity, SharpCmsRepository $repo, Request $request)
     {
@@ -170,8 +172,8 @@ class SharpEntitiesList
     }
 
     /**
-     * Sublists are entities subsets. This method intents to grab all available sets
-     * from the functional repo, as well as the current one.
+     * Filters are useful to make entities subsets. This method intents to grab
+     * all available sets from the functional repo, as well as the current one.
      *
      * @throws \Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException
      */
@@ -179,9 +181,9 @@ class SharpEntitiesList
     {
         if ($this->entity->list_template->list_filters) {
             if (!$this->repo instanceof SharpHasListFilters) {
-                throw new MandatoryClassNotFoundException("Repository ["
-                    . get_class($this->repo)
-                    . "] has to implement \\Dvlpp\\Sharp\\Repositories\\SharpHasListFilters in order to manage sublists");
+                throw new MandatoryClassNotFoundException(
+                    "Repository [". get_class($this->repo). "] has to implement "
+                    . SharpHasListFilters::class . " in order to manage sublists");
             }
 
             // Init each list filter from request (if set)
@@ -214,6 +216,5 @@ class SharpEntitiesList
 
         return [$sortCol, $sortDir];
     }
-
 
 }
