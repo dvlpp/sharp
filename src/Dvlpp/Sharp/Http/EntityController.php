@@ -46,7 +46,7 @@ class EntityController extends Controller
      */
     public function index($categoryName, $entityName, Request $request)
     {
-        $this->checkAbility('list-entities', $categoryName, $entityName);
+        $this->checkAbility('list', $categoryName, $entityName);
 
         if ($qs = $this->restoreQuerystringForListEntities($categoryName, $entityName, $request)) {
             // We saved an old "input", which means we need to display the list
