@@ -29,6 +29,10 @@ class CopyFileInStorage implements SelfHandling, ShouldQueue
      * @var string
      */
     private $destDisk;
+    /**
+     * @var bool
+     */
+    private $deleteSrc;
 
     /**
      * Create a new job instance.
@@ -37,13 +41,15 @@ class CopyFileInStorage implements SelfHandling, ShouldQueue
      * @param $dest
      * @param string $srcDisk
      * @param string $destDisk
+     * @param bool $deleteSrc
      */
-    public function __construct($src, $dest, $srcDisk='local', $destDisk='local')
+    public function __construct($src, $dest, $srcDisk='local', $destDisk='local', $deleteSrc=false)
     {
         $this->src = $src;
         $this->dest = $dest;
         $this->srcDisk = $srcDisk;
         $this->destDisk = $destDisk;
+        $this->deleteSrc = $deleteSrc;
     }
 
     /**
@@ -57,5 +63,9 @@ class CopyFileInStorage implements SelfHandling, ShouldQueue
             $this->dest,
             $fileSystemManager->disk($this->srcDisk)->get($this->src)
         );
+
+        if(!$this->deleteSrc) {
+            $fileSystemManager->disk($this->srcDisk)->delete($this->src);
+        }
     }
 }
