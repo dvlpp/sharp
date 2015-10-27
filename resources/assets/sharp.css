@@ -8933,6 +8933,10 @@ form .validation-error {
   margin-top: 5px;
   padding: 1px 7px;
 }
+form .form-control:focus {
+  box-shadow: none;
+  border-color: #12dbe8;
+}
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;
   border: 1px solid #cccccc;
