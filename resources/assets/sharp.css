@@ -8993,18 +8993,15 @@ form .validation-error {
   right: 0;
 }
 .sharp-field-file .dz-preview .dz-progress {
+  background: #dddddd;
   position: absolute;
   bottom: -1px;
   left: -1px;
   right: -1px;
 }
 .sharp-field-file .dz-preview .dz-progress .dz-upload {
-  height: 20px;
-  line-height: 20px;
-  color: #333;
-  text-align: center;
   background: #12dbe8;
-  display: block;
+  height: 10px;
 }
 .sharp-field-file .dz-preview .dz-details {
   color: black;

@@ -17,9 +17,9 @@
         </div>
 
         <div class="dz-progress">
-                <span class="dz-upload" data-dz-uploadprogress>
-                    {{ trans("sharp::ui.form_fileField_uploading") }}
-                </span>
+            <div class="dz-upload" data-dz-uploadprogress>
+                <div class="baranim"></div>
+            </div>
         </div>
         <button type="button" class="close" aria-label="Close" data-dz-remove><span aria-hidden="true">&times;</span></button>
     </div>
