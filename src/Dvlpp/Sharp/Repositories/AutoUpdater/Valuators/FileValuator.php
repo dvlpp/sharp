@@ -152,8 +152,14 @@ class FileValuator implements Valuator
             // And finally, copy. We do this in a Job to authorize queue
             // on configured environments
             $this->dispatch(
-                new CopyFileInStorage($relativeSrcFile, "$relativeDestDir/$fileName", $srcFileDisk, $storageDisk, !$duplication)
-            )->onQueue("sharp-files");
+                (new CopyFileInStorage(
+                    $relativeSrcFile,
+                    "$relativeDestDir/$fileName",
+                    $srcFileDisk,
+                    $storageDisk,
+                    !$duplication)
+                )->onQueue("sharp-files")
+            );
 
             return [
                 "path" => "$relativeDestDir/$fileName",
