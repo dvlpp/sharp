@@ -153,7 +153,7 @@ class FileValuator implements Valuator
             // on configured environments
             $this->dispatch(
                 new CopyFileInStorage($relativeSrcFile, "$relativeDestDir/$fileName", $srcFileDisk, $storageDisk, !$duplication)
-            );
+            )->onQueue("sharp-files");
 
             return [
                 "path" => "$relativeDestDir/$fileName",
