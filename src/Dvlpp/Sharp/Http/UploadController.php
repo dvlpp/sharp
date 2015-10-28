@@ -40,11 +40,13 @@ class UploadController extends Controller
             $path = $fileShortPath;
         }
 
-        $fullpath = config("sharp.upload_storage_base_path") . "/" . $path;
+        if(!starts_with($path, "/")) {
+            $path = config("sharp.upload_storage_base_path") . "/" . $path;
+        }
 
         return (new Response(
-            Storage::disk($disk)->get($fullpath), 200
-        ))->header('Content-Type', Storage::disk($disk)->mimeType($fullpath))
+            Storage::disk($disk)->get($path), 200
+        ))->header('Content-Type', Storage::disk($disk)->mimeType($path))
             ->header("Content-Disposition", "attachment");
     }
 
