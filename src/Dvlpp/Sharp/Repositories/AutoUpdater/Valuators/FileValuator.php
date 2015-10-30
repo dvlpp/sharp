@@ -158,7 +158,7 @@ class FileValuator implements Valuator
                     $srcFileDisk,
                     $storageDisk,
                     !$duplication)
-                )->onQueue("sharp-files")
+                )->onQueue($this->getFileQueueName())
             );
 
             return [
@@ -210,6 +210,17 @@ class FileValuator implements Valuator
 
         list($w, $h) = explode("x", $thumbConfig);
         sharp_thumbnail($tmpFilePath, $w, $h, [], $relativeThumbFolder, true);
+    }
+
+    private function getFileQueueName()
+    {
+        $queueName = config("sharp.file_queue_name");
+
+        if(!$queueName) {
+            $queueName = config("sharp.name") . "_sharp-files";
+        }
+
+        return $queueName;
     }
 
 } 
