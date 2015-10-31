@@ -73,7 +73,7 @@ class FileValuator implements Valuator
         if (!$this->sharpRepository instanceof SharpEloquentRepositoryUpdaterWithUploads) {
             throw new MandatoryClassNotFoundException(
                 get_class($this->sharpRepository) . ' must implement'
-                . ' Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads'
+                . SharpEloquentRepositoryUpdaterWithUploads::class
                 . ' to manage auto update of file uploads');
         }
 
@@ -127,10 +127,11 @@ class FileValuator implements Valuator
             // Create storage dir if needed
             if (!$this->fileSystemManager->disk($storageDisk)->exists($relativeDestDir)) {
                 $this->fileSystemManager->disk($storageDisk)->makeDirectory($relativeDestDir, 0777, true);
-            }
 
-            // Find an available name for the file
-            $fileName = $this->findAvailableFileName($relativeDestDir, $fileName, $storageDisk);
+            } else {
+                // Find an available name for the file (only if remote dir already exists)
+                $fileName = $this->findAvailableFileName($relativeDestDir, $fileName, $storageDisk);
+            }
 
             // Get mime and size from the $srcFileDisk: if the storage is in cloud,
             // it will be faster this way.
