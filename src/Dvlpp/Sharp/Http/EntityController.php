@@ -4,6 +4,7 @@ namespace Dvlpp\Sharp\Http;
 
 use Dvlpp\Sharp\Exceptions\InvalidStateException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
+use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
 use Dvlpp\Sharp\Config\SharpConfig;
 use Illuminate\Contracts\Auth\Access\Gate;
@@ -344,6 +345,8 @@ class EntityController extends Controller
             ], 200);
 
         } catch (ValidationException $e) {
+            $this->formatValidationErrors($e->getErrors());
+
             return response()->json($e->getErrors(), 422);
         }
     }
@@ -382,6 +385,22 @@ class EntityController extends Controller
     {
         if($entityConfig->events && $entityConfig->events->$eventName) {
             event(new $entityConfig->events->$eventName($params));
+        }
+    }
+
+    /**
+     * Format validation errors, handling ~ special case.
+     *
+     * @param MessageBag $validationErrors
+     */
+    private function formatValidationErrors(MessageBag $validationErrors)
+    {
+        $errors = [];
+        foreach($validationErrors->keys() as $key) {
+            $errors[str_replace("~", "-", $key)] = $validationErrors->get($key);
+        }
+        if(count($errors)) {
+            $validationErrors->merge($errors);
         }
     }
 

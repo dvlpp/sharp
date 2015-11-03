@@ -236,3 +236,9 @@ function get_file_path($relativePath, $disk='local')
 
     return $storagePath . $relativePath;
 }
+
+function key_name_for_form_field($key)
+{
+    $key = str_replace("~", "-", $key);
+    return "sf-$key";
+}
