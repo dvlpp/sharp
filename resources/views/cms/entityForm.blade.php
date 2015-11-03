@@ -119,5 +119,5 @@
 
 @section("scripts")
     @parent
-    <script src="/sharp/sharp.form.min.js"></script>
+    <script src="/sharp/sharp.form.min.js?v={{ $sharpVersion }}"></script>
 @endsection

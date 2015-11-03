@@ -12566,17 +12566,14 @@ function hidePageOverlay() {
 };$(window).load(function () {
 
     // ---
-    // Show confirm on commands
-    // ---
-    $("body.sharp-list a.command[data-confirm]").click(function() {
-        return confirm($(this).data("confirm"));
-    });
-
-    // ---
     // Ajax command call
     // ---
     $("body.sharp-list a.command").click(function (e) {
         e.preventDefault();
+
+        if($(this).data("confirm") && !confirm($(this).data("confirm"))) {
+            return;
+        }
 
         var url = $(this).attr("href");
         var $form = $(".form-command-" + $(this).data("command"));
