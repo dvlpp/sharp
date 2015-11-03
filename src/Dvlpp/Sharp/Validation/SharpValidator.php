@@ -54,6 +54,9 @@ abstract class SharpValidator
             $this->getInstanceId() ? $this->getUpdateRules() : $this->getCreationRules()
         );
 
+        // Sanitize ?
+        $input = $this->sanitize($input);
+
         // and validate
         $validation = Validator::make($input, $rules, $this->getMessages());
 
@@ -61,7 +64,7 @@ abstract class SharpValidator
             throw new ValidationException($validation->messages());
         }
 
-        return true;
+        return $input;
     }
 
     public function isCreation()
@@ -92,5 +95,10 @@ abstract class SharpValidator
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    public function sanitize(Array $input)
+    {
+        return $input;
     }
 } 
