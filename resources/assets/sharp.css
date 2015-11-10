@@ -8937,6 +8937,21 @@ form .form-control:focus {
   box-shadow: none;
   border-color: #12dbe8;
 }
+form .panel {
+  box-shadow: none;
+  border: none;
+  background: none;
+}
+form .panel .panel-heading {
+  background: none;
+  border: none;
+  padding: 0;
+}
+form .panel .panel-body {
+  border: 1px solid #dadada;
+  background: #e0e0e0;
+  padding: 10px;
+}
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;
   border: 1px solid #cccccc;

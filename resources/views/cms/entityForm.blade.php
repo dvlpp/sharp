@@ -85,30 +85,60 @@
 
                         @foreach($entity->form_layout->$keytab->data as $col => $rows)
 
+                            {{--Main columns--}}
                             <div class="col-md-{{ 12/sizeof($entity->form_layout->$keytab->data) }}">
 
-                                @foreach((array)$rows as $row)
+                                @foreach((array)$rows as $group => $row)
 
-                                    <div class="row">
+                                    @if(!is_numeric($group))
 
-                                        @foreach((array)$row as $key)
+                                        {{--Form field panel--}}
+                                        <div class="panel">
+                                            <div class="panel-heading">
+                                                <label class="control-label">{{ $group }}</label>
+                                            </div>
 
-                                            <?php
-                                                if(strpos($key, ":")) {
-                                                    list($key, $size) = explode(":", $key);
-                                                } else {
-                                                    $size = 12/sizeof($row);
-                                                }
-                                            ?>
+                                            <div class="panel-body">
 
-                                            @include("sharp::cms.partials.formField", [
-                                                "field" => $entity->form_fields->$key,
-                                                "size" => $size
-                                            ])
+                                                @foreach((array)$row as $subrows)
 
-                                        @endforeach
+                                                    <div class="row">
 
-                                    </div>
+                                                        @foreach((array)$subrows as $key)
+
+                                                            @include("sharp::cms.partials.formFieldsRow", [
+                                                                "key" => $key,
+                                                                "entity" => $entity,
+                                                                "cols" => $subrows
+                                                            ])
+
+                                                        @endforeach
+
+                                                    </div>
+
+                                                @endforeach
+
+                                            </div>
+
+                                        </div>
+
+                                    @else
+
+                                        <div class="row">
+
+                                            @foreach((array)$row as $key)
+
+                                                @include("sharp::cms.partials.formFieldsRow", [
+                                                    "key" => $key,
+                                                    "entity" => $entity,
+                                                    "cols" => $row
+                                                ])
+
+                                            @endforeach
+
+                                        </div>
+
+                                    @endif
 
                                 @endforeach
 

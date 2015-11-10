@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="row">
                     @foreach($fields as $key => $field)
-                        @include("sharp::cms.partials.formField", ["field" => $field, "instance" => null])
+                        @include("sharp::cms.partials.formField", ["field" => $field, "instance" => null, "size" => $field->field_width ?: 12])
                     @endforeach
                 </div>
             </div>
