@@ -25,15 +25,7 @@ class SharpEntityFormLayout extends HasProperties implements \Iterator, \Countab
     }
 }
 
-class SharpEntityFormLayoutTab extends HasProperties
-{
-    protected $structProperties = [
-        "col1" => SharpEntityFormLayoutColumn::class,
-        "col2" => SharpEntityFormLayoutColumn::class
-    ];
-}
-
-class SharpEntityFormLayoutColumn extends HasProperties implements \Iterator
+class SharpEntityFormLayoutTab extends HasProperties implements \Iterator
 {
     use IsIterable;
 }

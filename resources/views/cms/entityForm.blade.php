@@ -54,62 +54,68 @@
             "method"=>!$instance->__sharp_duplication && $instance->{$entity->id_attribute}?"put":"post",
             "id"=>"sharpform"]) !!}
 
-        {!! Form::hidden($entity->id_attribute, ($instance->__sharp_duplication ? "" : $instance->{$entity->id_attribute})) !!}
+    {!! Form::hidden($entity->id_attribute, ($instance->__sharp_duplication ? "" : $instance->{$entity->id_attribute})) !!}
 
-        @if(count($entity->form_layout) > 1)
-            {{-- There are tabs --}}
+    @if(count($entity->form_layout->data) > 1)
+        {{-- There are tabs --}}
 
-            <ul class="nav nav-pills entity-tabs" role="tablist">
-                @foreach($entity->form_layout as $k=>$keytab)
-                    <li class="{{ $k==0?'active':'' }}">
-                        <a href="#tab{{ $k++ }}">{{ $entity->form_layout->$keytab->tab }}</a>
-                    </li>
-                @endforeach
-            </ul>
+        <ul class="nav nav-pills entity-tabs" role="tablist">
+            @foreach(array_keys($entity->form_layout->data) as $k => $keytab)
+                <li class="{{ $k==0?'active':'' }}">
+                    <a href="#tab{{ $k }}">{{ $keytab }}</a>
+                </li>
+            @endforeach
+        </ul>
 
-        @endif
+    @endif
 
-        <div class="tab-content">
-            @foreach($entity->form_layout as $k => $keytab)
+    <div class="tab-content">
 
-            <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k++ }}">
+        @foreach(array_keys($entity->form_layout->data) as $k => $keytab)
 
-                @if($entity->form_layout->$keytab->template)
+            <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k }}">
 
-                    @include($entity->form_layout->$keytab->template, ["fields" => $entity->form_fields])
+                @if(is_string($entity->form_layout->$keytab->data))
+
+                    @include($entity->form_layout->$keytab->data, ["fields" => $entity->form_fields])
 
                 @else
+
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
 
-                                @foreach($entity->form_layout->$keytab->col1->data as $key)
+                        @foreach($entity->form_layout->$keytab->data as $col => $rows)
 
-                                    @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
+                            <div class="col-md-{{ 12/sizeof($entity->form_layout->$keytab->data) }}">
+
+                                @foreach((array)$rows as $row)
+
+                                    <div class="row">
+
+                                        @foreach((array)$row as $key)
+
+                                            @include("sharp::cms.partials.formField", [
+                                                "field" => $entity->form_fields->$key,
+                                                "size" => 12/sizeof($row)
+                                            ])
+
+                                        @endforeach
+
+                                    </div>
 
                                 @endforeach
 
                             </div>
-                        </div>
 
-                        <div class="col-md-6">
-                            <div class="row">
+                        @endforeach
 
-                                @foreach($entity->form_layout->$keytab->col2->data as $key)
-
-                                    @include("sharp::cms.partials.formField", ["field" => $entity->form_fields->$key])
-
-                                @endforeach
-
-                            </div>
-                        </div>
                     </div>
+
                 @endif
 
             </div>
 
-            @endforeach
-        </div>
+        @endforeach
+    </div>
 
     {!! Form::close() !!}
 

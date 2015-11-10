@@ -1,8 +1,8 @@
 @if(!in_array($field->type, ["hidden", "javascript"]))
 
-    <div class="form-group sharp-field sharp-field-{{ $field->type }} {{ key_name_for_form_field($key) }} col-md-{{ $field->field_width ?: '12' }}"
+    <div class="form-group sharp-field sharp-field-{{ $field->type }} {{ key_name_for_form_field($key) }} col-md-{{ $size }}"
 
-        {{ $field->conditional_display ? 'data-conditional_display='.$field->conditional_display : '' }} >
+            {{ $field->conditional_display ? 'data-conditional_display='.$field->conditional_display : '' }} >
 
         {!! \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($key, $field, $instance) !!}
 
