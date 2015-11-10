@@ -12804,9 +12804,19 @@ function selectShowHide($select, value, $field, fieldShowIfSelected) {
 
 function showHideField($field, show) {
     if(show) {
-        $field.show();
+        $field.removeClass("hidden");
     } else {
-        $field.hide();
+        $field.addClass("hidden");
+    }
+
+    // Check fieldset visibility if there's one.
+    var $fieldset = $field.parents(".fieldset");
+    if($fieldset.length) {
+        if($fieldset.find(".sharp-field:not(.hidden)").length) {
+            $fieldset.removeClass("hidden");
+        } else {
+            $fieldset.addClass("hidden");
+        }
     }
 }
 

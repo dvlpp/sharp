@@ -93,7 +93,7 @@
                                     @if(!is_numeric($group))
 
                                         {{--Form field panel--}}
-                                        <div class="panel">
+                                        <div class="panel fieldset">
                                             <div class="panel-heading">
                                                 <label class="control-label">{{ $group }}</label>
                                             </div>
