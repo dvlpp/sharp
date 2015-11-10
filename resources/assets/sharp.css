@@ -8948,9 +8948,12 @@ form .panel .panel-heading {
   padding: 0;
 }
 form .panel .panel-body {
-  border: 1px solid #dadada;
-  background: #e0e0e0;
-  padding: 10px;
+  border: 1px solid #BAC4CC;
+  background: #E5E8EB;
+  padding: 5px;
+}
+form .panel .panel-body .row:last-child .form-group {
+  margin-bottom: 0;
 }
 .sharp-field-markdown .mirrormark-toolbar {
   margin-bottom: 0;

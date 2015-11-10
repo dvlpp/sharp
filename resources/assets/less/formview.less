@@ -6,7 +6,8 @@ body.sharp-form {
       margin-bottom: @grid-gutter-width;
 
       li a {
-        background: #ddd; color:#999;
+        background: #ddd;
+        color:#999;
       }
       li.active a {
         border-bottom-color: @sharp-contexbar-bg;
@@ -34,7 +35,8 @@ form {
   }
 
   textarea {
-    overflow: auto; resize: none;
+    overflow: auto;
+    resize: none;
   }
 
   .validation-error {
@@ -62,9 +64,13 @@ form {
     }
 
     .panel-body {
-      border:1px solid #dadada;
-      background:#e0e0e0;
-      padding:10px;
+      border:1px solid #BAC4CC;
+      background:#E5E8EB;
+      padding:5px;
+
+      .row:last-child .form-group {
+        margin-bottom:0;
+      }
     }
   }
 }
