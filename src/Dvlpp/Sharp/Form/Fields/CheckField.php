@@ -24,8 +24,9 @@ class CheckField extends AbstractSharpField {
         // in case of unchecked checkbox. Browser will choose the latest field.
         // We can't use Form::hidden because we *don't want* repopulation here
         return '<input type="hidden" name="'.$this->fieldName.'" value="0">'
-            . '<div class="checkbox"><label>'
-            . $this->formBuilder()->checkbox($this->fieldName, 1, $value)
+            . '<div class="checkbox">'
+            . $this->formBuilder()->checkbox($this->fieldName, 1, $value, ["id"=>"chk".$this->fieldName])
+            . '<label for="'."chk".$this->fieldName.'">'
             . $this->field->text
             . '</label></div>';
     }
