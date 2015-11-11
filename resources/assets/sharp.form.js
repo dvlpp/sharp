@@ -28853,6 +28853,10 @@ $(function() {
                     var errors = jqXhr.responseJSON;
 
                     $.each(errors, function (key, value) {
+                        if((pos = key.indexOf(".")) != -1) {
+                            // It's a list item
+                            key = key.substring(0, pos);
+                        }
                         var $field = $form.find(".sf-" + key);
                         $field.addClass("has-error");
                         $field.append('<span class="validation-error">' + value[0] + '</span>');
