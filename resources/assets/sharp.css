@@ -8952,6 +8952,9 @@ form .panel .panel-body {
   background: #E5E8EB;
   padding: 5px;
 }
+form .panel .panel-body .control-label {
+  font-size: 11px;
+}
 form .panel .panel-body .row:last-child .form-group {
   margin-bottom: 0;
 }
@@ -9046,7 +9049,7 @@ form .panel .panel-body .row:last-child .form-group {
 }
 .sharp-field-list .sharp-list .sharp-list-item .control-label,
 .sharp-field-embed_list .sharp-list .sharp-list-item .control-label {
-  font-size: 14px;
+  font-size: 11px;
 }
 .sharp-field-list .sharp-list .sharp-list-item .form-group,
 .sharp-field-embed_list .sharp-list .sharp-list-item .form-group {
