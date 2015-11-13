@@ -28,6 +28,7 @@ return [
     'form_errors' => 'Le formulaire contient des erreurs',
     'form_errors_detail' => 'Veuillez consulter le détail sous chaque champ concerné',
 
+    'form_listField_addItem' => 'Ajouter',
     'form_listField_deleteItem' => 'Supprimer cet item',
     'form_fileField_browseText' => 'Parcourir...',
     'form_pivotTagsField_addText' => 'Ajouter',

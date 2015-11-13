@@ -28,6 +28,7 @@ return [
     'form_errors' => 'Your input contains some errors',
     'form_errors_detail' => 'Please check details under each field',
 
+    'form_listField_addItem' => 'Add',
     'form_listField_deleteItem' => 'Delete this item',
     'form_fileField_browseText' => 'Browse...',
     'form_pivotTagsField_addText' => 'Add',
