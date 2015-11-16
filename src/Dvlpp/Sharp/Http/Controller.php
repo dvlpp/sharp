@@ -12,6 +12,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
+        // TODO déplacer ça ailleurs, aucune raison que CommandController (par ex) execute ce code. ViewComposer ?
         // Get current language
         $language = session("sharp_lang");
         if (sharp_languages()) {

@@ -3,7 +3,6 @@
 namespace Dvlpp\Sharp\Http;
 
 use Illuminate\Http\Request;
-use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Commands\CommandService;
 use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
 use Dvlpp\Sharp\Exceptions\ValidationException;
@@ -25,6 +24,8 @@ class CommandController extends Controller
 
     function __construct(CommandService $commandsManager)
     {
+        parent::__construct();
+
         $this->commandsManager = $commandsManager;
     }
 
@@ -32,53 +33,57 @@ class CommandController extends Controller
     /**
      * Execute a functional code action and return either a view, a file or nothing.
      *
-     * @param $categoryName
-     * @param $entityName
+     * @param $categoryKey
+     * @param $entityKey
      * @param $commandKey
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function entitiesListCommand($categoryName, $entityName, $commandKey, Request $request)
+    public function entitiesListCommand($categoryKey, $entityKey, $commandKey, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
+
+        $command = $entity->findListCommand($commandKey);
 
         $this->checkAbility(
-            $entity->commands->list->$commandKey->auth ?: "list",
-            $categoryName,
-            $entityName
+            $command->authLevel() ?: "list",
+            $categoryKey,
+            $entityKey
         );
 
-        $commandReturn = $this->commandsManager->executeEntitiesListCommand($entity, $commandKey, $request);
+        $commandReturn = $this->commandsManager->executeEntitiesListCommand($entity, $command, $request);
 
         return $this->handleCommandReturn($commandReturn);
     }
 
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param $categoryKey
+     * @param $entityKey
      * @param $commandKey
      * @param $instanceId
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function entityCommand($categoryName, $entityName, $commandKey, $instanceId, Request $request)
+    public function entityCommand($categoryKey, $entityKey, $commandKey, $instanceId, Request $request)
     {
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
+
+        $command = $entity->findEntityCommand($commandKey);
 
         $this->checkAbility(
-            $entity->commands->entity->$commandKey->auth ?: "update",
-            $categoryName,
-            $entityName,
+            $command->authLevel() ?: "update",
+            $categoryKey,
+            $entityKey,
             $instanceId
         );
 
         try {
-            $commandReturn = $this->commandsManager->executeEntityCommand($entity, $commandKey, $instanceId, $request);
+            $commandReturn = $this->commandsManager->executeEntityCommand($entity, $command, $instanceId, $request);
             return $this->handleCommandReturn($commandReturn);
 
         } catch(ValidationException $ex) {

@@ -369,4 +369,31 @@ abstract class SharpEntityConfig
         return $this->duplicable;
     }
 
+    /**
+     * @param $commandKey
+     * @return null|SharpCommandConfig
+     */
+    public function findListCommand($commandKey)
+    {
+        foreach($this->listCommandsConfig() as $listCommandConfig) {
+            if($listCommandConfig->key() == $commandKey) return $listCommandConfig;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $commandKey
+     * @return null|SharpCommandConfig
+     */
+    public function findEntityCommand($commandKey)
+    {
+
+        foreach($this->entityCommandsConfig() as $entityCommandConfig) {
+            if($entityCommandConfig->key() == $commandKey) return $entityCommandConfig;
+        }
+
+        return null;
+    }
+
 }
