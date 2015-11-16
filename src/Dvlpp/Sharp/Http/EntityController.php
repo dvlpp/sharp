@@ -38,8 +38,8 @@ class EntityController extends Controller
     /**
      * List all entities of a given category/entity with pagination, search, and sorting.
      *
-     * @param $categoryKey
-     * @param $entityKey
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
@@ -80,95 +80,95 @@ class EntityController extends Controller
     /**
      * Show edit form of an entity.
      *
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param $id
      * @return mixed
      */
-    public function edit($categoryName, $entityName, $id)
+    public function edit($categoryKey, $entityKey, $id)
     {
-        $this->checkAbility('update', $categoryName, $entityName, $id);
+        $this->checkAbility('update', $categoryKey, $entityKey, $id);
 
-        return $this->form($categoryName, $entityName, $id);
+        return $this->form($categoryKey, $entityKey, $id);
     }
 
     /**
      * Show create form of an entity.
      *
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @return mixed
      */
-    public function create($categoryName, $entityName)
+    public function create($categoryKey, $entityKey)
     {
-        $this->checkAbility('create', $categoryName, $entityName);
+        $this->checkAbility('create', $categoryKey, $entityKey);
 
-        return $this->form($categoryName, $entityName, null);
+        return $this->form($categoryKey, $entityKey, null);
     }
 
     /**
      * Show duplicate form of an entity.
      *
-     * @param $categoryName
-     * @param $entityName
-     * @param $id
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param string $instanceId
      * @throws InstanceNotFoundException
      * @return mixed
      */
-    public function duplicate($categoryName, $entityName, $id)
+    public function duplicate($categoryKey, $entityKey, $instanceId)
     {
-        $this->checkAbility('duplicate', $categoryName, $entityName, $id);
+        $this->checkAbility('duplicate', $categoryKey, $entityKey, $instanceId);
 
-        return $this->form($categoryName, $entityName, $id, true);
+        return $this->form($categoryKey, $entityKey, $instanceId, true);
     }
 
     /**
      * Updates an entity.
      *
-     * @param $categoryName
-     * @param $entityName
-     * @param $id
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param string $instanceId
      * @param Request $request
      * @return mixed
      */
-    public function update($categoryName, $entityName, $id, Request $request)
+    public function update($categoryKey, $entityKey, $instanceId, Request $request)
     {
-        $this->checkAbility('update', $categoryName, $entityName, $id);
+        $this->checkAbility('update', $categoryKey, $entityKey, $instanceId);
 
-        return $this->save($categoryName, $entityName, $request, $id);
+        return $this->save($categoryKey, $entityKey, $request, $instanceId);
     }
 
     /**
      * Create an entity.
      *
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      * @return mixed
      */
-    public function store($categoryName, $entityName, Request $request)
+    public function store($categoryKey, $entityKey, Request $request)
     {
-        $this->checkAbility('create', $categoryName, $entityName);
+        $this->checkAbility('create', $categoryKey, $entityKey);
 
-        return $this->save($categoryName, $entityName, $request, null);
+        return $this->save($categoryKey, $entityKey, $request, null);
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      * @return mixed
      */
-    public function changeState($categoryName, $entityName, Request $request)
+    public function changeState($categoryKey, $entityKey, Request $request)
     {
         $state = $request->get("state");
         $instanceId = $request->get("instance");
         if($state === null || $instanceId === null) abort(403);
 
-        $this->checkAbility("changeState-$state", $categoryName, $entityName, $instanceId);
+        $this->checkAbility("changeState-$state", $categoryKey, $entityKey, $instanceId);
 
         try {
-            $state = $this->entityRepository($categoryName, $entityName)
+            $state = $this->entityRepository($categoryKey, $entityKey)
                 ->changeState($instanceId, $state);
 
             return response()->json(["state" => $state], 200);
@@ -182,43 +182,43 @@ class EntityController extends Controller
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function reorder($categoryName, $entityName, Request $request)
+    public function reorder($categoryKey, $entityKey, Request $request)
     {
-        $this->checkAbility('reorder', $categoryName, $entityName);
+        $this->checkAbility('reorder', $categoryKey, $entityKey);
 
         $entities = $request->get("entities");
 
         // Reorder
-        $this->entityRepository($categoryName, $entityName)->reorder($entities);
+        $this->entityRepository($categoryKey, $entityKey)->reorder($entities);
 
         return response()->json(["ok" => true]);
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
-     * @param $id
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param string $instanceId
      * @return mixed
      */
-    public function destroy($categoryName, $entityName, $id)
+    public function destroy($categoryKey, $entityKey, $instanceId)
     {
-        $this->checkAbility('delete', $categoryName, $entityName, $id);
+        $this->checkAbility('delete', $categoryKey, $entityKey, $instanceId);
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
 
         // Instantiate the entity repository
-        $repo = app($entity->repository);
+        $repo = app($entity->repository());
 
         $this->fireEvent($entity, "beforeDelete", compact('id'));
 
-        $repo->delete($id);
+        $repo->delete($instanceId);
 
         $this->fireEvent($entity, "afterDelete", compact('id'));
 
@@ -226,55 +226,55 @@ class EntityController extends Controller
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
-     * @param $fieldName
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param string $fieldName
      * @param Request $request
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function ax_customSearchField($categoryName, $entityName, $fieldName, Request $request)
+    public function ax_customSearchField($categoryKey, $entityKey, $fieldName, Request $request)
     {
         return response()->json(CustomSearchField::renderCustomSearch(
             $fieldName,
-            $this->entityRepository($categoryName, $entityName),
+            $this->entityRepository($categoryKey, $entityKey),
             $request)
         );
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @return SharpCmsRepository
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    private function entityRepository($categoryName, $entityName)
+    private function entityRepository($categoryKey, $entityKey)
     {
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
 
-        return app($entity->repository);
+        return app($entity->repository());
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
-     * @param $id
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param string $instanceId
      * @param bool $duplication
      * @throws \Dvlpp\Sharp\Exceptions\InstanceNotFoundException
      * @return mixed
      */
-    private function form($categoryName, $entityName, $id, $duplication = false)
+    private function form($categoryKey, $entityKey, $instanceId, $duplication = false)
     {
-        $creation = ($id === null);
+        $creation = ($instanceId === null);
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
 
         // Instantiate the entity repository
-        $repo = app($entity->repository);
+        $repo = app($entity->repository());
 
         // Retrieve the corresponding DB entity
-        $instance = $creation ? $repo->newInstance() : $repo->find($id);
+        $instance = $creation ? $repo->newInstance() : $repo->find($instanceId);
 
         if ($instance) {
             // Duplication management: we simply add an attribute here
@@ -290,40 +290,40 @@ class EntityController extends Controller
             return view('sharp::cms.entityForm', [
                 'instance' => $instance,
                 'entity' => $entity,
-                'category' => SharpConfig::findCategory($categoryName)
+                'category' => sharp_category($categoryKey)
             ]);
         }
 
-        throw new InstanceNotFoundException("Instance of id [$id] and type [$categoryName.$entityName] can't be found");
+        throw new InstanceNotFoundException("Instance of id [$instanceId] and type [$categoryKey.$entityKey] can't be found");
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
-     * @param $id
+     * @param string $instanceId
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    private function save($categoryName, $entityName, Request $request, $id)
+    private function save($categoryKey, $entityKey, Request $request, $instanceId)
     {
-        $creation = ($id === null);
+        $creation = ($instanceId === null);
 
         $data = $request->all();
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
 
         // Instantiate the entity repository
-        $repo = app($entity->repository);
+        $repo = app($entity->repository());
 
         try {
             $this->fireEvent($entity, "beforeValidate", compact('id', 'data'));
 
             // First validation
-            if ($entity->validator) {
-                $validator = app($entity->validator);
-                $validator->validate($data, $id);
+            if ($entity->validator()) {
+                $validator = app($entity->validator());
+                $validator->validate($data, $instanceId);
             }
 
             // Then update (calling repo)
@@ -333,14 +333,14 @@ class EntityController extends Controller
 
             } else {
                 $this->fireEvent($entity, "beforeUpdate", compact('id', 'data'));
-                $instance = $repo->update($id, $data);
+                $instance = $repo->update($instanceId, $data);
             }
 
             $this->fireEvent($entity, "afterUpdate", compact('instance'));
 
             // And redirect
             return response()->json([
-                "url"=>route("cms.list", [$categoryName, $entityName])
+                "url"=>route("cms.list", [$categoryKey, $entityKey])
             ], 200);
 
         } catch (ValidationException $e) {
@@ -351,14 +351,14 @@ class EntityController extends Controller
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      * @return bool
      */
-    protected function restoreQuerystringForListEntities($categoryName, $entityName, Request $request)
+    protected function restoreQuerystringForListEntities($categoryKey, $entityKey, Request $request)
     {
-        $sessionQs = session("listViewInput_{$categoryName}_{$entityName}");
+        $sessionQs = session("listViewInput_{$categoryKey}_{$entityKey}");
 
         if(!sizeof($request->all()) && $sessionQs) {
             foreach($sessionQs as $param=>$value) {
@@ -370,13 +370,13 @@ class EntityController extends Controller
     }
 
     /**
-     * @param $categoryName
-     * @param $entityName
+     * @param string $categoryKey
+     * @param string $entityKey
      * @param Request $request
      */
-    protected function saveQuerystringForListEntities($categoryName, $entityName, Request $request)
+    protected function saveQuerystringForListEntities($categoryKey, $entityKey, Request $request)
     {
-        session()->put("listViewInput_{$categoryName}_{$entityName}",
+        session()->put("listViewInput_{$categoryKey}_{$entityKey}",
             $request->only(['page', 'sort', 'dir', 'search', 'sub']));
     }
 

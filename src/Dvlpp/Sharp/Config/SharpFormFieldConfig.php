@@ -21,6 +21,11 @@ abstract class SharpFormFieldConfig
     protected $label;
 
     /**
+     * @var string
+     */
+    protected $helpMessage;
+
+    /**
      * @var array
      */
     protected $attributes = [];
@@ -114,5 +119,26 @@ abstract class SharpFormFieldConfig
     public function isConditionalDisplay()
     {
         return !is_null($this->conditionalDisplayField);
+    }
+
+    abstract public function type();
+
+    /**
+     * @return string
+     */
+    public function helpMessage()
+    {
+        return $this->helpMessage;
+    }
+
+    /**
+     * @param string $helpMessage
+     * @return $this
+     */
+    public function setHelpMessage($helpMessage)
+    {
+        $this->helpMessage = $helpMessage;
+
+        return $this;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Dvlpp\Sharp\Config;
 
+use Dvlpp\Sharp\Config\Utils\HasFormTemplateTrait;
+use Dvlpp\Sharp\Config\Utils\SharpFormTemplate;
+
 /**
  * Template of a form Column.
  *
@@ -10,10 +13,7 @@ namespace Dvlpp\Sharp\Config;
  */
 class SharpFormTemplateColumnConfig implements SharpFormTemplate
 {
-    /**
-     * @var array
-     */
-    protected $fields = [];
+    use HasFormTemplateTrait;
 
     /**
      * @var int
@@ -33,27 +33,10 @@ class SharpFormTemplateColumnConfig implements SharpFormTemplate
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @return int
      */
-    public function addField($name)
+    public function width()
     {
-        $this->fields[] = $name;
-
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     * @param array $fieldNames
-     * @return $this
-     */
-    public function addFieldset($name, $fieldNames)
-    {
-        $this->fields[] = [
-            $name => $fieldNames
-        ];
-
-        return $this;
+        return $this->width;
     }
 }

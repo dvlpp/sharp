@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 /**
  * A checkbox input element.
@@ -18,7 +20,7 @@ class CheckField extends AbstractSharpField {
         $this->_checkMandatoryAttributes(["text"]);
 
         // For the checkbox value, we take the instance value, and fallback with an optional config default "checked"
-        $value = $this->fieldValue !== null ? $this->fieldValue : $this->field->checked;
+        $value = $this->fieldValue !== null ? $this->fieldValue : $this->field->checked();
 
         // Put an hidden field with same name and 0 value in order to send it
         // in case of unchecked checkbox. Browser will choose the latest field.
@@ -27,7 +29,7 @@ class CheckField extends AbstractSharpField {
             . '<div class="checkbox">'
             . $this->formBuilder()->checkbox($this->fieldName, 1, $value, ["id"=>"chk".$this->fieldName])
             . '<label for="'."chk".$this->fieldName.'">'
-            . $this->field->text
+            . $this->field->text()
             . '</label></div>';
     }
 

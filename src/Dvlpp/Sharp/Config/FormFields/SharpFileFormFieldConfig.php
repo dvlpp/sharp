@@ -12,7 +12,7 @@ class SharpFileFormFieldConfig extends SharpFormFieldConfig
     protected $maxFileSize;
 
     /**
-     * @var string
+     * @var array
      */
     protected $fileFilter;
 
@@ -112,6 +112,43 @@ class SharpFileFormFieldConfig extends SharpFormFieldConfig
         $this->generatedThumbnails[] = $size;
 
         return $this;
+    }
+
+    public function type()
+    {
+        return "file";
+    }
+
+    /**
+     * @return int
+     */
+    public function maxFileSize()
+    {
+        return $this->maxFileSize;
+    }
+
+    /**
+     * @return string
+     */
+    public function fileFilter()
+    {
+        return implode(",", $this->fileFilter);
+    }
+
+    /**
+     * @return string
+     */
+    public function thumbnailSize()
+    {
+        return $this->thumbnailSize;
+    }
+
+    /**
+     * @return string
+     */
+    public function fileFilterAlertMessage()
+    {
+        return $this->fileFilterAlertMessage;
     }
 
 }

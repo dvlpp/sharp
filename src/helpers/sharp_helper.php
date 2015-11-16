@@ -138,10 +138,10 @@ function explode_search_words(
  */
 function get_entity_update_form_route($category, $entity, $instance)
 {
-    if ($instance->{$entity->id_attribute} && !$instance->__sharp_duplication) {
-        return ["cms.update", $category->key, $entity->key, $instance->{$entity->id_attribute}];
+    if ($instance->{$entity->idAttribute()} && !$instance->__sharp_duplication) {
+        return ["cms.update", $category->key(), $entity->key(), $instance->{$entity->idAttribute()}];
     } else {
-        return ["cms.store", $category->key, $entity->key];
+        return ["cms.store", $category->key(), $entity->key()];
     }
 }
 

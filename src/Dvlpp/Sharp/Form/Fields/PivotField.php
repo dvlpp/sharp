@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
@@ -20,15 +22,15 @@ class PivotField extends AbstractSharpField {
      */
     function make()
     {
-        $this->_checkMandatoryAttributes(["repository"]);
+        $this->_checkMandatoryAttributes(["handler"]);
 
-        $reflistRepoName = $this->field->repository;
+        $reflistRepoName = $this->field->handler();
 
         if(class_exists($reflistRepoName) || interface_exists($reflistRepoName)) {
             $reflistRepo = app($reflistRepoName);
 
-            if($this->field->addable !== null) {
-                $this->addData("addable", $this->field->addable);
+            if($this->field->addable()) {
+                $this->addData("addable", $this->field->addable());
             }
 
             $this->addData("add_text", trans('sharp::ui.form_pivotTagsField_addText'));

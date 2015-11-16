@@ -207,4 +207,15 @@ class SharpCommandConfig
         return !is_null($this->confirmMessage)
             && strlen($this->confirmMessage);
     }
+
+    public function findField($itemKey)
+    {
+        foreach($this->formFieldsConfig() as $formFieldConfig) {
+            if($formFieldConfig->key() == $itemKey) {
+                return $formFieldConfig;
+            }
+        }
+
+        return null;
+    }
 }

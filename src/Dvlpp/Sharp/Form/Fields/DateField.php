@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 /**
  * A date/time input element, JS-built with http://xdsoft.net/jqplugins/datetimepicker/.
@@ -12,8 +14,8 @@ class DateField extends AbstractSharpField {
      * @var array
      */
     private static $availableOptions = [
-        "has_date", "has_time", "step_time", "min_date", "max_date", "min_time", "max_time",
-        "start_date", "format", "start_on_sunday"
+        "hasDate", "hasTime", "stepTime", "minDate", "maxDate", "minTime", "maxTime",
+        "startDate", "format", "startOnSunday"
     ];
 
     /**
@@ -25,14 +27,16 @@ class DateField extends AbstractSharpField {
     {
         // Set options (parameters)
         foreach (self::$availableOptions as $opt) {
-            if($this->field->$opt) $this->addData($opt, $this->field->$opt);
+            if($this->field->$opt()) {
+                $this->addData(snake_case($opt), $this->field->$opt());
+            }
         }
 
-        $format = $this->field->format;
+        $format = $this->field->format();
         if(!$format) {
             $format = "";
-            $format .= $this->field->has_date!==false ? trans('sharp::format.date_inputFormat') : "";
-            $format .= $this->field->has_time ? ((strlen($format)?" ":"") . trans('sharp::format.time_inputFormat')) : "";
+            $format .= $this->field->hasDate() ? trans('sharp::format.date_inputFormat') : "";
+            $format .= $this->field->hasTime() ? ((strlen($format)?" ":"") . trans('sharp::format.time_inputFormat')) : "";
 
             $this->addData("format", $format);
         }

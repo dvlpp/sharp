@@ -1,19 +1,19 @@
-@if(!in_array($field->type, ["hidden", "javascript"]))
+@if(!in_array($field->type(), ["hidden", "javascript"]))
 
-    <div class="form-group sharp-field sharp-field-{{ $field->type }} {{ key_name_for_form_field($key) }} col-md-{{ $size }}"
+    <div class="form-group sharp-field sharp-field-{{ $field->type() }} {{ key_name_for_form_field($field->key()) }}"
 
-            {{ $field->conditional_display ? 'data-conditional_display='.$field->conditional_display : '' }} >
+            {{ $field->isConditionalDisplay() ? 'data-conditional_display='.$field->conditionalDisplayField() : '' }} >
 
-        {!! \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($key, $field, $instance) !!}
+        {!! \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($field, $instance) !!}
 
-        @if($field->help)
-            <p class="help-block">{!! $field->help !!}</p>
+        @if($field->helpMessage())
+            <p class="help-block">{!! $field->helpMessage() !!}</p>
         @endif
 
     </div>
 
 @else
 
-    {!! \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($key, $field, $instance) !!}
+    {!! \Dvlpp\Sharp\Form\Facades\SharpCmsField::make($field, $instance) !!}
 
 @endif

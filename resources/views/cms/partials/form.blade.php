@@ -1,32 +1,28 @@
-@if(count($form->tabs()) > 1)
+@foreach($template->fields() as $fieldsetName => $fieldTemplate)
 
-    <ul class="nav nav-pills entity-tabs" role="tablist">
-        @foreach($form->tabs() as $k => $tab)
-            <li class="{{ $k==0?'active':'' }}">
-                <a href="#tab{{ $k }}">{{ $tab->label() }}</a>
-            </li>
-        @endforeach
-    </ul>
+    @if(is_string($fieldsetName))
+        {{--Fieldset--}}
+        <div class="panel fieldset">
+            <div class="panel-heading">
+                <label class="control-label">{{ $fieldsetName }}</label>
+            </div>
+            <div class="panel-body">
+                @foreach((array)$fieldTemplate as $row)
+                    @include("sharp::cms.partials.formFieldsRow", [
+                        "entity" => $entity,
+                        "fields" => $row
+                    ])
+                @endforeach
+            </div>
+        </div>
 
-@endif
+    @else
 
+        @include("sharp::cms.partials.formFieldsRow", [
+            "entity" => $entity,
+            "fields" => $fieldTemplate
+        ])
 
-@foreach($form->tabs() as $tab)
-
-    <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k }}">
-
-        @if($form->customView())
-            @include($form->customView(), ["form" => $form])
-
-        @else
-            @foreach($form->columns() as $column)
-
-                @include("sharp::cms.partials.formColumn", ["column" => $column])
-
-            @endforeach
-
-        @endif
-
-    </div>
+    @endif
 
 @endforeach

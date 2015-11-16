@@ -7,7 +7,7 @@
 @section('viewname') sharp-form @stop
 
 @section('navcol')
-    @include("sharp::cms.partials.navcol", ["current"=>$entity->key])
+    @include("sharp::cms.partials.navcol", ["current"=>$entity->key()])
 @endsection
 
 
@@ -15,16 +15,16 @@
 
     <p class="navbar-text">
 
-        @if($instance->{$entity->id_attribute})
+        @if($instance->{$entity->idAttribute()})
 
             @if($instance->__sharp_duplication)
-                {{ trans('sharp::ui.form_duplicateTitle', ["entity"=>$entity->label]) }}
+                {{ trans('sharp::ui.form_duplicateTitle', ["entity"=>$entity->label()]) }}
             @else
-                {{ trans('sharp::ui.form_updateTitle', ["entity"=>$entity->label]) }}
+                {{ trans('sharp::ui.form_updateTitle', ["entity"=>$entity->label()]) }}
             @endif
 
         @else
-            {{ trans('sharp::ui.form_createTitle', ["entity"=>$entity->label]) }}
+            {{ trans('sharp::ui.form_createTitle', ["entity"=>$entity->label()]) }}
         @endif
 
     </p>
@@ -34,7 +34,7 @@
         {{ trans('sharp::ui.form_updateBtn') }}
     </button>
 
-    <a href="{{ route("cms.list", [$category->key, $entity->key]) }}" class="btn navbar-btn btn-cancel navbar-right">
+    <a href="{{ route("cms.list", [$category->key(), $entity->key()]) }}" class="btn navbar-btn btn-cancel navbar-right">
         <i class="fa fa-times"></i>
         {{ trans('sharp::ui.form_cancelBtn') }}
     </a>
@@ -51,109 +51,61 @@
 
     {!! Form::model($instance, [
             "route"=>get_entity_update_form_route($category, $entity, $instance),
-            "method"=>!$instance->__sharp_duplication && $instance->{$entity->id_attribute}?"put":"post",
+            "method"=>!$instance->__sharp_duplication && $instance->{$entity->idAttribute()}?"put":"post",
             "id"=>"sharpform"]) !!}
 
-    {!! Form::hidden($entity->id_attribute, ($instance->__sharp_duplication ? "" : $instance->{$entity->id_attribute})) !!}
+    {!! Form::hidden($entity->idAttribute(), ($instance->__sharp_duplication ? "" : $instance->{$entity->idAttribute()})) !!}
 
-    @if(count($entity->form_layout->data) > 1)
+    @if(count($entity->formTemplateTabsConfig()))
         {{-- There are tabs --}}
 
         <ul class="nav nav-pills entity-tabs" role="tablist">
-            @foreach(array_keys($entity->form_layout->data) as $k => $keytab)
+            @foreach($entity->formTemplateTabsConfig() as $k => $formTab)
                 <li class="{{ $k==0?'active':'' }}">
-                    <a href="#tab{{ $k }}">{{ $keytab }}</a>
+                    <a href="#tab{{ $k }}">{{ $formTab->label() }}</a>
                 </li>
             @endforeach
         </ul>
 
-    @endif
+        <div class="tab-content">
 
-    <div class="tab-content">
+            @foreach($entity->formTemplateTabsConfig() as $k => $formTab)
 
-        @foreach(array_keys($entity->form_layout->data) as $k => $keytab)
-
-            <div class="tab-pane {{ $k==0?'active':'' }}" id="tab{{ $k }}">
-
-                @if(is_string($entity->form_layout->$keytab->data))
-
-                    @include($entity->form_layout->$keytab->data, ["fields" => $entity->form_fields])
-
-                @else
+                <div role="tabpanel" class="tab-pane {{$k==0?"active":""}}" id="tab{{$k}}">
 
                     <div class="row">
+                        @foreach($formTab->formTemplateColumnsConfig() as $column)
 
-                        @foreach($entity->form_layout->$keytab->data as $col => $rows)
+                            <div class="col-sm-{{ $column->width() }}">
 
-                            {{--Main columns--}}
-                            <div class="col-md-{{ 12/sizeof($entity->form_layout->$keytab->data) }}">
-
-                                @foreach((array)$rows as $group => $row)
-
-                                    @if(!is_numeric($group))
-
-                                        {{--Form field panel--}}
-                                        <div class="panel fieldset">
-                                            <div class="panel-heading">
-                                                <label class="control-label">{{ $group }}</label>
-                                            </div>
-
-                                            <div class="panel-body">
-
-                                                @foreach((array)$row as $subrows)
-
-                                                    <div class="row">
-
-                                                        @foreach((array)$subrows as $key)
-
-                                                            @include("sharp::cms.partials.formFieldsRow", [
-                                                                "key" => $key,
-                                                                "entity" => $entity,
-                                                                "cols" => $subrows
-                                                            ])
-
-                                                        @endforeach
-
-                                                    </div>
-
-                                                @endforeach
-
-                                            </div>
-
-                                        </div>
-
-                                    @else
-
-                                        <div class="row">
-
-                                            @foreach((array)$row as $key)
-
-                                                @include("sharp::cms.partials.formFieldsRow", [
-                                                    "key" => $key,
-                                                    "entity" => $entity,
-                                                    "cols" => $row
-                                                ])
-
-                                            @endforeach
-
-                                        </div>
-
-                                    @endif
-
-                                @endforeach
+                                @include("sharp::cms.partials.form", ["template" => $column])
 
                             </div>
 
                         @endforeach
-
                     </div>
 
-                @endif
+                </div>
 
-            </div>
+            @endforeach
 
-        @endforeach
-    </div>
+        </div>
+
+    @else
+
+        <div class="row">
+            @foreach($entity->formTemplateColumnsConfig() as $column)
+
+                <div class="col-sm-{{ $column->width() }}">
+
+                    @include("sharp::cms.partials.form", ["template" => $column])
+
+                </div>
+
+            @endforeach
+        </div>
+
+    @endif
 
     {!! Form::close() !!}
 

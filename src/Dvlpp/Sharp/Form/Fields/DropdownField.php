@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 /**
  * A simple select input element (dropdown).
@@ -15,7 +17,12 @@ class DropdownField extends AbstractSharpField {
      */
     function make()
     {
-        return $this->formBuilder()->select($this->fieldName, $this->field->values, $this->fieldValue, $this->attributes);
+        return $this->formBuilder()->select(
+            $this->fieldName,
+            $this->field->values(),
+            $this->fieldValue,
+            $this->attributes
+        );
     }
 
 } 

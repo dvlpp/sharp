@@ -50,4 +50,9 @@ class SharpMarkdownFormFieldConfig extends SharpFormFieldConfig
 
         return $this;
     }
+
+    public function type()
+    {
+        return "markdown";
+    }
 }

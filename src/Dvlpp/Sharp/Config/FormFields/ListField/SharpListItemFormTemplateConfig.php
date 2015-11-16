@@ -1,11 +1,10 @@
 <?php
 
-namespace Dvlpp\Sharp\Config\Commands;
+namespace Dvlpp\Sharp\Config\FormFields\ListField;
 
 use Dvlpp\Sharp\Config\Utils\HasFormTemplateTrait;
-use Dvlpp\Sharp\Config\Utils\SharpFormTemplate;
 
-class SharpCommandFormTemplateConfig implements SharpFormTemplate
+class SharpListItemFormTemplateConfig
 {
     use HasFormTemplateTrait;
 
@@ -16,5 +15,4 @@ class SharpCommandFormTemplateConfig implements SharpFormTemplate
     {
         return new static;
     }
-
 }

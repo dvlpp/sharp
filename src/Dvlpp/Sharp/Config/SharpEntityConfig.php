@@ -3,6 +3,7 @@
 namespace Dvlpp\Sharp\Config;
 
 use Dvlpp\Sharp\Config\Commands\SharpCommandConfig;
+use Dvlpp\Sharp\Config\Utils\HasFormTemplateColumnTrait;
 
 /**
  * TODO gérer les Filtres !
@@ -13,6 +14,8 @@ use Dvlpp\Sharp\Config\Commands\SharpCommandConfig;
  */
 abstract class SharpEntityConfig
 {
+    use HasFormTemplateColumnTrait;
+
     /**
      * @var string
      */
@@ -81,6 +84,11 @@ abstract class SharpEntityConfig
     /**
      * @var string
      */
+    protected $idAttribute = "id";
+
+    /**
+     * @var string
+     */
     private $key;
 
     /**
@@ -96,12 +104,12 @@ abstract class SharpEntityConfig
     /**
      * @var array
      */
-    private $formFieldsConfig = null;
+    private $formTemplateTabsConfig = null;
 
     /**
      * @var array
      */
-    private $formTemplateColumnsConfig = null;
+    private $formFieldsConfig = null;
 
     /**
      * @var array
@@ -126,13 +134,6 @@ abstract class SharpEntityConfig
      * @return void
      */
     abstract function buildFormFields();
-
-    /**
-     * Build the form template, using addFormColumn and addFormTab
-     *
-     * @return void
-     */
-    abstract function buildFormTemplate();
 
     /**
      * Build the entity commands, using addEntityCommand()
@@ -176,16 +177,6 @@ abstract class SharpEntityConfig
     }
 
     /**
-     * Add a field in the form.
-     *
-     * @param SharpFormTemplateColumnConfig $formTemplateColumnConfig
-     */
-    final function addFormTemplateColumn(SharpFormTemplateColumnConfig $formTemplateColumnConfig)
-    {
-        $this->formTemplateColumnsConfig[] = $formTemplateColumnConfig;
-    }
-
-    /**
      * Add an entity command.
      *
      * @param SharpCommandConfig $commandConfig
@@ -214,6 +205,23 @@ abstract class SharpEntityConfig
     }
 
     /**
+     * @return null|string
+     */
+    public function validator()
+    {
+        return $this->validator;
+    }
+
+    public function formFieldsConfig()
+    {
+        if(!$this->formFieldsConfig) {
+            $this->buildFormFields();
+        }
+
+        return (array) $this->formFieldsConfig;
+    }
+
+    /**
      * @return array
      */
     public function listTemplateColumnsConfig()
@@ -223,6 +231,20 @@ abstract class SharpEntityConfig
         }
 
         return (array) $this->listTemplateColumnsConfig;
+    }
+
+    public function addFormTemplateTab(SharpFormTemplateTabConfig $formTemplateTabConfig)
+    {
+        $this->formTemplateTabsConfig[] = $formTemplateTabConfig;
+    }
+
+    public function formTemplateTabsConfig()
+    {
+        if(!$this->formFieldsConfig) {
+            $this->buildFormFields();
+        }
+
+        return (array) $this->formTemplateTabsConfig;
     }
 
     /**
@@ -388,9 +410,25 @@ abstract class SharpEntityConfig
      */
     public function findEntityCommand($commandKey)
     {
-
         foreach($this->entityCommandsConfig() as $entityCommandConfig) {
             if($entityCommandConfig->key() == $commandKey) return $entityCommandConfig;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function idAttribute()
+    {
+        return $this->idAttribute;
+    }
+
+    public function findField($key)
+    {
+        foreach($this->formFieldsConfig() as $formField) {
+            if($formField->key() == $key) return $formField;
         }
 
         return null;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dvlpp\Sharp\Config;
+namespace Dvlpp\Sharp\Config\Utils;
 
 /**
  * Implemented by form templates, responsible for displaying form fields.
@@ -22,4 +22,9 @@ interface SharpFormTemplate
      * @param array $fieldNames
      */
     function addFieldset($name, $fieldNames);
+
+    /**
+     * @return array
+     */
+    public function fields();
 }

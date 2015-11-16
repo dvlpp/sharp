@@ -19,23 +19,24 @@ class FileField extends AbstractSharpField
     function make()
     {
         // Manage the thumbnail data attribute
-        if ($this->field->thumbnail) {
-            $this->addData('thumbnail', $this->field->thumbnail);
+        if ($this->field->thumbnailSize()) {
+            $this->addData('thumbnail', $this->field->thumbnailSize());
         }
-        if ($this->field->file_filter) {
-            $this->addData('file_filter', $this->field->file_filter);
+        if ($this->field->fileFilter()) {
+            $this->addData('file_filter', $this->field->fileFilter());
         }
-        if ($this->field->file_filter_alert) {
-            $this->addData('file_filter_alert', $this->field->file_filter_alert);
+        if ($this->field->fileFilterAlertMessage()) {
+            $this->addData('file_filter_alert', $this->field->fileFilterAlertMessage());
         }
-        if ($this->field->max_file_size) {
-            $this->addData('max_file_size', $this->field->max_file_size);
+        if ($this->field->maxFileSize()) {
+            $this->addData('max_file_size', $this->field->maxFileSize());
         }
 
         $this->addData('browse_text', trans('sharp::ui.form_fileField_browseText'));
 
         $this->addClass('sharp-file', true);
-        if($this->field->thumbnail) {
+
+        if($this->field->thumbnailSize()) {
             $this->addClass('with-thumbnail');
         }
 
@@ -57,7 +58,7 @@ class FileField extends AbstractSharpField
                     $key = $this->relationKey;
                 } else {
                     $ownerInstance = $this->instance;
-                    $key = $this->key;
+                    $key = $this->field->key();
                 }
 
                 if (method_exists($ownerInstance, "getSharpFilePathFor")) {
@@ -99,9 +100,9 @@ class FileField extends AbstractSharpField
     {
         if(!$instanceFile) return;
 
-        if ($this->field->thumbnail) {
+        if ($this->field->thumbnailSize()) {
             // There's a thumbnail to display
-            list($w, $h) = explode("x", $this->field->thumbnail);
+            list($w, $h) = explode("x", $this->field->thumbnailSize());
             $this->addData('thumbnail', sharp_thumbnail($instanceFile, $w, $h));
         }
 

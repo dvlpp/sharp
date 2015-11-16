@@ -20,4 +20,9 @@ class SharpTextareaFormFieldConfig extends SharpFormFieldConfig
 
         return $instance;
     }
+
+    public function type()
+    {
+        return "textarea";
+    }
 }

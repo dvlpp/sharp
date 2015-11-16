@@ -1,12 +1,23 @@
-<?php
-    if(strpos($key, ":")) {
-        list($key, $size) = explode(":", $key);
-    } else {
-        $size = 12/sizeof($cols);
-    }
-?>
+<div class="row">
 
-@include("sharp::cms.partials.formField", [
-    "field" => $entity->form_fields->$key,
-    "size" => $size
-])
+    @foreach((array)$fields as $field)
+
+        <?php
+            if(strpos($field, ":")) {
+                list($field, $size) = explode(":", $field);
+            } else {
+                $size = 12/sizeof($fields);
+            }
+        ?>
+
+        <div class="col-sm-{{ $size }}">
+
+            @include("sharp::cms.partials.formField", [
+                "field" => $entity->findField($field)
+            ])
+
+        </div>
+
+    @endforeach
+
+</div>

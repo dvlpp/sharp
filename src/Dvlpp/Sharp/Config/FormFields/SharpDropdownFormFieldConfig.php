@@ -27,4 +27,16 @@ class SharpDropdownFormFieldConfig extends SharpFormFieldConfig
         return $instance;
     }
 
+    public function type()
+    {
+        return "dropdown";
+    }
+
+    /**
+     * @return array
+     */
+    public function values()
+    {
+        return $this->values;
+    }
 }

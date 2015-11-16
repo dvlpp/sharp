@@ -10,7 +10,10 @@
             </div>
             <div class="modal-body">
 
-                @include("sharp::cms.partials.formColumn", ["formTemplate" => $command->formTemplateConfig()])
+                @include("sharp::cms.partials.form", [
+                    "entity" => $command,
+                    "template" => $command->formTemplateConfig()
+                ])
 
             </div>
             <div class="modal-footer">

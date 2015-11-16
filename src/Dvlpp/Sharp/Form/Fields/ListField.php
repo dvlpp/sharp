@@ -1,7 +1,8 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Form\Facades\SharpCmsField;
-use Illuminate\Support\Collection;
 
 /**
  * An ordered list of items containing fields.
@@ -21,26 +22,26 @@ class ListField extends AbstractSharpField
     {
         // Manage data attributes
         $strAttr = "";
-        if ($this->field->addable) {
-            $strAttr .= 'data-addable="' . $this->field->addable . '"';
+        if ($this->field->addable()) {
+            $strAttr .= 'data-addable="' . $this->field->addable() . '"';
         }
-        if ($this->field->removable) {
-            $strAttr .= ' data-removable="' . $this->field->removable . '"';
+        if ($this->field->removable()) {
+            $strAttr .= ' data-removable="' . $this->field->removable() . '"';
         }
-        if ($this->field->sortable) {
-            $strAttr .= ' data-sortable="' . $this->field->sortable . '"';
+        if ($this->field->sortable()) {
+            $strAttr .= ' data-sortable="' . $this->field->sortable() . '"';
         }
-        if ($this->field->add_button_text) {
-            $strAttr .= ' data-add_button_text="' . e($this->field->add_button_text) . '"';
+        if ($this->field->addButtonText()) {
+            $strAttr .= ' data-add_button_text="' . e($this->field->addButtonText()) . '"';
         }
 
         // Add this hidden to send the list with nothing in case of 0 item.
         // It's useful to post the empty list and be able to delete all
         // potentially existing items.
-        $str = '<input type="hidden" name="' . $this->key . '" value="">'
+        $str = '<input type="hidden" name="' . $this->field->key() . '" value="">'
                 . '<ul class="sharp-list list-group" ' . $strAttr . '>';
 
-        $listkey = $this->key;
+        $listkey = $this->field->key();
         $collection = $this->relation
             ? ($this->instance && $this->instance->{$this->relation} ? $this->instance->{$this->relation}->{$this->relationKey} : [])
             : $this->instance->$listkey;
@@ -49,7 +50,7 @@ class ListField extends AbstractSharpField
             $str .= $this->createItem($item);
         }
 
-        if ($this->field->addable) {
+        if ($this->field->addable()) {
             $str .= $this->createTemplate();
         }
 
@@ -70,7 +71,7 @@ class ListField extends AbstractSharpField
      */
     protected function createItem($item)
     {
-        $itemIdAttribute = $this->field->item_id_attribute ?: "id";
+        $itemIdAttribute = $this->field->itemIdAttribute() ?: "id";
         $itemId = null;
         $isTemplate = ($item === null);
 
@@ -85,7 +86,7 @@ class ListField extends AbstractSharpField
             }
         }
 
-        $hiddenKey = $this->key . "[" . ($isTemplate ? "--N--" : $itemId) . "][$itemIdAttribute]";
+        $hiddenKey = $this->field->key() . "[" . ($isTemplate ? "--N--" : $itemId) . "][$itemIdAttribute]";
 
         $strItem = '<li class="list-group-item sharp-list-item ' . ($isTemplate ? "template" : "") . '">'
             . '<div class="row">'
@@ -93,15 +94,15 @@ class ListField extends AbstractSharpField
             . $this->createItemField($item)
             . '</div>';
 
-        if ($this->field->sortable || $this->field->removable) {
+        if ($this->field->sortable() || $this->field->removable()) {
             $strItem .= '<div class="row"><div class="col-md-12">';
 
-            if ($this->field->sortable) {
+            if ($this->field->sortable()) {
                 $strItem .= '<a class="btn btn-sm"><i class="reorder-handle fa fa-sort"></i></a>';
             }
 
-            if ($this->field->removable) {
-                $strRemove = $this->field->remove_button_text ?: trans('sharp::ui.form_listField_deleteItem');
+            if ($this->field->removable()) {
+                $strRemove = $this->field->removeButtonText() ?: trans('sharp::ui.form_listField_deleteItem');
                 $strItem .= '<a class="sharp-list-remove btn btn-sm"><i class="fa fa-times"></i> ' . $strRemove . '</a>';
             }
 
@@ -115,13 +116,14 @@ class ListField extends AbstractSharpField
     {
         $strItem = "";
 
-        foreach ($this->field->item as $key) {
-            $itemField = $this->field->item->$key;
+        foreach ($this->field->listItemFormTemplateConfig()->fields() as $itemFieldKey) {
 
-            $strField = '<div class="col-md-' . ($itemField->field_width ?: "12") . '">'
-                . '<div class="form-group sharp-field sharp-field-' . $itemField->type . '"'
-                . ($itemField->conditional_display ? ' data-conditional_display=' . $itemField->conditional_display : '') . '>'
-                . SharpCmsField::make($key, $itemField, $item, $this->key)
+            $itemField = $this->field->findItemField($itemFieldKey);
+
+            $strField = '<div class="col-md-12">'
+                . '<div class="form-group sharp-field sharp-field-' . $itemField->type() . '"'
+                . ($itemField->isConditionalDisplay() ? ' data-conditional_display=' . $itemField->conditionalDisplayField() : '') . '>'
+                . SharpCmsField::make($itemField, $item, $this->field->key())
                 . '</div></div>';
 
             $strItem .= $strField;

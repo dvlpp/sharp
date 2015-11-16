@@ -92,4 +92,49 @@ class SharpPivotFormFieldConfig extends SharpFormFieldConfig
 
         return $this;
     }
+
+    public function type()
+    {
+        return "pivot";
+    }
+
+    /**
+     * @return string
+     */
+    public function handler()
+    {
+        return $this->handler;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function addable()
+    {
+        return $this->addable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function sortable()
+    {
+        return $this->sortable;
+    }
+
+    /**
+     * @return string
+     */
+    public function orderAttribute()
+    {
+        return $this->orderAttribute;
+    }
+
+    /**
+     * @return string
+     */
+    public function createAttribute()
+    {
+        return $this->createAttribute;
+    }
 }

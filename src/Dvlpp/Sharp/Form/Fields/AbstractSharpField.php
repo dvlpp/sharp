@@ -1,7 +1,9 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Collective\Html\FormBuilder;
-use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
+use Dvlpp\Sharp\Config\SharpFormFieldConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use stdClass;
 
@@ -14,41 +16,45 @@ use stdClass;
 abstract class AbstractSharpField
 {
     /**
-     * @var string
-     */
-    protected $key;
-    /**
-     * @var SharpEntityFormField
+     * @var SharpFormFieldConfig
      */
     protected $field;
+
     /**
      * @var string
      */
     protected $fieldName;
+
     /**
      * @var array
      */
     protected $attributes;
+
     /**
      * @var
      */
     protected $instance;
+
     /**
      * @var string
      */
     protected $fieldValue;
+
     /**
      * @var string
      */
     protected $listKey;
+
     /**
      * @var bool
      */
     protected $isListItem = false;
+
     /**
      * @var string
      */
     protected $relation;
+
     /**
      * @var string
      */
@@ -62,15 +68,14 @@ abstract class AbstractSharpField
     /**
      * Construct the field.
      *
-     * @param $key
-     * @param $listKey
-     * @param SharpEntityFormField $field
+
+     * @param SharpFormFieldConfig $field
      * @param $attributes
      * @param $instance
+     * @param $listKey
      */
-    function __construct($key, $listKey, $field, $attributes, $instance)
+    function __construct($field, $attributes, $instance, $listKey)
     {
-        $this->key = $key;
         $this->field = $field;
         $this->attributes = $attributes;
         $this->instance = $instance;
@@ -85,20 +90,20 @@ abstract class AbstractSharpField
         $this->relation = null;
         $this->relationKey = null;
 
-        if (strpos($key, "~")) {
+        if (strpos($field->key(), "~")) {
             // If there's a "~" in the field $key, this means we are in a single relation case
             // (One-To-One or Belongs To). The ~ separate the relation name and the value.
             // For instance : boss~name indicate that the instance as a single "boss" relation,
             // which has a "name" attribute.
-            list($this->relation, $this->relationKey) = explode("~", $key);
+            list($this->relation, $this->relationKey) = explode("~", $field->key());
 
             $this->fieldValue = $instance && !$instance instanceof stdClass && $instance->{$this->relation}
                 ? $instance->{$this->relation}->{$this->relationKey}
                 : null;
 
         } else {
-            // Value is instance->key, except for null key: in this case, value IS the instance
-            $this->fieldValue = $key ? ($instance ? $instance->$key : null) : $instance;
+            // Value is instance->key
+            $this->fieldValue = $instance ? $instance->{$field->key()} : null;
         }
     }
 
@@ -142,8 +147,10 @@ abstract class AbstractSharpField
     protected function _checkMandatoryAttributes(Array $attributes)
     {
         foreach ($attributes as $attr) {
-            if ($this->field->$attr === null) {
-                throw new MandatoryEntityAttributeNotFoundException("Attribute [$attr] can't be found (Field: " . $this->key . ")");
+            if ($this->field->$attr() === null) {
+                throw new MandatoryEntityAttributeNotFoundException(
+                    "Attribute [$attr] can't be found (Field: " .
+                    $this->field->key() . ")");
             }
         }
     }
@@ -195,12 +202,12 @@ abstract class AbstractSharpField
                 $str .= "--N--";
             }
 
-            $str .= "]" . ($this->key ? "[" . $this->key . "]" : "");
+            $str .= "]" . ($this->field->key() ? "[" . $this->field->key() . "]" : "");
 
             return $str;
 
         } else {
-            return $this->key;
+            return $this->field->key();
         }
     }
 }

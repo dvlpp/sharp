@@ -1,7 +1,9 @@
-<?php namespace Dvlpp\Sharp\Form;
+<?php
+
+namespace Dvlpp\Sharp\Form;
 
 use Collective\Html\FormBuilder;
-use Dvlpp\Sharp\Config\Entities\SharpEntityFormField;
+use Dvlpp\Sharp\Config\SharpFormFieldConfig;
 use Dvlpp\Sharp\Form\Fields\JavascriptCode;
 
 /**
@@ -28,16 +30,15 @@ class SharpCmsField
     /**
      * Make the form field
      *
-     * @param $key
-     * @param SharpEntityFormField $field
+     * @param SharpFormFieldConfig $field
      * @param Object $instance : the Model object valuated
      * @param string|null $listKey : the key of the list field if the current field is part of a list item
      * @return mixed
      */
-    public function make($key, $field, $instance, $listKey = null)
+    public function make($field, $instance, $listKey = null)
     {
-        $label = $field->label ? $this->createLabel($key, $field->label) : '';
-        $field = $this->createField($key, $field, $instance, $listKey);
+        $label = $field->label() ? $this->createLabel($field->key(), $field->label()) : '';
+        $field = $this->createField($field, $instance, $listKey);
 
         return $label . $field;
     }
@@ -45,26 +46,25 @@ class SharpCmsField
     /**
      * Create the form field
      *
-     * @param $key
-     * @param SharpEntityFormField $field
+     * @param SharpFormFieldConfig $field
      * @param Object $instance : the Model object valuated
      * @param string $listKey
      * @return null|string
      */
-    protected function createField($key, $field, $instance, $listKey)
+    protected function createField($field, $instance, $listKey)
     {
-        $attributes = $field->attributes ?: [];
+        $attributes = $field->attributes() ?: [];
         $attributes["autocomplete"] = "off";
         $this->addClass("form-control", $attributes);
 
-        if($field->type == "javascript") {
+        if($field->type() == "javascript") {
             return (new JavascriptCode($field))->make();
         }
 
-        $className = 'Dvlpp\Sharp\Form\Fields\\' . ucfirst($field->type) . 'Field';
+        $className = 'Dvlpp\Sharp\Form\Fields\\' . ucfirst($field->type()) . 'Field';
 
         if(class_exists($className)) {
-            return (new $className($key, $listKey, $field, $attributes, $instance))->make();
+            return (new $className($field, $attributes, $instance, $listKey))->make();
         }
 
         return null;
