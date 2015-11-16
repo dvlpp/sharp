@@ -2,6 +2,12 @@
 
 namespace Dvlpp\Sharp\Config;
 
+/**
+ * Base class for form fields config.
+ *
+ * Class SharpFormFieldConfig
+ * @package Dvlpp\Sharp\Config
+ */
 abstract class SharpFormFieldConfig
 {
     /**
@@ -18,6 +24,16 @@ abstract class SharpFormFieldConfig
      * @var array
      */
     protected $attributes = [];
+
+    /**
+     * @var string
+     */
+    protected $conditionalDisplayField;
+
+    /**
+     * @var bool|array
+     */
+    protected $conditionalDisplayValues;
 
     /**
      * @param string $label
@@ -53,5 +69,50 @@ abstract class SharpFormFieldConfig
         $this->attributes[$name] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function key()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @return string
+     */
+    public function label()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @return array
+     */
+    public function attributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @return string
+     */
+    public function conditionalDisplayField()
+    {
+        return $this->conditionalDisplayField;
+    }
+
+    /**
+     * @return array|bool
+     */
+    public function conditionalDisplayValues()
+    {
+        return $this->conditionalDisplayValues;
+    }
+
+    public function isConditionalDisplay()
+    {
+        return !is_null($this->conditionalDisplayField);
     }
 }

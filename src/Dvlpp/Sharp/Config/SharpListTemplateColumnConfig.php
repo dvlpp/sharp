@@ -96,4 +96,29 @@ class SharpListTemplateColumnConfig
 
         return $this;
     }
+
+    public function sortable()
+    {
+        return $this->sortable;
+    }
+
+    public function key()
+    {
+        return $this->key;
+    }
+
+    public function headingLabel()
+    {
+        return $this->headingLabel;
+    }
+
+    public function size()
+    {
+        return $this->size;
+    }
+
+    public function columnRenderer()
+    {
+        return $this->renderer;
+    }
 }

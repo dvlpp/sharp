@@ -2,7 +2,10 @@
 
 namespace Dvlpp\Sharp\Config;
 
+use Dvlpp\Sharp\Config\Commands\SharpCommandConfig;
+
 /**
+ * TODO gérer les Filtres !
  * The sharp config base class, which every entity config must extend.
  *
  * Class SharpEntityConfig
@@ -48,12 +51,22 @@ abstract class SharpEntityConfig
     /**
      * @var bool
      */
-    protected $paginable = false;
+    protected $pageable = false;
+
+    /**
+     * @var bool
+     */
+    protected $creatable = true;
+
+    /**
+     * @var bool
+     */
+    protected $reorderable = false;
 
     /**
      * @var int|null
      */
-    protected $paginationSize = 20;
+    protected $pageSize = 20;
 
     /**
      * @var string|null
@@ -63,27 +76,42 @@ abstract class SharpEntityConfig
     /**
      * @var array|null
      */
-    protected $filters = null;
+    protected $listFilters = null;
+
+    /**
+     * @var string
+     */
+    private $key;
+
+    /**
+     * @var string
+     */
+    private $categoryKey;
 
     /**
      * @var array
      */
-    private $listTemplateColumnsConfig = [];
+    private $listTemplateColumnsConfig = null;
 
     /**
      * @var array
      */
-    private $formFieldsConfig = [];
+    private $formFieldsConfig = null;
 
     /**
      * @var array
      */
-    private $formTemplateColumnsConfig = [];
+    private $formTemplateColumnsConfig = null;
 
     /**
      * @var array
      */
-    private $entityCommandsConfig = [];
+    private $entityCommandsConfig = null;
+
+    /**
+     * @var array
+     */
+    private $listCommandsConfig = null;
 
     /**
      * Build the list template columns using addListColumn()
@@ -119,6 +147,13 @@ abstract class SharpEntityConfig
      * @return void
      */
     function buildListCommands() {}
+
+    /**
+     * @return SharpEntityStateIndicator|null
+     */
+    function stateIndicator() {
+        return null;
+    }
 
     /**
      * Add a column in the list template.
@@ -159,4 +194,179 @@ abstract class SharpEntityConfig
     {
         $this->entityCommandsConfig[] = $commandConfig;
     }
+
+    /**
+     * Add an list command.
+     *
+     * @param SharpCommandConfig $commandConfig
+     */
+    final function addListCommand(SharpCommandConfig $commandConfig)
+    {
+        $this->listCommandsConfig[] = $commandConfig;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function repository()
+    {
+        return $this->repository;
+    }
+
+    /**
+     * @return array
+     */
+    public function listTemplateColumnsConfig()
+    {
+        if(!$this->listTemplateColumnsConfig) {
+            $this->buildListTemplate();
+        }
+
+        return (array) $this->listTemplateColumnsConfig;
+    }
+
+    /**
+     * @return array
+     */
+    public function entityCommandsConfig()
+    {
+        if(!$this->entityCommandsConfig) {
+            $this->buildEntityCommands();
+        }
+
+        return (array) $this->entityCommandsConfig;
+    }
+
+    /**
+     * @return array
+     */
+    public function listCommandsConfig()
+    {
+        if(!$this->listCommandsConfig) {
+            $this->buildListCommands();
+        }
+
+        return (array) $this->listCommandsConfig;
+    }
+
+    /**
+     * @return bool
+     */
+    public function searchable()
+    {
+        return $this->searchable;
+    }
+
+    /**
+     * @return bool
+     */
+    public function pageable()
+    {
+        return $this->pageable;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function pageSize()
+    {
+        return $this->pageSize;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function defaultSort()
+    {
+        return $this->defaultSort;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function listFilters()
+    {
+        return $this->listFilters;
+    }
+
+    /**
+     * @return string
+     */
+    public function label()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @return string
+     */
+    public function icon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @return string
+     */
+    public function plural()
+    {
+        return $this->plural;
+    }
+
+    /**
+     * @param string $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+
+    /**
+     * @param string $categoryKey
+     */
+    public function setCategoryKey($categoryKey)
+    {
+        $this->categoryKey = $categoryKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function key()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @return string
+     */
+    public function categoryKey()
+    {
+        return $this->categoryKey;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function creatable()
+    {
+        return $this->creatable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function reorderable()
+    {
+        return $this->reorderable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function duplicable()
+    {
+        return $this->duplicable;
+    }
+
 }

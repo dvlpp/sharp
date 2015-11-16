@@ -1,4 +1,4 @@
-@if($entity->list_template->searchable)
+@if($entity->searchable())
 
     {!! Form::open(["class"=>"navbar-form navbar-right normal-mode search-field", "method"=>"get"]) !!}
 

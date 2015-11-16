@@ -6,7 +6,6 @@ use Dvlpp\Sharp\Exceptions\InvalidStateException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
-use Dvlpp\Sharp\Config\SharpConfig;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Dvlpp\Sharp\ListView\SharpEntitiesList;
 use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
@@ -39,40 +38,40 @@ class EntityController extends Controller
     /**
      * List all entities of a given category/entity with pagination, search, and sorting.
      *
-     * @param $categoryName
-     * @param $entityName
+     * @param $categoryKey
+     * @param $entityKey
      * @param Request $request
      * @return mixed
      * @throws \Dvlpp\Sharp\Exceptions\EntityConfigurationNotFoundException
      */
-    public function index($categoryName, $entityName, Request $request)
+    public function index($categoryKey, $entityKey, Request $request)
     {
-        $this->checkAbility('list', $categoryName, $entityName);
+        $this->checkAbility('list', $categoryKey, $entityKey);
 
-        if ($qs = $this->restoreQuerystringForListEntities($categoryName, $entityName, $request)) {
+        if ($qs = $this->restoreQuerystringForListEntities($categoryKey, $entityKey, $request)) {
             // We saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
             // with the correct querystring based on old input
             return redirect()->route('cms.list',
-                array_merge(["category" => $categoryName, "entity" => $entityName], $qs));
+                array_merge(["category" => $categoryKey, "entity" => $entityKey], $qs));
 
         } else {
             // Save input (we can use it later, see up)
-            $this->saveQuerystringForListEntities($categoryName, $entityName, $request);
+            $this->saveQuerystringForListEntities($categoryKey, $entityKey, $request);
         }
 
         // Find Entity config (from sharp CMS config file)
-        $entity = SharpConfig::findEntity($categoryName, $entityName);
+        $entity = sharp_entity($categoryKey, $entityKey);
 
         // Instantiate the entity repository
-        $repo = app($entity->repository);
+        $repo = app($entity->repository());
 
         // Grab entities (input is managed there, for search, pagination, ...)
         $entitiesList = (new SharpEntitiesList($entity, $repo, $request))->execute();
 
         // And return the View
         return view('sharp::cms.entitiesList', [
-            'category' => SharpConfig::findCategory($categoryName),
+            'category' => sharp_category($categoryKey),
             'entity' => $entity,
             'list' => $entitiesList
         ]);

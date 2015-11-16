@@ -1,14 +1,14 @@
-@if(sizeof($commands = get_abilited_entities_entity_commands($category, $entity, $instance->id)))
+@if(sizeof($commands = get_abilited_entities_entity_commands($entity, $instance->id)))
 
     @foreach($commands as $commandKey => $command)
         <li>
             <a class="command" data-command="{{ $commandKey }}"
-                    href="{{ route('cms.entityCommand', [$category->key, $entity->key, $commandKey, $instance->id]) }}"
-                    {!! $command->confirm ? 'data-confirm="'.e($command->confirm).'"' : '' !!}>
-                @if($command->icon)
-                    <i class="fa fa-{{ $command->icon }}"></i>
+                    href="{{ route('cms.entityCommand', [$category->key(), $entity->key(), $commandKey, $instance->id]) }}"
+                    {!! $command->hasConfirmation() ? 'data-confirm="'.e($command->confirmMessage()).'"' : '' !!}>
+                @if($command->iconName())
+                    <i class="fa fa-{{ $command->iconName() }}"></i>
                 @endif
-                {{ $command->text }}
+                {{ $command->label() }}
             </a>
         </li>
     @endforeach

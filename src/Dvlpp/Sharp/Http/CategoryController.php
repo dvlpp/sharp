@@ -2,8 +2,6 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Dvlpp\Sharp\Config\SharpConfig;
-
 class CategoryController extends Controller
 {
 
@@ -20,26 +18,28 @@ class CategoryController extends Controller
     /**
      * Redirects to list of first entity of the selected category.
      *
-     * @param $categoryName
+     * @param $categoryKey
      * @return mixed
      */
-    public function show($categoryName)
+    public function show($categoryKey)
     {
-        // Find Category config (from sharp CMS config file)
-        $category = SharpConfig::findCategory($categoryName);
+        // Find Category class
+        $category = sharp_category($categoryKey);
 
-        $entityName = $category->entities->current();
+        $k=0;
+        $entityKey = $category->entities()[$k];
 
         // Find the first entity for which we are abilited
-        while(!check_ability("list", $categoryName, $entityName)) {
-            $category->entities->next();
-            $entityName = $category->entities->valid() ? $category->entities->current() : null;
+        while(!check_ability("list", $categoryKey, $entityKey)) {
+            $entityKey = sizeof($category->entities()) > $k
+                ? $category->entities()[++$k]
+                : null;
         }
 
-        if(!$entityName) {
+        if(!$entityKey) {
             abort(403);
         }
 
-        return redirect()->route("cms.list", [$categoryName, $entityName]);
+        return redirect()->route("cms.list", [$categoryKey, $entityKey]);
     }
 }

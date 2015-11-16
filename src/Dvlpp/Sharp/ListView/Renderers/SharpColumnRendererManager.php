@@ -1,10 +1,14 @@
-<?php namespace Dvlpp\Sharp\ListView\Renderers;
+<?php
 
-use Dvlpp\Sharp\Config\Entities\SharpEntityListTemplateColumn;
+namespace Dvlpp\Sharp\ListView\Renderers;
+
+use Dvlpp\Sharp\Config\SharpListTemplateColumnConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
-use Illuminate\Support\Str;
-use App;
 
+/**
+ * Class SharpColumnRendererManager
+ * @package Dvlpp\Sharp\ListView\Renderers
+ */
 class SharpColumnRendererManager {
 
     private static $renderersCache = [];
@@ -17,12 +21,17 @@ class SharpColumnRendererManager {
         "nl2br" => '\Dvlpp\Sharp\ListView\Renderers\Base\Nl2BrRenderer',
     ];
 
-    public static function render(SharpEntityListTemplateColumn $col, $colKey, $instance)
+    /**
+     * @param SharpListTemplateColumnConfig $column
+     * @param $instance
+     * @return string
+     * @throws MandatoryClassNotFoundException
+     */
+    public static function render(SharpListTemplateColumnConfig $column, $instance)
     {
-        $rendererName = $col->renderer;
+        $rendererName = $column->columnRenderer();
         $options = null;
-        if(Str::contains($rendererName, ":"))
-        {
+        if(str_contains($rendererName, ":")) {
             $pos = strpos($rendererName, ':');
             $options = substr($rendererName, $pos+1);
             $rendererName = substr($rendererName, 0, $pos);
@@ -30,26 +39,24 @@ class SharpColumnRendererManager {
 
         $renderer = self::getRenderer($rendererName);
 
-        if(!$renderer instanceof SharpRenderer)
-        {
-            throw new MandatoryClassNotFoundException("Class [".get_class($renderer)."] must implement Dvlpp\\Sharp\\ListView\\Renderers\\SharpRenderer interface.");
+        if(!$renderer instanceof SharpRenderer) {
+            throw new MandatoryClassNotFoundException("Class [".get_class($renderer)."] must implement ["
+            . SharpRenderer::class . "] interface.");
         }
 
-        return $renderer->render($instance, $colKey, $options);
+        return $renderer->render($instance, $column->key(), $options);
     }
 
     private static function getRenderer($rendererName)
     {
         // First try the base renderers...
-        if(array_key_exists($rendererName, self::$baseRenderers))
-        {
+        if(array_key_exists($rendererName, self::$baseRenderers)) {
             $rendererName = self::$baseRenderers[$rendererName];
         }
 
         // Look for cache
-        if(!array_key_exists($rendererName, self::$renderersCache))
-        {
-            $renderer = App::make($rendererName);
+        if(!array_key_exists($rendererName, self::$renderersCache)) {
+            $renderer = app($rendererName);
             self::$renderersCache[$rendererName] = $renderer;
         }
 

@@ -15,8 +15,9 @@
     },
     "autoload": {
         "files": [
-            "src/helpers/sharp_cms.php",
-            "src/helpers/sharp_internal.php"
+            "src/helpers/sharp_helper.php",
+            "src/helpers/sharp_auth_helper.php",
+            "src/helpers/sharp_config_helper.php"
         ],
         "psr-0": {
             "Dvlpp\\Sharp": "src/"

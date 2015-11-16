@@ -33,11 +33,11 @@
 
                 <li class="site"><a href="{{ route('cms') }}">{{ sharp_site_name() }}</a></li>
 
-                @foreach($cmsCategories as $catKey => $cat)
+                @foreach(sharp_categories() as $categoryMenuKey => $categoryMenu)
 
-                    @if(check_ability("category", $catKey))
-                        <li class="{{ isset($category) && $catKey == $category->key ? 'active' : '' }}">
-                            <a class="category" href="{{ route('cms.category', [$catKey]) }}">{{ $cat->label }}</a>
+                    @if(check_ability("category", $categoryMenuKey))
+                        <li class="{{ isset($category) && $categoryMenuKey == $category->key() ? 'active' : '' }}">
+                            <a class="category" href="{{ route('cms.category', [$categoryMenuKey]) }}">{{ $categoryMenu->label() }}</a>
                         </li>
                     @endif
 
@@ -54,14 +54,14 @@
                 </a>
             </div>
 
-            @if(\Dvlpp\Sharp\Config\SharpConfig::getLanguages())
+            @if(sharp_languages())
 
                 <div class="dropdown navbar-right languages">
                     <a class="btn navbar-btn" data-toggle="dropdown" data-target="#">
                         {{ $language }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        @foreach(\Dvlpp\Sharp\Config\SharpConfig::getLanguages() as $languageCode => $languageName)
+                        @foreach(sharp_languages() as $languageCode => $languageName)
                             <li>
                                 <a href="{{ route("cms.lang", [$languageCode]) }}">
                                     {{ $languageName }}

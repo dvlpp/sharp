@@ -1,14 +1,10 @@
 <?php
 
-namespace Dvlpp\Sharp\Config;
+namespace Dvlpp\Sharp\Config\Commands;
 
-/**
- * Template of a form Column.
- *
- * Class SharpFormTemplateColumnConfig
- * @package Dvlpp\Sharp\Config
- */
-class SharpFormTemplateColumnConfig implements SharpFormTemplate
+use Dvlpp\Sharp\Config\SharpFormTemplate;
+
+class SharpCommandFormTemplateConfig implements SharpFormTemplate
 {
     /**
      * @var array
@@ -16,20 +12,11 @@ class SharpFormTemplateColumnConfig implements SharpFormTemplate
     protected $fields = [];
 
     /**
-     * @var int
-     */
-    protected $width;
-
-    /**
-     * @param int $width
      * @return static
      */
-    public static function create($width=6)
+    public static function create()
     {
-        $instance = new static;
-        $instance->width = $width;
-
-        return $instance;
+        return new static;
     }
 
     /**

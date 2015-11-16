@@ -1,6 +1,8 @@
-<?php namespace Dvlpp\Sharp\ListView;
+<?php
 
-use Dvlpp\Sharp\Config\Entities\SharpEntity;
+namespace Dvlpp\Sharp\ListView;
+
+use Dvlpp\Sharp\Config\SharpEntityConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Dvlpp\Sharp\Repositories\SharpHasListFilters;
@@ -8,14 +10,13 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 /**
- * This class manages all the entities listing stuff, from pagination to sublist via sorting
+ * This class manages all the entities listing stuff, from pagination to filters via sorting
  *
  * Class SharpEntitiesList
  * @package Dvlpp\Sharp\ListView
  */
 class SharpEntitiesList
 {
-
     /**
      * @var LengthAwarePaginator
      */
@@ -32,9 +33,9 @@ class SharpEntitiesList
     protected $instances;
 
     /**
-     * @var \Dvlpp\Sharp\Config\Entities\SharpEntity
+     * @var \Dvlpp\Sharp\Config\SharpEntityConfig
      */
-    private $entity;
+    private $entityConfig;
 
     /**
      * @var \Dvlpp\Sharp\Repositories\SharpCmsRepository
@@ -62,14 +63,17 @@ class SharpEntitiesList
     private $listFilterContents = [];
 
     /**
-     * @param SharpEntity $entity
+     * @param SharpEntityConfig $entityConfig
      * @param SharpCmsRepository $repo
      * @param Request $request
      * @throws MandatoryClassNotFoundException
      */
-    public function __construct(SharpEntity $entity, SharpCmsRepository $repo, Request $request)
+    public function __construct(
+        SharpEntityConfig $entityConfig,
+        SharpCmsRepository $repo,
+        Request $request)
     {
-        $this->entity = $entity;
+        $this->entityConfig = $entityConfig;
         $this->repo = $repo;
         $this->request = $request;
 
@@ -85,9 +89,9 @@ class SharpEntitiesList
         $this->createParams();
 
         // And finally grab the entities
-        if ($this->entity->list_template->paginate) {
+        if ($this->entityConfig->pageable()) {
             // Pagination config is set: grab the current page
-            $this->paginator = $this->repo->paginate($this->entity->list_template->paginate, $this->params);
+            $this->paginator = $this->repo->paginate($this->entityConfig->pageSize(), $this->params);
 
             $this->count = $this->paginator->total();
             $this->instances = $this->paginator->items();
@@ -155,16 +159,17 @@ class SharpEntitiesList
         // Manage column sort: first determine which column is sorted
         list($sortCol, $sortDir) = $this->retrieveSorting();
 
-        foreach ($this->entity->list_template->columns as $colKey => $col) {
-            if ($col->sortable && (!$sortCol || $colKey == $sortCol)) {
-                $this->params->sortedColumn = $colKey;
+        foreach ($this->entityConfig->listTemplateColumnsConfig() as $listTemplateColumnConfig) {
+            if ($listTemplateColumnConfig->sortable()
+                && (!$sortCol || $listTemplateColumnConfig->key() == $sortCol)) {
+                $this->params->sortedColumn = $listTemplateColumnConfig->key();
                 $this->params->sortedDirection = $sortDir;
                 break;
             }
         }
 
         // Manage search
-        if ($this->entity->list_template->searchable && $this->request->has("search")) {
+        if ($this->entityConfig->searchable() && $this->request->has("search")) {
             $this->params->search = urldecode($this->request->get("search"));
         }
 
@@ -179,7 +184,7 @@ class SharpEntitiesList
      */
     private function manageFilters()
     {
-        if ($this->entity->list_template->list_filters) {
+        if ($this->entityConfig->listFilters()) {
             if (!$this->repo instanceof SharpHasListFilters) {
                 throw new MandatoryClassNotFoundException(
                     "Repository [". get_class($this->repo). "] has to implement "
@@ -206,11 +211,11 @@ class SharpEntitiesList
         $sortCol = $this->request->has("sort") ? $this->request->get("sort") : null;
         $sortDir = $this->request->has("dir") ? $this->request->get("dir") : 'asc';
 
-        if (!$sortCol && $this->entity->list_template->sort_default) {
-            if (strpos($this->entity->list_template->sort_default, ':')) {
-                list($sortCol, $sortDir) = explode(":", $this->entity->list_template->sort_default);
+        if (!$sortCol && $this->entityConfig->defaultSort()) {
+            if (strpos($this->entityConfig->defaultSort(), ':')) {
+                list($sortCol, $sortDir) = explode(":", $this->entityConfig->defaultSort());
             } else {
-                $sortCol = $this->entity->list_template->sort_default;
+                $sortCol = $this->entityConfig->defaultSort();
             }
         }
 

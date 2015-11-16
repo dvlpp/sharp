@@ -1,4 +1,4 @@
-@if(sizeof($commands = get_abilited_entities_list_commands($category, $entity)))
+@if(sizeof($commands = get_abilited_entities_list_commands($entity)))
 
     <div class="dropdown navbar-right normal-mode">
 
@@ -10,12 +10,12 @@
             @foreach($commands as $commandKey => $command)
                 <li>
                     <a class="command" data-command="{{ $commandKey }}"
-                            href="{{ route('cms.listCommand', array_merge([$category->key, $entity->key, $commandKey], Input::all())) }}"
-                            {!! $command->confirm ? 'data-confirm="'.e($command->confirm).'"' : '' !!}>
-                        @if($command->icon)
-                            <i class="fa fa-{{ $command->icon }}"></i>
+                            href="{{ route('cms.listCommand', array_merge([$category->key(), $entity->key(), $commandKey], Input::all())) }}"
+                            {!! $command->hasConfirmation() ? 'data-confirm="'.e($command->confirmMessage()).'"' : '' !!}>
+                        @if($command->iconName())
+                            <i class="fa fa-{{ $command->iconName() }}"></i>
                         @endif
-                        {{ $command->text }}
+                        {{ $command->label() }}
                     </a>
                 </li>
             @endforeach

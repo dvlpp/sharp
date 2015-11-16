@@ -7,7 +7,7 @@
 @section('viewname') sharp-list @stop
 
 @section('navcol')
-    @include("sharp::cms.partials.navcol", ["category"=>$category, "entityKey"=>$entity->key])
+    @include("sharp::cms.partials.navcol")
 @endsection
 
 @section('contextbar')
@@ -44,22 +44,22 @@
     <table class="table table-responsive table-striped" id="entity-list">
         <thead>
             <tr>
-                @foreach($entity->list_template->columns as $colkey => $col)
-                    <th class="col-xs-{{ $col->width }}">
+                @foreach($entity->listTemplateColumnsConfig() as $column)
+                    <th class="col-xs-{{ $column->size() }}">
 
-                        @if($col->sortable)
-                            @if($list->sortedColumn() == $colkey)
+                        @if($column->sortable())
+                            @if($list->sortedColumn() == $column->key())
                                 <a class="sort current"
-                                   href="{{ route('cms.list', array_merge([$category->key, $entity->key], Input::except(['page']), ['sort'=>$colkey, 'dir'=>$list->sortedDirection()=='asc'?'desc':'asc'])) }}">
-                                    {{ $col->header }} <i class="fa fa-angle-{{ $list->sortedDirection()=='asc'?'up':'down' }}"></i>
+                                   href="{{ route('cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page']), ['sort'=>$column->key(), 'dir'=>$list->sortedDirection()=='asc'?'desc':'asc'])) }}">
+                                    {{ $column->headingLabel() }} <i class="fa fa-angle-{{ $list->sortedDirection()=='asc'?'up':'down' }}"></i>
                                 </a>
                             @else
-                                <a class="sort" href="{{ route('cms.list', array_merge([$category->key, $entity->key], Input::except(['page','dir']), ['sort'=>$colkey])) }}">
-                                    {{ $col->header }} <i class="fa fa-angle-up"></i>
+                                <a class="sort" href="{{ route('cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page','dir']), ['sort'=>$column->key()])) }}">
+                                    {{ $column->headingLabel() }} <i class="fa fa-angle-up"></i>
                                 </a>
                             @endif
                         @else
-                            {{ $col->header }}
+                            {{ $column->headingLabel() }}
                         @endif
 
                     </th>
@@ -71,13 +71,13 @@
         <tbody>
         @foreach($list->instances() as $instance)
             <tr class="entity-row" data-entity_id="{{ $instance->id }}">
-                @foreach($entity->list_template->columns as $colKey => $col)
+                @foreach($entity->listTemplateColumnsConfig() as $column)
                     <td class="entity-data"
-                        data-link="{{ check_ability('update', $category->key, $entity->key, $instance->id) ? route('cms.edit', [$category->key, $entity->key, $instance->id]) : '' }}">
-                        @if($col->renderer)
-                            {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($col, $colKey, $instance) !!}
+                        data-link="{{ check_ability('update', $category->key(), $entity->key(), $instance->id) ? route('cms.edit', [$category->key(), $entity->key(), $instance->id]) : '' }}">
+                        @if($column->columnRenderer())
+                            {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($column, $instance) !!}
                         @else
-                            {{ get_entity_attribute_value($instance, $colKey) }}
+                            {{ get_entity_attribute_value($instance, $column->key()) }}
                         @endif
                     </td>
                 @endforeach
@@ -108,7 +108,7 @@
 
                     </div>
 
-                    @if(check_ability('reorder', $category->key, $entity->key) && $entity->list_template->reorderable)
+                    @if(check_ability('reorder', $category->key(), $entity->key()) && $entity->reorderable())
                         <div class="reorder-mode">
                             <a href="#" class="btn"><i class="reorder-handle fa fa-sort"></i></a>
                         </div>
@@ -129,8 +129,8 @@
 @section("scripts")
     @parent
 
-    @foreach(get_command_forms($category, $entity) as $commandKey => $commandFields)
-        @include("sharp::cms.partials.list.commandForm", ["commandKey"=>$commandKey, "fields"=>$commandFields])
+    @foreach(get_command_forms($entity) as $command)
+        @include("sharp::cms.partials.list.commandForm", ["command"=>$command])
     @endforeach
 
 @endsection

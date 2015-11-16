@@ -1,4 +1,4 @@
-<div class="modal fade form-command-{{$commandKey}}">
+<div class="modal fade form-command-{{$command->key()}}">
     <div class="modal-dialog">
 
         {!! Form::open(["class"=>"form-command"]) !!}
@@ -9,11 +9,9 @@
                 <h4 class="modal-title">{{ trans("sharp::ui.command_params_modal_title") }}</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    @foreach($fields as $key => $field)
-                        @include("sharp::cms.partials.formField", ["field" => $field, "instance" => null, "size" => $field->field_width ?: 12])
-                    @endforeach
-                </div>
+
+                @include("sharp::cms.partials.formColumn", ["formTemplate" => $command->formTemplateConfig()])
+
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-lg">{{ trans("sharp::ui.command_params_modal_btn") }}</button>
