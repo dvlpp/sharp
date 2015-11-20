@@ -59,10 +59,10 @@ class PivotValuator implements Valuator
             $this->instance->save();
         }
 
-        $isCreatable = $this->pivotConfig->addable ?: false;
-        $createAttribute = $isCreatable ? $this->pivotConfig->create_attribute : null;
-        $hasOrder = $this->pivotConfig->sortable ?: false;
-        $orderAttribute = $hasOrder ? $this->pivotConfig->order_attribute : null;
+        $isCreatable = $this->pivotConfig->addable() ?: false;
+        $createAttribute = $isCreatable ? $this->pivotConfig->createAttribute() : null;
+        $hasOrder = $this->pivotConfig->sortable() ?: false;
+        $orderAttribute = $hasOrder ? $this->pivotConfig->orderAttribute() : null;
 
         $existingPivots = [];
         $newPivots = [];

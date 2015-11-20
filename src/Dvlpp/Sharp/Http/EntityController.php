@@ -382,9 +382,10 @@ class EntityController extends Controller
 
     private function fireEvent($entityConfig, $eventName, $params)
     {
-        if($entityConfig->events && $entityConfig->events->$eventName) {
-            event(new $entityConfig->events->$eventName($params));
-        }
+        // TODO gérer events
+//        if($entityConfig->events && $entityConfig->events->$eventName) {
+//            event(new $entityConfig->events->$eventName($params));
+//        }
     }
 
     /**

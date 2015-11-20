@@ -61,12 +61,22 @@ class SharpFileFormFieldConfig extends SharpFormFieldConfig
     }
 
     /**
-     * @param array $fileFilter
+     * @param array|string $fileFilter
      * @return $this
      */
     public function setFileFilter($fileFilter)
     {
-        $this->fileFilter = $fileFilter;
+        if(is_string($fileFilter)) {
+            $fileFilter = explode(",", $fileFilter);
+        }
+
+        $this->fileFilter = [];
+        foreach($fileFilter as $fileExt) {
+            if(!starts_with($fileExt, ".")) {
+                $fileExt = ".$fileExt";
+            }
+            $this->fileFilter[] = trim($fileExt);
+        }
 
         return $this;
     }
@@ -128,11 +138,11 @@ class SharpFileFormFieldConfig extends SharpFormFieldConfig
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function fileFilter()
     {
-        return implode(",", $this->fileFilter);
+        return $this->fileFilter;
     }
 
     /**
@@ -149,6 +159,11 @@ class SharpFileFormFieldConfig extends SharpFormFieldConfig
     public function fileFilterAlertMessage()
     {
         return $this->fileFilterAlertMessage;
+    }
+
+    public function generatedThumbnails()
+    {
+        return $this->generatedThumbnails;
     }
 
 }

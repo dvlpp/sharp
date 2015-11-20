@@ -139,13 +139,13 @@ class FileValuator implements Valuator
             $size = $this->fileSystemManager->disk($srcFileDisk)->size($relativeSrcFile);
 
             // If there's thumbs to generate, now is the time
-            if($this->fileConfig->thumbnail) {
+            if($this->fileConfig->thumbnailSize()) {
                 // Generate Sharp's form thumbnail
-                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnail, $this->sharpRepository->getStorageDirPath($this->instance));
+                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnailSize(), $this->sharpRepository->getStorageDirPath($this->instance));
             }
-            if($this->fileConfig->generate_thumbs) {
+            if($this->fileConfig->generatedThumbnails()) {
                 // Generate other thumbnails if asked.
-                foreach($this->fileConfig->generate_thumbs as $thumbConfig) {
+                foreach($this->fileConfig->generatedThumbnails() as $thumbConfig) {
                     $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->sharpRepository->getStorageDirPath($this->instance));
                 }
             }

@@ -1,6 +1,10 @@
-<?php namespace Dvlpp\Sharp\Repositories\AutoUpdater;
+<?php
 
-use Dvlpp\Sharp\Config\SharpConfig;
+namespace Dvlpp\Sharp\Repositories\AutoUpdater;
+
+use Dvlpp\Sharp\Config\FormFields\ListField\SharpListFormFieldConfig;
+use Dvlpp\Sharp\Config\SharpEntityConfig;
+use Dvlpp\Sharp\Config\SharpFormFieldConfig;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\DateValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\FileValuator;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\ListValuator;
@@ -18,7 +22,7 @@ class SharpEloquentAutoUpdaterService
 {
 
     /**
-     * @var
+     * @var SharpEntityConfig
      */
     private $entityConfig;
 
@@ -41,26 +45,24 @@ class SharpEloquentAutoUpdaterService
      * Updates an entity with the posted data.
      *
      * @param SharpCmsRepository $sharpRepository
-     * @param $categoryName
-     * @param $entityName
-     * @param $instance
+     * @param string $categoryKey
+     * @param string $entityKey
+     * @param Object $instance
      * @param array $data
      * @return mixed
      */
-    function updateEntity(SharpCmsRepository $sharpRepository, $categoryName, $entityName, $instance, Array $data)
+    function updateEntity(SharpCmsRepository $sharpRepository, $categoryKey, $entityKey, $instance, Array $data)
     {
-        $entityConfig = SharpConfig::findEntity($categoryName, $entityName);
+        $entityConfig = sharp_entity($categoryKey, $entityKey);
 
         $this->sharpRepository = $sharpRepository;
         $this->entityConfig = $entityConfig;
 
         // Iterate the posted data
         foreach ($data as $dataAttribute => $dataAttributeValue) {
-            foreach ($this->entityConfig->form_fields as $fieldKey) {
-                if ($fieldKey == $dataAttribute) {
-                    $fieldAttr = $this->entityConfig->form_fields->$fieldKey;
-
-                    $this->updateField($instance, $data, $fieldAttr, $dataAttribute);
+            foreach ($this->entityConfig->formFieldsConfig() as $field) {
+                if ($field->key() == $dataAttribute) {
+                    $this->updateField($instance, $data, $field);
 
                     break;
                 }
@@ -91,15 +93,16 @@ class SharpEloquentAutoUpdaterService
     /**
      * Updates the field value (in db).
      *
-     * @param $instance
-     * @param $data
-     * @param $configFieldAttr
-     * @param $dataAttribute
+     * @param Object $instance
+     * @param array $data
+     * @param SharpFormFieldConfig $formField
      * @param null $listKey
      * @throws \InvalidArgumentException
      */
-    public function updateField($instance, $data, $configFieldAttr, $dataAttribute, $listKey = null)
+    public function updateField($instance, $data, SharpFormFieldConfig $formField, $listKey = null)
     {
+        $dataAttribute = $formField->key();
+
         // First test if there is a special hook method on the controller
         // that takes the precedence. Method name should be :
         // "update[$dataAttribute]Attribute" for a normal field
@@ -185,7 +188,7 @@ class SharpEloquentAutoUpdaterService
 
         $valuator = null;
 
-        switch ($configFieldAttr->type) {
+        switch ($formField->type()) {
             case "text":
             case "ref":
             case "refSublistItem":
@@ -228,7 +231,7 @@ class SharpEloquentAutoUpdaterService
                 return;
 
             default:
-                throw new InvalidArgumentException("Config type [" . $configFieldAttr->type . "] is invalid.");
+                throw new InvalidArgumentException("Config type [" . $formField->type() . "] is invalid.");
         }
 
         $valuator->valuate();
@@ -236,20 +239,17 @@ class SharpEloquentAutoUpdaterService
 
     /**
      * @param $dataAttribute
-     * @return mixed
+     * @return SharpListFormFieldConfig
      */
     private function findListConfig($dataAttribute)
     {
-        $listFieldConfig = null;
-
-        foreach ($this->entityConfig->form_fields as $fieldId) {
-            if ($fieldId == $dataAttribute) {
-                $listFieldConfig = $this->entityConfig->form_fields->$fieldId;
-                break;
+        foreach ($this->entityConfig->formFieldsConfig() as $field) {
+            if ($field->key() == $dataAttribute) {
+                return $field;
             }
         }
 
-        return $listFieldConfig;
+        return null;
     }
 
     /**
@@ -262,14 +262,15 @@ class SharpEloquentAutoUpdaterService
         if ($listKey) {
             // It's in a list item
             $listConfig = $this->findListConfig($listKey);
-            $fields = $listConfig->item;
+            $fields = $listConfig->itemFormFieldsConfig();
+
         } else {
-            $fields = $this->entityConfig->form_fields;
+            $fields = $this->entityConfig->formFieldsConfig();
         }
 
-        foreach ($fields as $fieldId) {
-            if ($fieldId == $dataAttribute) {
-                return $fields->$fieldId;
+        foreach ($fields as $field) {
+            if ($field->key() == $dataAttribute) {
+                return $field;
             }
         }
 

@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
+<?php
+
+namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
 
 use Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
@@ -79,7 +81,7 @@ class ListValuator implements Valuator
         $saved = [];
 
         if (is_array($this->itemsForm)) {
-            $itemIdAttribute = $this->listFieldConfig->item_id_attribute ?: "id";
+            $itemIdAttribute = $this->listFieldConfig->itemIdAttribute() ?: "id";
 
             // Iterate items posted
             foreach ($this->itemsForm as $itemForm) {
@@ -129,27 +131,33 @@ class ListValuator implements Valuator
                         }
 
                         // For other attributes:
-                        foreach ($this->listFieldConfig->item as $configListItemKey) {
-                            if ($configListItemKey == $attr) {
-                                $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
-
-                                // Call the auto-updater updateField method
-                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr,
-                                    $configListItemKey, $this->listKey);
-                            }
+                        $itemFormFieldConfig = $this->listFieldConfig->findItemField($attr);
+                        if($itemFormFieldConfig) {
+                            // Call the auto-updater updateField method
+                            $this->autoUpdater->updateField($item, $itemForm, $itemFormFieldConfig, $this->listKey);
                         }
+
+//                        foreach ($this->listFieldConfig->itemFormFieldsConfig() as $itemFormFieldConfig) {
+//                            if ($itemFormFieldConfig->key() == $attr) {
+//                                $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
+//
+//                                // Call the auto-updater updateField method
+//                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr,
+//                                    $configListItemKey, $this->listKey);
+//                            }
+//                        }
                     }
                 }
 
                 // Manage order
-                if ($this->listFieldConfig->order_attribute) {
-                    if (str_contains($this->listFieldConfig->order_attribute, "~")) {
-                        list($relation, $orderAttr) = explode('~', $this->listFieldConfig->order_attribute);
+                if ($this->listFieldConfig->orderAttribute()) {
+                    if (str_contains($this->listFieldConfig->orderAttribute(), "~")) {
+                        list($relation, $orderAttr) = explode('~', $this->listFieldConfig->orderAttribute());
                         $itemRelation = $item->{$relation};
                         $itemRelation->{$orderAttr} = $order;
                         $itemRelation->save();
                     } else {
-                        $item->{$this->listFieldConfig->order_attribute} = $order;
+                        $item->{$this->listFieldConfig->orderAttribute()} = $order;
                     }
                     $order++;
                 }

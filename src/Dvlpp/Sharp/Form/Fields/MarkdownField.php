@@ -16,12 +16,12 @@ class MarkdownField extends AbstractSharpField
      */
     function make()
     {
-        if ($this->field->toolbar) {
-            $this->addData("toolbar", $this->field->toolbar);
+        if ($this->field->toolbar()) {
+            $this->addData("toolbar", $this->field->toolbar());
         }
 
-        if ($this->field->height) {
-            $this->addData("height", $this->field->height);
+        if ($this->field->height()) {
+            $this->addData("height", $this->field->height());
         }
 
         $this->addClass("sharp-markdown", true);

@@ -23,7 +23,7 @@ class FileField extends AbstractSharpField
             $this->addData('thumbnail', $this->field->thumbnailSize());
         }
         if ($this->field->fileFilter()) {
-            $this->addData('file_filter', $this->field->fileFilter());
+            $this->addData('file_filter', implode(",", $this->field->fileFilter()));
         }
         if ($this->field->fileFilterAlertMessage()) {
             $this->addData('file_filter_alert', $this->field->fileFilterAlertMessage());
@@ -127,4 +127,5 @@ class FileField extends AbstractSharpField
 
         return implode(" ", $data);
     }
+
 }

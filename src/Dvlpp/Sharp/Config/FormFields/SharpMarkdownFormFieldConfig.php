@@ -55,4 +55,20 @@ class SharpMarkdownFormFieldConfig extends SharpFormFieldConfig
     {
         return "markdown";
     }
+
+    /**
+     * @return boolean
+     */
+    public function toolbar()
+    {
+        return $this->toolbar;
+    }
+
+    /**
+     * @return int
+     */
+    public function height()
+    {
+        return $this->height;
+    }
 }
