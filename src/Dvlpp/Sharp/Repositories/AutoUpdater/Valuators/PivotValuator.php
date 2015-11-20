@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
+<?php
+
+namespace Dvlpp\Sharp\Repositories\AutoUpdater\Valuators;
 
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 

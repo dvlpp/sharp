@@ -47,7 +47,7 @@ class SharpEloquentAutoUpdaterService
      * @param SharpCmsRepository $sharpRepository
      * @param string $categoryKey
      * @param string $entityKey
-     * @param Object $instance
+     * @param $instance
      * @param array $data
      * @return mixed
      */
@@ -93,7 +93,7 @@ class SharpEloquentAutoUpdaterService
     /**
      * Updates the field value (in db).
      *
-     * @param Object $instance
+     * @param $instance
      * @param array $data
      * @param SharpFormFieldConfig $formField
      * @param null $listKey

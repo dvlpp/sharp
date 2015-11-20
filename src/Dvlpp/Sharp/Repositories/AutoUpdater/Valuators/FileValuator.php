@@ -122,7 +122,7 @@ class FileValuator implements Valuator
         if ($this->fileSystemManager->disk($srcFileDisk)->exists($relativeSrcFile)) {
 
             // Prepend prefix to destdir (from sharp config)
-            $relativeDestDir = config("sharp.upload_storage_base_path") . "/$relativeDestDir";
+            $relativeDestDir = config("sharp.upload_storage_base_path") . $relativeDestDir;
 
             // Create storage dir if needed
             if (!$this->fileSystemManager->disk($storageDisk)->exists($relativeDestDir)) {
@@ -155,7 +155,7 @@ class FileValuator implements Valuator
             $this->dispatch(
                 (new CopyFileInStorage(
                     $relativeSrcFile,
-                    "$relativeDestDir/$fileName",
+                    $relativeDestDir . $fileName,
                     $srcFileDisk,
                     $storageDisk,
                     !$duplication)
@@ -163,7 +163,7 @@ class FileValuator implements Valuator
             );
 
             return [
-                "path" => "$relativeDestDir/$fileName",
+                "path" => $relativeDestDir . $fileName,
                 "mime" => $mime,
                 "size" => $size
             ];
