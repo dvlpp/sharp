@@ -13,6 +13,13 @@
         "erusev/parsedown": "~1.1",
         "mustache/mustache": "~2.6.0"
     },
+    "require-dev": {
+        "laravel/laravel": "5.1.*",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1"
+    },
     "autoload": {
         "files": [
             "src/helpers/sharp_helper.php",
@@ -22,5 +29,10 @@
         "psr-0": {
             "Dvlpp\\Sharp": "src/"
         }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
     }
 }
