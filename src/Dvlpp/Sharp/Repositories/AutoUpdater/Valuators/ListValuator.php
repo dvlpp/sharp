@@ -77,7 +77,7 @@ class ListValuator implements Valuator
             $this->instance->save();
         }
 
-        $order = 0;
+        $order = 1;
         $saved = [];
 
         if (is_array($this->itemsForm)) {

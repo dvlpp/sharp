@@ -26,9 +26,9 @@ class PivotValuatorTest extends TestCase
     /** @test */
     public function existing_pivot_values_are_added()
     {
-        $post = factory(TestPivotEntityPostModel::class)->create();
-        $tagOne = factory(TestPivotEntityTagModel::class)->create();
-        $tagTwo = factory(TestPivotEntityTagModel::class)->create();
+        $post = factory(TestPivotPostModel::class)->create();
+        $tagOne = factory(TestPivotTagModel::class)->create();
+        $tagTwo = factory(TestPivotTagModel::class)->create();
 
         $sharpRepo = Mockery::mock(SharpCmsRepository::class);
         $pivotConfig = SharpPivotFormFieldConfig::create("tags", null);
@@ -41,9 +41,9 @@ class PivotValuatorTest extends TestCase
     }
 
     /** @test */
-    public function new_pivot_is_created_if_addable()
+    public function new_pivot_value_is_created_if_addable()
     {
-        $post = factory(TestPivotEntityPostModel::class)->create();
+        $post = factory(TestPivotPostModel::class)->create();
 
         $sharpRepo = Mockery::mock(SharpCmsRepository::class);
         $pivotConfig = SharpPivotFormFieldConfig::create("tags", null)
@@ -58,11 +58,28 @@ class PivotValuatorTest extends TestCase
     }
 
     /** @test */
+    public function missing_pivot_value_is_removed_if_addable()
+    {
+        $post = factory(TestPivotPostModel::class)->create();
+        $tag = factory(TestPivotTagModel::class)->create();
+
+        $post->tags()->sync([$tag->id]);
+
+        $sharpRepo = Mockery::mock(SharpCmsRepository::class);
+        $pivotConfig = SharpPivotFormFieldConfig::create("tags", null);
+
+        (new PivotValuator($post, "tags", [], $pivotConfig, $sharpRepo))
+            ->valuate();
+
+        $this->dontSeeInDatabase('post_tag', ['post_id' => $post->id]);
+    }
+
+    /** @test */
     public function pivot_values_order_is_managed()
     {
-        $post = factory(TestPivotEntityPostModel::class)->create();
-        $tagOne = factory(TestPivotEntityTagModel::class)->create();
-        $tagTwo = factory(TestPivotEntityTagModel::class)->create();
+        $post = factory(TestPivotPostModel::class)->create();
+        $tagOne = factory(TestPivotTagModel::class)->create();
+        $tagTwo = factory(TestPivotTagModel::class)->create();
 
         $post->tags()->sync([$tagOne->id, $tagTwo->id]);
 
@@ -103,11 +120,11 @@ class PivotValuatorTest extends TestCase
     {
         $modelFactory = app(Factory::class);
 
-        $modelFactory->define(TestPivotEntityPostModel::class, function (Faker\Generator $faker) {
+        $modelFactory->define(TestPivotPostModel::class, function (Faker\Generator $faker) {
             return [];
         });
 
-        $modelFactory->define(TestPivotEntityTagModel::class, function (Faker\Generator $faker) {
+        $modelFactory->define(TestPivotTagModel::class, function (Faker\Generator $faker) {
             return [
                 "name" => $faker->word
             ];
@@ -115,17 +132,17 @@ class PivotValuatorTest extends TestCase
     }
 }
 
-class TestPivotEntityPostModel extends Model {
+class TestPivotPostModel extends Model {
     protected $table = "posts";
 
     public function tags()
     {
-        return $this->belongsToMany(TestPivotEntityTagModel::class, "post_tag", "post_id", "tag_id")
+        return $this->belongsToMany(TestPivotTagModel::class, "post_tag", "post_id", "tag_id")
             ->withPivot("order");
     }
 }
 
-class TestPivotEntityTagModel extends Model {
+class TestPivotTagModel extends Model {
     protected $table = "tags";
     protected $fillable = ["name"];
 }
