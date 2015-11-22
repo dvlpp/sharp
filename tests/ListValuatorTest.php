@@ -1,7 +1,6 @@
 <?php
 
 use Dvlpp\Sharp\Config\FormFields\ListField\SharpListFormFieldConfig;
-use Dvlpp\Sharp\Config\FormFields\ListField\SharpListItemFormTemplateConfig;
 use Dvlpp\Sharp\Config\FormFields\SharpTextareaFormFieldConfig;
 use Dvlpp\Sharp\Repositories\AutoUpdater\SharpEloquentAutoUpdaterService;
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\ListValuator;
@@ -80,7 +79,7 @@ class ListValuatorTest extends TestCase
     public function missing_item_is_removed()
     {
         $post = factory(TestListPostModel::class)->create();
-        $comment = factory(TestListCommentModel::class)->create([
+        factory(TestListCommentModel::class)->create([
             "post_id" => $post->id
         ]);
 
@@ -122,6 +121,29 @@ class ListValuatorTest extends TestCase
 
         $this->seeInDatabase('comments', ['post_id'=>$post->id, 'id'=>$commentOne->id, 'order'=>2]);
         $this->seeInDatabase('comments', ['post_id'=>$post->id, 'id'=>$commentTwo->id, 'order'=>1]);
+    }
+
+    /** @test */
+    function specific_create_item_method_is_called()
+    {
+        $post = factory(TestListPostModel::class)->create();
+
+        $sharpRepo = Mockery::mock(SharpCmsRepository::class)->makePartial();
+        $sharpRepo->shouldReceive("createCommentsListItem")->once();
+        $listConfig = SharpListFormFieldConfig::create("comments")
+            ->setAddable(true)
+            ->addItemFormField(
+                SharpTextareaFormFieldConfig::create("body")
+            );
+        $autoUpdater = new SharpEloquentAutoUpdaterService();
+
+        (new ListValuator($post, "comments", [
+            "N_1" => [
+                "id" => "N_1",
+                "body" => "some test body"
+            ]
+        ], $listConfig, $sharpRepo, $autoUpdater))
+            ->valuate();
     }
 
     private function migrateDatabase()
