@@ -7,7 +7,7 @@ class SimpleValuatorTest extends TestCase
     /** @test */
     public function text_field_is_updated()
     {
-        $instance = new TestEntity;
+        $instance = new stdClass;
 
         (new SimpleValuator($instance, "text", "test"))
             ->valuate();

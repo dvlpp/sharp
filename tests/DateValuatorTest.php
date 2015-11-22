@@ -7,7 +7,7 @@ class DateValuatorTest extends TestCase
     /** @test */
     public function date_field_is_updated()
     {
-        $instance = new TestEntity;
+        $instance = new stdClass;
 
         $date = \Carbon\Carbon::create(2015, 11, 20, 8, 20)
             ->format("Ymd H:i:s");

@@ -20,13 +20,13 @@ class FileValuatorTest extends TestCase
             "sharp.file_queue_name" => "test_queue",
 
             // Change FileSystem root
-            "filesystems.disks.local.root" => __DIR__ . "/resources",
+            "filesystems.disks.local.root" => __DIR__ . "/fixtures",
             "app.key" => "aabbccffaabbccffaabbccffaabbccff"
         ]);
 
         // Make public path leading to a test working directory
         $this->app->bind('path.public', function() {
-            return __DIR__ . "/resources/work/public";
+            return __DIR__ . "/fixtures/work/public";
         });
 
         // Cleanup working directories from test files
@@ -39,9 +39,9 @@ class FileValuatorTest extends TestCase
     /** @test */
     public function new_file_is_uploaded_and_updated()
     {
-        $instance = new TestEntity;
+        $instance = new FileValuatorTestEntity;
         $sharpRepo = Mockery::mock(FileValuatorTestEntityWithUploadsRepository::class);
-        touch(__DIR__ . "/resources/work/tmp/file.txt");
+        touch(__DIR__ . "/fixtures/work/tmp/file.txt");
 
         $sharpRepo->shouldReceive('getStorageDirPath')->andReturn("/");
 
@@ -56,15 +56,15 @@ class FileValuatorTest extends TestCase
         (new FileValuator($instance, "file", "file.txt", $this->fileConfig(), $sharpRepo))
             ->valuate();
 
-        $this->assertFileExists(__DIR__ . "/resources/work/storage/file.txt");
+        $this->assertFileExists(__DIR__ . "/fixtures/work/storage/file.txt");
     }
 
     /** @test */
     public function thumbnails_are_generated()
     {
-        $instance = new TestEntity;
+        $instance = new FileValuatorTestEntity();
         $sharpRepo = Mockery::mock(FileValuatorTestEntityWithUploadsRepository::class);
-        copy(__DIR__ . '/resources/image.jpg', __DIR__ . "/resources/work/tmp/image.jpg");
+        copy(__DIR__ . '/fixtures/image.jpg', __DIR__ . "/fixtures/work/tmp/image.jpg");
 
         $sharpRepo->shouldReceive('getStorageDirPath')->andReturn("/");
 
@@ -72,21 +72,21 @@ class FileValuatorTest extends TestCase
             $instance, "image", [
                 "path" => "work/storage/image.jpg",
                 "mime" => "image/jpeg",
-                "size" => filesize(__DIR__ . '/resources/image.jpg')
+                "size" => filesize(__DIR__ . '/fixtures/image.jpg')
             ]
         ]);
 
         (new FileValuator($instance, "image", "image.jpg", $this->imageConfig(), $sharpRepo))
             ->valuate();
 
-        $this->assertFileExists(__DIR__ . "/resources/work/public/50-50/image.jpg");
-        $this->assertFileExists(__DIR__ . "/resources/work/public/100-100/image.jpg");
+        $this->assertFileExists(__DIR__ . "/fixtures/work/public/50-50/image.jpg");
+        $this->assertFileExists(__DIR__ . "/fixtures/work/public/100-100/image.jpg");
     }
 
     /** @test */
     public function file_is_deleted()
     {
-        $instance = new TestEntity;
+        $instance = new FileValuatorTestEntity();
         $instance->file = "somefile";
         $sharpRepo = Mockery::mock(FileValuatorTestEntityWithUploadsRepository::class);
 
@@ -115,7 +115,6 @@ class FileValuatorTest extends TestCase
 
 abstract class FileValuatorTestEntityWithUploadsRepository implements
     SharpCmsRepository,
-    SharpEloquentRepositoryUpdaterWithUploads
-{
+    SharpEloquentRepositoryUpdaterWithUploads {}
 
-}
+class FileValuatorTestEntity extends \Illuminate\Database\Eloquent\Model {}
