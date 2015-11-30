@@ -128,7 +128,7 @@ class ListValuatorTest extends TestCase
     {
         $post = factory(TestListPostModel::class)->create();
 
-        $sharpRepo = Mockery::mock(TestListRepository::class);
+        $sharpRepo = Mockery::mock(TestListRepositoryCreate::class);
         $sharpRepo->shouldReceive("createCommentsListItem")
             ->once()
             ->andReturn(
@@ -146,6 +146,33 @@ class ListValuatorTest extends TestCase
         (new ListValuator($post, "comments", [
             "N_1" => [
                 "id" => "N_1",
+                "body" => "some test body"
+            ]
+        ], $listConfig, $sharpRepo, new SharpEloquentAutoUpdaterService))
+            ->valuate();
+    }
+
+    /** @test */
+    public function specific_update_item_method_is_called()
+    {
+        $post = factory(TestListPostModel::class)->create([]);
+        $comment = factory(TestListCommentModel::class)->create([
+            "post_id" => $post->id
+        ]);
+
+        $sharpRepo = Mockery::mock(TestListRepositoryUpdate::class);
+        $sharpRepo->shouldReceive("updateCommentsListItem")
+            ->once()
+            ->andReturn($comment);
+
+        $listConfig = SharpListFormFieldConfig::create("comments")
+            ->addItemFormField(
+                SharpTextareaFormFieldConfig::create("body")
+            );
+
+        (new ListValuator($post, "comments", [
+            $comment->id => [
+                "id" => $comment->id,
                 "body" => "some test body"
             ]
         ], $listConfig, $sharpRepo, new SharpEloquentAutoUpdaterService))
@@ -203,8 +230,14 @@ class TestListCommentModel extends Model {
     }
 }
 
-abstract class TestListRepository implements SharpCmsRepository {
+abstract class TestListRepositoryCreate implements SharpCmsRepository {
 
-    function createCommentsListItem($item){}
+    function createCommentsListItem(){}
+
+}
+
+abstract class TestListRepositoryUpdate implements SharpCmsRepository {
+
+    function updateCommentsListItem(){}
 
 }
