@@ -124,25 +124,31 @@ class ListValuatorTest extends TestCase
     }
 
     /** @test */
-    function specific_create_item_method_is_called()
+    public function specific_create_item_method_is_called()
     {
         $post = factory(TestListPostModel::class)->create();
 
-        $sharpRepo = Mockery::mock(SharpCmsRepository::class)->makePartial();
-        $sharpRepo->shouldReceive("createCommentsListItem")->once();
+        $sharpRepo = Mockery::mock(TestListRepository::class);
+        $sharpRepo->shouldReceive("createCommentsListItem")
+            ->once()
+            ->andReturn(
+                factory(TestListCommentModel::class)->create([
+                    "post_id" => $post->id
+                ])
+            );
+
         $listConfig = SharpListFormFieldConfig::create("comments")
             ->setAddable(true)
             ->addItemFormField(
                 SharpTextareaFormFieldConfig::create("body")
             );
-        $autoUpdater = new SharpEloquentAutoUpdaterService();
 
         (new ListValuator($post, "comments", [
             "N_1" => [
                 "id" => "N_1",
                 "body" => "some test body"
             ]
-        ], $listConfig, $sharpRepo, $autoUpdater))
+        ], $listConfig, $sharpRepo, new SharpEloquentAutoUpdaterService))
             ->valuate();
     }
 
@@ -195,4 +201,10 @@ class TestListCommentModel extends Model {
     {
         return $this->belongsTo(TestListPostModel::class, "post_id");
     }
+}
+
+abstract class TestListRepository implements SharpCmsRepository {
+
+    function createCommentsListItem($item){}
+
 }
