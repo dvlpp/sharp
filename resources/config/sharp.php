@@ -8,5 +8,5 @@ return [
     "thumbnail_relative_path" => "sharp/thumbnails",
     "upload_tmp_base_path" => "tmp/sharp",
 
-    "cms" => []
+    "categories" => []
 ];
