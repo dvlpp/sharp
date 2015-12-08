@@ -2,13 +2,11 @@
 
 namespace Dvlpp\Sharp\Lang;
 
-use Dvlpp\Sharp\Config\SharpConfig;
-
 class SharpLanguage {
 
-    function current()
+    public static function current()
     {
-        $languages = SharpConfig::getLanguages();
+        $languages = config("sharp.languages");
 
         if($languages) {
             $lang = session("sharp_lang");
