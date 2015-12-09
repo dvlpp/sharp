@@ -2,11 +2,18 @@
 
     <div class="btn dropdown">
 
-        <a data-toggle="dropdown" data-target="#">
-            <i class="fa fa-star entity-state"
-               style="color:{{ $entity->stateIndicator()->findState(get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute()))->hexColor }}"
-               title="{{ $entity->stateIndicator()->findState(get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute()))->label }}"></i>
-        </a>
+        @if(get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute()))
+            <a data-toggle="dropdown" data-target="#">
+                <i class="fa fa-star entity-state"
+                   style="color:{{ $entity->stateIndicator()->findState(get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute()))->hexColor }}"
+                   title="{{ $entity->stateIndicator()->findState(get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute()))->label }}"></i>
+            </a>
+        @else
+            <a data-toggle="dropdown" data-target="#">
+                <i class="fa fa-star entity-state"
+                   style="color:lightgrey"></i>
+            </a>
+        @endif
 
         <ul class="dropdown-menu pull-right">
             @foreach($entity->stateIndicator()->states() as $state)
