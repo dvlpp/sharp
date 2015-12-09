@@ -121,6 +121,11 @@ abstract class SharpEntityConfig
     private $listCommandsConfig = false;
 
     /**
+     * @var SharpEntityStateIndicator
+     */
+    private $stateIndicator = false;
+
+    /**
      * Build the list template columns using addListColumn()
      *
      * @return void
@@ -165,11 +170,13 @@ abstract class SharpEntityConfig
     }
 
     /**
-     * @return SharpEntityStateIndicator|null
+     * Build the entity state indicator, using setStateIndicator()
+     *
+     * @return void
      */
-    function stateIndicator()
+    function buildStateIndicator()
     {
-        return null;
+        $this->stateIndicator = null;
     }
 
     /**
@@ -223,6 +230,16 @@ abstract class SharpEntityConfig
     }
 
     /**
+     * Set the entity state indicator.
+     *
+     * @param SharpEntityStateIndicator $stateIndicator
+     */
+    final function setStateIndicator(SharpEntityStateIndicator $stateIndicator)
+    {
+        $this->stateIndicator = $stateIndicator;
+    }
+
+    /**
      * @return null|string
      */
     public function repository()
@@ -245,6 +262,18 @@ abstract class SharpEntityConfig
         }
 
         return (array) $this->formFieldsConfig;
+    }
+
+    /**
+     * @return SharpEntityStateIndicator|null
+     */
+    public function stateIndicator()
+    {
+        if($this->stateIndicator === false) {
+            $this->buildStateIndicator();
+        }
+
+        return $this->stateIndicator;
     }
 
     /**
