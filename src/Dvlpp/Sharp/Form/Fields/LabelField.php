@@ -38,7 +38,12 @@ class LabelField extends AbstractSharpField {
         $val = $this->_format($baseEntity, $this->field->format());
 
         $attributes = $this->field->attributes() || [];
-        $attributes["class"] = "control-label";
+
+        $classAttr = "control-label";
+        foreach($this->field->classNames() as $className) {
+            $classAttr .= " $className";
+        }
+        $attributes["class"] = $classAttr;
 
         $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
             . $this->formBuilder()->label("", $val, $attributes);

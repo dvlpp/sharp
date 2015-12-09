@@ -8,6 +8,8 @@ class SharpLabelFormFieldConfig extends SharpFormFieldConfig
 {
     protected $format;
 
+    protected $classNames = [];
+
     /**
      * @param string $key
      * @param string $format
@@ -29,8 +31,20 @@ class SharpLabelFormFieldConfig extends SharpFormFieldConfig
         return "label";
     }
 
+    public function addClassName($className)
+    {
+        $this->classNames[] = $className;
+
+        return $this;
+    }
+
     public function format()
     {
         return $this->format;
+    }
+
+    public function classNames()
+    {
+        return $this->classNames;
     }
 }
