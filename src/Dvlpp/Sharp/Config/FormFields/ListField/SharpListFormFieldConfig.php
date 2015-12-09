@@ -63,8 +63,8 @@ class SharpListFormFieldConfig extends SharpFormFieldConfig
         $instance->addable = false;
         $instance->sortable = false;
         $instance->removable = false;
-        $instance->addButtonText = trans("sharp.ui.form_listField_addItem");
-        $instance->removeButtonText = trans("sharp.ui.form_listField_deleteItem");
+        $instance->addButtonText = trans("sharp::ui.form_listField_addItem");
+        $instance->removeButtonText = trans("sharp::ui.form_listField_deleteItem");
 
         $instance->label = "";
 
