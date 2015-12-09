@@ -39,7 +39,7 @@ class ListField extends AbstractSharpField
         // It's useful to post the empty list and be able to delete all
         // potentially existing items.
         $str = '<input type="hidden" name="' . $this->field->key() . '" value="">'
-                . '<ul class="sharp-list list-group" ' . $strAttr . '>';
+            . '<ul class="sharp-list list-group" ' . $strAttr . '>';
 
         $listkey = $this->field->key();
         $collection = $this->relation
@@ -116,7 +116,7 @@ class ListField extends AbstractSharpField
     {
         $strItem = "";
 
-        foreach ($this->field->listItemFormTemplateConfig()->fields() as $itemFieldKey) {
+        foreach ($this->field->listItemFormTemplateConfig()->fields(3) as $itemFieldKey) {
 
             $itemField = $this->field->findItemField($itemFieldKey);
 

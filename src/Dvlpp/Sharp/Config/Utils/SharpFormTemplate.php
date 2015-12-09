@@ -24,7 +24,8 @@ interface SharpFormTemplate
     function addFieldset($name, $fieldNames);
 
     /**
+     * @param int $mode 1 for update, 2 for creation, 3 for both
      * @return array
      */
-    public function fields();
+    public function fields($mode);
 }
