@@ -35,7 +35,7 @@ class LabelField extends AbstractSharpField {
             // Mustache to take properties even if method exists (relation case)
             $baseEntity = new MustacheModelHelper($baseEntity);
         }
-        $val = $this->_format($baseEntity, $this->field->format());
+        $value = $this->_format($baseEntity, $this->field->format());
 
         $attributes = $this->field->attributes() || [];
         $attributes["class"] = "control-label";
@@ -44,8 +44,14 @@ class LabelField extends AbstractSharpField {
             $attributes["style"] = $this->field->style();
         }
 
-        $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
-            . $this->formBuilder()->label("", $val, $attributes);
+        $div = '<div';
+        foreach($attributes as $attr => $val) {
+            $div .= " $attr=\"$val\"";
+        }
+        $div .= ">$value</div>";
+
+        $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $value . '">'
+            . $div;
 
         return $str;
     }
