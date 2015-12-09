@@ -78,7 +78,7 @@ abstract class SharpEntityConfig
     /**
      * @var array|null
      */
-    protected $listFilters = null;
+    protected $listFilters = false;
 
     /**
      * @var string
@@ -113,12 +113,12 @@ abstract class SharpEntityConfig
     /**
      * @var array
      */
-    private $entityCommandsConfig = null;
+    private $entityCommandsConfig = false;
 
     /**
      * @var array
      */
-    private $listCommandsConfig = null;
+    private $listCommandsConfig = false;
 
     /**
      * Build the list template columns using addListColumn()
@@ -139,26 +139,36 @@ abstract class SharpEntityConfig
      *
      * @return void
      */
-    function buildEntityCommands() {}
+    function buildEntityCommands()
+    {
+        $this->entityCommandsConfig = null;
+    }
 
     /**
      * Build the list commands, using addListCommand()
      *
      * @return void
      */
-    function buildListCommands() {}
+    function buildListCommands()
+    {
+        $this->listCommandsConfig = null;
+    }
 
     /**
      * Build the list filters, using addListFilter()
      *
      * @return void
      */
-    function buildListFilters() {}
+    function buildListFilters()
+    {
+        $this->listFilters = null;
+    }
 
     /**
      * @return SharpEntityStateIndicator|null
      */
-    function stateIndicator() {
+    function stateIndicator()
+    {
         return null;
     }
 
@@ -268,7 +278,7 @@ abstract class SharpEntityConfig
      */
     public function entityCommandsConfig()
     {
-        if(!$this->entityCommandsConfig) {
+        if($this->entityCommandsConfig === false) {
             $this->buildEntityCommands();
         }
 
@@ -280,7 +290,7 @@ abstract class SharpEntityConfig
      */
     public function listCommandsConfig()
     {
-        if(!$this->listCommandsConfig) {
+        if($this->listCommandsConfig === false) {
             $this->buildListCommands();
         }
 
@@ -324,7 +334,7 @@ abstract class SharpEntityConfig
      */
     public function listFilters()
     {
-        if(!$this->listFilters) {
+        if($this->listFilters === false) {
             $this->buildListFilters();
         }
 
