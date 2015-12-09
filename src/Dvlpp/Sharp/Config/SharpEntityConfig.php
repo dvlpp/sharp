@@ -3,6 +3,7 @@
 namespace Dvlpp\Sharp\Config;
 
 use Dvlpp\Sharp\Config\Commands\SharpCommandConfig;
+use Dvlpp\Sharp\Config\FormFields\SharpFileFormFieldConfig;
 use Dvlpp\Sharp\Config\Utils\HasFormTemplateColumnTrait;
 
 /**
@@ -212,6 +213,9 @@ abstract class SharpEntityConfig
         return $this->validator;
     }
 
+    /**
+     * @return array
+     */
     public function formFieldsConfig()
     {
         if(!$this->formFieldsConfig) {
@@ -233,11 +237,17 @@ abstract class SharpEntityConfig
         return (array) $this->listTemplateColumnsConfig;
     }
 
+    /**
+     * @param SharpFormTemplateTabConfig $formTemplateTabConfig
+     */
     public function addFormTemplateTab(SharpFormTemplateTabConfig $formTemplateTabConfig)
     {
         $this->formTemplateTabsConfig[] = $formTemplateTabConfig;
     }
 
+    /**
+     * @return array
+     */
     public function formTemplateTabsConfig()
     {
         if(!$this->formFieldsConfig) {
@@ -425,6 +435,10 @@ abstract class SharpEntityConfig
         return $this->idAttribute;
     }
 
+    /**
+     * @param $key
+     * @return SharpFileFormFieldConfig|null
+     */
     public function findField($key)
     {
         foreach($this->formFieldsConfig() as $formField) {
