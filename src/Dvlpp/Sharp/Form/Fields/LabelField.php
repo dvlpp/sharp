@@ -1,4 +1,6 @@
-<?php  namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Exceptions\MandatoryEntityAttributeNotFoundException;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +23,7 @@ class LabelField extends AbstractSharpField {
      */
     function make()
     {
-        if($this->field->format === null) {
+        if($this->field->format() === null) {
             throw new MandatoryEntityAttributeNotFoundException("LabelField : Mandatory attribute format can't be found");
         }
 
@@ -33,9 +35,9 @@ class LabelField extends AbstractSharpField {
             // Mustache to take properties even if method exists (relation case)
             $baseEntity = new MustacheModelHelper($baseEntity);
         }
-        $val = $this->_format($baseEntity, $this->field->format);
+        $val = $this->_format($baseEntity, $this->field->format());
 
-        $attributes = $this->field->attributes || [];
+        $attributes = $this->field->attributes() || [];
         $attributes["class"] = "control-label";
 
         $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
