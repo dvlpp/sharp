@@ -12512,6 +12512,10 @@ module.exports = eventmap;
         var $entityState = $dropdownWrapper.find(".entity-state");
         var stateLinkItems = $dropdownWrapper.find(".item");
 
+        if($stateLink.parents(".item").hasClass("disabled")) {
+            return;
+        }
+
         showPageOverlay();
 
         $.ajax({
