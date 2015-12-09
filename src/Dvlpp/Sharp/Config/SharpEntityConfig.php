@@ -3,11 +3,9 @@
 namespace Dvlpp\Sharp\Config;
 
 use Dvlpp\Sharp\Config\Commands\SharpCommandConfig;
-use Dvlpp\Sharp\Config\FormFields\SharpFileFormFieldConfig;
 use Dvlpp\Sharp\Config\Utils\HasFormTemplateColumnTrait;
 
 /**
- * TODO gérer les Filtres !
  * The sharp config base class, which every entity config must extend.
  *
  * Class SharpEntityConfig
@@ -151,6 +149,13 @@ abstract class SharpEntityConfig
     function buildListCommands() {}
 
     /**
+     * Build the list filters, using addListFilter()
+     *
+     * @return void
+     */
+    function buildListFilters() {}
+
+    /**
      * @return SharpEntityStateIndicator|null
      */
     function stateIndicator() {
@@ -198,6 +203,16 @@ abstract class SharpEntityConfig
     }
 
     /**
+     * Add a list filter.
+     *
+     * @param string $name
+     */
+    final function addListFilter($name)
+    {
+        $this->listFilters[] = $name;
+    }
+
+    /**
      * @return null|string
      */
     public function repository()
@@ -213,9 +228,6 @@ abstract class SharpEntityConfig
         return $this->validator;
     }
 
-    /**
-     * @return array
-     */
     public function formFieldsConfig()
     {
         if(!$this->formFieldsConfig) {
@@ -237,17 +249,11 @@ abstract class SharpEntityConfig
         return (array) $this->listTemplateColumnsConfig;
     }
 
-    /**
-     * @param SharpFormTemplateTabConfig $formTemplateTabConfig
-     */
     public function addFormTemplateTab(SharpFormTemplateTabConfig $formTemplateTabConfig)
     {
         $this->formTemplateTabsConfig[] = $formTemplateTabConfig;
     }
 
-    /**
-     * @return array
-     */
     public function formTemplateTabsConfig()
     {
         if(!$this->formFieldsConfig) {
@@ -318,7 +324,11 @@ abstract class SharpEntityConfig
      */
     public function listFilters()
     {
-        return $this->listFilters;
+        if(!$this->listFilters) {
+            $this->buildListFilters();
+        }
+
+        return (array) $this->listFilters;
     }
 
     /**
@@ -435,10 +445,6 @@ abstract class SharpEntityConfig
         return $this->idAttribute;
     }
 
-    /**
-     * @param $key
-     * @return SharpFileFormFieldConfig|null
-     */
     public function findField($key)
     {
         foreach($this->formFieldsConfig() as $formField) {

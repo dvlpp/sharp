@@ -11,7 +11,7 @@
 
             @foreach($list->listFilterContents()[$listFilterKey] as $listFilterId => $listFilterValue)
                 <li>
-                    <a href="{{ route('cms.list', ["category"=>$category->key, "entity"=>$entity->key, "sub"=>$listFilterKey.".".$listFilterId]) }}">
+                    <a href="{{ route('cms.list', ["category"=>$category->key(), "entity"=>$entity->key(), "sub"=>$listFilterKey.".".$listFilterId]) }}">
                         {{ $listFilterValue }}
                     </a>
                 </li>
