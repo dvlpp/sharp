@@ -105,15 +105,16 @@ abstract class SharpFormFieldConfig
      */
     public function conditionalDisplayField()
     {
-        return $this->conditionalDisplayField;
-    }
+        if(is_array($this->conditionalDisplayValues)) {
+            $values = implode(",", $this->conditionalDisplayValues);
+            return $this->conditionalDisplayField . ":" . $values;
+        }
 
-    /**
-     * @return array|bool
-     */
-    public function conditionalDisplayValues()
-    {
-        return $this->conditionalDisplayValues;
+        if(!$this->conditionalDisplayValues) {
+            return '!' . $this->conditionalDisplayField;
+        }
+
+        return $this->conditionalDisplayField;
     }
 
     public function isConditionalDisplay()
