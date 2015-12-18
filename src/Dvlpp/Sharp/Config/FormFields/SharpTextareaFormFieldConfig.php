@@ -31,9 +31,12 @@ class SharpTextareaFormFieldConfig extends SharpFormFieldConfig
 
     /**
      * @param int $rowsCount
+     * @return $this
      */
     public function setRows($rowsCount)
     {
         $this->addAttribute("rows", $rowsCount);
+
+        return $this;
     }
 }
