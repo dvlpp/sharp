@@ -204,7 +204,7 @@ class FileValuator implements Valuator
     {
         $path = $this->sharpRepository->getStorageDirPath($this->instance);
 
-        if(starts_with($path, "/")) {
+        if(!starts_with($path, "/")) {
             $path = "/$path";
         }
 
