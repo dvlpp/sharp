@@ -1,6 +1,5 @@
 <?php
 
-use Dvlpp\Sharp\Config\SharpCategoryConfig;
 use Dvlpp\Sharp\Config\SharpEntityConfig;
 use Intervention\Image\ImageManager;
 
@@ -210,4 +209,22 @@ function key_name_for_form_field($key)
 {
     $key = str_replace("~", "-", $key);
     return "sf-$key";
+}
+
+function find_available_file_name($relativeDestDir, $fileName, $storageDisk)
+{
+    $k = 1;
+    $baseFileName = $fileName;
+
+    $ext = "";
+    if (($pos = strrpos($fileName, '.')) !== false) {
+        $ext = substr($fileName, $pos);
+        $baseFileName = substr($fileName, 0, $pos);
+    }
+
+    while (Storage::disk($storageDisk)->exists("$relativeDestDir/$fileName")) {
+        $fileName = $baseFileName . "-" . ($k++) . $ext;
+    }
+
+    return $fileName;
 }

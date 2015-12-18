@@ -2,9 +2,9 @@
 
 namespace Dvlpp\Sharp\Http;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,7 +55,7 @@ class UploadController extends Controller
         $file = $request->file('file');
 
         if ($file) {
-            $filename = uniqid() . "." . $file->getClientOriginalExtension();
+            $filename = find_available_file_name($this->getTmpUploadDirectory(), $file->getClientOriginalName(), "local");
             $filesize = $file->getSize();
 
             $file->move($this->getTmpUploadDirectory(), $filename);

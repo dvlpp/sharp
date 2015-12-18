@@ -130,7 +130,7 @@ class FileValuator implements Valuator
 
             } else {
                 // Find an available name for the file (only if remote dir already exists)
-                $fileName = $this->findAvailableFileName($relativeDestDir, $fileName, $storageDisk);
+                $fileName = find_available_file_name($relativeDestDir, $fileName, $storageDisk);
             }
 
             // Get mime and size from the $srcFileDisk: if the storage is in cloud,
@@ -177,24 +177,24 @@ class FileValuator implements Valuator
      * @param $fileName
      * @param $storageDisk
      * @return string
-     */
+     *
     private function findAvailableFileName($relativeDestDir, $fileName, $storageDisk)
     {
-        $k = 1;
-        $baseFileName = $fileName;
+    $k = 1;
+    $baseFileName = $fileName;
 
-        $ext = "";
-        if (($pos = strrpos($fileName, '.')) !== false) {
-            $ext = substr($fileName, $pos);
-            $baseFileName = substr($fileName, 0, $pos);
-        }
-
-        while ($this->fileSystemManager->disk($storageDisk)->exists("$relativeDestDir/$fileName")) {
-            $fileName = $baseFileName . "-" . ($k++) . $ext;
-        }
-
-        return $fileName;
+    $ext = "";
+    if (($pos = strrpos($fileName, '.')) !== false) {
+    $ext = substr($fileName, $pos);
+    $baseFileName = substr($fileName, 0, $pos);
     }
+
+    while ($this->fileSystemManager->disk($storageDisk)->exists("$relativeDestDir/$fileName")) {
+    $fileName = $baseFileName . "-" . ($k++) . $ext;
+    }
+
+    return $fileName;
+    }*/
 
     /**
      * Generate a thumbnail with given constraints.
