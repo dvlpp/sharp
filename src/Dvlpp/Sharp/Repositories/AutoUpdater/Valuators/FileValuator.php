@@ -173,30 +173,6 @@ class FileValuator implements Valuator
     }
 
     /**
-     * @param $relativeDestDir
-     * @param $fileName
-     * @param $storageDisk
-     * @return string
-     *
-    private function findAvailableFileName($relativeDestDir, $fileName, $storageDisk)
-    {
-    $k = 1;
-    $baseFileName = $fileName;
-
-    $ext = "";
-    if (($pos = strrpos($fileName, '.')) !== false) {
-    $ext = substr($fileName, $pos);
-    $baseFileName = substr($fileName, 0, $pos);
-    }
-
-    while ($this->fileSystemManager->disk($storageDisk)->exists("$relativeDestDir/$fileName")) {
-    $fileName = $baseFileName . "-" . ($k++) . $ext;
-    }
-
-    return $fileName;
-    }*/
-
-    /**
      * Generate a thumbnail with given constraints.
      *
      * @param string $tmpFilePath
