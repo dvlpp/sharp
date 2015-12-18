@@ -99,7 +99,7 @@ class FileValuator implements Valuator
 
     private function moveUploadedFile()
     {
-        $relativeDestDir = $this->sharpRepository->getStorageDirPath($this->instance);
+        $relativeDestDir = $this->getStorageDirPath();
         $file = $this->fileData;
         $storageDisk = config("sharp.upload_storage_disk") ?: "local";
 
@@ -141,12 +141,12 @@ class FileValuator implements Valuator
             // If there's thumbs to generate, now is the time
             if($this->fileConfig->thumbnailSize()) {
                 // Generate Sharp's form thumbnail
-                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnailSize(), $this->sharpRepository->getStorageDirPath($this->instance));
+                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnailSize(), $this->getStorageDirPath());
             }
             if($this->fileConfig->generatedThumbnails()) {
                 // Generate other thumbnails if asked.
                 foreach($this->fileConfig->generatedThumbnails() as $thumbConfig) {
-                    $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->sharpRepository->getStorageDirPath($this->instance));
+                    $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->getStorageDirPath());
                 }
             }
 
@@ -222,6 +222,21 @@ class FileValuator implements Valuator
         }
 
         return $queueName;
+    }
+
+    private function getStorageDirPath()
+    {
+        $path = $this->sharpRepository->getStorageDirPath($this->instance);
+
+        if(starts_with($path, "/")) {
+            $path = "/$path";
+        }
+
+        if(!ends_with($path, "/")) {
+            $path = "$path/";
+        }
+
+        return $path;
     }
 
 } 

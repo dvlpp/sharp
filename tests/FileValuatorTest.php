@@ -47,7 +47,7 @@ class FileValuatorTest extends TestCase
 
         $sharpRepo->shouldReceive('updateFileUpload')->once()->withArgs([
             $instance, "file", [
-                "path" => "work/storage/file.txt",
+                "path" => "work/storage//file.txt",
                 "mime" => "inode/x-empty",
                 "size" => 0
             ]
@@ -70,7 +70,7 @@ class FileValuatorTest extends TestCase
 
         $sharpRepo->shouldReceive('updateFileUpload')->once()->withArgs([
             $instance, "image", [
-                "path" => "work/storage/image.jpg",
+                "path" => "work/storage//image.jpg",
                 "mime" => "image/jpeg",
                 "size" => filesize(__DIR__ . '/fixtures/image.jpg')
             ]
