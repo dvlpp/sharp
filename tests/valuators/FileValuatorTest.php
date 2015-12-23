@@ -20,13 +20,13 @@ class FileValuatorTest extends TestCase
             "sharp.file_queue_name" => "test_queue",
 
             // Change FileSystem root
-            "filesystems.disks.local.root" => __DIR__ . "/fixtures",
+            "filesystems.disks.local.root" => __DIR__ . "/../fixtures",
             "app.key" => "aabbccffaabbccffaabbccffaabbccff"
         ]);
 
         // Make public path leading to a test working directory
         $this->app->bind('path.public', function() {
-            return __DIR__ . "/fixtures/work/public";
+            return __DIR__ . "/../fixtures/work/public";
         });
 
         // Cleanup working directories from test files
@@ -41,13 +41,13 @@ class FileValuatorTest extends TestCase
     {
         $instance = new FileValuatorTestEntity;
         $sharpRepo = Mockery::mock(FileValuatorTestEntityWithUploadsRepository::class);
-        touch(__DIR__ . "/fixtures/work/tmp/file.txt");
+        touch(__DIR__ . "/../fixtures/work/tmp/file.txt");
 
         $sharpRepo->shouldReceive('getStorageDirPath')->andReturn("/");
 
         $sharpRepo->shouldReceive('updateFileUpload')->once()->withArgs([
             $instance, "file", [
-                "path" => "work/storage//file.txt",
+                "path" => "work/storage/file.txt",
                 "mime" => "inode/x-empty",
                 "size" => 0
             ]
@@ -56,7 +56,7 @@ class FileValuatorTest extends TestCase
         (new FileValuator($instance, "file", "file.txt", $this->fileConfig(), $sharpRepo))
             ->valuate();
 
-        $this->assertFileExists(__DIR__ . "/fixtures/work/storage/file.txt");
+        $this->assertFileExists(__DIR__ . "/../fixtures/work/storage/file.txt");
     }
 
     /** @test */
@@ -64,23 +64,23 @@ class FileValuatorTest extends TestCase
     {
         $instance = new FileValuatorTestEntity();
         $sharpRepo = Mockery::mock(FileValuatorTestEntityWithUploadsRepository::class);
-        copy(__DIR__ . '/fixtures/image.jpg', __DIR__ . "/fixtures/work/tmp/image.jpg");
+        copy(__DIR__ . '/../fixtures/image.jpg', __DIR__ . "/../fixtures/work/tmp/image.jpg");
 
         $sharpRepo->shouldReceive('getStorageDirPath')->andReturn("/");
 
         $sharpRepo->shouldReceive('updateFileUpload')->once()->withArgs([
             $instance, "image", [
-                "path" => "work/storage//image.jpg",
+                "path" => "work/storage/image.jpg",
                 "mime" => "image/jpeg",
-                "size" => filesize(__DIR__ . '/fixtures/image.jpg')
+                "size" => filesize(__DIR__ . '/../fixtures/image.jpg')
             ]
         ]);
 
         (new FileValuator($instance, "image", "image.jpg", $this->imageConfig(), $sharpRepo))
             ->valuate();
 
-        $this->assertFileExists(__DIR__ . "/fixtures/work/public/50-50/image.jpg");
-        $this->assertFileExists(__DIR__ . "/fixtures/work/public/100-100/image.jpg");
+        $this->assertFileExists(__DIR__ . "/../fixtures/work/public/50-50/image.jpg");
+        $this->assertFileExists(__DIR__ . "/../fixtures/work/public/100-100/image.jpg");
     }
 
     /** @test */

@@ -28,7 +28,7 @@ class ListValuatorTest extends TestCase
     /** @test */
     public function existing_item_is_updated()
     {
-        $post = factory(TestListPostModel::class)->create();
+        $post = factory(TestListPostModel::class)->create([]);
         $comment = factory(TestListCommentModel::class)->create([
             "post_id" => $post->id
         ]);
@@ -54,7 +54,7 @@ class ListValuatorTest extends TestCase
     /** @test */
     public function new_item_is_added()
     {
-        $post = factory(TestListPostModel::class)->create();
+        $post = factory(TestListPostModel::class)->create([]);
 
         $sharpRepo = Mockery::mock(SharpCmsRepository::class);
         $listConfig = SharpListFormFieldConfig::create("comments")
@@ -78,7 +78,7 @@ class ListValuatorTest extends TestCase
     /** @test */
     public function missing_item_is_removed()
     {
-        $post = factory(TestListPostModel::class)->create();
+        $post = factory(TestListPostModel::class)->create([]);
         factory(TestListCommentModel::class)->create([
             "post_id" => $post->id
         ]);
@@ -97,7 +97,7 @@ class ListValuatorTest extends TestCase
     /** @test */
     public function list_items_order_is_managed()
     {
-        $post = factory(TestListPostModel::class)->create();
+        $post = factory(TestListPostModel::class)->create([]);
         $commentOne = factory(TestListCommentModel::class)->create([
             "post_id" => $post->id,
             "order" => 1
@@ -126,7 +126,7 @@ class ListValuatorTest extends TestCase
     /** @test */
     public function specific_create_item_method_is_called()
     {
-        $post = factory(TestListPostModel::class)->create();
+        $post = factory(TestListPostModel::class)->create([]);
 
         $sharpRepo = Mockery::mock(TestListRepositoryCreate::class);
         $sharpRepo->shouldReceive("createCommentsListItem")
