@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp;
+<?php
+
+namespace Dvlpp\Sharp;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
