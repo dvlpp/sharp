@@ -1,5 +1,18 @@
 <?php
+
 use Dvlpp\Sharp\Config\SharpEntityConfig;
+
+/**
+ * @return \Illuminate\Contracts\Auth\Guard
+ */
+function sharp_auth_guard()
+{
+    if(config("auth.guards.sharp")) {
+        return Auth::guard('sharp');
+    }
+
+    return Auth::guard();
+}
 
 /**
  * Returns true if the authenticated user is a Sharp user.
@@ -8,12 +21,13 @@ use Dvlpp\Sharp\Config\SharpEntityConfig;
  */
 function is_sharp_user()
 {
-    $user = auth()->user();
+    $user = sharp_auth_guard()->user();
     if (!$user) {
         return false;
     }
 
-    return !method_exists($user, 'isSharpUser') || auth()->user()->isSharpUser();
+    return !method_exists($user, 'isSharpUser')
+        || sharp_auth_guard()->user()->isSharpUser();
 }
 
 /**
@@ -23,11 +37,9 @@ function is_sharp_user()
  */
 function get_user_login_field_name()
 {
-    $class = config('auth.model');
+    $fieldName = config('sharp.user_login_field_name');
 
-    return method_exists($class, "sharpLoginField")
-        ? $class::sharpLoginField()
-        : "login";
+    return $fieldName ?: "login";
 }
 
 /**
@@ -41,7 +53,7 @@ function get_user_login()
         return null;
     }
 
-    return auth()->user()->{get_user_login_field_name()};
+    return sharp_auth_guard()->user()->{get_user_login_field_name()};
 }
 
 /**

@@ -5,7 +5,7 @@ Route::get('/admin', function () {
     return redirect()->route("cms");
 });
 
-Route::group(['middleware' => 'sharp_auth'], function () {
+Route::group(['middleware' => ['web', 'sharp_auth']], function () {
 
     // CMS Home
     Route::get('/admin/cms', [
@@ -93,7 +93,7 @@ Route::group(['middleware' => 'sharp_auth'], function () {
 });
 
 
-Route::group(['middleware' => 'sharp_guest'], function () {
+Route::group(['middleware' => ['web', 'sharp_guest']], function () {
 
     Route::get('/admin/login', '\Dvlpp\Sharp\Http\AuthController@index');
     Route::post('/admin/login', [

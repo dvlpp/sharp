@@ -3,7 +3,6 @@
 namespace Dvlpp\Sharp\Http;
 
 use Dvlpp\Sharp\Http\Request\LoginFormRequest;
-use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Routing\Controller;
@@ -13,14 +12,15 @@ class AuthController extends Controller
     use ThrottlesLogins;
 
     /**
-     * @var AuthManager
+     * @var Guard
      */
     private $auth;
 
-    public function __construct(Guard $auth)
+    public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
-        $this->auth = $auth;
+
+        $this->auth = sharp_auth_guard();
     }
 
     /**
