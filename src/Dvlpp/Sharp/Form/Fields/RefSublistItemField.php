@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
@@ -22,17 +24,18 @@ class RefSublistItemField extends AbstractSharpField {
      */
     function make()
     {
-        $this->_checkMandatoryAttributes(["repository","linked_ref_field","ref_list_id"]);
+        $this->_checkMandatoryAttributes(["repository","linkedRefField","refListKey"]);
 
-        $repoName = $this->field->repository;
+        $repoName = $this->field->repository();
+
         if(class_exists($repoName) || interface_exists($repoName)) {
             $repo = app($repoName);
 
             $this->addClass("sharp-refSublistItem", true);
-            $this->addData("linked_ref_field", $this->field->linked_ref_field);
+            $this->addData("linked_ref_field", $this->field->linkedRefField());
 
             if(method_exists($repo, "formListForSublist")) {
-                $allValues = $repo->formListForSublist($this->field->ref_list_id, $this->instance);
+                $allValues = $repo->formListForSublist($this->field->refListKey(), $this->instance);
 
                 // We have to manually handle the initial value, in JS code,
                 // because of linked selects

@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 /**
  * A simple hidden input element.
