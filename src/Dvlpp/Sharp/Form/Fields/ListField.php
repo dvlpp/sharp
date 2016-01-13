@@ -116,17 +116,26 @@ class ListField extends AbstractSharpField
     {
         $strItem = "";
 
-        foreach ($this->field->listItemFormTemplateConfig()->fields(3) as $itemFieldKey) {
+        foreach ($this->field->listItemFormTemplateConfig()->fields(3) as $itemFields) {
 
-            $itemField = $this->field->findItemField($itemFieldKey);
+            foreach((array)$itemFields as $itemFieldKey) {
 
-            $strField = '<div class="col-md-12">'
-                . '<div class="form-group sharp-field sharp-field-' . $itemField->type() . '"'
-                . ($itemField->isConditionalDisplay() ? ' data-conditional_display=' . $itemField->conditionalDisplayField() : '') . '>'
-                . SharpCmsField::make($itemField, $item, $this->field->key())
-                . '</div></div>';
+                if(strpos($itemFieldKey, ":")) {
+                    list($itemFieldKey, $size) = explode(":", $itemFieldKey);
+                } else {
+                    $size = 12/sizeof($itemFieldKey);
+                }
 
-            $strItem .= $strField;
+                $itemField = $this->field->findItemField($itemFieldKey);
+
+                $strField = '<div class="col-md-'.$size.'">'
+                    . '<div class="form-group sharp-field sharp-field-' . $itemField->type() . '"'
+                    . ($itemField->isConditionalDisplay() ? ' data-conditional_display=' . $itemField->conditionalDisplayField() : '') . '>'
+                    . SharpCmsField::make($itemField, $item, $this->field->key())
+                    . '</div></div>';
+
+                $strItem .= $strField;
+            }
         }
 
         return $strItem;
