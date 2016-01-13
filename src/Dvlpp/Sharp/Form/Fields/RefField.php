@@ -1,4 +1,6 @@
-<?php namespace Dvlpp\Sharp\Form\Fields;
+<?php
+
+namespace Dvlpp\Sharp\Form\Fields;
 
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Exceptions\MandatoryMethodNotFoundException;
@@ -23,13 +25,12 @@ class RefField extends AbstractSharpField
     {
         $this->_checkMandatoryAttributes(["repository"]);
 
-        $reflistRepoName = $this->field->repository;
+        $reflistRepoName = $this->field->repository();
+
         if (class_exists($reflistRepoName) || interface_exists($reflistRepoName)) {
             $reflistRepo = app($reflistRepoName);
 
-            if ($this->field->create !== null) {
-                $this->addData("create", $this->field->create);
-            }
+            $this->addData("create", $this->field->creatable());
 
             $this->addClass("sharp-ref", true);
 
