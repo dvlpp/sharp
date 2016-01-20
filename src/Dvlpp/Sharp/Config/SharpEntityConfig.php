@@ -196,6 +196,8 @@ abstract class SharpEntityConfig
      */
     final function addFormField(SharpFormFieldConfig $formFieldConfig)
     {
+        $formFieldConfig->setEntity($this);
+
         $this->formFieldsConfig[] = $formFieldConfig;
     }
 

@@ -41,6 +41,11 @@ abstract class SharpFormFieldConfig
     protected $conditionalDisplayValues;
 
     /**
+     * @var SharpEntityConfig
+     */
+    protected $entity;
+
+    /**
      * @param string $label
      * @return $this
      */
@@ -141,5 +146,18 @@ abstract class SharpFormFieldConfig
         $this->helpMessage = $helpMessage;
 
         return $this;
+    }
+
+    /**
+     * @param SharpEntityConfig $entity
+     */
+    public function setEntity(SharpEntityConfig $entity)
+    {
+        $this->entity = $entity;
+    }
+
+    public function entity()
+    {
+        return $this->entity;
     }
 }

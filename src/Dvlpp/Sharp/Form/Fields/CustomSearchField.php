@@ -2,7 +2,6 @@
 
 namespace Dvlpp\Sharp\Form\Fields;
 
-use Dvlpp\Sharp\Config\SharpConfig;
 use Dvlpp\Sharp\Exceptions\MandatoryClassNotFoundException;
 use Dvlpp\Sharp\Repositories\SharpHasCustomSearch;
 
@@ -17,19 +16,19 @@ class CustomSearchField extends AbstractSharpField
      */
     function make()
     {
-        $this->_checkMandatoryAttributes(['listitem_template', 'result_template', 'id_attribute']);
-        $this->addData("template", $this->field->listitem_template);
-        $this->addData("idattr", $this->field->id_attribute);
+        $this->_checkMandatoryAttributes(['listItemTemplate', 'resultTemplate', 'idAttribute']);
+        $this->addData("template", $this->field->listItemTemplate());
+        $this->addData("idattr", $this->field->idAttribute());
 
-        if ($this->field->min_char) {
-            $this->addData("minchar", $this->field->min_char);
+        if ($this->field->searchMinChar()) {
+            $this->addData("minchar", $this->field->searchMinChar());
         }
 
-        $modalTitle = $this->field->modal_title ?: trans("sharp::ui.form_customSearchField_modalTitle");
+        $modalTitle = $this->field->modalTitle() ?: trans("sharp::ui.form_customSearchField_modalTitle");
 
         $this->addData("remote", route("cms.customSearchField", [
-            $this->field->getCategoryKey(),
-            $this->field->getEntityKey(),
+            $this->field->entity()->categoryKey(),
+            $this->field->entity()->key(),
             $this->fieldName
         ]));
 
@@ -41,23 +40,22 @@ class CustomSearchField extends AbstractSharpField
 
         if($this->fieldValue) {
             // Instantiate entity repository
-            $entity = SharpConfig::findEntity($this->field->getCategoryKey(), $this->field->getEntityKey());
-            $repo = app($entity->repository);
+            $entity = sharp_entity($this->field->entity()->categoryKey(), $this->field->entity()->key());
+            $repo = app($entity->repository());
 
             if(!$repo instanceof SharpHasCustomSearch) {
-                throw new MandatoryClassNotFoundException("Repository [{$entity->repository}] must implement the "
-                    .'Dvlpp\Sharp\Repositories\SharpHasCustomSearch'
-                    ." interface");
+                throw new MandatoryClassNotFoundException("Repository [{$entity->repository()}] must implement the "
+                    . SharpHasCustomSearch::class . " interface");
             }
 
             $value = $this->fieldValue;
 
             $result = $repo->getCustomSearchResult($value);
-            $strValuatedView = $this->wrapIntoPanel(view($this->field->result_template, $result)->render());
+            $strValuatedView = $this->wrapIntoPanel(view($this->field->resultTemplate(), $result)->render());
             $valuated = true;
         }
 
-        $strTemplateView = $this->wrapIntoPanel(view($this->field->result_template)->render(), true);
+        $strTemplateView = $this->wrapIntoPanel(view($this->field->resultTemplate())->render(), true);
 
         // Render the result modal (where results will be displayed)
         $strModal = view('sharp::cms.partials.fields.customsearchfield_modal', [

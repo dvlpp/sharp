@@ -2,6 +2,7 @@
 
 namespace Dvlpp\Sharp\Config\FormFields\ListField;
 
+use Dvlpp\Sharp\Config\SharpEntityConfig;
 use Dvlpp\Sharp\Config\SharpFormFieldConfig;
 
 class SharpListFormFieldConfig extends SharpFormFieldConfig
@@ -265,5 +266,17 @@ class SharpListFormFieldConfig extends SharpFormFieldConfig
         }
 
         return $this->listItemFormTemplateConfig;
+    }
+
+    /**
+     * @param SharpEntityConfig $entity
+     */
+    public function setEntity(SharpEntityConfig $entity)
+    {
+        parent::setEntity($entity);
+
+        foreach($this->itemFormFieldsConfig() as $itemFormFieldConfig) {
+            $itemFormFieldConfig->setEntity($entity);
+        }
     }
 }
