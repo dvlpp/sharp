@@ -2,16 +2,17 @@
 
 namespace Dvlpp\Sharp\Http;
 
+use Dvlpp\Sharp\Config\SharpEntityConfig;
+use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 use Dvlpp\Sharp\Exceptions\InvalidStateException;
+use Dvlpp\Sharp\Exceptions\ValidationException;
+use Dvlpp\Sharp\Form\Fields\CustomSearchField;
+use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
+use Dvlpp\Sharp\ListView\SharpEntitiesList;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Access\Gate;
-use Dvlpp\Sharp\ListView\SharpEntitiesList;
-use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
-use Dvlpp\Sharp\Form\Fields\CustomSearchField;
-use Dvlpp\Sharp\Exceptions\ValidationException;
-use Dvlpp\Sharp\Exceptions\InstanceNotFoundException;
 
 /**
  * Class CmsController
@@ -380,12 +381,20 @@ class EntityController extends Controller
             $request->only(['page', 'sort', 'dir', 'search', 'sub']));
     }
 
+    /**
+     * @param SharpEntityConfig $entityConfig
+     * @param string $eventName
+     * @param array $params
+     */
     private function fireEvent($entityConfig, $eventName, $params)
     {
-        // TODO gérer events
-//        if($entityConfig->events && $entityConfig->events->$eventName) {
-//            event(new $entityConfig->events->$eventName($params));
-//        }
+        foreach($entityConfig->eventsList() as $eventKey => $listeners) {
+            if($eventKey == $eventName) {
+                foreach($listeners as $listener) {
+                    event(new $listener($params));
+                }
+            }
+        }
     }
 
     /**

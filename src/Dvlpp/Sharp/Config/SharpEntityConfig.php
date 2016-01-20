@@ -15,6 +15,13 @@ abstract class SharpEntityConfig
 {
     use HasFormTemplateColumnTrait;
 
+    const EVENT_BEFORE_VALIDATE = "beforeValidate";
+    const EVENT_BEFORE_CREATE = "beforeCreate";
+    const EVENT_BEFORE_UPDATE = "beforeUpdate";
+    const EVENT_AFTER_UPDATE = "afterUpdate";
+    const EVENT_BEFORE_DELETE = "beforeDelete";
+    const EVENT_AFTER_DELETE = "afterDelete";
+
     /**
      * @var string
      */
@@ -79,6 +86,11 @@ abstract class SharpEntityConfig
      * @var array|null
      */
     protected $listFilters = false;
+
+    /**
+     * @var array|null
+     */
+    protected $eventsList = false;
 
     /**
      * @var string
@@ -161,8 +173,6 @@ abstract class SharpEntityConfig
 
     /**
      * Build the list filters, using addListFilter()
-     *
-     * @return void
      */
     function buildListFilters()
     {
@@ -171,12 +181,18 @@ abstract class SharpEntityConfig
 
     /**
      * Build the entity state indicator, using setStateIndicator()
-     *
-     * @return void
      */
     function buildStateIndicator()
     {
         $this->stateIndicator = null;
+    }
+
+    /**
+     * Build the events list, using addEvent()
+     */
+    public function buildEventsList()
+    {
+        $this->eventsList = null;
     }
 
     /**
@@ -229,6 +245,17 @@ abstract class SharpEntityConfig
     final function addListFilter($name)
     {
         $this->listFilters[] = $name;
+    }
+
+    /**
+     * Add an event.
+     *
+     * @param string $name
+     * @param string $eventClass
+     */
+    final function addEvent($name, $eventClass)
+    {
+        $this->eventsList[$name][] = $eventClass;
     }
 
     /**
@@ -361,7 +388,7 @@ abstract class SharpEntityConfig
     }
 
     /**
-     * @return array|null
+     * @return array
      */
     public function listFilters()
     {
@@ -370,6 +397,18 @@ abstract class SharpEntityConfig
         }
 
         return (array) $this->listFilters;
+    }
+
+    /**
+     * @return array
+     */
+    public function eventsList()
+    {
+        if($this->eventsList === false) {
+            $this->buildEventsList();
+        }
+
+        return (array) $this->eventsList;
     }
 
     /**
