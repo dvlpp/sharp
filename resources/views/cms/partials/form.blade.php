@@ -1,4 +1,4 @@
-@foreach($template->fields($instance->{$entity->idAttribute()}?1:2) as $fieldsetName => $fieldTemplate)
+@foreach($template->fields($entity instanceof \Dvlpp\Sharp\Config\SharpEntityConfig && $instance->{$entity->idAttribute()}?1:2) as $fieldsetName => $fieldTemplate)
 
     @if(is_string($fieldsetName))
         {{--Fieldset--}}
