@@ -129,7 +129,12 @@ class CmsEmbeddedEntityController extends Controller {
             {
                 // The embed instance is already "transient" (was updated before but not persisted yet)
                 // We have to repopulate the embed form (this form) as it was before
-                $masterFieldValue = $request->get($masterFieldKey);
+
+                // Don't know why I have to change the dotted notation to brackets, but it won't
+                // work without this (update in 2.0.7 version)
+                list($masterFieldKey1, $masterFieldKey2, $masterFieldKey3) = explode(".", $masterFieldKey);
+                $masterFieldValue = $request->get($masterFieldKey1."[".$masterFieldKey2."][".$masterFieldKey3."]", null, true);
+
                 if($masterFieldValue != "__DELETE__")
                 {
                     $formOldDataStr = sharp_decode_embedded_entity_data($masterFieldValue);
@@ -201,7 +206,7 @@ class CmsEmbeddedEntityController extends Controller {
             // First : validation
             if($entity->validator)
             {
-                $validator = App::make($entity->validator);
+                $validator = app($entity->validator);
                 $validator->validate($data, !$creation?$id:null);
             }
 

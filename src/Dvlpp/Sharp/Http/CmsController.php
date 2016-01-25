@@ -309,7 +309,7 @@ class CmsController extends Controller
             if (session()->has('masterInstanceData')) {
                 // We are back from a embedded entity form.
                 // We have to repopulate the master form (this form) as it was before
-                $formOldDataStr = unserialize(Session::get('masterInstanceData'));
+                $formOldDataStr = unserialize(\Session::get('masterInstanceData'));
                 session()->flashInput($formOldDataStr);
             }
 
