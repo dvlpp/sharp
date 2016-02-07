@@ -87,7 +87,7 @@ trait HasFormTemplateTrait
         $fields = [];
         foreach($this->fields as $key => $item) {
             if(is_array($item) || array_search($key, $lookup) !== false) {
-                $fields[] = $item;
+                $fields[$key] = $item;
             }
         }
         return $fields;
