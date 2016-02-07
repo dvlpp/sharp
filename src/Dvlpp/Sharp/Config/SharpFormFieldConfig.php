@@ -46,6 +46,11 @@ abstract class SharpFormFieldConfig
     protected $entity;
 
     /**
+     * @var string
+     */
+    protected $formatter;
+
+    /**
      * @param string $label
      * @return $this
      */
@@ -159,5 +164,24 @@ abstract class SharpFormFieldConfig
     public function entity()
     {
         return $this->entity;
+    }
+
+    /**
+     * @param string $formatter
+     * @return $this
+     */
+    public function setFormatter($formatter)
+    {
+        $this->formatter = $formatter;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function formatter()
+    {
+        return $this->formatter;
     }
 }

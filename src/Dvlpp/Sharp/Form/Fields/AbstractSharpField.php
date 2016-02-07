@@ -103,7 +103,18 @@ abstract class AbstractSharpField
 
         } else {
             // Value is instance->key
-            $this->fieldValue = $instance ? $instance->{$field->key()} : null;
+            if(!$instance) {
+                $this->fieldValue = null;
+
+            } else {
+                $this->fieldValue = $instance->{$field->key()};
+
+                if(strlen($this->fieldValue) && $field->formatter()) {
+                    // There's a field formatter (for value display in form)
+                    $formatter = app($field->formatter());
+                    $this->fieldValue = $formatter->fieldValue($this->fieldValue);
+                }
+            }
         }
     }
 
