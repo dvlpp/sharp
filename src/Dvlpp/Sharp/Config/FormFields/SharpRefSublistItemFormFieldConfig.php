@@ -43,7 +43,7 @@ class SharpRefSublistItemFormFieldConfig extends SharpFormFieldConfig
 
     public function type()
     {
-        return "ref";
+        return "refSublistItem";
     }
 
     /**
