@@ -51,6 +51,11 @@ abstract class SharpFormFieldConfig
     protected $formatter;
 
     /**
+     * @var string
+     */
+    protected $valuator;
+
+    /**
      * @param string $label
      * @return $this
      */
@@ -183,5 +188,24 @@ abstract class SharpFormFieldConfig
     public function formatter()
     {
         return $this->formatter;
+    }
+
+    /**
+     * @param string $valuator
+     * @return $this
+     */
+    public function setValuator($valuator)
+    {
+        $this->valuator = $valuator;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function valuator()
+    {
+        return $this->valuator;
     }
 }

@@ -107,12 +107,17 @@ abstract class AbstractSharpField
                 $this->fieldValue = null;
 
             } else {
-                $this->fieldValue = $instance->{$field->key()};
+                if($field->valuator()) {
+                    // There's a field valuator, which override the model attribute
+                    $this->fieldValue = app($field->valuator())->valuateField($instance, $field);
+
+                } else {
+                    $this->fieldValue = $instance->{$field->key()};
+                }
 
                 if(strlen($this->fieldValue) && $field->formatter()) {
                     // There's a field formatter (for value display in form)
-                    $formatter = app($field->formatter());
-                    $this->fieldValue = $formatter->fieldValue($this->fieldValue);
+                    $this->fieldValue = app($field->formatter())->formatFieldValue($this->fieldValue);
                 }
             }
         }
