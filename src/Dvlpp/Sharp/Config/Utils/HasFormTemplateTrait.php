@@ -27,15 +27,18 @@ trait HasFormTemplateTrait
      */
     public function addField($name, $update=true, $creation=true)
     {
+        $this->fields[] = $name;
+
+        end($this->fields);
+        $lastKey = key($this->fields);
+
         if($update) {
-            $this->updateIndexes[] = sizeof($this->fields);
+            $this->updateIndexes[] = $lastKey;
         }
 
         if($creation) {
-            $this->createIndexes[] = sizeof($this->fields);
+            $this->createIndexes[] = $lastKey;
         }
-
-        $this->fields[] = $name;
 
         return $this;
     }
@@ -90,6 +93,7 @@ trait HasFormTemplateTrait
                 $fields[$key] = $item;
             }
         }
+
         return $fields;
 
         // PHP 5.6: we can use ARRAY_FILTER_USE_BOTH
