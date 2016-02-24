@@ -12,7 +12,8 @@
     <title>Sharp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
 
     <link href="/sharp/sharp.min.css?v={{ $sharpVersion }}" rel="stylesheet">
 
