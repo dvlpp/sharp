@@ -12588,9 +12588,9 @@ function hidePageOverlay() {
 
             // Form init
             $modal.find('form').prop("action", url);
-            $form.find(".validation-error").remove();
-            $form.find(".has-error").removeClass("has-error");
-            $form[0].reset();
+			$modal.find(".validation-error").remove();
+			$modal.find(".has-error").removeClass("has-error");
+			$modal.find('form')[0].reset();
 
             // Show modal form
             $modal.show();

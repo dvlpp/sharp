@@ -129,6 +129,8 @@
 @section("scripts")
     @parent
 
+    <script src="/sharp/sharp.form.min.js?v={{ $sharpVersion }}"></script>
+
     @foreach(get_command_forms($entity) as $command)
         @include("sharp::cms.partials.list.commandForm", ["command"=>$command])
     @endforeach
