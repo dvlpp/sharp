@@ -39,7 +39,7 @@
                         </div>
                     @endif
 
-                    {!! Form::open(['route' => 'login', 'class' => 'form well', 'role' => 'form']) !!}
+                    {!! Form::open(['route' => 'sharp.login', 'class' => 'form well', 'role' => 'form']) !!}
 
                     <div class="form-group {{ $errors->first('login') ? 'has-error' : '' }}">
                         {!! Form::text('login', '', ['autocomplete'=>'off', 'class' => 'form-control', 'placeholder' => trans('sharp::ui.login_loginPlaceholder')]) !!}
