@@ -8,7 +8,8 @@
     </a>
 
     <div class="reorder-mode">
-        <a id="sharp-reorder-ok" href="{{ route('cms.reorder', [$category->key(), $entity->key()]) }}" class="btn navbar-btn navbar-right">
+        <a id="sharp-reorder-ok" href="{{ route('sharp.cms.reorder', [$category->key(), $entity->key()]) }}"
+           class="btn navbar-btn navbar-right">
             <i class="fa fa-check"></i>
             {{ trans('sharp::ui.list_reorderOkBtn') }}
         </a>

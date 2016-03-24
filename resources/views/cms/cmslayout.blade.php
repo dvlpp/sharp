@@ -32,13 +32,14 @@
 
             <ul class="nav navbar-nav">
 
-                <li class="site"><a href="{{ route('cms') }}">{{ sharp_site_name() }}</a></li>
+                <li class="site"><a href="{{ route('sharp.cms') }}">{{ sharp_site_name() }}</a></li>
 
                 @foreach(sharp_categories() as $categoryMenuKey => $categoryMenu)
 
                     @if(check_ability("category", $categoryMenuKey))
                         <li class="{{ isset($category) && $categoryMenuKey == $category->key() ? 'active' : '' }}">
-                            <a class="category" href="{{ route('cms.category', [$categoryMenuKey]) }}">{{ $categoryMenu->label() }}</a>
+                            <a class="category"
+                               href="{{ route('sharp.cms.category', [$categoryMenuKey]) }}">{{ $categoryMenu->label() }}</a>
                         </li>
                     @endif
 
@@ -47,7 +48,7 @@
 
             <div class="navbar-right user">
                 {{ get_user_login() }}
-                <a class="btn" href="{{ route('logout') }}">
+                <a class="btn" href="{{ route('sharp.logout') }}">
                     <span class="fa-stack">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-power-off fa-stack-1x"></i>
@@ -64,7 +65,7 @@
                     <ul class="dropdown-menu">
                         @foreach(sharp_languages() as $languageCode => $languageName)
                             <li>
-                                <a href="{{ route("cms.lang", [$languageCode]) }}">
+                                <a href="{{ route("sharp.cms.lang", [$languageCode]) }}">
                                     {{ $languageName }}
                                 </a>
                             </li>

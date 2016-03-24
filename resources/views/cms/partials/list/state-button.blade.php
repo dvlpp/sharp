@@ -19,7 +19,8 @@
             @foreach($entity->stateIndicator()->states() as $state)
                 @if(check_ability("state-{$state->value}", $category->key(), $entity->key(), $instance->id))
                     <li class="item {{ get_entity_attribute_value($instance, $entity->stateIndicator()->stateAttribute())==$state->value ? "disabled" : "" }}">
-                        <a href="{{ route('cms.changeState', [$category->key(), $entity->key()]) }}" class="change-entity-state"
+                        <a href="{{ route('sharp.cms.changeState', [$category->key(), $entity->key()]) }}"
+                           class="change-entity-state"
                            data-state="{{ $state->value }}"
                            data-instance="{{ $instance->id }}"
                            data-label="{{ $state->label }}"

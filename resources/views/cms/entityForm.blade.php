@@ -34,7 +34,8 @@
         {{ trans('sharp::ui.form_updateBtn') }}
     </button>
 
-    <a href="{{ route("cms.list", [$category->key(), $entity->key()]) }}" class="btn navbar-btn btn-cancel navbar-right">
+    <a href="{{ route("sharp.cms.list", [$category->key(), $entity->key()]) }}"
+       class="btn navbar-btn btn-cancel navbar-right">
         <i class="fa fa-times"></i>
         {{ trans('sharp::ui.form_cancelBtn') }}
     </a>

@@ -26,7 +26,7 @@ class CustomSearchField extends AbstractSharpField
 
         $modalTitle = $this->field->modalTitle() ?: trans("sharp::ui.form_customSearchField_modalTitle");
 
-        $this->addData("remote", route("cms.customSearchField", [
+        $this->addData("remote", route("sharp.cms.customSearchField", [
             $this->field->entity()->categoryKey(),
             $this->field->entity()->key(),
             $this->fieldName

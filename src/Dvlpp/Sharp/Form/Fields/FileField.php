@@ -112,7 +112,7 @@ class FileField extends AbstractSharpField
 //        $this->addData('size', \Storage::disk(config("sharp.upload_storage_disk"))->size($relativeFilePath));
 
         // Add download link
-        $this->addData('dl_link', route("download", $instanceFile));
+        $this->addData('dl_link', route("sharp.download", $instanceFile));
     }
 
     private function getDataValues()

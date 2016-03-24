@@ -39,7 +39,7 @@
 @section('content')
 
     {{-- Link with HTML5's donwload property used by Download commands --}}
-    <a data-base="{{ route("download") }}" download class="hidden" id="sharp_command_download_link"></a>
+    <a data-base="{{ route("sharp.download") }}" download class="hidden" id="sharp_command_download_link"></a>
 
     <table class="table table-responsive table-striped" id="entity-list">
         <thead>
@@ -50,11 +50,12 @@
                         @if($column->sortable())
                             @if($list->sortedColumn() == $column->key())
                                 <a class="sort current"
-                                   href="{{ route('cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page']), ['sort'=>$column->key(), 'dir'=>$list->sortedDirection()=='asc'?'desc':'asc'])) }}">
+                                   href="{{ route('sharp.cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page']), ['sort'=>$column->key(), 'dir'=>$list->sortedDirection()=='asc'?'desc':'asc'])) }}">
                                     {{ $column->headingLabel() }} <i class="fa fa-angle-{{ $list->sortedDirection()=='asc'?'up':'down' }}"></i>
                                 </a>
                             @else
-                                <a class="sort" href="{{ route('cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page','dir']), ['sort'=>$column->key()])) }}">
+                                <a class="sort"
+                                   href="{{ route('sharp.cms.list', array_merge([$category->key(), $entity->key()], Input::except(['page','dir']), ['sort'=>$column->key()])) }}">
                                     {{ $column->headingLabel() }} <i class="fa fa-angle-up"></i>
                                 </a>
                             @endif
@@ -73,7 +74,7 @@
             <tr class="entity-row" data-entity_id="{{ $instance->id }}">
                 @foreach($entity->listTemplateColumnsConfig() as $column)
                     <td class="entity-data"
-                        data-link="{{ check_ability('update', $category->key(), $entity->key(), $instance->id) ? route('cms.edit', [$category->key(), $entity->key(), $instance->id]) : '' }}">
+                        data-link="{{ check_ability('update', $category->key(), $entity->key(), $instance->id) ? route('sharp.cms.edit', [$category->key(), $entity->key(), $instance->id]) : '' }}">
                         @if($column->columnRenderer())
                             {!! \Dvlpp\Sharp\ListView\Renderers\SharpColumnRendererManager::render($column, $instance) !!}
                         @else

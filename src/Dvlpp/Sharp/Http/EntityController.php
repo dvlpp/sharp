@@ -53,7 +53,7 @@ class EntityController extends Controller
             // We saved an old "input", which means we need to display the list
             // with some pagination, or sorting, or search config. We simply redirect
             // with the correct querystring based on old input
-            return redirect()->route('cms.list',
+            return redirect()->route('sharp.cms.list',
                 array_merge(["category" => $categoryKey, "entity" => $entityKey], $qs));
 
         } else {
@@ -341,7 +341,7 @@ class EntityController extends Controller
 
             // And redirect
             return response()->json([
-                "url"=>route("cms.list", [$categoryKey, $entityKey])
+                "url" => route("sharp.cms.list", [$categoryKey, $entityKey])
             ], 200);
 
         } catch (ValidationException $e) {

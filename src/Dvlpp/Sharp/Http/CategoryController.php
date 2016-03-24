@@ -40,6 +40,6 @@ class CategoryController extends Controller
             abort(403);
         }
 
-        return redirect()->route("cms.list", [$categoryKey, $entityKey]);
+        return redirect()->route("sharp.cms.list", [$categoryKey, $entityKey]);
     }
 }
