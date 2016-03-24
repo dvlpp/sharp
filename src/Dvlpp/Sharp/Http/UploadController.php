@@ -80,5 +80,4 @@ class UploadController extends Controller
 
         return $dir;
     }
-
 } 

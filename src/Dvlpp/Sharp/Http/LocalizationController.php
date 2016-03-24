@@ -19,7 +19,6 @@ class LocalizationController extends Controller
         $this->languages = config("sharp.languages");
     }
 
-
     /**
      * Switch current language, and redirects back
      *

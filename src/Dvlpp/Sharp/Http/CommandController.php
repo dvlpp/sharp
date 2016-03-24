@@ -2,11 +2,11 @@
 
 namespace Dvlpp\Sharp\Http;
 
-use Illuminate\Http\Request;
 use Dvlpp\Sharp\Commands\CommandService;
-use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
-use Dvlpp\Sharp\Exceptions\ValidationException;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturn;
+use Dvlpp\Sharp\Exceptions\ValidationException;
+use Dvlpp\Sharp\Http\Utils\CheckAbilityTrait;
+use Illuminate\Http\Request;
 
 /**
  * Controller which manages project specific commands on entities list or on entity.
@@ -92,7 +92,6 @@ class CommandController extends Controller
 
     }
 
-
     private function handleCommandReturn(SharpCommandReturn $commandReturn)
     {
         return response()->json($commandReturn->get());
@@ -102,5 +101,4 @@ class CommandController extends Controller
     {
         return response()->json($ex->getErrors(), 422);
     }
-
 } 

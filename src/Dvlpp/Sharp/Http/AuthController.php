@@ -5,7 +5,6 @@ namespace Dvlpp\Sharp\Http;
 use Dvlpp\Sharp\Http\Request\LoginFormRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Routing\Controller;
 
 class AuthController extends Controller
 {
@@ -18,6 +17,8 @@ class AuthController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
+        
         $this->auth = sharp_auth_guard();
     }
 

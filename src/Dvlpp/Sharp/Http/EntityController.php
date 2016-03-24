@@ -412,5 +412,4 @@ class EntityController extends Controller
             $validationErrors->merge($errors);
         }
     }
-
 }
