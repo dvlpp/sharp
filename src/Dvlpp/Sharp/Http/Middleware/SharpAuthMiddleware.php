@@ -6,6 +6,9 @@ use Closure;
 
 class SharpAuthMiddleware
 {
+    use WithLang;
+    use WithSharpVersion;
+
     /**
      * Handle an incoming request.
      *
@@ -19,9 +22,12 @@ class SharpAuthMiddleware
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('admin/login');
+                return redirect()->guest('/admin/login');
             }
         }
+
+        $this->addLangToView();
+        $this->addVersionToView();
 
         return $next($request);
     }

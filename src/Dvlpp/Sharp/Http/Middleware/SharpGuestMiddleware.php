@@ -6,6 +6,9 @@ use Closure;
 
 class SharpGuestMiddleware
 {
+    use WithLang;
+    use WithSharpVersion;
+
     /**
      * Handle an incoming request.
      *
@@ -18,6 +21,9 @@ class SharpGuestMiddleware
         if (sharp_auth_guard()->check() && is_sharp_user()) {
             return redirect('/admin');
         }
+
+        $this->addLangToView();
+        $this->addVersionToView();
 
         return $next($request);
     }
