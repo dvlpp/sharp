@@ -2,8 +2,8 @@
 
 namespace Dvlpp\Sharp\Validation;
 
-use Validator;
 use Dvlpp\Sharp\Exceptions\ValidationException;
+use Validator;
 
 /**
  * Class SharpValidator
@@ -49,15 +49,15 @@ abstract class SharpValidator
     {
         $this->instanceId = $instanceId;
 
-        // Grab rules
+        // Grab rules,
         $rules = array_merge($this->getRules(),
             $this->getInstanceId() ? $this->getUpdateRules() : $this->getCreationRules()
         );
 
-        // Sanitize ?
+        // sanitize if needed,
         $input = $this->sanitize($input);
 
-        // and validate
+        // and validate.
         $validation = Validator::make($input, $rules, $this->getMessages());
 
         if ($validation->fails()) {
@@ -67,36 +67,58 @@ abstract class SharpValidator
         return $input;
     }
 
+    /**
+     * @return bool
+     */
     public function isCreation()
     {
         return $this->instanceId == null;
     }
 
+    /**
+     * @return mixed
+     */
     public function getInstanceId()
     {
         return $this->instanceId;
     }
 
+    /**
+     * @return array
+     */
     public function getUpdateRules()
     {
         return $this->updateRules;
     }
 
+    /**
+     * @return array
+     */
     public function getCreationRules()
     {
         return $this->creationRules;
     }
 
+    /**
+     * @return array
+     */
     public function getRules()
     {
         return $this->rules;
     }
 
+    /**
+     * @return array
+     */
     public function getMessages()
     {
         return $this->messages;
     }
 
+    /**
+     * @param array $input
+     * @return array
+     */
     public function sanitize(Array $input)
     {
         return $input;
