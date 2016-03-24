@@ -26,8 +26,10 @@ class SharpAuthMiddleware
             }
         }
 
-        $this->addLangToView();
-        $this->addVersionToView();
+        if (!$request->ajax()) {
+            $this->addLangToView();
+            $this->addVersionToView();
+        }
 
         return $next($request);
     }
