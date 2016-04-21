@@ -3,7 +3,17 @@
     <div class="dropdown pull-right normal-mode">
 
         <a class="btn navbar-btn btn-sublist" data-toggle="dropdown" data-target="#">
-            {{ $list->listFilterContents()[$listFilterKey][$listFilterInstanceId] }}
+            @if(is_null($listFilterInstanceId))
+                @if(sizeof($list->listFilterContents()[$listFilterKey]))
+                    {{ array_first($list->listFilterContents()[$listFilterKey]) }}
+                @else
+                    -
+                @endif
+
+            @else
+                {{ $list->listFilterContents()[$listFilterKey][$listFilterInstanceId] }}
+            @endif
+
             <span class="caret"></span>
         </a>
 
