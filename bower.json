@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "dependencies": {
     "bootstrap": "~3.3.0",
-    "datetimepicker": "git://github.com/xdan/datetimepicker.git#~2.4.0",
+    "datetimepicker": "git://github.com/xdan/datetimepicker.git#~2.5.0",
     "dragula.js": "dragula#~3.3.0",
     "dropzone": "~4.0.1",
     "fontawesome": "~4.3.0",

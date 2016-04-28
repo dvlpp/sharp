@@ -9,8 +9,8 @@
             lang:'fr',
             format:'d/m/Y',
             dayOfWeekStart:1,
-            mask:true
-
+            mask: true,
+            startDate: new Date()
         };
 
         var params = $.extend(defauts, options);
@@ -18,8 +18,9 @@
         return this.each(function() {
             var $hiddenTSField = $(this).prev(".sharp-date-timestamp");
 
-            params.onChangeDateTime = function(dp,$input) {
-                $hiddenTSField.val(dp);
+            params.onChangeDateTime = function (dp, $input) {
+                var d = $input.datetimepicker('getValue');
+                $hiddenTSField.val(d.toISOString());
             };
 
             $(this).datetimepicker(params);

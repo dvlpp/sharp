@@ -41,6 +41,7 @@ class DateValuator implements Valuator
      */
     public function valuate()
     {
+        
         $value = date("Y-m-d H:i:s", strtotime($this->data));
 
         $this->instance->{$this->attr} = $value;
