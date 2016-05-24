@@ -22,12 +22,12 @@ function sharp_auth_guard()
 function is_sharp_user()
 {
     $user = sharp_auth_guard()->user();
+
     if (!$user) {
         return false;
     }
 
-    return !method_exists($user, 'isSharpUser')
-        || sharp_auth_guard()->user()->isSharpUser();
+    return !method_exists($user, 'isSharpUser') || $user->isSharpUser();
 }
 
 /**

@@ -53,9 +53,17 @@ class AuthController extends Controller
 
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
             // Login OK
-            $this->clearLoginAttempts($request);
 
-            return redirect()->intended("admin/cms");
+            if (!is_sharp_user()) {
+                // User exists, but he's not a sharp user...
+                $this->auth->logout();
+
+            } else {
+                // User OK
+                $this->clearLoginAttempts($request);
+
+                return redirect()->intended("admin/cms");
+            }
         }
 
         $this->incrementLoginAttempts($request);
