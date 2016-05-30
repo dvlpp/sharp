@@ -320,6 +320,8 @@ abstract class SharpEntityConfig
     public function addFormTemplateTab(SharpFormTemplateTabConfig $formTemplateTabConfig)
     {
         $this->formTemplateTabsConfig[] = $formTemplateTabConfig;
+
+        return $this;
     }
 
     public function formTemplateTabsConfig()
