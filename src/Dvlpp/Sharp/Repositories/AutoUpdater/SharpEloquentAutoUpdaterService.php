@@ -169,8 +169,6 @@ class SharpEloquentAutoUpdaterService
             // We can't save it right now because of potential mandatory attributes which will be treated later
             // in the process, and for the OneToOne case because we can't be sure that the current instance
             // has an ID to provide
-//            if($configFieldAttr->type != "list")
-//            {
             if ($instance->$relationKey() instanceof BelongsTo) {
                 // BelongsTo: foreign key is on the instance object side
                 $this->singleRelationBelongsToObjects[$relationKey] = $relationObject;
@@ -178,7 +176,6 @@ class SharpEloquentAutoUpdaterService
                 // One-to-one or morphOne: foreign key is on the related object side
                 $this->singleRelationOneToOneObjects[$relationKey] = $relationObject;
             }
-//            }
 
             // Finally, we translate attributes to the related object
             $baseAttribute = $dataAttribute;
@@ -239,12 +236,15 @@ class SharpEloquentAutoUpdaterService
 
     /**
      * @param $dataAttribute
+     * @param bool $searchWithRelation
      * @return SharpListFormFieldConfig
      */
-    private function findListConfig($dataAttribute)
+    private function findListConfig($dataAttribute, $searchWithRelation = false)
     {
         foreach ($this->entityConfig->formFieldsConfig() as $field) {
-            if ($field->key() == $dataAttribute) {
+            if ((!$searchWithRelation && $field->key() == $dataAttribute)
+                || ($searchWithRelation && ends_with($field->key(), "~$dataAttribute"))
+            ) {
                 return $field;
             }
         }
@@ -262,6 +262,14 @@ class SharpEloquentAutoUpdaterService
         if ($listKey) {
             // It's in a list item
             $listConfig = $this->findListConfig($listKey);
+
+            if (!$listConfig) {
+                // We retry searching, considering this time that the list
+                // may be embedded in a relation, like for instance
+                // boss~addresses (where addresses is the $listKey)
+                $listConfig = $this->findListConfig($listKey, true);
+            }
+
             $fields = $listConfig->itemFormFieldsConfig();
 
         } else {
@@ -276,5 +284,4 @@ class SharpEloquentAutoUpdaterService
 
         return null;
     }
-
 }
