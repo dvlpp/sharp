@@ -5744,7 +5744,7 @@ var DateFormatter;
                          * jquery timebox.css('marginTop') will return the original value which is before you clicking the next/prev button,
                          * meanwhile the timebox[0].style.marginTop will return the right value which is after you clicking the
                          * next/prev button.
-                         *
+                         * 
                          * What we should do:
                          * Replace timebox.css('marginTop') with timebox[0].style.marginTop.
                          */

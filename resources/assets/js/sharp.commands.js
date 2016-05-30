@@ -101,14 +101,14 @@ function handleCommandReturn_VIEW(data) {
     showPageOverlay();
 
     var $body = $("body");
-
     var $cmdViewPanel = $("#command_view_panel");
+
     if(!$cmdViewPanel.length) {
-        $cmdViewPanel = $('<div id="command_view_panel"/>');
+        $cmdViewPanel = $('<div id="command_view_panel"><iframe style="width:100%; height:100%"></iframe></div>');
         $body.append($cmdViewPanel);
     }
 
-    $cmdViewPanel.html(data.html);
+    $cmdViewPanel.find("iframe").contents().find("body").html(data.html);
 
     $cmdViewPanel.animate({
         left:'2vw'
