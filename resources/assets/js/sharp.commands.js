@@ -109,7 +109,6 @@ function handleCommandReturn_VIEW(data) {
     }
 
     var $iframe = $cmdViewPanel.find("iframe");
-
     $iframe[0].contentWindow.document.open()
     $iframe[0].contentWindow.document.write(data.html);
 
