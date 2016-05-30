@@ -141,6 +141,10 @@ function handleCommandReturn_VIEW(data) {
     $body.bind("keydown", handler);
 }
 
+function handleCommandReturn_URL(data) {
+    window.open(data.url, '_blank');
+}
+
 function handleCommandReturn_RELOAD() {
     window.location.reload();
 }

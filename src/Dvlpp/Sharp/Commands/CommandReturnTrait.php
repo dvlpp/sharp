@@ -5,6 +5,7 @@ namespace Dvlpp\Sharp\Commands;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturnAlert;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturnDownload;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturnReload;
+use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturnUrl;
 use Dvlpp\Sharp\Commands\ReturnTypes\SharpCommandReturnView;
 
 /**
@@ -71,5 +72,16 @@ trait CommandReturnTrait
     public function error($title, $message)
     {
         return new SharpCommandReturnAlert($title, $message, "error");
+    }
+
+    /**
+     * Reload current page.
+     *
+     * @param string $url
+     * @return SharpCommandReturnUrl
+     */
+    public function url($url)
+    {
+        return new SharpCommandReturnUrl($url);
     }
 }
