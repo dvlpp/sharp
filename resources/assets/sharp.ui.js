@@ -13092,11 +13092,14 @@ function handleCommandReturn_VIEW(data) {
     var $cmdViewPanel = $("#command_view_panel");
 
     if(!$cmdViewPanel.length) {
-		$cmdViewPanel = $('<div id="command_view_panel"><iframe style="width:100%; height:100%"></iframe></div>');
+		$cmdViewPanel = $('<div id="command_view_panel"><iframe style="width:100%; height:100%" src="about:blank"></iframe></div>');
         $body.append($cmdViewPanel);
     }
 
-	$cmdViewPanel.find("iframe").contents().find("body").html(data.html);
+	var $iframe = $cmdViewPanel.find("iframe");
+
+	$iframe[0].contentWindow.document.open()
+	$iframe[0].contentWindow.document.write(data.html);
 
     $cmdViewPanel.animate({
         left:'2vw'
