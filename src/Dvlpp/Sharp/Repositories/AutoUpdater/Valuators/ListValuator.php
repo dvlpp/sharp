@@ -95,6 +95,7 @@ class ListValuator implements Valuator
 
                     if (method_exists($this->sharpRepository, $methodName)) {
                         $item = $this->sharpRepository->$methodName($this->instance);
+
                     } else {
                         // Have to create this item : we can't use $entity->$listKey()->create([]), because
                         // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
@@ -103,6 +104,7 @@ class ListValuator implements Valuator
                             $this->instance->{$this->listKey}()->getPlainForeignKey(),
                             $this->instance->{$this->listKey}()->getParentKey());
                     }
+
                 } else {
                     foreach ($this->instance->{$this->listKey} as $itemDb) {
                         if ($itemDb->$itemIdAttribute == $itemId) {
@@ -123,6 +125,7 @@ class ListValuator implements Valuator
 
                 if (method_exists($this->sharpRepository, $methodName)) {
                     $item = $this->sharpRepository->$methodName($this->instance, $item, $itemForm);
+
                 } else {
                     foreach ($itemForm as $attr => $value) {
                         if ($attr == $itemIdAttribute) {
@@ -136,16 +139,6 @@ class ListValuator implements Valuator
                             // Call the auto-updater updateField method
                             $this->autoUpdater->updateField($item, $itemForm, $itemFormFieldConfig, $this->listKey);
                         }
-
-//                        foreach ($this->listFieldConfig->itemFormFieldsConfig() as $itemFormFieldConfig) {
-//                            if ($itemFormFieldConfig->key() == $attr) {
-//                                $configListItemConfigAttr = $this->listFieldConfig->item->$configListItemKey;
-//
-//                                // Call the auto-updater updateField method
-//                                $this->autoUpdater->updateField($item, $itemForm, $configListItemConfigAttr,
-//                                    $configListItemKey, $this->listKey);
-//                            }
-//                        }
                     }
                 }
 
