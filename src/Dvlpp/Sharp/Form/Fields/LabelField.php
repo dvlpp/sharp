@@ -44,11 +44,11 @@ class LabelField extends AbstractSharpField {
             $attributes["style"] = $this->field->style();
         }
 
-        $div = '<div';
+        $div = '<label';
         foreach($attributes as $attr => $val) {
             $div .= " $attr=\"$val\"";
         }
-        $div .= ">$value</div>";
+        $div .= ">$value</label>";
 
         $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $value . '">'
             . $div;
@@ -109,7 +109,7 @@ class MustacheModelHelper
 
     public function __isset($key)
     {
-        if (isset($this->model->$key) || method_exists($this->model, $key)) {
+        if (property_exists($this->model, $key) || method_exists($this->model, $key)) {
             return true;
         }
 
