@@ -132,6 +132,7 @@ class ListField extends AbstractSharpField
                     . '<div class="form-group sharp-field sharp-field-' . $itemField->type() . '"'
                     . ($itemField->isConditionalDisplay() ? ' data-conditional_display=' . $itemField->conditionalDisplayField() : '') . '>'
                     . SharpCmsField::make($itemField, $item, $this->field->key())
+                    . ($itemField->helpMessage() ? '<p class="help-block">' . $itemField->helpMessage() . '</p>' : '')
                     . '</div></div>';
 
                 $strItem .= $strField;
