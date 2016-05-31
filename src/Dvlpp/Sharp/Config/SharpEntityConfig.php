@@ -70,6 +70,11 @@ abstract class SharpEntityConfig
     /**
      * @var bool
      */
+    protected $deletable = true;
+
+    /**
+     * @var bool
+     */
     protected $reorderable = false;
 
     /**
@@ -475,6 +480,14 @@ abstract class SharpEntityConfig
     public function creatable()
     {
         return $this->creatable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function deletable()
+    {
+        return $this->deletable;
     }
 
     /**
