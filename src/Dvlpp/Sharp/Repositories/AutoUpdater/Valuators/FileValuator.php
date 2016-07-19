@@ -7,6 +7,7 @@ use Dvlpp\Sharp\Jobs\CopyFileInStorage;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Intervention\Image\ImageManager;
 
 /**
  * Class FileValuator
@@ -92,7 +93,6 @@ class FileValuator implements Valuator
                 if($moveResult) {
                     $this->sharpRepository->updateFileUpload($this->instance, $this->attr, $moveResult);
                 }
-
             }
         }
     }
@@ -137,35 +137,50 @@ class FileValuator implements Valuator
             // it will be faster this way.
             $mime = $this->fileSystemManager->disk($srcFileDisk)->mimeType($relativeSrcFile);
             $size = $this->fileSystemManager->disk($srcFileDisk)->size($relativeSrcFile);
+            $imageDimensions = null;
 
-            // If there's thumbs to generate, now is the time
-            if($this->fileConfig->thumbnailSize()) {
-                // Generate Sharp's form thumbnail
-                $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnailSize(), $this->getStorageDirPath());
-            }
-            if($this->fileConfig->generatedThumbnails()) {
-                // Generate other thumbnails if asked.
-                foreach($this->fileConfig->generatedThumbnails() as $thumbConfig) {
-                    $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->getStorageDirPath());
+            if(starts_with($mime, "image/")) {
+                $imageDimensions = $this->getImageDimensions($srcFileDisk, $relativeSrcFile);
+
+                // If there's thumbs to generate, now is the time
+                if ($this->fileConfig->thumbnailSize()) {
+                    // Generate Sharp's form thumbnail
+                    $this->generateThumbnail($relativeSrcFile, $this->fileConfig->thumbnailSize(),
+                        $this->getStorageDirPath());
+                }
+
+                if ($this->fileConfig->generatedThumbnails()) {
+                    // Generate other thumbnails if asked.
+                    foreach ($this->fileConfig->generatedThumbnails() as $thumbConfig) {
+                        $this->generateThumbnail($relativeSrcFile, $thumbConfig, $this->getStorageDirPath());
+                    }
                 }
             }
 
             // And finally, copy. We do this in a Job to authorize queue
             // on configured environments
-            $this->dispatch(
-                (new CopyFileInStorage(
-                    $relativeSrcFile,
-                    $relativeDestDir . $fileName,
-                    $srcFileDisk,
-                    $storageDisk,
-                    !$duplication)
-                )->onQueue($this->getFileQueueName())
-            );
+            $fileCopyJob = new CopyFileInStorage(
+                $relativeSrcFile,
+                $relativeDestDir . $fileName,
+                $srcFileDisk,
+                $storageDisk,
+                !$duplication);
+
+            if($this->getFileQueueName()) {
+                $this->dispatch(
+                    $fileCopyJob->onQueue($this->getFileQueueName())
+                );
+
+            } else {
+                $this->dispatchNow($fileCopyJob);
+            }
 
             return [
                 "path" => $relativeDestDir . $fileName,
                 "mime" => $mime,
-                "size" => $size
+                "size" => $size,
+                "is_image" => !is_null($imageDimensions),
+                "image_dimensions" => $imageDimensions
             ];
         }
 
@@ -191,13 +206,7 @@ class FileValuator implements Valuator
 
     private function getFileQueueName()
     {
-        $queueName = config("sharp.file_queue_name");
-
-        if(!$queueName) {
-            $queueName = config("sharp.name") . "_sharp-files";
-        }
-
-        return $queueName;
+        return config("sharp.file_queue_name");
     }
 
     private function getStorageDirPath()
@@ -215,4 +224,11 @@ class FileValuator implements Valuator
         return $path;
     }
 
-} 
+    private function getImageDimensions($disk, $file)
+    {
+        $manager = new ImageManager;
+        $img = $manager->make($this->fileSystemManager->disk($disk)->get($file));
+
+        return [$img->width(), $img->height()];
+    }
+}
