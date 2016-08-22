@@ -15,6 +15,11 @@ class SharpEntityStateIndicator
     protected $states;
 
     /**
+     * @var string
+     */
+    protected $visibilityConditionalAttribute;
+
+    /**
      * @param string $stateAttributeName
      * @return static
      */
@@ -44,6 +49,19 @@ class SharpEntityStateIndicator
     }
 
     /**
+     * Set the visibility of the state indicator per instance
+     *
+     * @param $conditionalAttribute string: must refer to an existing attribute of the entity. May start with a ! for negative.
+     * @return $this
+     */
+    public function setVisibility($conditionalAttribute)
+    {
+        $this->visibilityConditionalAttribute = $conditionalAttribute;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function states()
@@ -63,5 +81,29 @@ class SharpEntityStateIndicator
         }
 
         return null;
+    }
+
+    /**
+     * Checks if the state indicator should be shown
+     * for the given $entityInstance
+     *
+     * @param $entityInstance
+     * @return bool
+     */
+    public function isVisibleFor($entityInstance)
+    {
+        if(!$this->visibilityConditionalAttribute) {
+            // No condition
+            return true;
+        }
+
+        $isNegative = starts_with($this->visibilityConditionalAttribute, "!");
+        $attribute = $isNegative
+            ? substr($this->visibilityConditionalAttribute, 1)
+            : $this->visibilityConditionalAttribute;
+
+        $attributeValue = !! get_entity_attribute_value($entityInstance, $attribute);
+
+        return $isNegative ? !$attributeValue : $attributeValue;
     }
 }
