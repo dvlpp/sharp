@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->auth = sharp_auth_guard();
     }
 
@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
 
         $credentials = [
-            $this->loginUsername() => $request->get("login"),
+            $this->username() => $request->get("login"),
             "password" => $request->get("password")
         ];
 
@@ -71,7 +71,7 @@ class AuthController extends Controller
         return redirect()->back()
             ->withInput()
             ->withErrors([
-                $this->loginUsername() => trans('sharp::messages.login_invalid')
+                $this->username() => trans('sharp::messages.login_invalid')
             ]);
     }
 
@@ -93,9 +93,18 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected function loginUsername()
+    protected function username()
     {
         return get_user_login_field_name();
+    }
+
+    /**
+     * @deprecated
+     * @return string
+     */
+    protected function loginUsername()
+    {
+        return $this->username();
     }
 
     /**
