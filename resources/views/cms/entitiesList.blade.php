@@ -121,7 +121,7 @@
         </tbody>
     </table>
 
-    @if($list->paginator())
+    @if($list->paginator() && $list->paginator()->total() > count($list->instances()))
         {!! $list->paginator()->appends(Input::except(['page']))->render() !!}
     @endif
 
