@@ -3,13 +3,12 @@
 namespace Dvlpp\Sharp\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class CopyFileInStorage implements SelfHandling, ShouldQueue
+class CopyFileInStorage implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels, Queueable;
 
