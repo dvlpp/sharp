@@ -56,6 +56,11 @@ abstract class SharpFormFieldConfig
     protected $valuator;
 
     /**
+     * @var bool
+     */
+    protected $readonly;
+
+    /**
      * @param string $label
      * @return $this
      */
@@ -207,5 +212,17 @@ abstract class SharpFormFieldConfig
     public function valuator()
     {
         return $this->valuator;
+    }
+
+    public function setReadOnly($readonly = true)
+    {
+        $this->readonly = $readonly;
+
+        return $this;
+    }
+
+    public function readOnly()
+    {
+        return $this->readonly;
     }
 }

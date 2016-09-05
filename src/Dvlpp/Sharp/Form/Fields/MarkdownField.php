@@ -24,6 +24,8 @@ class MarkdownField extends AbstractSharpField
             $this->addData("height", $this->field->height());
         }
 
+        $this->addData("readonly", $this->field->readOnly());
+
         $this->addClass("sharp-markdown", true);
 
         // No need to populate the field, since we use a regular Form::textarea and a Form::model

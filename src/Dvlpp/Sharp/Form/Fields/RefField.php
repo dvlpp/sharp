@@ -30,9 +30,10 @@ class RefField extends AbstractSharpField
         if (class_exists($reflistRepoName) || interface_exists($reflistRepoName)) {
             $reflistRepo = app($reflistRepoName);
 
-            $this->addData("create", $this->field->creatable());
-
-            $this->addClass("sharp-ref", true);
+            if(!$this->field->readOnly()) {
+                $this->addData("create", $this->field->creatable());
+                $this->addClass("sharp-ref", true);
+            }
 
             if (method_exists($reflistRepo, "formList")) {
                 $values = $reflistRepo->formList($this->instance);

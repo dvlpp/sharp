@@ -29803,6 +29803,11 @@ function createSharpDate($el) {
 
         return this.each(function () {
             var textarea = $(this)[0];
+
+            if(textarea.readOnly) {
+                params.readOnly = 'nocursor';
+            }
+
             var mm = mirrorMark(textarea, params);
             mm.render();
 
@@ -29993,6 +29998,10 @@ function createSharpRef($el) {
             // Restore initial value
             if (params.initial_value) {
                 $refSublistField.setValue(params.initial_value);
+            }
+
+            if($(this).attr("readonly") == "readonly") {
+                $refSublistField.disable();
             }
 
         });

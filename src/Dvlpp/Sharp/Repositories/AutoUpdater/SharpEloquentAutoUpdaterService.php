@@ -61,7 +61,7 @@ class SharpEloquentAutoUpdaterService
         // Iterate the posted data
         foreach ($data as $dataAttribute => $dataAttributeValue) {
             foreach ($this->entityConfig->formFieldsConfig() as $field) {
-                if ($field->key() == $dataAttribute) {
+                if (!$field->readOnly() && $field->key() == $dataAttribute) {
                     $this->updateField($instance, $data, $field);
 
                     break;

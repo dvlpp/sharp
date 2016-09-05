@@ -9,6 +9,11 @@
 
         return this.each(function () {
             var textarea = $(this)[0];
+
+            if(textarea.readOnly) {
+                params.readOnly = 'nocursor';
+            }
+
             var mm = mirrorMark(textarea, params);
             mm.render();
 

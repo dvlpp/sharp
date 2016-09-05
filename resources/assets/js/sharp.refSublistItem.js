@@ -62,6 +62,10 @@
                 $refSublistField.setValue(params.initial_value);
             }
 
+            if($(this).attr("readonly") == "readonly") {
+                $refSublistField.disable();
+            }
+
         });
     }
 

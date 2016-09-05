@@ -121,6 +121,11 @@ abstract class AbstractSharpField
                 }
             }
         }
+
+        if($field->readOnly()) {
+            $this->attributes["readonly"] = "readonly";
+            $this->attributes["disabled"] = "disabled";
+        }
     }
 
     /**
