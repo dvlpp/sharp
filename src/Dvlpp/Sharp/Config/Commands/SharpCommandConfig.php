@@ -193,10 +193,13 @@ class SharpCommandConfig
 
     /**
      * @param string $confirmMessage
+     * @return $this
      */
     public function setConfirmMessage($confirmMessage)
     {
         $this->confirmMessage = $confirmMessage;
+
+        return $this;
     }
 
     /**
