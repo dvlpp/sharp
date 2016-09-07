@@ -88,7 +88,7 @@ function check_ability($name, $categoryKey, $entityKey=null, $entityId=null, arr
     if(!Gate::has($ability)) return true;
 
     if($entityId) {
-        $params = ["id" => $entityId] + $params;
+        $params = [$entityId] + $params;
     }
 
     return Gate::check($ability, $params);
