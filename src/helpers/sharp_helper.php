@@ -199,15 +199,6 @@ function get_command_forms(SharpEntityConfig $entity)
     return $commands;
 }
 
-//function add_attributes_if_missing($object, array $attributes)
-//{
-//    foreach ($attributes as $attr) {
-//        if (!isset($object->$attr)) {
-//            $object->$attr = null;
-//        }
-//    }
-//}
-
 function get_file_path($relativePath, $disk='local')
 {
     $storagePath  = Storage::disk($disk)->getDriver()->getAdapter()->getPathPrefix();
@@ -237,4 +228,9 @@ function find_available_file_name($relativeDestDir, $fileName, $storageDisk)
     }
 
     return $fileName;
+}
+
+function normalize_file_name($filename)
+{
+    return preg_replace("#[^A-Za-z1-9-_\\.]#", "", $filename);
 }

@@ -55,7 +55,12 @@ class UploadController extends Controller
         $file = $request->file('file');
 
         if ($file) {
-            $filename = find_available_file_name($this->getTmpUploadDirectory(), $file->getClientOriginalName(), "local");
+            $filename = find_available_file_name(
+                $this->getTmpUploadDirectory(),
+                normalize_file_name($file->getClientOriginalName()),
+                "local"
+            );
+
             $filesize = $file->getSize();
 
             $file->move($this->getTmpUploadDirectory(), $filename);
