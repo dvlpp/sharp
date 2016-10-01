@@ -25,8 +25,6 @@ function sharp_thumbnail($source, $w, $h, $params = [], $relativeFolder=null, $i
         $source = config("sharp.upload_storage_base_path") . "/" . $source;
     }
 
-    $thumbnailPath = config("sharp.thumbnail_relative_path");
-
     $sizeMin = isset($params["size_min"]) && $params["size_min"];
 
     if ($w == 0) {
@@ -36,8 +34,20 @@ function sharp_thumbnail($source, $w, $h, $params = [], $relativeFolder=null, $i
         $h = null;
     }
 
-    $thumbName = "$thumbnailPath/$relativeFolder/$w-$h" . ($sizeMin ? "_min" : "") . "/" . basename($source);
-    $thumbFile = public_path($thumbName);
+    $thumbName = "$relativeFolder/$w-$h"
+        . ($sizeMin ? "_min" : "")
+        . "/" . basename($source);
+
+    $thumbnailPath = config("sharp.thumbnail_relative_path");
+
+    if(config("sharp.thumbnail_in_storage", false)) {
+        $thumbFile = storage_path(
+            "app/public/$thumbnailPath/".config('sharp.upload_storage_base_path')."/$thumbName"
+        );
+
+    } else {
+        $thumbFile = public_path("$thumbnailPath/$thumbName");
+    }
 
     if (!file_exists($thumbFile)) {
 
@@ -74,7 +84,11 @@ function sharp_thumbnail($source, $w, $h, $params = [], $relativeFolder=null, $i
         }
     }
 
-    return url($thumbName);
+    if(config("sharp.thumbnail_in_storage", false)) {
+        return url("storage/$thumbnailPath/".config('sharp.upload_storage_base_path')."/$thumbName");
+    }
+
+    return url("$thumbnailPath/$thumbName");
 }
 
 /**
