@@ -395,7 +395,7 @@ abstract class SharpEntityConfig
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function listFilters()
     {
@@ -403,7 +403,7 @@ abstract class SharpEntityConfig
             $this->buildListFilters();
         }
 
-        return (array) $this->listFilters;
+        return $this->listFilters;
     }
 
     /**
