@@ -5,23 +5,31 @@ namespace Dvlpp\Sharp\Commands\ReturnTypes;
 class SharpCommandReturnView implements SharpCommandReturn
 {
     /**
-     * @var
+     * @var string
      */
-    private $viewName;
+    protected $viewName;
+
     /**
      * @var array
      */
-    private $params;
+    protected $params;
+
+    /**
+     * @var bool
+     */
+    protected $iframe;
 
     /**
      * SharpCommandReturnView constructor.
-     * @param $viewName
+     * @param string $viewName
      * @param array $params
+     * @param bool $iframe
      */
-    public function __construct($viewName, array $params = [])
+    public function __construct($viewName, array $params = [], $iframe = false)
     {
         $this->viewName = $viewName;
         $this->params = $params;
+        $this->iframe = $iframe;
     }
 
 
@@ -33,6 +41,12 @@ class SharpCommandReturnView implements SharpCommandReturn
     public function get()
     {
         $html = view($this->viewName, $this->params)->render();
+
+        if($this->iframe) {
+            $html = '<iframe style="width:100%; height:100%; border: none" srcdoc="'
+                . htmlentities($html)
+                . '">';
+        }
 
         return [
             "type" => "VIEW",

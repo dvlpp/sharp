@@ -55,11 +55,12 @@ trait CommandReturnTrait
      *
      * @param $viewName
      * @param array $params
+     * @param bool $iframe
      * @return SharpCommandReturnView
      */
-    public function view($viewName, $params = [])
+    public function view($viewName, $params = [], $iframe = false)
     {
-        return new SharpCommandReturnView($viewName, $params);
+        return new SharpCommandReturnView($viewName, $params, $iframe);
     }
 
     /**
