@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                     'resources/assets/bower_components/sifter/sifter.js',
                     'resources/assets/bower_components/selectize/dist/js/selectize.js',
                     // Date
+                    'resources/assets/bower_components/php-date-formatter/js/php-date-formatter.js',
                     'resources/assets/bower_components/datetimepicker/jquery.datetimepicker.js',
                     // Markdown
                     'resources/assets/bower_components/mirrormark/dist/js/mirrormark.package.js',

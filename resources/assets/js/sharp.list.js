@@ -41,9 +41,27 @@
                     var key = "N_"+Math.random().toString(36).substr(2, 9);
                     $newItem.find("input, select, textarea").each(function() {
                         $(this).removeAttr("disabled");
+
+                        // First name...
                         var name = $(this).attr("name");
                         name = name.replace(/(--N--)/i, key);
                         $(this).attr("name", name);
+
+                        // ... then id
+                        var id = $(this).attr("id");
+                        if(id) {
+                            id = id.replace(/(--N--)/i, key);
+                            $(this).attr("id", id);
+                        }
+                    });
+
+                    // Finally handle labels (for checkboxes)
+                    $newItem.find("label").each(function() {
+                        var labelFor = $(this).attr("for");
+                        if(labelFor) {
+                            labelFor = labelFor.replace(/(--N--)/i, key);
+                            $(this).attr("for", labelFor);
+                        }
                     });
 
                     $newItem.find(".sharp-list-item-id").val(key);
