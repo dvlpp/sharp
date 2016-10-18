@@ -109,7 +109,7 @@ class MustacheModelHelper
 
     public function __isset($key)
     {
-        return isset($this->model->$key)
-        || method_exists($this->model, $key);
+        return method_exists($this->model, $key)
+        || isset($this->model->$key);
     }
 }
