@@ -35,7 +35,7 @@ class LabelField extends AbstractSharpField {
         }
         $val = $this->_format($baseEntity, $this->field->format);
 
-        $attributes = $this->field->attributes || [];
+        $attributes = $this->field->attributes ?: [];
         $attributes["class"] = "control-label";
 
         $str = '<input type="hidden" name="' . $this->fieldName . '" value="' . $val . '">'
@@ -97,10 +97,7 @@ class MustacheModelHelper
 
     public function __isset($key)
     {
-        if (isset($this->model->$key) || method_exists($this->model, $key)) {
-            return true;
-        }
-
-        return false;
+        return method_exists($this->model, $key)
+        || isset($this->model->$key);
     }
 }
