@@ -13,14 +13,13 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AutoUpdaterTest extends TestCase
 {
-    use DatabaseTransactions;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->app['config']->set('database.default','sqlite');
-        $this->app['config']->set('database.connections.sqlite.database', ':memory:');
+        config()->set('database.default','sqlite');
+        config()->set('database.connections.sqlite.database', ':memory:');
 
         $this->migrateDatabase();
         $this->initModelFactories();
