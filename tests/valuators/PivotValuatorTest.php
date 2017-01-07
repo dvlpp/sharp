@@ -10,7 +10,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PivotValuatorTest extends TestCase
 {
-    use DatabaseTransactions;
 
     public function setUp()
     {

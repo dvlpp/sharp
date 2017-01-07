@@ -12,7 +12,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ListValuatorTest extends TestCase
 {
-    use DatabaseTransactions;
 
     public function setUp()
     {

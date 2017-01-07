@@ -20,7 +20,8 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "doctrine/dbal": "~2.5"
     },
     "autoload": {
         "files": [

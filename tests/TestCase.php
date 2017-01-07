@@ -11,9 +11,9 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
 
-        $app->register(\Dvlpp\Sharp\SharpServiceProvider::class);
-
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        $app->register(\Dvlpp\Sharp\SharpServiceProvider::class);
 
         return $app;
     }
