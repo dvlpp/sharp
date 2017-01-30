@@ -106,7 +106,7 @@
     <p class="credits">Sharp {{ $sharpVersion }} — Développlan.</p>
 </footer>
 
-@section("scripts")
+@section('scripts')
 <script src="/sharp/sharp.ui.min.js?v={{ $sharpVersion }}"></script>
 @show
 
