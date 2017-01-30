@@ -2,7 +2,7 @@
 
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\DateValuator;
 
-class DateValuatorTest extends PHPUnit_Framework_TestCase
+class DateValuatorTest extends BrowserKitTest
 {
     /** @test */
     public function date_field_is_updated()

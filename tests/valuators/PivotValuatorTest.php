@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class PivotValuatorTest extends TestCase
+class PivotValuatorTest extends BrowserKitTest
 {
 
     public function setUp()

@@ -6,7 +6,7 @@ use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterWithUploads;
 use Illuminate\Contracts\Filesystem\Factory;
 
-class FileValuatorTest extends TestCase
+class FileValuatorTest extends BrowserKitTest
 {
     public function setUp()
     {

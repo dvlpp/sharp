@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ListValuatorTest extends TestCase
+class ListValuatorTest extends BrowserKitTest
 {
 
     public function setUp()
