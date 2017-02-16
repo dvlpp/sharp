@@ -248,3 +248,9 @@ function normalize_file_name($filename)
 {
     return preg_replace("#[^A-Za-z1-9-_\\.]#", "", $filename);
 }
+
+function is_at_least_laravel_54()
+{
+    list($major, $minor, $patch) = explode(".", app()->version());
+    return (int)$minor >= 4;
+}

@@ -100,8 +100,13 @@ class ListValuator implements Valuator
                         // Have to create this item : we can't use $entity->$listKey()->create([]), because
                         // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
                         $item = $this->instance->{$this->listKey}()->getRelated()->newInstance([]);
+
+                        $foreignKeyMethodName = is_at_least_laravel_54()
+                            ? "getForeignKeyName"
+                            : "getPlainForeignKey";
+
                         $item->setAttribute(
-                            $this->instance->{$this->listKey}()->getForeignKeyName(),
+                            $this->instance->{$this->listKey}()->$foreignKeyMethodName(),
                             $this->instance->{$this->listKey}()->getParentKey());
                     }
 
