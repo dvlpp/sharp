@@ -85,10 +85,10 @@ function sharp_thumbnail($source, $w, $h, $params = [], $relativeFolder=null, $i
     }
 
     if(config("sharp.thumbnail_in_storage", false)) {
-        return url("storage/$thumbnailPath/".config('sharp.upload_storage_base_path')."/$thumbName");
+        return url(urlencode("storage/$thumbnailPath/".config('sharp.upload_storage_base_path')."/$thumbName"));
     }
 
-    return url("$thumbnailPath/$thumbName");
+    return url(urlencode("$thumbnailPath/$thumbName"));
 }
 
 /**
