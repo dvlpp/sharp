@@ -7,7 +7,7 @@ return [
     'login_submitBtn' => 'Connexion',
     'login_passwordForgotten' => 'Mot de passe oublié ?',
 
-    'list_title' => '{0} Aucun élément.|{1} 1 élément|[2,*] :count éléments',
+    'list_title' => ':count élément|:count éléments',
     'list_pagination' => '– page :current sur :total',
     'list_newBtn' => 'Création',
     'list_reorderBtn' => 'Réorganiser',
