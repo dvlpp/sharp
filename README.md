@@ -1,3 +1,5 @@
+> This package is still maintained, but Sharp 4, a whole new version of it with a new perspective for Laravel 5.4+ is available here: [code16/sharp](https://github.com/code16/sharp)
+
 # Sharp
 
 *A Laravel CMS for developers who hate CMS*
