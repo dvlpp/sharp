@@ -8,13 +8,13 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*|5.3.*|5.4.*|5.5.*",
-        "laravelcollective/html": "5.2.*|5.3.*|5.4.*",
+        "laravelcollective/html": "5.2.*|5.3.*|5.4.*|5.5.*",
         "intervention/image": "2.*",
         "erusev/parsedown": "~1.1",
         "mustache/mustache": "~2.6.0"
     },
     "require-dev": {
-        "laravel/laravel": "5.2.*|5.3.*|5.4.*|5.5.*",
+        "laravel/laravel": "5.5.*",
         "laravel/browser-kit-testing": "^1.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
