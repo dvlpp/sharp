@@ -1,4 +1,4 @@
-#Sharp
+# Sharp
 
 *A Laravel CMS for developers who hate CMS*
 
@@ -12,7 +12,7 @@ Well, I think I can try to be clearer: in many of my web projects there's a lot 
 
 ---
 
-##Installation
+## Installation
 
 - Through composer, add `"dvlpp/sharp": "~1.0"` in your require section, and run `composer update`.
 - Next add `'Dvlpp\Sharp\SharpServiceProvider'` in your app.php providers section.
@@ -24,7 +24,7 @@ OK, you're good to go. One final note: after an composer update, always re-run t
 
 ---
 
-##Full documentation
+## Full documentation
 
 [Here's the doc index](docs/index.md).
 
