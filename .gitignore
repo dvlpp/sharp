@@ -6,3 +6,4 @@ tests/_output/*
 /node_modules
 /resources/assets/bower_components
 .idea/
+yarn.lock
