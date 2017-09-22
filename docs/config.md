@@ -1,4 +1,4 @@
-#Sharp's config file(s)
+# Sharp's config file(s)
 
 Sharp development is divided in two parts: the coding (by extending / implementing Sharp's classes or interfaces), and the data description, done in config files. Sharp has two of them:
 

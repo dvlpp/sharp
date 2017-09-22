@@ -1,4 +1,4 @@
-#Commands
+# Commands
 
 Let's say that our zoo administrator wants to execute some specific actions like export a CSV file of a giraffe list, or quickly update an attribute right from the list view, or even have a online page preview before publishing content. Well, that why there's commands in Sharp.
 
@@ -8,7 +8,7 @@ Let's say that our zoo administrator wants to execute some specific actions like
 3. [Download command](#download)
 4. [Auth](#auth)
 
-##<a name="config"></a> 1. Command config
+## <a name="config"></a> 1. Command config
 
 It always start with some config:
 
@@ -60,7 +60,7 @@ Next, there's 3 possible types: "download", "reload" and "view". They are explai
 A new caret appeared at the end of each row, with a submenu containing all commands. The same is true on the list itself, thanks to the "Export" list command, for which the caret is in the blue list bar, on the right.
 
 
-##<a name="reload"></a> 2. Reload command
+## <a name="reload"></a> 2. Reload command
 
 Our first entity command is called "birthday", and refers to a `Quincy\Sharp\Giraffe\BirthdayCommand` command handler. Well, let's create this class and let it implement `Dvlpp\Sharp\Commands\SharpEntityCommand`.
 
@@ -92,7 +92,7 @@ class BirthdayCommand implements SharpEntityCommand {
 The `execute()` method is required, and accept the `$instanceId` (a giraffe id for us) as a parameter. All we have to do is the increment the age, and return nothing, in the command "reload" case.
 
 
-##<a name="view"></a> 3. View command
+## <a name="view"></a> 3. View command
 
 The "preview" entity command we described above is a little bit different: in a "view" type, meaning that Sharp must load a view (specified in the config) with the command data in a new window. Here's the command handler `execute()` method possible code:
 
@@ -107,7 +107,7 @@ function execute($instanceId)
 Sharp will load the `sharp_previews/giraffe` view with a `$giraffe` parameter, and open it in a new browser window / tab.
 
 
-##<a name="download"></a> 4. Download command
+## <a name="download"></a> 4. Download command
 
 To demonstrate the download command, let's take a list command this time, named "export". The goal is to create a CSV file of the displayed giraffe list and send it to the user.
 
@@ -163,7 +163,7 @@ As you can see, the execute method accept a SharpEntitiesListParams parameter, v
 
 As expected, when the command is called, the generated csv file is downloaded.
 
-##<a name="auth"></a> 4. Auth
+## <a name="auth"></a> 4. Auth
 
 Commands require by default an "update" auth on the entity. To change that, simply add a `auth` attribute on the command config:
 

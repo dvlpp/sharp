@@ -1,4 +1,4 @@
-#Entity form
+# Entity form
 
 1. [Fields](#fields)
 	2. [Shared config](#f-shared)
@@ -24,11 +24,11 @@
 
 OK, here we are: we created some [entities config file(s)](config.md), and wrote [the base classes](entities_list.md) to handle lists display, reordering, searching and stuff. Now, let's tackle the big part, the actual data entry. This is in fact the final purpose of Sharp: provide a simple way to enter complex data without having to develop big javascript objects each time.
 
-##<a name="fields"></a> 1. Fields
+## <a name="fields"></a> 1. Fields
 
 There's a bunch of them. 
 
-###<a name="f-shared"></a> 1.1 Shared config
+### <a name="f-shared"></a> 1.1 Shared config
 
 Here is the basic config shared by all fields:
 
@@ -53,7 +53,7 @@ Here is the basic config shared by all fields:
 And finally, about the **key**: this must be an instance attribute of the object, because Sharp will get values for form population ou repopulation from there. Using Eloquent, this must correspond to a database field.
 
 
-###<a name="f-text"></a> 1.2 Text field
+### <a name="f-text"></a> 1.2 Text field
 
 Just a simple regular text field. Base config:
 
@@ -65,7 +65,7 @@ Just a simple regular text field. Base config:
 ```
 
 
-###<a name="f-textarea"></a> 1.3 Textarea
+### <a name="f-textarea"></a> 1.3 Textarea
 
 Just a textarea field.
 
@@ -80,7 +80,7 @@ Just a textarea field.
 - **height**: textarea height expressed in pixels 
 
 
-###<a name="f-markdown"></a> 1.4 Markdown textarea
+### <a name="f-markdown"></a> 1.4 Markdown textarea
 
 This will generate a markdown-specific textarea field, based on the [lepture/Editor](https://github.com/lepture/editor) javascript editor.
 
@@ -106,7 +106,7 @@ This will generate a markdown-specific textarea field, based on the [lepture/Edi
 	- F: toggle fullscreen
 
 
-###<a name="f-date"></a> 1.5 Date
+### <a name="f-date"></a> 1.5 Date
 
 Useful to enter date and time:
 
@@ -141,7 +141,7 @@ The date component is based on the [datetimepicker Jquery plugin](http://xdsoft.
 ![](img/formfield-date.png)
 
 
-###<a name="f-check"></a> 1.6 Check
+### <a name="f-check"></a> 1.6 Check
 
 A simple checkbox.
 
@@ -161,7 +161,7 @@ Note: Usually, you wouldn't put a label attribute for a checkbox.
 Sharp always send the value of a checkbox attribute, even if unchecked.
 
 
-###<a name="f-choose"></a> 1.7 Choose
+### <a name="f-choose"></a> 1.7 Choose
 
 A select element (also called dropdown).
 
@@ -182,7 +182,7 @@ A select element (also called dropdown).
 This component is rendered by the [selectize.js](http://brianreavis.github.io/selectize.js/) plugin.
 
 
-###<a name="f-hidden"></a> 1.8 Hidden
+### <a name="f-hidden"></a> 1.8 Hidden
 
 Well, you know. Yes, an hidden field.
 
@@ -195,7 +195,7 @@ Well, you know. Yes, an hidden field.
 Note that there isn't any *value* attribute: like for all other fields, the field is populated with instance->age (in this example).
 
 
-###<a name="f-label"></a> 1.9 Label
+### <a name="f-label"></a> 1.9 Label
 
 Label is for displaying read-only data.
 
@@ -211,7 +211,7 @@ Label is for displaying read-only data.
 Nothing will be posted here, and the key for the field could be anything unique.
 
 
-###<a name="f-password"></a> 1.10 Password
+### <a name="f-password"></a> 1.10 Password
 
 A password field.
 
@@ -222,7 +222,7 @@ A password field.
 ```
 
 
-###<a name="f-ref"></a> 1.11 Reference field
+### <a name="f-ref"></a> 1.11 Reference field
 
 This one is used to reference a related instance, in a one-to-* relationship.
 
@@ -254,7 +254,7 @@ This component is rendered by the [selectize.js](http://brianreavis.github.io/se
 ![](img/formfield-ref.png)
 
 
-###<a name="f-file"></a> 1.12 File upload
+### <a name="f-file"></a> 1.12 File upload
 
 OK, file upload are basically the main reason I developed Sharp, at the beginning. You know, asynchronous upload, files types, tmp directory, storage, repopulation in case of validation problem, ...
 
@@ -304,7 +304,7 @@ The rest is magic, provided on the client side by the well-known [blueimp/jQuery
 ![](img/formfield-file-2.png)
 
 
-###<a name="f-list"></a> 1.13 List
+### <a name="f-list"></a> 1.13 List
 
 I wrote that file upload was the reason why I developed Sharp: in fact, it's file upload *and lists*. In many projects, I have to handle lists with dynamic items, for all kind of purpose:
 
@@ -368,7 +368,7 @@ In case of an item creation, X would be a generated unique string, starting with
 ![](img/formfield-list.png)
 
 
-###<a name="f-listitemref"></a> 1.14 List item reference field
+### <a name="f-listitemref"></a> 1.14 List item reference field
 
 This one is for a quite rare case: to reference an specific item in a list of another entity instance. Suppose we develop a new Comment entity, and we want to attach it to a specific photo of our giraffe photos list described earlier: this is a list item reference (reference is toward a specific photo of a giraffe).
 
@@ -409,7 +409,7 @@ function formListForSublist($sublistId, $askingInstance)
 This method is responsible for creating a multidimensional array of giraffe x photos with a text value to display in a dropdown list. The user can now pick a giraffe, and then pick a specific photo.
 
 
-###<a name="f-tags"></a> 1.15 Pivot tags field
+### <a name="f-tags"></a> 1.15 Pivot tags field
 
 It's pretty common to manage tags. There's different ways to do it, and Sharp proposal is to handle it with a tags table and a pivot table. 
 
@@ -443,7 +443,7 @@ function formList($askingInstance)
 The tag field is now complete. The rendering is done with the [selectize.js plugin](http://brianreavis.github.io/selectize.js/).
 
 
-##<a name="form-layout"></a> 2. The form layout
+## <a name="form-layout"></a> 2. The form layout
 
 Maybe you noticed that the config file contains a second form-related attribute. That's `form_layout`:
 
@@ -489,7 +489,7 @@ With the config above, here's the result:
 ![](img/formview-giraffe-singlerelation.png)
 
 
-##<a name="conditional"></a> 3. Conditional display (hide and show fields)
+## <a name="conditional"></a> 3. Conditional display (hide and show fields)
 
 Sharp offers a simple way to hide or show fields depending on a Check or a Choose value. This is all done in the config file:
 
@@ -549,7 +549,7 @@ You can even indicate multiple matches, separated by a comma (Choose only):
 ```
 
 
-##<a name="update"></a> 4. Update and create
+## <a name="update"></a> 4. Update and create
 
 This is the part where you have to do something in your repository with the posted data. Like, you know, save it in a database. And here, you have two big choices:
 
@@ -663,7 +663,7 @@ Very simple. But the "addable" option in the tag config file authorize to create
 The update code can differentiate new tags from existing one by checking numeric vs string values. Now why is there a # at the beginning of the name? To indicate that it's a new tag (we can't just rely on a "is_numeric" test, because a tag name could be numeric)... The # must be removed on the update stage.
 
 
-##<a name="validation"></a> 5. Form validation
+## <a name="validation"></a> 5. Form validation
 
 Naturally, Sharp can help when it comes to form validation. We can reference a *Validator* in the config:
 
@@ -725,7 +725,7 @@ public function getMessages()
 A final note: you can choose to override the class attributes instead of methods, if you prefer. Simply take a look to the `Dvlpp\Sharp\Validation\Validator` class.
 
 
-##<a name="singlerelation"></a> 6. Single relation case
+## <a name="singlerelation"></a> 6. Single relation case
 
 A final chapter on this long page, to talk about a quite specific case. Suppose that zoo animal could have an "ID card", with some info on it: a number and an origin. We decide to add a animal_card table, and a one-to-one relationship with the giraffe table (which contains now a animal_card_id).
 

@@ -1,4 +1,4 @@
-#Repository and data management
+# Repository and data management
 
 So, here we are: we just finished to [write our giraffe config file](config.md), and we want to see all giraffes in a pretty list. Well, there's some classes to create, and the first one, the main one is the *repository*. Let's get started.
 
@@ -84,7 +84,8 @@ class Repository implements SharpCmsRepository {
     }
 }
 ```
-A quite simple repository, with methods to:
+
+A quite simple repository, with methods to:
 
 - grab lists (`listAll()`, `paginate()`), 
 - get instances (`find()` and `newInstance()`), 

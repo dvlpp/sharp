@@ -1,4 +1,4 @@
-#Entities list
+# Entities list
 
 1. [The entities list config](#config)
 1. [Sorting](#sorting)
@@ -9,7 +9,7 @@
 2. [Reordering](#reordering)
 2. [Sublists](#sublists)
 
-##<a name="config"></a> 1. The entities list config
+## <a name="config"></a> 1. The entities list config
 
 All that we need here is store under the `list_template` attribute in the config:
 
@@ -55,7 +55,7 @@ All that stuff will be covered in this chapter. Let's just be global here:
 
 OK, let's see:
 
-##<a name="sorting"></a> 2. Sorting
+## <a name="sorting"></a> 2. Sorting
 
 OK, let's work on the giraffe list; but first, we need some data to work with. After a [faker](https://github.com/fzaninotto/Faker)-based seed, we not have 50 animals:
 
@@ -80,7 +80,7 @@ function listAll(SharpEntitiesListParams $params)
 Line by line, I first chose to eager load zookeeper (because I want to add its name on a column of the list, later). Then I make use of the SharpEntitiesListParams parameter, which contains (among other things) the sorted column and sorted direction. And I can now use he column sorting!
 
 
-##<a name="renderers"></a> 3. Columns renderers
+## <a name="renderers"></a> 3. Columns renderers
 
 I'm not happy with the height column: data is expressed in cm, and I could like to have it in ft / inch. We can use a column renderer for that, which allows to format the displayed data.
 
@@ -149,7 +149,7 @@ They can be used like this:
 ```
 
 
-##<a name="activation"></a> 4. Activation / Deactivation
+## <a name="activation"></a> 4. Activation / Deactivation
 
 Notice the blue or outlined star at the end of each row? This is the active state indicator (we talk about it in the [Config](config.md) page). The idea is to provide a basic way to declare an instance online or offline. We defined it this way in the config:
 
@@ -178,7 +178,7 @@ function deactivate($id)
 We can now clic on the activate / deactivate star buttons.
 
 
-##<a name="pagination"></a> 5. Pagination
+## <a name="pagination"></a> 5. Pagination
 
 In many cases we'll need pagination in entities lists. It's very easy to tackle with Sharp. First, as usual, the config:
 
@@ -222,7 +222,7 @@ The fact is giraffe are now paginated:
 
 ![](img/listview-giraffe-pagination.png)
 
-##<a name="search"></a> 6. Search
+## <a name="search"></a> 6. Search
 
 The idea is to add a quick search functionality. So, in the config, we activate the search:
 
@@ -271,7 +271,7 @@ One again, the philosophy is that we can implement this search in many ways, dep
 Notice we iterate over a `$params->getSearchTerms()` collection first, to search for all words. Notice also that we don't add the necessary '%' characters around `$term`: it's a default. To override this, simply provide prefix and suffix to the method: `$params->getSearchTerms($prefix, $suffix)`.
 
 
-##<a name="reordering"></a> 7. Reordering
+## <a name="reordering"></a> 7. Reordering
 
 OK, I think we are going to need another entity to work with. We have Giraffe and Zookeeper (this one will be used in the next paragraph). To keep it simple, let's say our zoo areas are divided in *zones*, like savanna, mountains, and so on. We just have to create an entity config for those zones, a model, and a repo. Then insert some data, and:
 
@@ -314,7 +314,7 @@ And now, we can clic on the reorder button, drag and drop zones and validate to 
 Notice that I choose for this tutorial to manage order with an integer attribute, which is a brutal way to do it. But Sharp doesn't need you to do it this way: depending on the project or the entity, you can use integer, or some previous / next pointer, or anything else.
 
 
-##<a name="sublists"></a> 8. Sublists
+## <a name="sublists"></a> 8. Sublists
 
 Like I said before, sublists are a transversal way to group entities. I gave a good season and theatre example in the [concepts](concepts.md) page, but in our case let's say we want to group giraffes (and other animals) by zookeepers.
 

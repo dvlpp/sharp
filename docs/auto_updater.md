@@ -1,4 +1,4 @@
-#Sharp Eloquent auto-updater
+# Sharp Eloquent auto-updater
 
 If you read the [Entity forms](docs/entity_form.md) chapter, you probably noticed that the update or create code to write in the entity repository can be tricky, or at least a bit long, especially when posting big entities with lists and tags and stuff.
 
@@ -12,7 +12,7 @@ The good news is that if you are using Eloquent for your models, you can probabl
 
 
 
-##<a name="magic"></a>  1. The auto-updater Trait magic
+## <a name="magic"></a>  1. The auto-updater Trait magic
 
 Here's how the giraffe repository is managing `update()` and `create()` methods:
 
@@ -46,7 +46,7 @@ First two arguments are useful to review the configuration and find out the type
 And... that's mostly it: this function does all the boring job. But it will sometimes need some help, as explained below.
 
 
-##<a name="file"></a>  2. The file upload case
+## <a name="file"></a>  2. The file upload case
 
 File uploads needs a little extra work: if you use the SharpEloquentRepositoryUpdaterTrait on a repository that manage an entity which contains file uploads, you need to implement a special interface: `SharpEloquentRepositoryUpdaterWithUploads`. This interface will require 3 methods:
 
@@ -81,7 +81,7 @@ Finally, the last method, `deleteFileUpload()`, is called when a file is deleted
 Of course, it's easy to manage this in a project Trait, and code it only once, based on your file upload storage implementation choices.
 
 
-##<a name="list"></a>  3. List special config
+## <a name="list"></a>  3. List special config
 
 Lists offers two optional config parameters:
 
@@ -105,7 +105,7 @@ So, as an example:
 ```
 
 
-##<a name="tags"></a> 4. Pivot tags special config
+## <a name="tags"></a> 4. Pivot tags special config
 
 Very similarly to lists, pivot tags have also optional config parameters dedicated to the auto-updater:
 
@@ -113,7 +113,7 @@ Very similarly to lists, pivot tags have also optional config parameters dedicat
 - `create_attribute` is more specific: for pivot tags fields which authorize on-the-fly creation (with `addable` parameter), this must be filled with the model attribute name which will be updated with the string tag.
 
 
-##<a name="specific"></a> 5. Wait, this particular attribute is specific
+## <a name="specific"></a> 5. Wait, this particular attribute is specific
 
 Of course, you will sometimes need extra code for some attributes, or you will maybe want to override the default behavior. Well, you want hooks, and there's one per attribute.
 
@@ -123,7 +123,8 @@ The rule is simple: if you have in your repo a method called `update[AttributeNa
 function updateNameAttribute($instance, $value)
 {
 	// Do anything with the value
-	return false;}
+	return false;
+}
 ```
 
 If the method returns false, the auto updater will skip to the next posted value. If true, the auto update process will continue just as planned.
@@ -140,7 +141,8 @@ function createPhotosListItem($instance)
 	return new Photo([
 		"animal_id" => $instance->id,
 		"animal_type" => 'Quincy\Sharp\Giraffe\Giraffe'
-	]);}
+	]);
+}
 ```
 
 In fact, if we let Sharp doing this alone, in this case, only `animal_id` would be valued, because there's no way it could guess the `animal_type` specific thing (for [polymorphic relation](http://laravel.com/docs/eloquent#polymorphic-relations)).

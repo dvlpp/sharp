@@ -1,4 +1,4 @@
-#Authentication and rights management
+# Authentication and rights management
 
 Sharp shall not be responsible of the auth or access rights management of a particular application: implementation is your choice.
 
@@ -7,7 +7,7 @@ Sharp shall not be responsible of the auth or access rights management of a part
 3. [Rights management](#rights)
 
 
-##<a name="config"></a>  1. Config
+## <a name="config"></a>  1. Config
 
 To enable authentication, we simply indicate a Auth service class in the application config (`site.php`):
 
@@ -21,7 +21,7 @@ return [
 ```
 
 
-##<a name="auth"></a>  2. Auth service
+## <a name="auth"></a>  2. Auth service
 
 Then, we have to write this `Quincy\Sharp\SharpAuthentication` class, making it implements  `Dvlpp\Sharp\Auth\SharpAuth`:
 
@@ -75,7 +75,7 @@ Once the class is written, we can test it by hitting any Sharp page, and we get 
 Notice also that a logout link appears in Sharp's header.
 
 
-##<a name="rights"></a>  3. Rights management
+## <a name="rights"></a>  3. Rights management
 
 Question is now: how to authorize specific users for specific actions? Suppose we want to set our rights this way:
 
