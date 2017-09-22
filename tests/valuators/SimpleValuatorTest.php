@@ -2,7 +2,7 @@
 
 use Dvlpp\Sharp\Repositories\AutoUpdater\Valuators\SimpleValuator;
 
-class SimpleValuatorTest extends PHPUnit_Framework_TestCase
+class SimpleValuatorTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
     public function text_field_is_updated()

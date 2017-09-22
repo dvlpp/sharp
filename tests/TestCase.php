@@ -17,4 +17,28 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    /**
+     * Alias for seeInDatabase
+     * 
+     * @param  string $table
+     * @param  array  $constraints]
+     * @return static
+     */
+    protected function seeInDatabase($table, array $constraints)
+    {
+        return $this->assertDatabaseHas($table, $constraints);
+    }
+
+    /**
+     * Alias for dontSeeInDatabase
+     * 
+     * @param  string $table
+     * @param  array  $constraints]
+     * @return static
+     */
+    protected function dontSeeInDatabase($table, array $constraints)
+    {
+        return $this->assertDatabaseMissing($table, $constraints);
+    }
 }

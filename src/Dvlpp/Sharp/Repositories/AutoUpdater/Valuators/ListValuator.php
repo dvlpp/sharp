@@ -101,7 +101,7 @@ class ListValuator implements Valuator
                         // we don't want a ->save() call on the item (which could fail because of mandatory DB attribute)
                         $item = $this->instance->{$this->listKey}()->getRelated()->newInstance([]);
                         $item->setAttribute(
-                            $this->instance->{$this->listKey}()->getPlainForeignKey(),
+                            $this->instance->{$this->listKey}()->getForeignKeyName(),
                             $this->instance->{$this->listKey}()->getParentKey());
                     }
 
