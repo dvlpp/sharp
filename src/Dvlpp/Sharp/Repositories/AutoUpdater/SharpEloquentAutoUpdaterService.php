@@ -75,7 +75,12 @@ class SharpEloquentAutoUpdaterService
             $singleRelationBelongsTo->save();
             // And then attach the foreign key
             $lk = $instance->$relationKey()->getForeignKey();
-            $fk = $instance->$relationKey()->getOtherKey();
+
+            $ownerKeyMethodName = is_at_least_laravel_54()
+                ? "getOwnerKey"
+                : "getOtherKey";
+
+            $fk = $instance->$relationKey()->$ownerKeyMethodName();
             $instance->$lk = $singleRelationBelongsTo->$fk;
         }
 
