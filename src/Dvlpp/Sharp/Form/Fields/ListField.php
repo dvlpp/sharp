@@ -123,7 +123,7 @@ class ListField extends AbstractSharpField
                 if(strpos($itemFieldKey, ":")) {
                     list($itemFieldKey, $size) = explode(":", $itemFieldKey);
                 } else {
-                    $size = 12/sizeof($itemFields);
+                    $size = 12/sizeof((array)$itemFields);
                 }
 
                 $itemField = $this->field->findItemField($itemFieldKey);

@@ -6,7 +6,7 @@
             if(strpos($field, ":")) {
                 list($field, $size) = explode(":", $field);
             } else {
-                $size = 12/sizeof($fields);
+                $size = 12/sizeof((array)$fields);
             }
         ?>
 
