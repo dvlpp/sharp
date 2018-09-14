@@ -1,5 +1,5 @@
 {
-  "name": "Sharp",
+  "name": "sharp",
   "version": "3.0.0",
   "dependencies": {
     "bootstrap": "~3.3.0",

@@ -41,6 +41,11 @@ class DateValuator implements Valuator
      */
     public function valuate()
     {
+        // Workaround to remove unwanted part of the iso date format
+        // added by browser
+        if($pos = strpos($this->data, "(")) {
+            $this->data = substr($this->data, 0, $pos);
+        }
         
         $value = date("Y-m-d H:i:s", strtotime($this->data));
 
