@@ -29,7 +29,8 @@ class UploadController extends Controller
 
     /**
      * @param $fileShortPath
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return Response
+     * @throws FileNotFoundException
      */
     public function download($fileShortPath)
     {
@@ -44,10 +45,14 @@ class UploadController extends Controller
             $path = config("sharp.upload_storage_base_path") . "/" . $path;
         }
 
-        return (new Response(
-            Storage::disk($disk)->get($path), 200
-        ))->header('Content-Type', Storage::disk($disk)->mimeType($path))
-            ->header("Content-Disposition", "attachment");
+        $response = new Response(Storage::disk($disk)->get($path), 200, [
+            "Content-Type" => Storage::disk($disk)->mimeType($path),
+            "Content-Disposition" => "attachment"
+        ]);
+
+        ob_end_clean();
+
+        return $response;
     }
 
     private function uploadFile(Request $request)
