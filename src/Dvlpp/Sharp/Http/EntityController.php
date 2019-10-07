@@ -318,6 +318,8 @@ class EntityController extends Controller
         // Instantiate the entity repository
         $repo = app($entity->repository());
 
+        $id = $instanceId;
+
         try {
             $this->fireEvent($entity, "beforeValidate", compact('id', 'data'));
 
