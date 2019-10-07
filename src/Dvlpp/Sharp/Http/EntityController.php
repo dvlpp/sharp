@@ -213,6 +213,7 @@ class EntityController extends Controller
 
         // Find Entity config (from sharp CMS config file)
         $entity = sharp_entity($categoryKey, $entityKey);
+        $id = $instanceId;
 
         // Instantiate the entity repository
         $repo = app($entity->repository());
